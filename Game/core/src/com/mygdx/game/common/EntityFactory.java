@@ -34,4 +34,8 @@ public class EntityFactory {
 
         engine.addEntity(entity);
     }
+
+    public void addPlayer() {
+
+    }
 }

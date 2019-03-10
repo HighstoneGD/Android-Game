@@ -12,10 +12,9 @@ public abstract class GameObjectBase {
 
     private Ellipse bounds;
 
-    public GameObjectBase(float height) {
-        bounds = new Ellipse(x, y, height * 2, height);
+    public GameObjectBase(float width, float height) {
+        bounds = new Ellipse(x, y, width, height);
     }
-
 
     public void setPosition(float x, float y) {
         this.x = x;
