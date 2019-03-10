@@ -11,7 +11,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.debug.GameConfig;
+import com.mygdx.game.system.CellRenderSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
+import com.mygdx.game.system.debug.DebugRenderSystem;
 import com.mygdx.game.system.debug.GridRenderSystem;
 import com.mygdx.game.util.GdxUtils;
 
@@ -27,6 +29,7 @@ public class EndlessModeScreen implements Screen {
     private ShapeRenderer renderer;
     private PooledEngine engine;
     private EntityFactory factory;
+    private CellRenderSystem cellRenderSystem;
 
 
     public EndlessModeScreen(AndroidGame game) {
@@ -42,17 +45,21 @@ public class EndlessModeScreen implements Screen {
         renderer = new ShapeRenderer();
         engine = new PooledEngine();
         factory = new EntityFactory(engine, assetManager);
+        cellRenderSystem = new CellRenderSystem(factory);
+
+        cellRenderSystem.spawnCells();
 
         engine.addSystem(new GridRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 GameConfig.WORLD_CENTER_X, GameConfig.WORLD_CENTER_Y));
+        engine.addSystem(new DebugRenderSystem(viewport, renderer));
 
         addEntities();
         log.debug("entities size= " + engine.getEntities().size());
     }
 
     private void addEntities() {
-        factory.addCell(3f, 5f, 0.3f);
+
     }
 
     @Override

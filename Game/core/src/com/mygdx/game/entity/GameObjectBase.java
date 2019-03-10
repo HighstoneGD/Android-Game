@@ -16,9 +16,6 @@ public abstract class GameObjectBase {
         bounds = new Ellipse(x, y, height * 2, height);
     }
 
-    public void drawDebug(ShapeRenderer renderer) {
-        renderer.ellipse(bounds.x, bounds.y, bounds.width, bounds.height);
-    }
 
     public void setPosition(float x, float y) {
         this.x = x;

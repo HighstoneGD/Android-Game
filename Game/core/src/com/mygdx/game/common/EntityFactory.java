@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.assets.AssetManager;
 import com.mygdx.game.component.BoundsComponent;
+import com.mygdx.game.component.CellComponent;
 import com.mygdx.game.component.PositionComponent;
 
 public class EntityFactory {
@@ -24,9 +25,12 @@ public class EntityFactory {
         BoundsComponent bounds = engine.createComponent(BoundsComponent.class);
         bounds.bounds.set(x, y, height * 2, height);
 
+        CellComponent cellComponent = engine.createComponent(CellComponent.class);
+
         Entity entity = engine.createEntity();
         entity.add(position);
         entity.add(bounds);
+        entity.add(cellComponent);
 
         engine.addEntity(entity);
     }
