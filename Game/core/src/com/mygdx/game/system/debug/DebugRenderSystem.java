@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.BoundsComponent;
@@ -17,6 +18,7 @@ public class DebugRenderSystem extends IteratingSystem {
 
     private static final Family FAMILY = Family.all(BoundsComponent.class).get();
 
+    private static final Logger log = new Logger(DebugRenderSystem.class.getName(), Logger.DEBUG);
 
     private final Viewport viewport;
     private final ShapeRenderer renderer;
@@ -44,6 +46,7 @@ public class DebugRenderSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
+
         BoundsComponent bc = Mappers.BOUNDS.get(entity);
         float halfWidth = bc.bounds.width / 2f;
         float halfHeight = bc.bounds.height / 2f;
