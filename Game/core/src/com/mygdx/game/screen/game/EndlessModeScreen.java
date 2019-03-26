@@ -49,13 +49,11 @@ public class EndlessModeScreen implements Screen {
         cellsSpawnSystem = new CellsSpawnSystem(factory);
 
         engine.addSystem(new GridRenderSystem(viewport, renderer));
+        engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 GameConfig.WORLD_CENTER_X, GameConfig.WORLD_CENTER_Y));
-        engine.addSystem(new DebugRenderSystem(viewport, renderer));
 
         addEntities();
-
-        log.debug("entities size= " + engine.getEntities().size());
     }
 
     private void addEntities() {
@@ -85,7 +83,6 @@ public class EndlessModeScreen implements Screen {
 
     @Override
     public void hide() {
-        log.debug("hide()");
         dispose();
     }
 

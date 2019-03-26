@@ -12,7 +12,7 @@ public class ViewportUtils {
 
     private static final Logger log = new Logger(ViewportUtils.class.getName(), Logger.DEBUG);
 
-    private static final int DEFAULT_CELL_SIZE = 1;
+    private static final int DEFAULT_CELL_SIZE = 10;
 
     public static void drawGrid(Viewport viewport, ShapeRenderer renderer) {
         drawGrid(viewport, renderer, DEFAULT_CELL_SIZE);

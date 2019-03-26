@@ -3,11 +3,11 @@ package com.mygdx.game.debug;
 public class CellsPositions {
 
     private static final float[] Y = {
-            48.2f,
-            52.9f,
-            58.1f,
-            63.9f,
-            70.36f
+            51.8f,
+            47.1f,
+            41.9f,
+            36.1f,
+            29.64f
     };
 
     private static final float[] X = {

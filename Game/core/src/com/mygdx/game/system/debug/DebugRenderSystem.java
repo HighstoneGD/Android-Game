@@ -9,11 +9,8 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.BoundsComponent;
+import com.mygdx.game.debug.GameConfig;
 
-
-/**
- * Created by goran on 6/09/2016.
- */
 public class DebugRenderSystem extends IteratingSystem {
 
     private static final Family FAMILY = Family.all(BoundsComponent.class).get();
@@ -36,7 +33,7 @@ public class DebugRenderSystem extends IteratingSystem {
         viewport.apply();
         renderer.setProjectionMatrix(viewport.getCamera().combined);
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        renderer.setColor(Color.GREEN);
+        renderer.setColor(Color.RED);
 
         super.update(deltaTime);
 
@@ -46,7 +43,6 @@ public class DebugRenderSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-
         BoundsComponent bc = Mappers.BOUNDS.get(entity);
         float halfWidth = bc.bounds.width / 2f;
         float halfHeight = bc.bounds.height / 2f;
