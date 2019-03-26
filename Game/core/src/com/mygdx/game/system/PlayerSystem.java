@@ -15,13 +15,16 @@ public class PlayerSystem extends IteratingSystem {
 
     private static final Logger log = new Logger(PlayerSystem.class.getName(), Logger.DEBUG);
 
+    private static TimerSystem timerSystem;
+
     private static final Family FAMILY = Family.all(
             MovementStateComponent.class,
             PositionOnGridComponent.class
     ).get();
 
-    public PlayerSystem() {
+    public PlayerSystem(TimerSystem timerSystem) {
         super(FAMILY);
+        this.timerSystem = timerSystem;
     }
 
     @Override
@@ -43,18 +46,22 @@ public class PlayerSystem extends IteratingSystem {
     }
 
     private static void moveLeft(PositionOnGridComponent position) {
+        timerSystem.startTimer();
         position.number--;
     }
 
     private static void moveRight(PositionOnGridComponent position) {
+        timerSystem.startTimer();
         position.number++;
     }
 
     private static void moveUp(PositionOnGridComponent position) {
+        timerSystem.startTimer();
         position.number -= 5;
     }
 
     private static void moveDown(PositionOnGridComponent position) {
+        timerSystem.startTimer();
         position.number += 5;
     }
 }

@@ -14,6 +14,7 @@ import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.system.BoundsSystem;
 import com.mygdx.game.system.CellsSpawnSystem;
 import com.mygdx.game.system.PlayerSystem;
+import com.mygdx.game.system.TimerSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
 import com.mygdx.game.system.debug.GridRenderSystem;
@@ -33,6 +34,7 @@ public class EndlessModeScreen implements Screen {
     private EntityFactory factory;
 
     private CellsSpawnSystem cellsSpawnSystem;
+    private TimerSystem timerSystem;
 
 
     public EndlessModeScreen(AndroidGame game) {
@@ -49,12 +51,13 @@ public class EndlessModeScreen implements Screen {
         engine = new PooledEngine();
         factory = new EntityFactory(engine, assetManager);
         cellsSpawnSystem = new CellsSpawnSystem(factory);
+        timerSystem = new TimerSystem(engine);
 
         engine.addSystem(new GridRenderSystem(viewport, renderer));
         engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 GameConfig.WORLD_CENTER_X, GameConfig.WORLD_CENTER_Y));
-        engine.addSystem(new PlayerSystem());
+        engine.addSystem(new PlayerSystem(timerSystem));
         engine.addSystem(new BoundsSystem());
 
         addEntities();
