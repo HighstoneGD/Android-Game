@@ -23,8 +23,9 @@ public class CellsPositions {
     }
 
     public static float getY(int number) {
-        return Y[number];
+        return Y[number / 5];
     }
 
-    private CellsPositions() {}
+    private CellsPositions() {
+    }
 }

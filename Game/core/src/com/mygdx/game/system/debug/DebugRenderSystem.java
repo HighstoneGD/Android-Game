@@ -33,7 +33,7 @@ public class DebugRenderSystem extends IteratingSystem {
         viewport.apply();
         renderer.setProjectionMatrix(viewport.getCamera().combined);
         renderer.begin(ShapeRenderer.ShapeType.Line);
-        renderer.setColor(Color.RED);
+        renderer.setColor(Color.GREEN);
 
         super.update(deltaTime);
 

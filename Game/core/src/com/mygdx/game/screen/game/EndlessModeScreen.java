@@ -11,7 +11,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.debug.GameConfig;
+import com.mygdx.game.system.BoundsSystem;
 import com.mygdx.game.system.CellsSpawnSystem;
+import com.mygdx.game.system.PlayerSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
 import com.mygdx.game.system.debug.GridRenderSystem;
@@ -52,12 +54,15 @@ public class EndlessModeScreen implements Screen {
         engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 GameConfig.WORLD_CENTER_X, GameConfig.WORLD_CENTER_Y));
+        engine.addSystem(new PlayerSystem());
+        engine.addSystem(new BoundsSystem());
 
         addEntities();
     }
 
     private void addEntities() {
         cellsSpawnSystem.spawnCells();
+        factory.addPlayer();
     }
 
     @Override

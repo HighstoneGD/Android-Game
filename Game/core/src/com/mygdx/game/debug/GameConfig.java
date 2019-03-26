@@ -12,6 +12,9 @@ public class GameConfig {
     public static final float WORLD_CENTER_Y = WORLD_HEIGHT / 2f; // world units
 
     public static final float CELL_HEIGHT = 3.3f;
+    public static final float PLAYER_SIZE = 7f;
+
+    public static final int PLAYER_START_POSITION = 12;
 
     private GameConfig() {}
 }

@@ -15,7 +15,7 @@ public class CellsSpawnSystem extends EntitySystem {
 
     public void spawnCells() {
         for (int i = 0; i < 25; i++) {
-            factory.addCell(CellsPositions.getX(i), CellsPositions.getY((int)(i/5)), i, GameConfig.CELL_HEIGHT);
+            factory.addCell(CellsPositions.getX(i), CellsPositions.getY(i), i, GameConfig.CELL_HEIGHT);
         }
     }
 }
