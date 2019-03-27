@@ -16,5 +16,7 @@ public class GameConfig {
 
     public static final int PLAYER_START_POSITION = 12;
 
+    public static final float DEFAULT_POT_SPAWN_SPEED = 0.5f;
+
     private GameConfig() {}
 }

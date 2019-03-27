@@ -1,4 +1,4 @@
-package com.mygdx.game.system;
+package com.mygdx.game.system.debug;
 
 import com.badlogic.ashley.core.EntitySystem;
 import com.mygdx.game.common.EntityFactory;

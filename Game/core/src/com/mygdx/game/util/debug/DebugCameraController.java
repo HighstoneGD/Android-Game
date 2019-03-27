@@ -24,7 +24,6 @@ public class DebugCameraController {
     // == constructor ==
     public DebugCameraController() {
         config = new DebugCameraConfig();
-        log.info("cameraConfig= " + config);
     }
 
     // == public methods ==

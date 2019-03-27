@@ -1,10 +1,10 @@
 package com.mygdx.game.common;
 
 import com.badlogic.ashley.core.ComponentMapper;
+import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.MovementStateComponent;
-import com.mygdx.game.component.PlayerComponent;
-import com.mygdx.game.component.PositionComponent;
+import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 
 public class Mappers {
@@ -18,5 +18,12 @@ public class Mappers {
     public static final ComponentMapper<PositionOnGridComponent> POSITION_ON_GRID =
             ComponentMapper.getFor(PositionOnGridComponent.class);
 
-    private Mappers() {}
+    public static final ComponentMapper<NumberComponent> NUMBER =
+            ComponentMapper.getFor(NumberComponent.class);
+
+    public static final ComponentMapper<AttackStateComponent> ATTACK_STATE =
+            ComponentMapper.getFor(AttackStateComponent.class);
+
+    private Mappers() {
+    }
 }

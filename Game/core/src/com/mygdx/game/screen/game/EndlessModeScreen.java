@@ -12,9 +12,10 @@ import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.system.BoundsSystem;
-import com.mygdx.game.system.CellsSpawnSystem;
 import com.mygdx.game.system.PlayerSystem;
+import com.mygdx.game.system.PotSpawnSystem;
 import com.mygdx.game.system.TimerSystem;
+import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
 import com.mygdx.game.system.debug.GridRenderSystem;
@@ -33,6 +34,8 @@ public class EndlessModeScreen implements Screen {
     private PooledEngine engine;
     private EntityFactory factory;
 
+    public float potSpawnSpeed;
+
     private CellsSpawnSystem cellsSpawnSystem;
     private TimerSystem timerSystem;
 
@@ -45,6 +48,7 @@ public class EndlessModeScreen implements Screen {
     @Override
     public void show() {
         log.debug("show()");
+        potSpawnSpeed = GameConfig.DEFAULT_POT_SPAWN_SPEED;
         camera = new OrthographicCamera();
         viewport = new FitViewport(GameConfig.WORLD_WIDTH, GameConfig.WORLD_HEIGHT, camera);
         renderer = new ShapeRenderer();
@@ -59,6 +63,7 @@ public class EndlessModeScreen implements Screen {
                 GameConfig.WORLD_CENTER_X, GameConfig.WORLD_CENTER_Y));
         engine.addSystem(new PlayerSystem(timerSystem));
         engine.addSystem(new BoundsSystem());
+        engine.addSystem(new PotSpawnSystem(this));
 
         addEntities();
     }

@@ -3,6 +3,7 @@ package com.mygdx.game.common;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.assets.AssetManager;
+import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.CellComponent;
 import com.mygdx.game.component.MovementStateComponent;
@@ -36,10 +37,14 @@ public class EntityFactory {
 
         CellComponent cellComponent = engine.createComponent(CellComponent.class);
 
+        AttackStateComponent attackState = engine.createComponent(AttackStateComponent.class);
+        attackState.underAttack = false;
+
         Entity entity = engine.createEntity();
         entity.add(position);
         entity.add(bounds);
         entity.add(cellComponent);
+        entity.add(attackState);
 
         engine.addEntity(entity);
     }
