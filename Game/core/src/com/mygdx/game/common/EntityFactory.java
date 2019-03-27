@@ -38,13 +38,14 @@ public class EntityFactory {
         CellComponent cellComponent = engine.createComponent(CellComponent.class);
 
         AttackStateComponent attackState = engine.createComponent(AttackStateComponent.class);
-        attackState.underAttack = false;
+        attackState.damage = 0;
 
         Entity entity = engine.createEntity();
         entity.add(position);
         entity.add(bounds);
         entity.add(cellComponent);
         entity.add(attackState);
+        entity.add(numberComponent);
 
         engine.addEntity(entity);
     }

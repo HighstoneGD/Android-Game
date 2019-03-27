@@ -11,9 +11,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.debug.GameConfig;
+import com.mygdx.game.debug.PotType;
 import com.mygdx.game.system.BoundsSystem;
 import com.mygdx.game.system.PlayerSystem;
-import com.mygdx.game.system.PotSpawnSystem;
+import com.mygdx.game.system.attack.AttackListener;
+import com.mygdx.game.system.attack.AttackSystem;
+import com.mygdx.game.system.attack.PotSpawnSystem;
 import com.mygdx.game.system.TimerSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
@@ -38,6 +41,7 @@ public class EndlessModeScreen implements Screen {
 
     private CellsSpawnSystem cellsSpawnSystem;
     private TimerSystem timerSystem;
+    private AttackSystem attackSystem;
 
 
     public EndlessModeScreen(AndroidGame game) {
@@ -54,8 +58,18 @@ public class EndlessModeScreen implements Screen {
         renderer = new ShapeRenderer();
         engine = new PooledEngine();
         factory = new EntityFactory(engine, assetManager);
+
         cellsSpawnSystem = new CellsSpawnSystem(factory);
         timerSystem = new TimerSystem(engine);
+        attackSystem = new AttackSystem();
+
+        AttackListener listener = new AttackListener() {
+            @Override
+            public void attack(PotType type, int cell) {
+                log.debug("attacked cell #" + cell + " with a " + type + " pot");
+                attackSystem.doDamage(type, cell);
+            }
+        };
 
         engine.addSystem(new GridRenderSystem(viewport, renderer));
         engine.addSystem(new DebugRenderSystem(viewport, renderer));
@@ -63,7 +77,7 @@ public class EndlessModeScreen implements Screen {
                 GameConfig.WORLD_CENTER_X, GameConfig.WORLD_CENTER_Y));
         engine.addSystem(new PlayerSystem(timerSystem));
         engine.addSystem(new BoundsSystem());
-        engine.addSystem(new PotSpawnSystem(this));
+        engine.addSystem(new PotSpawnSystem(this, listener));
 
         addEntities();
     }
