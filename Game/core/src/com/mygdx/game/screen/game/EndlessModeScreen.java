@@ -11,13 +11,11 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.debug.GameConfig;
-import com.mygdx.game.debug.PotType;
 import com.mygdx.game.system.BoundsSystem;
 import com.mygdx.game.system.PlayerSystem;
-import com.mygdx.game.system.attack.AttackListener;
-import com.mygdx.game.system.attack.AttackSystem;
-import com.mygdx.game.system.attack.PotSpawnSystem;
 import com.mygdx.game.system.TimerSystem;
+import com.mygdx.game.system.attack.PotSpawnSystem;
+import com.mygdx.game.system.attack.TargetSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
@@ -39,11 +37,6 @@ public class EndlessModeScreen implements Screen {
 
     public float potSpawnSpeed;
 
-    private CellsSpawnSystem cellsSpawnSystem;
-    private TimerSystem timerSystem;
-    private AttackSystem attackSystem;
-
-
     public EndlessModeScreen(AndroidGame game) {
         this.game = game;
         assetManager = game.getAssetManager();
@@ -59,31 +52,22 @@ public class EndlessModeScreen implements Screen {
         engine = new PooledEngine();
         factory = new EntityFactory(engine, assetManager);
 
-        cellsSpawnSystem = new CellsSpawnSystem(factory);
-        timerSystem = new TimerSystem(engine);
-        attackSystem = new AttackSystem();
-
-        AttackListener listener = new AttackListener() {
-            @Override
-            public void attack(PotType type, int cell) {
-                log.debug("attacked cell #" + cell + " with a " + type + " pot");
-                attackSystem.doDamage(type, cell);
-            }
-        };
-
         engine.addSystem(new GridRenderSystem(viewport, renderer));
         engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 GameConfig.WORLD_CENTER_X, GameConfig.WORLD_CENTER_Y));
-        engine.addSystem(new PlayerSystem(timerSystem));
+        engine.addSystem(new PlayerSystem());
         engine.addSystem(new BoundsSystem());
-        engine.addSystem(new PotSpawnSystem(this, listener));
+        engine.addSystem(new TimerSystem(engine));
+        engine.addSystem(new CellsSpawnSystem(factory));
+        engine.addSystem(new TargetSystem());
+        engine.addSystem(new PotSpawnSystem());
 
         addEntities();
     }
 
     private void addEntities() {
-        cellsSpawnSystem.spawnCells();
+        engine.getSystem(CellsSpawnSystem.class).spawnCells();
         factory.addPlayer();
     }
 

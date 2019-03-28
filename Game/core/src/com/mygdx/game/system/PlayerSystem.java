@@ -8,23 +8,19 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.MovementStateComponent;
-import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 
 public class PlayerSystem extends IteratingSystem {
 
     private static final Logger log = new Logger(PlayerSystem.class.getName(), Logger.DEBUG);
 
-    private static TimerSystem timerSystem;
-
     private static final Family FAMILY = Family.all(
             MovementStateComponent.class,
             PositionOnGridComponent.class
     ).get();
 
-    public PlayerSystem(TimerSystem timerSystem) {
+    public PlayerSystem() {
         super(FAMILY);
-        this.timerSystem = timerSystem;
     }
 
     @Override
@@ -32,7 +28,7 @@ public class PlayerSystem extends IteratingSystem {
         MovementStateComponent movementState = Mappers.MOVEMENT_STATE.get(entity);
         PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(entity);
 
-        if (movementState.isMoving() == false) {
+        if (!movementState.isMoving()) {
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && positionOnGrid.number % 5 != 0) {
                 moveLeft(positionOnGrid);
             } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && positionOnGrid.number % 5 != 4) {
@@ -45,23 +41,23 @@ public class PlayerSystem extends IteratingSystem {
         }
     }
 
-    private static void moveLeft(PositionOnGridComponent position) {
-        timerSystem.startTimer();
+    private void moveLeft(PositionOnGridComponent position) {
+        getEngine().getSystem(TimerSystem.class).startTimer();
         position.number--;
     }
 
-    private static void moveRight(PositionOnGridComponent position) {
-        timerSystem.startTimer();
+    private void moveRight(PositionOnGridComponent position) {
+        getEngine().getSystem(TimerSystem.class).startTimer();
         position.number++;
     }
 
-    private static void moveUp(PositionOnGridComponent position) {
-        timerSystem.startTimer();
+    private void moveUp(PositionOnGridComponent position) {
+        getEngine().getSystem(TimerSystem.class).startTimer();
         position.number -= 5;
     }
 
-    private static void moveDown(PositionOnGridComponent position) {
-        timerSystem.startTimer();
+    private void moveDown(PositionOnGridComponent position) {
+        getEngine().getSystem(TimerSystem.class).startTimer();
         position.number += 5;
     }
 }

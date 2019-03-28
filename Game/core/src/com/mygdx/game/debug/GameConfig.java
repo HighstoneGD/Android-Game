@@ -21,12 +21,18 @@ public class GameConfig {
     public static final float SHARD_EXISTANCE_TIME = 0.4f;
 
     public static final int SIMPLE_CENTRAL_DAMAGE = 3;
-    public static final int TRIPLE_CENTRAL_DAMAGE = 3;
     public static final int LARGE_CENTRAL_DAMAGE = 3;
     public static final int EXPLOSIVE_CENTRAL_DAMAGE = 3;
     public static final int IRON_CENTRAL_DAMAGE = 4;
-    public static final int CAT_CENTRAL_DAMAGE = 1;
+    public static final int CAT_DAMAGE = 2;
     public static final int SHARD_DAMAGE = 1;
+
+    public static final float COOLDOWN_INTERVAL = 1f;
+    public static final int TRIPLE_COOLDOWN = 6;
+    public static final int LARGE_COOLDOWN = 6;
+    public static final int EXPLOSIVE_COOLDOWN = 6;
+    public static final int IRON_COOLDOWN = 6;
+    public static final int CAT_COOLDOWN = 6;
 
     private GameConfig() {}
 }
