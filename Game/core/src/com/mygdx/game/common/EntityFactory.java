@@ -11,7 +11,7 @@ import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.debug.CellsPositions;
+import com.mygdx.game.debug.OldCellsPositions;
 import com.mygdx.game.debug.GameConfig;
 
 public class EntityFactory {
@@ -58,8 +58,8 @@ public class EntityFactory {
 
         BoundsComponent bounds = engine.createComponent(BoundsComponent.class);
         bounds.bounds.set(
-                CellsPositions.getX(position.number),
-                CellsPositions.getY(position.number),
+                OldCellsPositions.getX(position.number),
+                OldCellsPositions.getY(position.number),
                 GameConfig.PLAYER_SIZE,
                 GameConfig.PLAYER_SIZE
         );

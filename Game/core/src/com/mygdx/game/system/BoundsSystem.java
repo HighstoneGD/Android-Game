@@ -7,7 +7,7 @@ import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.debug.CellsPositions;
+import com.mygdx.game.debug.OldCellsPositions;
 
 /**
  * Created by goran on 6/09/2016.
@@ -30,10 +30,10 @@ public class BoundsSystem extends IteratingSystem {
         PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(entity);
 
         try {
-            bounds.bounds.x = CellsPositions.getX(positionOnGrid.number);
+            bounds.bounds.x = OldCellsPositions.getX(positionOnGrid.number);
         } catch (Exception e) {}
         try {
-            bounds.bounds.y = CellsPositions.getY(positionOnGrid.number);
+            bounds.bounds.y = OldCellsPositions.getY(positionOnGrid.number);
         } catch (Exception e) {}
     }
 }

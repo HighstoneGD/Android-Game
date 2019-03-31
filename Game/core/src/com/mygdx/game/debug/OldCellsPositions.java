@@ -1,6 +1,7 @@
 package com.mygdx.game.debug;
 
-public class CellsPositions {
+@Deprecated
+public class OldCellsPositions {
 
     private static final float[] Y = {
             51.8f,
@@ -26,6 +27,6 @@ public class CellsPositions {
         return Y[number / 5];
     }
 
-    private CellsPositions() {
+    private OldCellsPositions() {
     }
 }

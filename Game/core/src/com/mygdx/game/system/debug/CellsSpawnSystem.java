@@ -2,8 +2,6 @@ package com.mygdx.game.system.debug;
 
 import com.badlogic.ashley.core.EntitySystem;
 import com.mygdx.game.common.EntityFactory;
-import com.mygdx.game.debug.CellsPositions;
-import com.mygdx.game.debug.GameConfig;
 
 public class CellsSpawnSystem extends EntitySystem {
 
@@ -13,9 +11,7 @@ public class CellsSpawnSystem extends EntitySystem {
         this.factory = factory;
     }
 
-    public void spawnCells() {
-        for (int i = 0; i < 25; i++) {
-            factory.addCell(CellsPositions.getX(i), CellsPositions.getY(i), i, GameConfig.CELL_HEIGHT);
-        }
+    public void spawnCells(int x, int y) {
+
     }
 }
