@@ -1,35 +1,57 @@
 package com.mygdx.game.system.debug;
 
 import com.badlogic.ashley.core.EntitySystem;
-import com.mygdx.game.debug.Positions;
+import com.badlogic.gdx.utils.Logger;
+import com.mygdx.game.debug.GameConfig;
 
 public class PositionsCalculationSystem extends EntitySystem {
 
-    public PositionsCalculationSystem() {}
+    public float[][][] positions;
+    private static final Logger log = new Logger(PositionsCalculationSystem.class.getName(), Logger.DEBUG);
 
-    public float[][][] calculatePositions(int x, int y) {
-        float[][][] positions = new float[x][y][2];
+    public PositionsCalculationSystem(int x, int y) {
+        positions = new float[x][y][2];
+        calculatePositions(x, y);
+    }
 
-        float[] rows = new float[y + 1];
-        rows[rows.length - 1] = Positions.GRID_BOTTOM;
-        rows[0] = Positions.GRID_TOP;
+    private float[][][] calculatePositions(int x, int y) {
+        float yDistance = startYDistance(y);
+        float defDistance = 0;
 
-        float startDistance = startDistance(y);
-
-        for (int i = 1; i < rows.length - 1; i++) {
-            rows[i] = Positions.GRID_TOP - startDistance * (float)Math.pow(1.15f, i - 1);
+        //calculating y`s
+        for (int i = 0; i < y; i++) {
+            for (int j = 0; j < x; j++) {
+                positions[j][i][1] =
+                        GameConfig.GRID_TOP - defDistance - yDistance * (float) Math.pow(GameConfig.Y_COEFFICIENT, i);
+            }
+            defDistance += yDistance * (float) Math.pow(GameConfig.Y_COEFFICIENT, i);
         }
 
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                positions[i][j][1] = (rows[j + 1] - rows[j]) / 2f;
+        //calculate x`s
+        for (int i = 0; i < y; i++) {
+            float distance = (float) (startXDistance(x) * Math.pow(GameConfig.X_COEFFICIENT, i));
+            log.debug("distance = " + distance);
+            float startX = rowStartX(distance, x);
+            for (int j = 0; j < x; j++) {
+                positions[j][i][0] =
+                        startX + distance * j;
             }
         }
 
         return positions;
     }
 
-    private float startDistance(int y) {
-        return (float)(4.2f / (Math.pow(1.15f, y) - 1));
+    private float startYDistance(int y) {
+        return (float) (4.2f / (Math.pow(GameConfig.Y_COEFFICIENT, y) - 1));
+    }
+
+    private float startXDistance(int x) {
+//        log.debug("start x distance = " + GameConfig.GRID_TOP_WIDTH / x);
+        return GameConfig.GRID_TOP_WIDTH / x;
+    }
+
+    private float rowStartX(float distance, int x) {
+//        log.debug("row start x = " + (GameConfig.WORLD_WIDTH / 2f - (x / 2f) * distance));
+        return GameConfig.WORLD_WIDTH / 2f - (x / 2f - 0.5f) * distance;
     }
 }

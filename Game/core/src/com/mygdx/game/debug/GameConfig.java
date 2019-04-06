@@ -34,5 +34,10 @@ public class GameConfig {
     public static final int IRON_COOLDOWN = 6;
     public static final int CAT_COOLDOWN = 6;
 
+    public static final float GRID_TOP = 54f;
+    public static final float GRID_TOP_WIDTH = 40f;
+    public static final float Y_COEFFICIENT = 1.15f;
+    public static final float X_COEFFICIENT = 1.09f;
+
     private GameConfig() {}
 }

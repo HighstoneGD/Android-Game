@@ -11,8 +11,8 @@ import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.debug.OldCellsPositions;
 import com.mygdx.game.debug.GameConfig;
+import com.mygdx.game.system.debug.PositionsCalculationSystem;
 
 public class EntityFactory {
 
@@ -24,13 +24,14 @@ public class EntityFactory {
         this.assetManager = assetManager;
     }
 
-    public void addCell(float x, float y, int number, float height) {
+    public void addCell(float x, float y, int xNumber, int yNumber, float height) {
         PositionComponent position = engine.createComponent(PositionComponent.class);
         position.x = x;
         position.y = y;
 
         NumberComponent numberComponent = engine.createComponent(NumberComponent.class);
-        numberComponent.number = number;
+        numberComponent.xNumber = xNumber;
+        numberComponent.yNumber = yNumber;
 
         BoundsComponent bounds = engine.createComponent(BoundsComponent.class);
         bounds.bounds.set(x, y, height * 2, height);
@@ -51,15 +52,14 @@ public class EntityFactory {
     }
 
     public void addPlayer() {
-        int positionOnGrid = GameConfig.PLAYER_START_POSITION;
-
         PositionOnGridComponent position = engine.createComponent(PositionOnGridComponent.class);
-        position.number = positionOnGrid;
+        position.xNumber = engine.getSystem(PositionsCalculationSystem.class).positions.length / 2;
+        position.yNumber = engine.getSystem(PositionsCalculationSystem.class).positions[0].length / 2;
 
         BoundsComponent bounds = engine.createComponent(BoundsComponent.class);
         bounds.bounds.set(
-                OldCellsPositions.getX(position.number),
-                OldCellsPositions.getY(position.number),
+                engine.getSystem(PositionsCalculationSystem.class).positions[position.xNumber][position.yNumber][0],
+                engine.getSystem(PositionsCalculationSystem.class).positions[position.xNumber][position.yNumber][1],
                 GameConfig.PLAYER_SIZE,
                 GameConfig.PLAYER_SIZE
         );

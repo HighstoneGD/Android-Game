@@ -14,10 +14,11 @@ import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.system.BoundsSystem;
 import com.mygdx.game.system.PlayerSystem;
 import com.mygdx.game.system.TimerSystem;
-import com.mygdx.game.system.debug.OldCellsSpawnSystem;
+import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
 import com.mygdx.game.system.debug.GridRenderSystem;
+import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.util.GdxUtils;
 
 public class EndlessModeScreen implements Screen {
@@ -57,13 +58,14 @@ public class EndlessModeScreen implements Screen {
         engine.addSystem(new PlayerSystem());
         engine.addSystem(new BoundsSystem());
         engine.addSystem(new TimerSystem(engine));
-        engine.addSystem(new OldCellsSpawnSystem(factory));
+        engine.addSystem(new PositionsCalculationSystem(5, 5));
+        engine.addSystem(new CellsSpawnSystem(factory));
 
         addEntities();
     }
 
     private void addEntities() {
-        engine.getSystem(OldCellsSpawnSystem.class).spawnCells();
+        engine.getSystem(CellsSpawnSystem.class).spawnCells(5, 5);
         factory.addPlayer();
     }
 

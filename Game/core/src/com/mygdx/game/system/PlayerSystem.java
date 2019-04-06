@@ -29,13 +29,13 @@ public class PlayerSystem extends IteratingSystem {
         PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(entity);
 
         if (!movementState.isMoving()) {
-            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && positionOnGrid.number % 5 != 0) {
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                 moveLeft(positionOnGrid);
-            } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && positionOnGrid.number % 5 != 4) {
+            } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
                 moveRight(positionOnGrid);
-            } else if (Gdx.input.isKeyPressed(Input.Keys.UP) && positionOnGrid.number > 4) {
+            } else if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
                 moveUp(positionOnGrid);
-            } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN) && positionOnGrid.number < 21) {
+            } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 moveDown(positionOnGrid);
             }
         }
@@ -43,21 +43,29 @@ public class PlayerSystem extends IteratingSystem {
 
     private void moveLeft(PositionOnGridComponent position) {
         getEngine().getSystem(TimerSystem.class).startTimer();
-        position.number--;
+        try {
+            position.xNumber--;
+        } catch (Exception e) {}
     }
 
     private void moveRight(PositionOnGridComponent position) {
         getEngine().getSystem(TimerSystem.class).startTimer();
-        position.number++;
+        try {
+            position.xNumber++;
+        } catch (Exception e) {}
     }
 
     private void moveUp(PositionOnGridComponent position) {
         getEngine().getSystem(TimerSystem.class).startTimer();
-        position.number -= 5;
+        try {
+            position.yNumber--;
+        } catch (Exception e) {}
     }
 
     private void moveDown(PositionOnGridComponent position) {
         getEngine().getSystem(TimerSystem.class).startTimer();
-        position.number += 5;
+        try {
+            position.yNumber++;
+        } catch (Exception e) {}
     }
 }
