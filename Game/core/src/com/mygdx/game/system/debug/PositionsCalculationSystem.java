@@ -30,7 +30,7 @@ public class PositionsCalculationSystem extends EntitySystem {
         //calculate x`s
         for (int i = 0; i < y; i++) {
             float distance = (float) (startXDistance(x) * Math.pow(GameConfig.X_COEFFICIENT, i));
-            log.debug("distance = " + distance);
+//            log.debug("distance = " + distance);
             float startX = rowStartX(distance, x);
             for (int j = 0; j < x; j++) {
                 positions[j][i][0] =
