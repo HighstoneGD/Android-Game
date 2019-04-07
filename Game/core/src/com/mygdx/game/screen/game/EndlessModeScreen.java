@@ -17,7 +17,6 @@ import com.mygdx.game.system.PlayerSystem;
 import com.mygdx.game.system.TimerSystem;
 import com.mygdx.game.system.WorldWrapSystem;
 import com.mygdx.game.system.attack.DamageOnCellSystem;
-import com.mygdx.game.system.attack.TargetSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
@@ -72,7 +71,6 @@ public class EndlessModeScreen implements Screen {
         engine.addSystem(new TimerSystem());
 
         engine.addSystem(new DamageOnCellSystem());
-        engine.addSystem(new TargetSystem(this));
         engine.addSystem(new CooldownSystem());
 
         if (DEBUG) {
