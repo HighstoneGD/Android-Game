@@ -14,10 +14,12 @@ import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.system.BoundsSystem;
 import com.mygdx.game.system.PlayerSystem;
 import com.mygdx.game.system.TimerSystem;
+import com.mygdx.game.system.WorldWrapSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
 import com.mygdx.game.system.debug.GridRenderSystem;
+import com.mygdx.game.system.debug.InfoSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.util.GdxUtils;
 
@@ -28,6 +30,8 @@ public class EndlessModeScreen implements Screen {
     private final AndroidGame game;
     private final AssetManager assetManager;
 
+    private final boolean DEBUG = false;
+
     private OrthographicCamera camera;
     private Viewport viewport;
     private ShapeRenderer renderer;
@@ -35,6 +39,8 @@ public class EndlessModeScreen implements Screen {
     private EntityFactory factory;
 
     public float potSpawnSpeed;
+    public int x = 5;
+    public int y = 5;
 
     public EndlessModeScreen(AndroidGame game) {
         this.game = game;
@@ -52,20 +58,25 @@ public class EndlessModeScreen implements Screen {
         factory = new EntityFactory(engine, assetManager);
 
         engine.addSystem(new GridRenderSystem(viewport, renderer));
+        engine.addSystem(new PositionsCalculationSystem(x, y));
+        engine.addSystem(new CellsSpawnSystem(factory));
         engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 GameConfig.WORLD_CENTER_X, GameConfig.WORLD_CENTER_Y));
         engine.addSystem(new PlayerSystem());
+        engine.addSystem(new WorldWrapSystem(this, engine));
         engine.addSystem(new BoundsSystem());
-        engine.addSystem(new TimerSystem(engine));
-        engine.addSystem(new PositionsCalculationSystem(5, 5));
-        engine.addSystem(new CellsSpawnSystem(factory));
+        engine.addSystem(new TimerSystem());
+
+        if (DEBUG) {
+            engine.addSystem(new InfoSystem());
+        }
 
         addEntities();
     }
 
     private void addEntities() {
-        engine.getSystem(CellsSpawnSystem.class).spawnCells(5, 5);
+        engine.getSystem(CellsSpawnSystem.class).spawnCells(x, y);
         factory.addPlayer();
     }
 
