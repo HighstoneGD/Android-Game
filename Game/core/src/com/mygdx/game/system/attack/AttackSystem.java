@@ -7,11 +7,15 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.GameManager;
 import com.mygdx.game.common.Mappers;
+import com.mygdx.game.component.AttackStateComponent;
+import com.mygdx.game.component.CellComponent;
+import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.debug.PotType;
 import com.mygdx.game.screen.game.EndlessModeScreen;
+import com.mygdx.game.system.TimerSystem;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +32,12 @@ public class AttackSystem extends IntervalSystem {
     private static final Family PLAYER = Family.all(
             PlayerComponent.class,
             PositionOnGridComponent.class
+    ).get();
+
+    private static final Family CELLS = Family.all(
+            CellComponent.class,
+            NumberComponent.class,
+            AttackStateComponent.class
     ).get();
 
     public AttackSystem(float attackSpeed, EndlessModeScreen screen) {
@@ -49,12 +59,64 @@ public class AttackSystem extends IntervalSystem {
         int y = selectTargetY();
 
         if (type == PotType.SIMPLE) {
-
+            simpleAttack(x, y);
         }
     }
 
     private void simpleAttack(int x, int y) {
-        
+        ImmutableArray<Entity> cells = getEngine().getEntitiesFor(CELLS);
+        for (Entity cell : cells) {
+            NumberComponent numberComponent = Mappers.NUMBER.get(cell);
+            if (numberComponent.xNumber == x) {
+
+                if (numberComponent.yNumber == y) {
+                    getEngine().getSystem(TimerSystem.class).startAttackTimer(
+                            GameConfig.SIMPLE_CENTRAL_DAMAGE,
+                            x, y
+                    );
+                }
+
+                if (numberComponent.yNumber == y - 1) {
+                    try {
+                        getEngine().getSystem(TimerSystem.class).startAttackTimer(
+                                GameConfig.SHARD_DAMAGE,
+                                x, y - 1
+                        );
+                    } catch (Exception e) {}
+                }
+
+                if (numberComponent.yNumber == y + 1) {
+                    try {
+                        getEngine().getSystem(TimerSystem.class).startAttackTimer(
+                                GameConfig.SHARD_DAMAGE,
+                                x, y + 1
+                        );
+                    } catch (Exception e) {}
+                }
+            }
+
+            if (numberComponent.yNumber == y) {
+
+                if (numberComponent.xNumber == x - 1) {
+                    try {
+                        getEngine().getSystem(TimerSystem.class).startAttackTimer(
+                                GameConfig.SHARD_DAMAGE,
+                                x - 1, y
+                        );
+                    } catch (Exception e) {}
+                }
+
+                if (numberComponent.xNumber == x + 1) {
+                    try {
+                        getEngine().getSystem(TimerSystem.class).startAttackTimer(
+                                GameConfig.SHARD_DAMAGE,
+                                x + 1, y
+                        );
+                    } catch (Exception e) {}
+                }
+
+            }
+        }
     }
 
     private PotType selectPotType() {

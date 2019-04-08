@@ -18,7 +18,7 @@ public class GameConfig {
     public static final int START_LIVES_AMOUNT = 3;
 
     public static final float DEFAULT_POT_SPAWN_SPEED = 0.5f;
-    public static final float SHARD_EXISTANCE_TIME = 0.4f;
+    public static final long SHARD_EXISTANCE_TIME = 100;
 
     public static final int SIMPLE_CENTRAL_DAMAGE = 3;
     public static final int LARGE_CENTRAL_DAMAGE = 3;
