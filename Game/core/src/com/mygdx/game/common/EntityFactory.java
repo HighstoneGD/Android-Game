@@ -3,6 +3,7 @@ package com.mygdx.game.common;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.CellComponent;
@@ -35,11 +36,11 @@ public class EntityFactory {
 
         BoundsComponent bounds = engine.createComponent(BoundsComponent.class);
         bounds.bounds.set(x, y, height * 2, height);
+        bounds.color = Color.GREEN;
 
         CellComponent cellComponent = engine.createComponent(CellComponent.class);
 
         AttackStateComponent attackState = engine.createComponent(AttackStateComponent.class);
-        attackState.damage = 0;
 
         Entity entity = engine.createEntity();
         entity.add(position);
@@ -63,6 +64,7 @@ public class EntityFactory {
                 GameConfig.PLAYER_SIZE,
                 GameConfig.PLAYER_SIZE
         );
+        bounds.color = Color.CYAN;
 
         MovementStateComponent movementState = engine.createComponent(MovementStateComponent.class);
         movementState.setMoving(false);

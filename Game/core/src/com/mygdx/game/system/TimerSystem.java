@@ -34,20 +34,6 @@ public class TimerSystem extends EntitySystem {
         }
     }
 
-    public void startAttackTimer(int damage, int x, int y) {
-        ImmutableArray<Entity> cells = getEngine().getEntitiesFor(CELLS_FAMILY);
-
-        for (Entity cell : cells) {
-            NumberComponent number = Mappers.NUMBER.get(cell);
-            if (number.xNumber == x && number.yNumber == y) {
-                AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
-                attackState.damage += damage;
-                waitMillis(GameConfig.SHARD_EXISTANCE_TIME);
-                attackState.damage -= damage;
-            }
-        }
-    }
-
     private static void waitMillis(long millis) {
         try {
             Thread.sleep(millis);

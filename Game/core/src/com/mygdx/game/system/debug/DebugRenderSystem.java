@@ -47,6 +47,7 @@ public class DebugRenderSystem extends IteratingSystem {
         float halfWidth = bc.bounds.width / 2f;
         float halfHeight = bc.bounds.height / 2f;
 
+        renderer.setColor(bc.color);
         renderer.ellipse(bc.bounds.x - halfWidth, bc.bounds.y - halfHeight, bc.bounds.width, bc.bounds.height);
     }
 }
