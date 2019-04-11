@@ -10,11 +10,10 @@ import com.mygdx.game.common.DamageObject;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
-import com.mygdx.game.component.CellComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.debug.GameConfig;
 
-public class SimplePotSystem extends EntitySystem {
+public class LargePotSystem extends EntitySystem {
 
     private static final Family FAMILY = Family.all(
             NumberComponent.class,
@@ -22,11 +21,12 @@ public class SimplePotSystem extends EntitySystem {
             BoundsComponent.class
     ).get();
 
-    public SimplePotSystem() {}
+    public LargePotSystem() {
+    }
 
     public void attack(int x, int y) {
         try {
-            Thread.sleep(GameConfig.SIMPLE_FLIGHT_TIME);
+            Thread.sleep(GameConfig.LARGE_FLIGHT_TIME);
         } catch (Exception e) {
             return;
         }
@@ -40,7 +40,7 @@ public class SimplePotSystem extends EntitySystem {
 
                 if (number.yNumber == y) {
                     AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
-                    attackState.timers.add(new DamageObject(GameConfig.SIMPLE_CENTRAL_DAMAGE, GameConfig.SIMPLE_EXISTANCE_TIME));
+                    attackState.timers.add(new DamageObject(GameConfig.LARGE_CENTRAL_DAMAGE, GameConfig.LARGE_EXISTANCE_TIME));
                     BoundsComponent bounds = Mappers.BOUNDS.get(cell);
                     bounds.color = Color.RED;
                 } else if (number.yNumber == y - 1) {
@@ -57,14 +57,19 @@ public class SimplePotSystem extends EntitySystem {
 
             }
 
-            if (number.yNumber == y) {
+            if (number.xNumber == x - 1) {
 
-                if (number.xNumber == x - 1) {
+                if (number.yNumber == y) {
                     AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
                     attackState.timers.add(new DamageObject(GameConfig.SHARD_DAMAGE, GameConfig.SHARD_EXISTANCE_TIME));
                     BoundsComponent bounds = Mappers.BOUNDS.get(cell);
                     bounds.color = Color.RED;
-                } else if (number.xNumber == x + 1) {
+                } else if (number.yNumber == y - 1) {
+                    AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+                    attackState.timers.add(new DamageObject(GameConfig.SHARD_DAMAGE, GameConfig.SHARD_EXISTANCE_TIME));
+                    BoundsComponent bounds = Mappers.BOUNDS.get(cell);
+                    bounds.color = Color.RED;
+                } else if (number.yNumber == y + 1) {
                     AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
                     attackState.timers.add(new DamageObject(GameConfig.SHARD_DAMAGE, GameConfig.SHARD_EXISTANCE_TIME));
                     BoundsComponent bounds = Mappers.BOUNDS.get(cell);
@@ -72,6 +77,28 @@ public class SimplePotSystem extends EntitySystem {
                 }
 
             }
+
+            if (number.xNumber == x + 1) {
+
+                if (number.yNumber == y) {
+                    AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+                    attackState.timers.add(new DamageObject(GameConfig.SHARD_DAMAGE, GameConfig.SHARD_EXISTANCE_TIME));
+                    BoundsComponent bounds = Mappers.BOUNDS.get(cell);
+                    bounds.color = Color.RED;
+                } else if (number.yNumber == y - 1) {
+                    AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+                    attackState.timers.add(new DamageObject(GameConfig.SHARD_DAMAGE, GameConfig.SHARD_EXISTANCE_TIME));
+                    BoundsComponent bounds = Mappers.BOUNDS.get(cell);
+                    bounds.color = Color.RED;
+                } else if (number.yNumber == y + 1) {
+                    AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+                    attackState.timers.add(new DamageObject(GameConfig.SHARD_DAMAGE, GameConfig.SHARD_EXISTANCE_TIME));
+                    BoundsComponent bounds = Mappers.BOUNDS.get(cell);
+                    bounds.color = Color.RED;
+                }
+
+            }
+
         }
     }
 }

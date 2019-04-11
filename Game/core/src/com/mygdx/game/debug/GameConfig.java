@@ -27,8 +27,16 @@ public class GameConfig {
 
     public static final float SIMPLE_EXISTANCE_TIME = 0.1f;
     public static final float SHARD_EXISTANCE_TIME = 0.1f;
+    public static final float LARGE_EXISTANCE_TIME = 0.1f;
+    public static final float EXPLOSIVE_EXISTANCE_TIME = 0.2f;
+    public static final float IRON_EXISTANCE_TIME = 0.05f;
+    public static final float CAT_STAY_TIME = 0.2f;
 
     public static final long SIMPLE_FLIGHT_TIME = 100;
+    public static final long LARGE_FLIGHT_TIME = 100;
+    public static final long EXPLOSIVE_FLIGHT_TIME = 100;
+    public static final long IRON_FLIGHT_TIME = 50;
+    public static final long CAT_FLIGHT_TIME = 100;
 
     public static final float COOLDOWN_INTERVAL = 1f;
     public static final int TRIPLE_COOLDOWN = 6;

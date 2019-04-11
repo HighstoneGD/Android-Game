@@ -28,41 +28,63 @@ public class GameManager {
         return 0;
     }
 
-    public void resetLargeCooldown() {
+    public void resetCooldown(PotType type) {
+        switch (type) {
+            case SIMPLE:
+                return;
+            case LARGE:
+                resetLargeCooldown();
+            case EXPLOSIVE:
+                resetExplosiveCooldown();
+            case IRON:
+                resetIronCooldown();
+            case CAT:
+                resetCatCooldown();
+        }
+    }
+
+    private void resetLargeCooldown() {
         this.largeCooldown = GameConfig.LARGE_COOLDOWN;
     }
 
-    public void resetExplosiveCooldown() {
+    private void resetExplosiveCooldown() {
         this.explosiveCooldown = GameConfig.EXPLOSIVE_COOLDOWN;
     }
 
-    public void resetIronCooldown() {
+    private void resetIronCooldown() {
         this.ironCooldown = GameConfig.IRON_COOLDOWN;
     }
 
-    public void resetCatCooldown() {
+    private void resetCatCooldown() {
         this.catCooldown = GameConfig.CAT_COOLDOWN;
     }
 
-    public void decrementLargeCooldown() {
+    public void decrementCooldowns() {
+        decrementLargeCooldown();
+        decrementExplosiveCooldown();
+        decrementIronCooldown();
+        decrementCatCooldown();
+    }
+
+    private void decrementLargeCooldown() {
         if (largeCooldown > 0) {
             largeCooldown--;
         }
     }
 
-    public void decrementExplosiveCooldown() {
+    private void decrementExplosiveCooldown() {
         if (explosiveCooldown > 0) {
             explosiveCooldown--;
         }
     }
 
-    public void decrementIronCooldown() {
+    private void decrementIronCooldown() {
         if (ironCooldown > 0) {
             ironCooldown--;
         }
     }
 
-    public void decrementCatCooldown() {
+    private void decrementCatCooldown() {
         if (catCooldown > 0) {
             catCooldown--;
         }

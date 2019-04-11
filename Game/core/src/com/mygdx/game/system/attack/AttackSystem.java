@@ -59,6 +59,12 @@ public class AttackSystem extends IntervalSystem {
 
         if (type == PotType.SIMPLE) {
             getEngine().getSystem(SimplePotSystem.class).attack(x, y);
+        } else if (type == PotType.LARGE) {
+            getEngine().getSystem(LargePotSystem.class).attack(x, y);
+        } else if (type == PotType.EXPLOSIVE) {
+            getEngine().getSystem(ExplosivePotSystem.class).attack(x, y);
+        } else if (type == PotType.IRON) {
+            getEngine().getSystem(IronPotSystem.class).attack(x, y);
         }
     }
 
@@ -72,6 +78,8 @@ public class AttackSystem extends IntervalSystem {
         }
 
         log.debug("type = " + type);
+        GameManager.INSTANCE.decrementCooldowns();
+        GameManager.INSTANCE.resetCooldown(type);
         return type;
     }
 
