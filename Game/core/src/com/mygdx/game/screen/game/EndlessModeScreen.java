@@ -15,6 +15,7 @@ import com.mygdx.game.system.BoundsSystem;
 import com.mygdx.game.system.PlayerSystem;
 import com.mygdx.game.system.TimerSystem;
 import com.mygdx.game.system.WorldWrapSystem;
+import com.mygdx.game.system.attack.CatSystem;
 import com.mygdx.game.system.attack.DamageClearSystem;
 import com.mygdx.game.system.attack.DamageOnCellSystem;
 import com.mygdx.game.system.attack.ExplosivePotSystem;
@@ -47,6 +48,7 @@ public class EndlessModeScreen implements Screen {
     private float potSpawnSpeed;
     public int x = 5;
     public int y = 5;
+    private int k = 0;
 
     public EndlessModeScreen(AndroidGame game) {
         this.game = game;
@@ -80,6 +82,7 @@ public class EndlessModeScreen implements Screen {
         engine.addSystem(new LargePotSystem());
         engine.addSystem(new IronPotSystem());
         engine.addSystem(new ExplosivePotSystem());
+        engine.addSystem(new CatSystem(this));
 
         if (DEBUG) {
             engine.addSystem(new InfoSystem());
@@ -97,6 +100,10 @@ public class EndlessModeScreen implements Screen {
     public void render(float delta) {
         GdxUtils.clearScreen();
         engine.update(delta);
+        k++;
+        if (k == 10) {
+            engine.getSystem(CatSystem.class).attack(2);
+        }
     }
 
     @Override
