@@ -14,7 +14,7 @@ import com.mygdx.game.component.CellComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.debug.GameConfig;
 
-public class SimplePotSystem extends EntitySystem {
+public class SimplePotSystem extends EntitySystem implements Runnable {
 
     private static final Family FAMILY = Family.all(
             NumberComponent.class,
@@ -22,9 +22,16 @@ public class SimplePotSystem extends EntitySystem {
             BoundsComponent.class
     ).get();
 
-    public SimplePotSystem() {}
+    private final int x;
+    private final int y;
 
-    public void attack(int x, int y) {
+    public SimplePotSystem(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public void run() {
         try {
             Thread.sleep(GameConfig.SIMPLE_FLIGHT_TIME);
         } catch (Exception e) {

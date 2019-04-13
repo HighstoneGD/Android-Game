@@ -33,12 +33,6 @@ public class AttackSystem extends IntervalSystem {
             PositionOnGridComponent.class
     ).get();
 
-    private static final Family CELLS = Family.all(
-            CellComponent.class,
-            NumberComponent.class,
-            AttackStateComponent.class
-    ).get();
-
     public AttackSystem(float attackSpeed, EndlessModeScreen screen) {
         super(attackSpeed);
         this.screen = screen;
@@ -58,13 +52,30 @@ public class AttackSystem extends IntervalSystem {
         int y = selectTargetY();
 
         if (type == PotType.SIMPLE) {
-            getEngine().getSystem(SimplePotSystem.class).attack(x, y);
+            SimplePotSystem simplePotSystem = new SimplePotSystem(x, y);
+            getEngine().addSystem(simplePotSystem);
+            Thread thread = new Thread(simplePotSystem);
+            thread.start();
         } else if (type == PotType.LARGE) {
-            getEngine().getSystem(LargePotSystem.class).attack(x, y);
+            LargePotSystem largePotSystem = new LargePotSystem(x, y);
+            getEngine().addSystem(largePotSystem);
+            Thread thread = new Thread(largePotSystem);
+            thread.start();
         } else if (type == PotType.EXPLOSIVE) {
-            getEngine().getSystem(ExplosivePotSystem.class).attack(x, y);
+            ExplosivePotSystem explosivePotSystem = new ExplosivePotSystem(x, y);
+            getEngine().addSystem(explosivePotSystem);
+            Thread thread = new Thread(explosivePotSystem);
+            thread.start();
         } else if (type == PotType.IRON) {
-            getEngine().getSystem(IronPotSystem.class).attack(x, y);
+            IronPotSystem ironPotSystem = new IronPotSystem(x, y);
+            getEngine().addSystem(ironPotSystem);
+            Thread thread = new Thread(ironPotSystem);
+            thread.start();
+        } else if (type == PotType.CAT) {
+            CatSystem catSystem = new CatSystem(screen, x);
+            getEngine().addSystem(catSystem);
+            Thread thread = new Thread(catSystem);
+            thread.start();
         }
     }
 

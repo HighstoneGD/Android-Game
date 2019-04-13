@@ -42,28 +42,40 @@ public class PlayerSystem extends IteratingSystem {
     }
 
     private void moveLeft(PositionOnGridComponent position) {
-        getEngine().getSystem(TimerSystem.class).startTimer();
+        TimerSystem timerSystem = new TimerSystem();
+        getEngine().addSystem(timerSystem);
+        Thread thread = new Thread(timerSystem);
+        thread.start();
         try {
             position.xNumber--;
         } catch (Exception e) {}
     }
 
     private void moveRight(PositionOnGridComponent position) {
-        getEngine().getSystem(TimerSystem.class).startTimer();
+        TimerSystem timerSystem = new TimerSystem();
+        getEngine().addSystem(timerSystem);
+        Thread thread = new Thread(timerSystem);
+        thread.start();
         try {
             position.xNumber++;
         } catch (Exception e) {}
     }
 
     private void moveUp(PositionOnGridComponent position) {
-        getEngine().getSystem(TimerSystem.class).startTimer();
+        TimerSystem timerSystem = new TimerSystem();
+        getEngine().addSystem(timerSystem);
+        Thread thread = new Thread(timerSystem);
+        thread.start();
         try {
             position.yNumber--;
         } catch (Exception e) {}
     }
 
     private void moveDown(PositionOnGridComponent position) {
-        getEngine().getSystem(TimerSystem.class).startTimer();
+        TimerSystem timerSystem = new TimerSystem();
+        getEngine().addSystem(timerSystem);
+        Thread thread = new Thread(timerSystem);
+        thread.start();
         try {
             position.yNumber++;
         } catch (Exception e) {}

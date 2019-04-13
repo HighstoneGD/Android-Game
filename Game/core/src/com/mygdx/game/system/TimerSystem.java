@@ -10,7 +10,7 @@ import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.debug.GameConfig;
 
-public class TimerSystem extends EntitySystem {
+public class TimerSystem extends EntitySystem implements Runnable {
 
     public TimerSystem() {}
 
@@ -23,13 +23,14 @@ public class TimerSystem extends EntitySystem {
             NumberComponent.class
     ).get();
 
-    public void startTimer() {
+    @Override
+    public void run() {
         ImmutableArray<Entity> players = getEngine().getEntitiesFor(PLAYER_FAMILY);
 
         for (Entity player : players) {
             MovementStateComponent movementState = Mappers.MOVEMENT_STATE.get(player);
             movementState.setMoving(true);
-            waitMillis(300);
+            waitMillis(GameConfig.PLAYER_JUMP_TIME);
             movementState.setMoving(false);
         }
     }

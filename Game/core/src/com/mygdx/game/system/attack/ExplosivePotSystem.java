@@ -14,7 +14,7 @@ import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.screen.game.EndlessModeScreen;
 
-public class ExplosivePotSystem extends EntitySystem {
+public class ExplosivePotSystem extends EntitySystem implements Runnable {
 
     private static final Family FAMILY = Family.all(
             NumberComponent.class,
@@ -22,10 +22,16 @@ public class ExplosivePotSystem extends EntitySystem {
             BoundsComponent.class
     ).get();
 
-    public ExplosivePotSystem() {
+    private final int x;
+    private final int y;
+
+    public ExplosivePotSystem(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
-    public void attack(int x, int y) {
+    @Override
+    public void run() {
         try {
             Thread.sleep(GameConfig.EXPLOSIVE_FLIGHT_TIME);
         } catch (Exception e) {

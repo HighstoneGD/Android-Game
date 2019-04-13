@@ -16,10 +16,11 @@ import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.screen.game.EndlessModeScreen;
 
-public class CatSystem extends EntitySystem {
+public class CatSystem extends EntitySystem implements Runnable {
 
     private EndlessModeScreen screen;
     private static final Logger log = new Logger(CatSystem.class.getName(), Logger.DEBUG);
+    private int x;
 
     private static final Family FAMILY = Family.all(
             NumberComponent.class,
@@ -27,11 +28,13 @@ public class CatSystem extends EntitySystem {
             BoundsComponent.class
     ).get();
 
-    public CatSystem(EndlessModeScreen screen) {
+    public CatSystem(EndlessModeScreen screen, int x) {
         this.screen = screen;
+        this.x = x;
     }
 
-    public void attack(int x) {
+    @Override
+    public void run() {
         log.debug("cat starts attacking");
         try {
             Thread.sleep(GameConfig.CAT_FLIGHT_TIME);

@@ -13,7 +13,7 @@ import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.debug.GameConfig;
 
-public class LargePotSystem extends EntitySystem {
+public class LargePotSystem extends EntitySystem implements Runnable {
 
     private static final Family FAMILY = Family.all(
             NumberComponent.class,
@@ -21,10 +21,16 @@ public class LargePotSystem extends EntitySystem {
             BoundsComponent.class
     ).get();
 
-    public LargePotSystem() {
+    private final int x;
+    private final int y;
+
+    public LargePotSystem(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
-    public void attack(int x, int y) {
+    @Override
+    public void run() {
         try {
             Thread.sleep(GameConfig.LARGE_FLIGHT_TIME);
         } catch (Exception e) {
