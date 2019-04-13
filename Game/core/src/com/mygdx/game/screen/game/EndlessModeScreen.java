@@ -1,6 +1,8 @@
 package com.mygdx.game.screen.game;
 
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.EntityFactory;
+import com.mygdx.game.common.SimpleDirectionGestureDetector;
 import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.system.BoundsSystem;
 import com.mygdx.game.system.PlayerSystem;
@@ -49,7 +52,6 @@ public class EndlessModeScreen implements Screen {
     private float potSpawnSpeed;
     public int x = 5;
     public int y = 5;
-    private int k = 0;
 
     public EndlessModeScreen(AndroidGame game) {
         this.game = game;
@@ -85,6 +87,39 @@ public class EndlessModeScreen implements Screen {
         }
 
         addEntities();
+
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
+
+                @Override
+                public void onUp() {
+                    try {
+                        engine.getSystem(PlayerSystem.class).moveUp(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                    } catch (Exception e) {}
+                }
+
+                @Override
+                public void onRight() {
+                    try {
+                        engine.getSystem(PlayerSystem.class).moveRight(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                    } catch (Exception e) {}
+                }
+
+                @Override
+                public void onLeft() {
+                    try {
+                        engine.getSystem(PlayerSystem.class).moveLeft(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                    } catch (Exception e) {}
+                }
+
+                @Override
+                public void onDown() {
+                    try {
+                        engine.getSystem(PlayerSystem.class).moveDown(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                    } catch (Exception e) {}
+                }
+            }));
+        }
     }
 
     private void addEntities() {

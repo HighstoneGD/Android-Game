@@ -3,6 +3,7 @@ package com.mygdx.game.system;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.Logger;
@@ -19,6 +20,8 @@ public class PlayerSystem extends IteratingSystem {
             PositionOnGridComponent.class
     ).get();
 
+    public PositionOnGridComponent positionOnGrid;
+
     public PlayerSystem() {
         super(FAMILY);
     }
@@ -26,9 +29,9 @@ public class PlayerSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         MovementStateComponent movementState = Mappers.MOVEMENT_STATE.get(entity);
-        PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(entity);
+        positionOnGrid = Mappers.POSITION_ON_GRID.get(entity);
 
-        if (!movementState.isMoving()) {
+        if (!movementState.isMoving() && Gdx.app.getType() == Application.ApplicationType.Desktop) {
             if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
                 moveLeft(positionOnGrid);
             } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
@@ -38,10 +41,12 @@ public class PlayerSystem extends IteratingSystem {
             } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 moveDown(positionOnGrid);
             }
+        } else if (!movementState.isMoving() && Gdx.app.getType() == Application.ApplicationType.Android) {
+
         }
     }
 
-    private void moveLeft(PositionOnGridComponent position) {
+    public void moveLeft(PositionOnGridComponent position) {
         TimerSystem timerSystem = new TimerSystem();
         getEngine().addSystem(timerSystem);
         Thread thread = new Thread(timerSystem);
@@ -51,7 +56,7 @@ public class PlayerSystem extends IteratingSystem {
         } catch (Exception e) {}
     }
 
-    private void moveRight(PositionOnGridComponent position) {
+    public void moveRight(PositionOnGridComponent position) {
         TimerSystem timerSystem = new TimerSystem();
         getEngine().addSystem(timerSystem);
         Thread thread = new Thread(timerSystem);
@@ -61,7 +66,7 @@ public class PlayerSystem extends IteratingSystem {
         } catch (Exception e) {}
     }
 
-    private void moveUp(PositionOnGridComponent position) {
+    public void moveUp(PositionOnGridComponent position) {
         TimerSystem timerSystem = new TimerSystem();
         getEngine().addSystem(timerSystem);
         Thread thread = new Thread(timerSystem);
@@ -71,7 +76,7 @@ public class PlayerSystem extends IteratingSystem {
         } catch (Exception e) {}
     }
 
-    private void moveDown(PositionOnGridComponent position) {
+    public void moveDown(PositionOnGridComponent position) {
         TimerSystem timerSystem = new TimerSystem();
         getEngine().addSystem(timerSystem);
         Thread thread = new Thread(timerSystem);
