@@ -29,17 +29,16 @@ public class GameManager {
     }
 
     public void resetCooldown(PotType type) {
-        switch (type) {
-            case SIMPLE:
-                return;
-            case LARGE:
-                resetLargeCooldown();
-            case EXPLOSIVE:
-                resetExplosiveCooldown();
-            case IRON:
-                resetIronCooldown();
-            case CAT:
-                resetCatCooldown();
+        if (type == PotType.SIMPLE) {
+            return;
+        } else if (type == PotType.LARGE) {
+            resetLargeCooldown();
+        } else if (type == PotType.IRON) {
+            resetIronCooldown();
+        } else if (type == PotType.EXPLOSIVE) {
+            resetExplosiveCooldown();
+        } else if (type == PotType.CAT) {
+            resetCatCooldown();
         }
     }
 

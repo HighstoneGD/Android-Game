@@ -42,60 +42,42 @@ public class CatSystem extends EntitySystem implements Runnable {
             return;
         }
 
-        ImmutableArray<Entity> cells = getEngine().getEntitiesFor(FAMILY);
+        Direction direction = new Direction();
 
-        for (Entity cell : cells) {
-            NumberComponent number = Mappers.NUMBER.get(cell);
+        for (int i = 0; i < screen.y; i++) {
 
-            if (number.xNumber == x && number.yNumber == 0) {
-                log.debug("target selected: " + number.xNumber + " " + number.yNumber);
-                AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
-                attackState.timers.add(new DamageObject(GameConfig.CAT_DAMAGE, GameConfig.CAT_STAY_TIME));
-                BoundsComponent bounds = Mappers.BOUNDS.get(cell);
-                bounds.color = Color.RED;
+            if (direction.direction == Directions.LEFT && x == 0) {
+                direction.changeDirection();
+            } else if (direction.direction == Directions.RIGHT && x == screen.x - 1) {
+                direction.changeDirection();
+            }
+
+            if (direction.direction == Directions.LEFT) {
+                x--;
+                jumpOn(x, i);
+            } else if (direction.direction == Directions.RIGHT) {
+                x++;
+                jumpOn(x, i);
             }
         }
-
-        Direction direction = new Direction();
-        if (x == 0) {
-            direction.direction = Directions.RIGHT;
-        } else if (x == screen.x - 1) {
-            direction.direction = Directions.LEFT;
-        }
-        jump(x, 0, direction);
     }
 
-    private void jump(int x, int y, Direction direction) {
-        log.debug("the cat is currently on " + x + " " + y + " moves on " + direction.direction);
-        try {
-            Thread.sleep(GameConfig.CAT_JUMP_TIME);
-        } catch (Exception e) {}
-
-        if (y == screen.y - 1) {
-            return;
-        } else if (x == 0 || x == screen.x - 1) {
-            direction.changeDirection();
-        }
-
+    private void jumpOn(int x, int y) {
         ImmutableArray<Entity> cells = getEngine().getEntitiesFor(FAMILY);
-
         for (int i = 0; i < cells.size(); i++) {
             Entity cell = cells.get(i);
             NumberComponent number = Mappers.NUMBER.get(cell);
 
-            if (number.yNumber == y + 1) {
-                if (direction.direction == Directions.LEFT && number.xNumber == x - 1) {
-                    AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
-                    attackState.timers.add(new DamageObject(GameConfig.CAT_DAMAGE, GameConfig.CAT_STAY_TIME));
-                    BoundsComponent bounds = Mappers.BOUNDS.get(cell);
-                    bounds.color = Color.RED;
-                    jump(x - 1, y + 1, direction);
-                } else if (direction.direction == Directions.RIGHT && number.xNumber == x + 1) {
-                    AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
-                    attackState.timers.add(new DamageObject(GameConfig.CAT_DAMAGE, GameConfig.CAT_STAY_TIME));
-                    BoundsComponent bounds = Mappers.BOUNDS.get(cell);
-                    bounds.color = Color.RED;
-                    jump(x + 1, y + 1, direction);
+            if (number.xNumber == x && number.yNumber == y) {
+                AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+                attackState.timers.add(new DamageObject(GameConfig.CAT_DAMAGE, GameConfig.CAT_STAY_TIME));
+                BoundsComponent bounds = Mappers.BOUNDS.get(cell);
+                bounds.color = Color.RED;
+
+                try {
+                    Thread.sleep(GameConfig.CAT_JUMP_TIME);
+                } catch (Exception e) {
+                    return;
                 }
             }
         }

@@ -7,15 +7,10 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.GameManager;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.component.AttackStateComponent;
-import com.mygdx.game.component.CellComponent;
-import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.debug.PotType;
 import com.mygdx.game.screen.game.EndlessModeScreen;
-import com.mygdx.game.system.TimerSystem;
 
 import java.util.HashMap;
 import java.util.Map;
