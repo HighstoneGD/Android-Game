@@ -20,6 +20,7 @@ import com.mygdx.game.system.WorldWrapSystem;
 import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.attack.DamageClearSystem;
 import com.mygdx.game.system.attack.DamageOnCellSystem;
+import com.mygdx.game.system.attack.TargetSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
@@ -75,6 +76,7 @@ public class EndlessModeScreen implements Screen {
         engine.addSystem(new DamageOnCellSystem());
         engine.addSystem(new DamageClearSystem());
         engine.addSystem(new AttackSystem(potSpawnSpeed, this));
+        engine.addSystem(new TargetSystem(this));
 
         if (DEBUG) {
             engine.addSystem(new InfoSystem());
@@ -83,42 +85,46 @@ public class EndlessModeScreen implements Screen {
         addEntities();
 
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
-
-                @Override
-                public void onUp() {
-                    try {
-                        engine.getSystem(PlayerSystem.class).moveUp(engine.getSystem(PlayerSystem.class).positionOnGrid);
-                    } catch (Exception e) {}
-                }
-
-                @Override
-                public void onRight() {
-                    try {
-                        engine.getSystem(PlayerSystem.class).moveRight(engine.getSystem(PlayerSystem.class).positionOnGrid);
-                    } catch (Exception e) {}
-                }
-
-                @Override
-                public void onLeft() {
-                    try {
-                        engine.getSystem(PlayerSystem.class).moveLeft(engine.getSystem(PlayerSystem.class).positionOnGrid);
-                    } catch (Exception e) {}
-                }
-
-                @Override
-                public void onDown() {
-                    try {
-                        engine.getSystem(PlayerSystem.class).moveDown(engine.getSystem(PlayerSystem.class).positionOnGrid);
-                    } catch (Exception e) {}
-                }
-            }));
+            createAndroidControl();
         }
     }
 
     private void addEntities() {
         engine.getSystem(CellsSpawnSystem.class).spawnCells(x, y);
         factory.addPlayer();
+    }
+
+    private void createAndroidControl() {
+        Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
+
+            @Override
+            public void onUp() {
+                try {
+                    engine.getSystem(PlayerSystem.class).moveUp(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                } catch (Exception e) {}
+            }
+
+            @Override
+            public void onRight() {
+                try {
+                    engine.getSystem(PlayerSystem.class).moveRight(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                } catch (Exception e) {}
+            }
+
+            @Override
+            public void onLeft() {
+                try {
+                    engine.getSystem(PlayerSystem.class).moveLeft(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                } catch (Exception e) {}
+            }
+
+            @Override
+            public void onDown() {
+                try {
+                    engine.getSystem(PlayerSystem.class).moveDown(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                } catch (Exception e) {}
+            }
+        }));
     }
 
     @Override

@@ -17,6 +17,7 @@ public class GameConfig {
     public static final int START_LIVES_AMOUNT = 3;
 
     public static final float DEFAULT_POT_SPAWN_SPEED = 0.7f;
+    public static final int CHANCE_FOR_RANDOM_TARGET = 5;
 
     public static final int SIMPLE_CENTRAL_DAMAGE = 3;
     public static final int LARGE_CENTRAL_DAMAGE = 3;

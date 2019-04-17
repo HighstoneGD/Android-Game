@@ -58,7 +58,7 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
                 attackState.timers.add(new DamageObject(GameConfig.EXPLOSIVE_CENTRAL_DAMAGE, GameConfig.EXPLOSIVE_EXISTANCE_TIME));
                 BoundsComponent bounds = Mappers.BOUNDS.get(cell);
                 bounds.color = Color.RED;
-            } else if (left && number.xNumber == x - 1) {
+            } else if (number.xNumber == x) {
 
                 if (up && number.yNumber == y - 1) {
                     AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
@@ -72,9 +72,33 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
                     bounds.color = Color.RED;
                 }
 
+            } else if (left && number.xNumber == x - 1) {
+
+                if (number.yNumber == y) {
+                    AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+                    attackState.timers.add(new DamageObject(GameConfig.EXPLOSIVE_CENTRAL_DAMAGE, GameConfig.EXPLOSIVE_EXISTANCE_TIME));
+                    BoundsComponent bounds = Mappers.BOUNDS.get(cell);
+                    bounds.color = Color.RED;
+                } else if (up && number.yNumber == y - 1) {
+                    AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+                    attackState.timers.add(new DamageObject(GameConfig.EXPLOSIVE_CENTRAL_DAMAGE, GameConfig.EXPLOSIVE_EXISTANCE_TIME));
+                    BoundsComponent bounds = Mappers.BOUNDS.get(cell);
+                    bounds.color = Color.RED;
+                } else if (!up && number.yNumber == y + 1) {
+                    AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+                    attackState.timers.add(new DamageObject(GameConfig.EXPLOSIVE_CENTRAL_DAMAGE, GameConfig.EXPLOSIVE_EXISTANCE_TIME));
+                    BoundsComponent bounds = Mappers.BOUNDS.get(cell);
+                    bounds.color = Color.RED;
+                }
+
             } else if (!left && number.xNumber == x + 1) {
 
-                if (up && number.yNumber == y - 1) {
+                if (number.yNumber == y) {
+                    AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+                    attackState.timers.add(new DamageObject(GameConfig.EXPLOSIVE_CENTRAL_DAMAGE, GameConfig.EXPLOSIVE_EXISTANCE_TIME));
+                    BoundsComponent bounds = Mappers.BOUNDS.get(cell);
+                    bounds.color = Color.RED;
+                } else if (up && number.yNumber == y - 1) {
                     AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
                     attackState.timers.add(new DamageObject(GameConfig.EXPLOSIVE_CENTRAL_DAMAGE, GameConfig.EXPLOSIVE_EXISTANCE_TIME));
                     BoundsComponent bounds = Mappers.BOUNDS.get(cell);

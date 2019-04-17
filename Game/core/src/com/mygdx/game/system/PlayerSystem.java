@@ -7,6 +7,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.Logger;
+import com.mygdx.game.common.GameManager;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
@@ -53,6 +54,7 @@ public class PlayerSystem extends IteratingSystem {
         thread.start();
         try {
             position.xNumber--;
+            GameManager.INSTANCE.incrementLefts();
         } catch (Exception e) {}
     }
 
@@ -63,6 +65,7 @@ public class PlayerSystem extends IteratingSystem {
         thread.start();
         try {
             position.xNumber++;
+            GameManager.INSTANCE.incrementRights();
         } catch (Exception e) {}
     }
 
@@ -73,6 +76,7 @@ public class PlayerSystem extends IteratingSystem {
         thread.start();
         try {
             position.yNumber--;
+            GameManager.INSTANCE.incrementUps();
         } catch (Exception e) {}
     }
 
@@ -83,6 +87,7 @@ public class PlayerSystem extends IteratingSystem {
         thread.start();
         try {
             position.yNumber++;
+            GameManager.INSTANCE.incrementDowns();
         } catch (Exception e) {}
     }
 }

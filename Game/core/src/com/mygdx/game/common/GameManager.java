@@ -9,10 +9,65 @@ public class GameManager {
 
     private int lives = GameConfig.START_LIVES_AMOUNT;
 
+    private static int lefts = 0;
+    private static int rights = 0;
+    private static int ups = 0;
+    private static int downs = 0;
+
     private int largeCooldown = GameConfig.LARGE_COOLDOWN;
     private int explosiveCooldown = GameConfig.EXPLOSIVE_COOLDOWN;
     private int ironCooldown = GameConfig.IRON_COOLDOWN;
     private int catCooldown = GameConfig.CAT_COOLDOWN;
+
+    public void incrementLefts() {
+        lefts++;
+    }
+
+    public void incrementRights() {
+        rights++;
+    }
+
+    public void incrementUps() {
+        ups++;
+    }
+
+    public void incrementDowns() {
+        downs++;
+    }
+
+    public int leftOrRight() {
+        // 0 if left, 1 if right
+        if (lefts > rights) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    public int upOrDown() {
+        // 0 if up, 1 if down
+        if (ups > downs) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    public static int getLefts() {
+        return lefts;
+    }
+
+    public static int getRights() {
+        return rights;
+    }
+
+    public static int getUps() {
+        return ups;
+    }
+
+    public static int getDowns() {
+        return downs;
+    }
 
     public int getCooldown(PotType type) {
         switch (type) {
