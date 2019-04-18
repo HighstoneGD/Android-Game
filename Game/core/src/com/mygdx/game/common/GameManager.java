@@ -1,13 +1,13 @@
 package com.mygdx.game.common;
 
-import com.mygdx.game.debug.GameConfig;
-import com.mygdx.game.debug.PotType;
+import com.mygdx.game.common.objects.BonusType;
+import com.mygdx.game.common.objects.PotType;
 
 public class GameManager {
 
     public static final GameManager INSTANCE = new GameManager();
 
-    private int lives = GameConfig.START_LIVES_AMOUNT;
+    private int lives = Constants.START_LIVES_AMOUNT;
     private int armor = 0;
 
     private static int lefts = 0;
@@ -15,10 +15,15 @@ public class GameManager {
     private static int ups = 0;
     private static int downs = 0;
 
-    private int largeCooldown = GameConfig.LARGE_COOLDOWN;
-    private int explosiveCooldown = GameConfig.EXPLOSIVE_COOLDOWN;
-    private int ironCooldown = GameConfig.IRON_COOLDOWN;
-    private int catCooldown = GameConfig.CAT_COOLDOWN;
+    private int largeCooldown = Constants.LARGE_COOLDOWN;
+    private int explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
+    private int ironCooldown = Constants.IRON_COOLDOWN;
+    private int catCooldown = Constants.CAT_COOLDOWN;
+
+    private int speedCooldown = Constants.SPEED_COOLDOWN;
+    private int armorCooldown = Constants.ARMOR_COOLDOWN;
+    private int timeDecelerationCooldown = Constants.TIME_DECELERATION_COOLDOWN;
+    private int lifeCooldown = Constants.LIFE_COOLDOWN;
 
     public void incrementLefts() {
         lefts++;
@@ -83,19 +88,19 @@ public class GameManager {
     }
 
     private void resetLargeCooldown() {
-        this.largeCooldown = GameConfig.LARGE_COOLDOWN;
+        this.largeCooldown = Constants.LARGE_COOLDOWN;
     }
 
     private void resetExplosiveCooldown() {
-        this.explosiveCooldown = GameConfig.EXPLOSIVE_COOLDOWN;
+        this.explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
     }
 
     private void resetIronCooldown() {
-        this.ironCooldown = GameConfig.IRON_COOLDOWN;
+        this.ironCooldown = Constants.IRON_COOLDOWN;
     }
 
     private void resetCatCooldown() {
-        this.catCooldown = GameConfig.CAT_COOLDOWN;
+        this.catCooldown = Constants.CAT_COOLDOWN;
     }
 
     public void decrementCooldowns() {
@@ -129,7 +134,83 @@ public class GameManager {
         }
     }
 
-    private GameManager() {}
+    public void resetBonusCooldown(BonusType type) {
+        if (type == BonusType.GOLD) {
+            return;
+        } else if (type == BonusType.SPEED) {
+            resetSpeedCooldown();
+        } else if (type == BonusType.ARMOR) {
+            resetArmorCooldown();
+        } else if (type == BonusType.TIME_DECELERATION) {
+            resetTimeDecelerationCooldown();
+        } else if (type == BonusType.LIFE) {
+            resetLifeCooldown();
+        }
+    }
+
+    public int getBonusCooldown(BonusType type) {
+        switch (type) {
+            case SPEED:
+                return speedCooldown;
+            case ARMOR:
+                return armorCooldown;
+            case TIME_DECELERATION:
+                return timeDecelerationCooldown;
+            case LIFE:
+                return lifeCooldown;
+        }
+        return 0;
+    }
+
+    private void resetSpeedCooldown() {
+        speedCooldown = Constants.SPEED_COOLDOWN;
+    }
+
+    private void resetArmorCooldown() {
+        armorCooldown = Constants.ARMOR_COOLDOWN;
+    }
+
+    private void resetTimeDecelerationCooldown() {
+        timeDecelerationCooldown = Constants.TIME_DECELERATION_COOLDOWN;
+    }
+
+    private void resetLifeCooldown() {
+        lifeCooldown = Constants.LIFE_COOLDOWN;
+    }
+
+    public void decrementBonusCooldowns() {
+        decrementSpeedCooldown();
+        decrementArmorCooldown();
+        decrementTimeDecelerationCooldown();
+        decrementLifeCooldown();
+    }
+
+    private void decrementSpeedCooldown() {
+        if (speedCooldown > 0) {
+            speedCooldown--;
+        }
+    }
+
+    private void decrementArmorCooldown() {
+        if (armorCooldown > 0) {
+            armorCooldown--;
+        }
+    }
+
+    private void decrementTimeDecelerationCooldown() {
+        if (timeDecelerationCooldown > 0) {
+            timeDecelerationCooldown--;
+        }
+    }
+
+    private void decrementLifeCooldown() {
+        if (lifeCooldown > 0) {
+            lifeCooldown--;
+        }
+    }
+
+    private GameManager() {
+    }
 
     public int getLives() {
         return lives;

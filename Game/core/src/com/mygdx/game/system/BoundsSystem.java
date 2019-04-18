@@ -9,9 +9,6 @@ import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 
-/**
- * Created by goran on 6/09/2016.
- */
 public class BoundsSystem extends IteratingSystem {
 
     private static final Family FAMILY = Family.all(
@@ -32,11 +29,9 @@ public class BoundsSystem extends IteratingSystem {
 
         try {
             bounds.bounds.x = getEngine().getSystem(PositionsCalculationSystem.class).positions[positionOnGrid.xNumber][positionOnGrid.yNumber][0];
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
         try {
             bounds.bounds.y = getEngine().getSystem(PositionsCalculationSystem.class).positions[positionOnGrid.xNumber][positionOnGrid.yNumber][1];
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
     }
 }

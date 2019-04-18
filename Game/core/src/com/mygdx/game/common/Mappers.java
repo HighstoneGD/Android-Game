@@ -2,6 +2,7 @@ package com.mygdx.game.common;
 
 import com.badlogic.ashley.core.ComponentMapper;
 import com.mygdx.game.component.AttackStateComponent;
+import com.mygdx.game.component.BonusComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
@@ -23,6 +24,9 @@ public class Mappers {
 
     public static final ComponentMapper<AttackStateComponent> ATTACK_STATE =
             ComponentMapper.getFor(AttackStateComponent.class);
+
+    public static final ComponentMapper<BonusComponent> BONUS =
+            ComponentMapper.getFor(BonusComponent.class);
 
     private Mappers() {
     }

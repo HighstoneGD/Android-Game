@@ -3,7 +3,7 @@ package com.mygdx.game.system.attack;
 import com.badlogic.ashley.systems.IntervalSystem;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.GameManager;
-import com.mygdx.game.debug.PotType;
+import com.mygdx.game.common.objects.PotType;
 import com.mygdx.game.screen.BasicGameScreen;
 
 import java.util.HashMap;

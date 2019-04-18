@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.component.AttackStateComponent;
+import com.mygdx.game.component.BonusComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.CellComponent;
 import com.mygdx.game.component.MovementStateComponent;
@@ -12,7 +13,6 @@ import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 
 public class EntityFactory {
@@ -42,11 +42,14 @@ public class EntityFactory {
 
         AttackStateComponent attackState = engine.createComponent(AttackStateComponent.class);
 
+        BonusComponent bonus = engine.createComponent(BonusComponent.class);
+
         Entity entity = engine.createEntity();
         entity.add(position);
         entity.add(bounds);
         entity.add(cellComponent);
         entity.add(attackState);
+        entity.add(bonus);
         entity.add(numberComponent);
 
         engine.addEntity(entity);
@@ -61,8 +64,8 @@ public class EntityFactory {
         bounds.bounds.set(
                 engine.getSystem(PositionsCalculationSystem.class).positions[position.xNumber][position.yNumber][0],
                 engine.getSystem(PositionsCalculationSystem.class).positions[position.xNumber][position.yNumber][1],
-                GameConfig.PLAYER_SIZE,
-                GameConfig.PLAYER_SIZE
+                Constants.PLAYER_SIZE,
+                Constants.PLAYER_SIZE
         );
         bounds.color = Color.CYAN;
 

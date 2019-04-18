@@ -5,11 +5,11 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Logger;
+import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.GameManager;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.screen.BasicGameScreen;
 
 import java.util.Random;
@@ -34,7 +34,7 @@ public class TargetSystem extends EntitySystem {
         int x;
         int playerX = 1;
 
-        int k = random.nextInt(GameConfig.CHANCE_FOR_RANDOM_TARGET);
+        int k = random.nextInt(Constants.CHANCE_FOR_RANDOM_TARGET);
 
         if (k == 0) {
             x = random.nextInt(screen.x);
@@ -55,7 +55,7 @@ public class TargetSystem extends EntitySystem {
 
         }
 
-        log.debug("x = " + x);
+//        log.debug("x = " + x);
         return x;
     }
 
@@ -64,7 +64,7 @@ public class TargetSystem extends EntitySystem {
         int y;
         int playerY = 1;
 
-        int k = random.nextInt(GameConfig.CHANCE_FOR_RANDOM_TARGET);
+        int k = random.nextInt(Constants.CHANCE_FOR_RANDOM_TARGET);
 
         if (k == 0) {
             y = random.nextInt(screen.y);
@@ -85,7 +85,7 @@ public class TargetSystem extends EntitySystem {
 
         }
 
-        log.debug("y = " + y);
+//        log.debug("y = " + y);
         return y;
     }
 }

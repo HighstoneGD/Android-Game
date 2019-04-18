@@ -1,4 +1,4 @@
-package com.mygdx.game.debug;
+package com.mygdx.game.common;
 
 public class Positions {
 

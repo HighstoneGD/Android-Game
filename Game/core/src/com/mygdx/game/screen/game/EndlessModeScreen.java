@@ -11,13 +11,14 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
+import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.SimpleDirectionGestureDetector;
-import com.mygdx.game.debug.GameConfig;
 import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.system.BoundsSystem;
-import com.mygdx.game.system.PlayerSystem;
-import com.mygdx.game.system.WorldWrapSystem;
+import com.mygdx.game.system.bonuses.BonusSystem;
+import com.mygdx.game.system.moving.PlayerSystem;
+import com.mygdx.game.system.moving.WorldWrapSystem;
 import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.attack.DamageClearSystem;
 import com.mygdx.game.system.attack.DamageOnCellSystem;
@@ -26,7 +27,6 @@ import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
 import com.mygdx.game.system.debug.GridRenderSystem;
-import com.mygdx.game.system.debug.InfoSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.util.GdxUtils;
 
@@ -46,6 +46,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     private EntityFactory factory;
 
     private float potSpawnSpeed;
+    private float bonusSpawnSpeed;
     private int x;
     private int y;
 
@@ -60,9 +61,10 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     @Override
     public void show() {
         log.debug("show()");
-        potSpawnSpeed = GameConfig.DEFAULT_POT_SPAWN_SPEED;
+        potSpawnSpeed = Constants.DEFAULT_POT_SPAWN_SPEED;
+        bonusSpawnSpeed = Constants.DEFAULT_BONUS_SPAWN_SPEED;
         camera = new OrthographicCamera();
-        viewport = new FitViewport(GameConfig.WORLD_WIDTH, GameConfig.WORLD_HEIGHT, camera);
+        viewport = new FitViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
         renderer = new ShapeRenderer();
         engine = new PooledEngine();
         factory = new EntityFactory(engine, assetManager);
@@ -72,7 +74,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         engine.addSystem(new CellsSpawnSystem(factory));
         engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
-                GameConfig.WORLD_CENTER_X, GameConfig.WORLD_CENTER_Y));
+                Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
         engine.addSystem(new PlayerSystem());
         engine.addSystem(new WorldWrapSystem(this, engine));
         engine.addSystem(new BoundsSystem());
@@ -81,6 +83,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         engine.addSystem(new DamageClearSystem());
         engine.addSystem(new AttackSystem(potSpawnSpeed, this));
         engine.addSystem(new TargetSystem(this));
+        engine.addSystem(new BonusSystem(bonusSpawnSpeed, this));
 
         addEntities();
 

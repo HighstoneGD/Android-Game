@@ -1,14 +1,14 @@
-package com.mygdx.game.system;
+package com.mygdx.game.system.moving;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
-import com.mygdx.game.debug.GameConfig;
 
 public class TimerSystem extends EntitySystem implements Runnable {
 
@@ -30,7 +30,7 @@ public class TimerSystem extends EntitySystem implements Runnable {
         for (Entity player : players) {
             MovementStateComponent movementState = Mappers.MOVEMENT_STATE.get(player);
             movementState.setMoving(true);
-            waitMillis(GameConfig.PLAYER_JUMP_TIME);
+            waitMillis(Constants.PLAYER_JUMP_TIME);
             movementState.setMoving(false);
         }
     }

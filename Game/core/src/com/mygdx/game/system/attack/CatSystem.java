@@ -6,14 +6,14 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.common.DamageObject;
-import com.mygdx.game.common.Direction;
-import com.mygdx.game.common.Directions;
+import com.mygdx.game.common.objects.DamageObject;
+import com.mygdx.game.common.objects.Direction;
+import com.mygdx.game.common.objects.Directions;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
-import com.mygdx.game.debug.GameConfig;
+import com.mygdx.game.common.Constants;
 import com.mygdx.game.screen.BasicGameScreen;
 
 public class CatSystem extends EntitySystem implements Runnable {
@@ -35,9 +35,8 @@ public class CatSystem extends EntitySystem implements Runnable {
 
     @Override
     public void run() {
-        log.debug("cat starts attacking");
         try {
-            Thread.sleep(GameConfig.CAT_FLIGHT_TIME);
+            Thread.sleep(Constants.CAT_FLIGHT_TIME);
         } catch (Exception e) {
             return;
         }
@@ -70,12 +69,12 @@ public class CatSystem extends EntitySystem implements Runnable {
 
             if (number.xNumber == x && number.yNumber == y) {
                 AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
-                attackState.timers.add(new DamageObject(GameConfig.CAT_DAMAGE, GameConfig.CAT_STAY_TIME));
+                attackState.timers.add(new DamageObject(Constants.CAT_DAMAGE, Constants.CAT_STAY_TIME));
                 BoundsComponent bounds = Mappers.BOUNDS.get(cell);
                 bounds.color = Color.RED;
 
                 try {
-                    Thread.sleep(GameConfig.CAT_JUMP_TIME);
+                    Thread.sleep(Constants.CAT_JUMP_TIME);
                 } catch (Exception e) {
                     return;
                 }

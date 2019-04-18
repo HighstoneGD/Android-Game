@@ -1,4 +1,4 @@
-package com.mygdx.game.common;
+package com.mygdx.game.common.objects;
 
 public class DamageObject {
 

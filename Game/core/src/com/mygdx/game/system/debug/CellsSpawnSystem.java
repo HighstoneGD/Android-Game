@@ -2,7 +2,7 @@ package com.mygdx.game.system.debug;
 
 import com.badlogic.ashley.core.EntitySystem;
 import com.mygdx.game.common.EntityFactory;
-import com.mygdx.game.debug.GameConfig;
+import com.mygdx.game.common.Constants;
 
 public class CellsSpawnSystem extends EntitySystem {
 
@@ -17,7 +17,7 @@ public class CellsSpawnSystem extends EntitySystem {
 
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                factory.addCell(positions[i][j][0], positions[i][j][1], i, j, GameConfig.CELL_HEIGHT);
+                factory.addCell(positions[i][j][0], positions[i][j][1], i, j, Constants.CELL_HEIGHT);
             }
         }
     }

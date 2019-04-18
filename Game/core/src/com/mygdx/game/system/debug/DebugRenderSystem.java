@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.BoundsComponent;
-import com.mygdx.game.debug.GameConfig;
 
 public class DebugRenderSystem extends IteratingSystem {
 
