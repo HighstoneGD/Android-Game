@@ -14,11 +14,11 @@ import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.debug.GameConfig;
-import com.mygdx.game.screen.game.EndlessModeScreen;
+import com.mygdx.game.screen.BasicGameScreen;
 
 public class CatSystem extends EntitySystem implements Runnable {
 
-    private EndlessModeScreen screen;
+    private BasicGameScreen screen;
     private static final Logger log = new Logger(CatSystem.class.getName(), Logger.DEBUG);
     private int x;
 
@@ -28,7 +28,7 @@ public class CatSystem extends EntitySystem implements Runnable {
             BoundsComponent.class
     ).get();
 
-    public CatSystem(EndlessModeScreen screen, int x) {
+    public CatSystem(BasicGameScreen screen, int x) {
         this.screen = screen;
         this.x = x;
     }

@@ -8,6 +8,7 @@ public class GameManager {
     public static final GameManager INSTANCE = new GameManager();
 
     private int lives = GameConfig.START_LIVES_AMOUNT;
+    private int armor = 0;
 
     private static int lefts = 0;
     private static int rights = 0;
@@ -51,22 +52,6 @@ public class GameManager {
         } else {
             return 1;
         }
-    }
-
-    public static int getLefts() {
-        return lefts;
-    }
-
-    public static int getRights() {
-        return rights;
-    }
-
-    public static int getUps() {
-        return ups;
-    }
-
-    public static int getDowns() {
-        return downs;
     }
 
     public int getCooldown(PotType type) {
@@ -150,11 +135,26 @@ public class GameManager {
         return lives;
     }
 
+    public int getArmor() {
+        return armor;
+    }
+
+    public void pickArmor() {
+        armor = 1;
+    }
+
     public void incrementLives() {
         lives++;
     }
 
     public void takeDamage(int damage) {
-        lives -= damage;
+        int dam = damage;
+
+        if (armor > 0) {
+            armor = 0;
+            dam--;
+        }
+
+        lives -= dam;
     }
 }

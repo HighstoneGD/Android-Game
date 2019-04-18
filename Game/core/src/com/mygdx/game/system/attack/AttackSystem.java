@@ -4,7 +4,7 @@ import com.badlogic.ashley.systems.IntervalSystem;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.GameManager;
 import com.mygdx.game.debug.PotType;
-import com.mygdx.game.screen.game.EndlessModeScreen;
+import com.mygdx.game.screen.BasicGameScreen;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,10 +12,10 @@ import java.util.Map;
 public class AttackSystem extends IntervalSystem {
 
     private static final Logger log = new Logger(AttackSystem.class.getName(), Logger.DEBUG);
-    private EndlessModeScreen screen;
+    private BasicGameScreen screen;
     private Map<PotType, Integer> priorities;
 
-    public AttackSystem(float attackSpeed, EndlessModeScreen screen) {
+    public AttackSystem(float attackSpeed, BasicGameScreen screen) {
         super(attackSpeed);
         this.screen = screen;
         priorities = new HashMap<PotType, Integer>();

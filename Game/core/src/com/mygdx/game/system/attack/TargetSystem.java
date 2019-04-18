@@ -10,13 +10,13 @@ import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.debug.GameConfig;
-import com.mygdx.game.screen.game.EndlessModeScreen;
+import com.mygdx.game.screen.BasicGameScreen;
 
 import java.util.Random;
 
 public class TargetSystem extends EntitySystem {
 
-    public TargetSystem(EndlessModeScreen screen) {
+    public TargetSystem(BasicGameScreen screen) {
         random = new Random();
         this.screen = screen;
     }
@@ -26,7 +26,7 @@ public class TargetSystem extends EntitySystem {
             PositionOnGridComponent.class
     ).get();
     private Random random;
-    private EndlessModeScreen screen;
+    private BasicGameScreen screen;
     private static final Logger log = new Logger(TargetSystem.class.getName(), Logger.DEBUG);
 
     public int selectTargetX() {
@@ -45,10 +45,12 @@ public class TargetSystem extends EntitySystem {
                 playerX = position.xNumber;
             }
 
-            if (GameManager.INSTANCE.leftOrRight() == 0) {
+            if (GameManager.INSTANCE.leftOrRight() == 0 && playerX > 0) {
                 x = playerX - 1;
-            } else {
+            } else if (playerX < screen.x - 1) {
                 x = playerX + 1;
+            } else {
+                x = playerX;
             }
 
         }
@@ -73,10 +75,12 @@ public class TargetSystem extends EntitySystem {
                 playerY = position.yNumber;
             }
 
-            if (GameManager.INSTANCE.upOrDown() == 0) {
+            if (GameManager.INSTANCE.upOrDown() == 0 && playerY > 0) {
                 y = playerY - 1;
-            } else {
+            } else if (playerY < screen.y) {
                 y = playerY + 1;
+            } else {
+                y = playerY;
             }
 
         }

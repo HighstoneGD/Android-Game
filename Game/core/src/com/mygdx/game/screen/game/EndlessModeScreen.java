@@ -14,6 +14,7 @@ import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.SimpleDirectionGestureDetector;
 import com.mygdx.game.debug.GameConfig;
+import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.system.BoundsSystem;
 import com.mygdx.game.system.PlayerSystem;
 import com.mygdx.game.system.WorldWrapSystem;
@@ -29,7 +30,7 @@ import com.mygdx.game.system.debug.InfoSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.util.GdxUtils;
 
-public class EndlessModeScreen implements Screen {
+public class EndlessModeScreen extends BasicGameScreen implements Screen {
 
     private static final Logger log = new Logger(EndlessModeScreen.class.getName(), Logger.DEBUG);
 
@@ -45,10 +46,13 @@ public class EndlessModeScreen implements Screen {
     private EntityFactory factory;
 
     private float potSpawnSpeed;
-    public int x = 5;
-    public int y = 5;
+    private int x;
+    private int y;
 
     public EndlessModeScreen(AndroidGame game) {
+        super(5, 5);
+        this.x = super.x;
+        this.y = super.y;
         this.game = game;
         assetManager = game.getAssetManager();
     }
@@ -77,10 +81,6 @@ public class EndlessModeScreen implements Screen {
         engine.addSystem(new DamageClearSystem());
         engine.addSystem(new AttackSystem(potSpawnSpeed, this));
         engine.addSystem(new TargetSystem(this));
-
-        if (DEBUG) {
-            engine.addSystem(new InfoSystem());
-        }
 
         addEntities();
 

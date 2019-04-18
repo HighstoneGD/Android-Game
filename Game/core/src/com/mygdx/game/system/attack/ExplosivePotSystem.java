@@ -3,7 +3,6 @@ package com.mygdx.game.system.attack;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
-import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.common.DamageObject;
@@ -12,7 +11,6 @@ import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.debug.GameConfig;
-import com.mygdx.game.screen.game.EndlessModeScreen;
 
 public class ExplosivePotSystem extends EntitySystem implements Runnable {
 
