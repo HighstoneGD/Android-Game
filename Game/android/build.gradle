@@ -1,4 +1,12 @@
 android {
+    signingConfigs {
+        config {
+            keyAlias 'android'
+            keyPassword 'android'
+            storeFile file('C:/Users/Valera/.android/debug.keystore')
+            storePassword 'android'
+        }
+    }
     buildToolsVersion "28.0.3"
     compileSdkVersion 28
     sourceSets {

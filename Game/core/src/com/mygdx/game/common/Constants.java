@@ -42,7 +42,7 @@ public class Constants {
     public static final long IRON_FLIGHT_TIME = 200;
     public static final long CAT_FLIGHT_TIME = 500;
     public static final long CAT_JUMP_TIME = 500;
-    public static final long PLAYER_JUMP_TIME = 500;
+    public static final long PLAYER_JUMP_TIME = 300;
     public static final long BONUS_FLIGHT_TIME = 500;
 
     public static final int TRIPLE_COOLDOWN = 6;
@@ -60,6 +60,7 @@ public class Constants {
     public static final float GRID_TOP_WIDTH = 40f;
     public static final float Y_COEFFICIENT = 1.15f;
     public static final float X_COEFFICIENT = 1.09f;
+    public static final float SIZE_COEFFICIENT = 1.05f;
 
     private Constants() {}
 }

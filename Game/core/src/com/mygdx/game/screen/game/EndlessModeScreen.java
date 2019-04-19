@@ -69,7 +69,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         engine = new PooledEngine();
         factory = new EntityFactory(engine, assetManager);
 
-        engine.addSystem(new GridRenderSystem(viewport, renderer));
+//        engine.addSystem(new GridRenderSystem(viewport, renderer));
         engine.addSystem(new PositionsCalculationSystem(x, y));
         engine.addSystem(new CellsSpawnSystem(factory));
         engine.addSystem(new DebugRenderSystem(viewport, renderer));
