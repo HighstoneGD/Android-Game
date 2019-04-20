@@ -4,9 +4,12 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BonusComponent;
 import com.mygdx.game.component.BoundsComponent;
+import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
+import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
+import com.mygdx.game.component.TextureComponent;
 
 public class Mappers {
 
@@ -27,6 +30,15 @@ public class Mappers {
 
     public static final ComponentMapper<BonusComponent> BONUS =
             ComponentMapper.getFor(BonusComponent.class);
+
+    public static final ComponentMapper<PositionComponent> POSITION =
+            ComponentMapper.getFor(PositionComponent.class);
+
+    public static final ComponentMapper<TextureComponent> TEXTURE =
+            ComponentMapper.getFor(TextureComponent.class);
+
+    public static final ComponentMapper<DimensionComponent> DIMENSION =
+            ComponentMapper.getFor(DimensionComponent.class);
 
     private Mappers() {
     }

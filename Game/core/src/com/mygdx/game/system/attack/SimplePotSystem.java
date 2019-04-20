@@ -3,6 +3,7 @@ package com.mygdx.game.system.attack;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.common.Constants;
@@ -22,10 +23,12 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
 
     private final int x;
     private final int y;
+    private PooledEngine engine;
 
-    public SimplePotSystem(int x, int y) {
+    public SimplePotSystem(int x, int y, PooledEngine engine) {
         this.x = x;
         this.y = y;
+        this.engine = engine;
     }
 
     @Override
@@ -36,9 +39,10 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
             return;
         }
 
-        ImmutableArray<Entity> cells = getEngine().getEntitiesFor(FAMILY);
+        ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
 
-        for (Entity cell : cells) {
+        for (int i = 0; i < cells.size(); i++) {
+            Entity cell = cells.get(i);
             NumberComponent number = Mappers.NUMBER.get(cell);
 
             if (number.xNumber == x) {

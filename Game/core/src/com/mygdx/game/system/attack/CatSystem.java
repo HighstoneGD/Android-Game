@@ -3,6 +3,7 @@ package com.mygdx.game.system.attack;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.Logger;
@@ -21,6 +22,7 @@ public class CatSystem extends EntitySystem implements Runnable {
     private BasicGameScreen screen;
     private static final Logger log = new Logger(CatSystem.class.getName(), Logger.DEBUG);
     private int x;
+    private PooledEngine engine;
 
     private static final Family FAMILY = Family.all(
             NumberComponent.class,
@@ -28,9 +30,10 @@ public class CatSystem extends EntitySystem implements Runnable {
             BoundsComponent.class
     ).get();
 
-    public CatSystem(BasicGameScreen screen, int x) {
+    public CatSystem(BasicGameScreen screen, int x, PooledEngine engine) {
         this.screen = screen;
         this.x = x;
+        this.engine = engine;
     }
 
     @Override
@@ -62,7 +65,7 @@ public class CatSystem extends EntitySystem implements Runnable {
     }
 
     private void jumpOn(int x, int y) {
-        ImmutableArray<Entity> cells = getEngine().getEntitiesFor(FAMILY);
+        ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
         for (int i = 0; i < cells.size(); i++) {
             Entity cell = cells.get(i);
             NumberComponent number = Mappers.NUMBER.get(cell);

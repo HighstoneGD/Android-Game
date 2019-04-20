@@ -1,0 +1,75 @@
+package com.mygdx.game.system.render;
+
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.assets.AssetDescriptors;
+import com.mygdx.game.assets.RegionNames;
+import com.mygdx.game.common.Mappers;
+import com.mygdx.game.component.CellComponent;
+import com.mygdx.game.component.DimensionComponent;
+import com.mygdx.game.component.PositionComponent;
+import com.mygdx.game.component.TextureComponent;
+
+public class GrassRenderSystem extends EntitySystem {
+
+    private static final Family FAMILY = Family.all(
+            CellComponent.class,
+            TextureComponent.class,
+            PositionComponent.class,
+            DimensionComponent.class
+    ).get();
+
+    private final Viewport viewport;
+    private final SpriteBatch batch;
+    private final AssetManager assetManager;
+    private final TextureAtlas gamePlayBg;
+    private final TextureRegion textureRegion;
+    private Array<Entity> renderQueue = new Array<Entity>();
+
+    public GrassRenderSystem(Viewport viewport, SpriteBatch batch, AssetManager assetManager) {
+        this.viewport = viewport;
+        this.batch = batch;
+        this.assetManager = assetManager;
+        gamePlayBg = assetManager.get(AssetDescriptors.GAMEPLAY_BG);
+        textureRegion = gamePlayBg.findRegion(RegionNames.GRASS_ON_CELL);
+    }
+
+    @Override
+    public void update(float deltaTime) {
+        ImmutableArray<Entity> entities = getEngine().getEntitiesFor(FAMILY);
+        renderQueue.addAll(entities.toArray());
+
+        viewport.apply();
+        batch.setProjectionMatrix(viewport.getCamera().combined);
+
+        batch.begin();
+
+        draw();
+
+        batch.end();
+
+        renderQueue.clear();
+    }
+
+    private void draw() {
+        for (Entity entity : renderQueue) {
+            PositionComponent position = Mappers.POSITION.get(entity);
+            DimensionComponent dimension = Mappers.DIMENSION.get(entity);
+            TextureComponent texture = Mappers.TEXTURE.get(entity);
+
+            if (texture.render) {
+                batch.draw(textureRegion,
+                        position.x - dimension.width / 2f, position.y - dimension.height / 2f,
+                        dimension.width, dimension.height);
+            }
+        }
+    }
+}

@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
+import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.SimpleDirectionGestureDetector;
@@ -28,6 +29,8 @@ import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
 import com.mygdx.game.system.debug.GridRenderSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
+import com.mygdx.game.system.render.BackgroundRenderSystem;
+import com.mygdx.game.system.render.GrassRenderSystem;
 import com.mygdx.game.util.GdxUtils;
 
 public class EndlessModeScreen extends BasicGameScreen implements Screen {
@@ -61,6 +64,13 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     @Override
     public void show() {
         log.debug("show()");
+        assetManager.load(AssetDescriptors.GAMEPLAY_BG);
+        assetManager.finishLoading();
+
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e) {}
+
         potSpawnSpeed = Constants.DEFAULT_POT_SPAWN_SPEED;
         bonusSpawnSpeed = Constants.DEFAULT_BONUS_SPAWN_SPEED;
         camera = new OrthographicCamera();
@@ -72,6 +82,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
 //        engine.addSystem(new GridRenderSystem(viewport, renderer));
         engine.addSystem(new PositionsCalculationSystem(x, y));
         engine.addSystem(new CellsSpawnSystem(factory));
+        engine.addSystem(new BackgroundRenderSystem(viewport, game.getBatch()));
         engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
@@ -81,9 +92,10 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
 
         engine.addSystem(new DamageOnCellSystem());
         engine.addSystem(new DamageClearSystem());
-        engine.addSystem(new AttackSystem(potSpawnSpeed, this));
+        engine.addSystem(new AttackSystem(potSpawnSpeed, this, engine));
         engine.addSystem(new TargetSystem(this));
         engine.addSystem(new BonusSystem(bonusSpawnSpeed, this));
+        engine.addSystem(new GrassRenderSystem(viewport, game.getBatch(), assetManager));
 
         addEntities();
 
@@ -93,6 +105,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     }
 
     private void addEntities() {
+        factory.addBackground();
         engine.getSystem(CellsSpawnSystem.class).spawnCells(x, y);
         factory.addPlayer();
     }

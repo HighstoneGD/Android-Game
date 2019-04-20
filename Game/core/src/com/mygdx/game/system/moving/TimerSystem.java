@@ -27,7 +27,8 @@ public class TimerSystem extends EntitySystem implements Runnable {
     public void run() {
         ImmutableArray<Entity> players = getEngine().getEntitiesFor(PLAYER_FAMILY);
 
-        for (Entity player : players) {
+        for (int i = 0; i < players.size(); i++) {
+            Entity player = players.get(i);
             MovementStateComponent movementState = Mappers.MOVEMENT_STATE.get(player);
             movementState.setMoving(true);
             waitMillis(Constants.PLAYER_JUMP_TIME);
