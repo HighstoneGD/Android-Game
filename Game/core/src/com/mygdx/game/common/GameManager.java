@@ -14,6 +14,8 @@ public class GameManager {
     private static int rights = 0;
     private static int ups = 0;
     private static int downs = 0;
+    private static int avoided = 0;
+    private static int avoidedRecord = 0;
 
     private int largeCooldown = Constants.LARGE_COOLDOWN;
     private int explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
@@ -24,6 +26,18 @@ public class GameManager {
     private int armorCooldown = Constants.ARMOR_COOLDOWN;
     private int timeDecelerationCooldown = Constants.TIME_DECELERATION_COOLDOWN;
     private int lifeCooldown = Constants.LIFE_COOLDOWN;
+
+    public void avoided() {
+        avoided++;
+    }
+
+    public void resetAvoided() {
+        if (avoided > avoidedRecord) {
+            avoidedRecord = avoided;
+        }
+
+        avoided = 0;
+    }
 
     public void incrementLefts() {
         lefts++;
