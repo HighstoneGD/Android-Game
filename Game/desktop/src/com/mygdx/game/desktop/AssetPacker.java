@@ -14,6 +14,7 @@ public class AssetPacker {
         settings.debug = DRAW_DEBUG_OUTLINE;
         settings.maxWidth = 2048;
         settings.maxHeight = 2048;
+        settings.debug = false;
 
         TexturePacker.process(settings,
                 RAW_ASSET_PATH,
