@@ -1,0 +1,83 @@
+
+simple.png
+size: 2048,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+simple
+  rotate: false
+  xy: 2, 214
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 0
+simple
+  rotate: false
+  xy: 2, 2
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 1
+simple
+  rotate: false
+  xy: 244, 214
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 2
+simple
+  rotate: false
+  xy: 244, 2
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 3
+simple
+  rotate: false
+  xy: 486, 214
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 4
+simple
+  rotate: false
+  xy: 486, 2
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 5
+simple
+  rotate: false
+  xy: 728, 214
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 6
+simple
+  rotate: false
+  xy: 728, 2
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 7
+simple
+  rotate: false
+  xy: 970, 214
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 8
+simple
+  rotate: false
+  xy: 970, 2
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 9
+simple
+  rotate: false
+  xy: 1212, 214
+  size: 240, 210
+  orig: 240, 210
+  offset: 0, 0
+  index: 10

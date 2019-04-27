@@ -27,10 +27,8 @@ import com.mygdx.game.system.attack.TargetSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
-import com.mygdx.game.system.debug.GridRenderSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.system.render.BackgroundRenderSystem;
-import com.mygdx.game.system.render.GrassRenderSystem;
 import com.mygdx.game.util.GdxUtils;
 
 public class EndlessModeScreen extends BasicGameScreen implements Screen {
@@ -95,7 +93,6 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         engine.addSystem(new AttackSystem(potSpawnSpeed, this, engine));
         engine.addSystem(new TargetSystem(this));
         engine.addSystem(new BonusSystem(bonusSpawnSpeed, this));
-        engine.addSystem(new GrassRenderSystem(viewport, game.getBatch(), assetManager));
 
         addEntities();
 

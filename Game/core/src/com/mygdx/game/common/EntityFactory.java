@@ -60,16 +60,7 @@ public class EntityFactory {
 
         TextureComponent texture = engine.createComponent(TextureComponent.class);
         texture.render = true;
-        int k = random.nextInt(3);
-
-        switch (k) {
-            case 0:
-                texture.region = gameplayBgAtlas.findRegion(RegionNames.CELL_1);
-            case 1:
-                texture.region = gameplayBgAtlas.findRegion(RegionNames.CELL_2);
-            case 2:
-                texture.region = gameplayBgAtlas.findRegion(RegionNames.CELL_3);
-        }
+        texture.region = gameplayBgAtlas.findRegion(RegionNames.CELL);
 
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
         dimension.width = height * 2f;

@@ -11,30 +11,9 @@ background
   orig: 600, 1000
   offset: 0, 0
   index: -1
-cell1
+cell
   rotate: false
   xy: 604, 752
-  size: 500, 250
-  orig: 500, 250
-  offset: 0, 0
-  index: -1
-cell2
-  rotate: false
-  xy: 604, 500
-  size: 500, 250
-  orig: 500, 250
-  offset: 0, 0
-  index: -1
-cell3
-  rotate: false
-  xy: 1106, 752
-  size: 500, 250
-  orig: 500, 250
-  offset: 0, 0
-  index: -1
-grass_on_cell
-  rotate: false
-  xy: 604, 248
   size: 500, 250
   orig: 500, 250
   offset: 0, 0

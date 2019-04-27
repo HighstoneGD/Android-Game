@@ -7,8 +7,8 @@ public class GameManager {
 
     public static final GameManager INSTANCE = new GameManager();
 
-    private int lives = Constants.START_LIVES_AMOUNT;
-    private int armor = 0;
+    private static int lives = Constants.START_LIVES_AMOUNT;
+    private static int armor = 0;
 
     private static int lefts = 0;
     private static int rights = 0;
@@ -17,15 +17,15 @@ public class GameManager {
     private static int avoided = 0;
     private static int avoidedRecord = 0;
 
-    private int largeCooldown = Constants.LARGE_COOLDOWN;
-    private int explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
-    private int ironCooldown = Constants.IRON_COOLDOWN;
-    private int catCooldown = Constants.CAT_COOLDOWN;
+    private static int largeCooldown = Constants.LARGE_COOLDOWN;
+    private static int explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
+    private static int ironCooldown = Constants.IRON_COOLDOWN;
+    private static int catCooldown = Constants.CAT_COOLDOWN;
 
-    private int speedCooldown = Constants.SPEED_COOLDOWN;
-    private int armorCooldown = Constants.ARMOR_COOLDOWN;
-    private int timeDecelerationCooldown = Constants.TIME_DECELERATION_COOLDOWN;
-    private int lifeCooldown = Constants.LIFE_COOLDOWN;
+    private static int speedCooldown = Constants.SPEED_COOLDOWN;
+    private static int armorCooldown = Constants.ARMOR_COOLDOWN;
+    private static int timeDecelerationCooldown = Constants.TIME_DECELERATION_COOLDOWN;
+    private static int lifeCooldown = Constants.LIFE_COOLDOWN;
 
     public void avoided() {
         avoided++;

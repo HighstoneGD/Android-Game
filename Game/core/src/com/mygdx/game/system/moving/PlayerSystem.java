@@ -42,8 +42,6 @@ public class PlayerSystem extends IteratingSystem {
             } else if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 moveDown(positionOnGrid);
             }
-        } else if (!movementState.isMoving() && Gdx.app.getType() == Application.ApplicationType.Android) {
-
         }
     }
 
