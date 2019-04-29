@@ -5,6 +5,9 @@ public class Constants {
     public static final float WIDTH = 480f; // pixels
     public static final float HEIGHT = 800f; // pixels
 
+    public static final float HUD_WIDTH = 480f; // wu
+    public static final float HUD_HEIGHT = 800f; // wu
+
     public static final float WORLD_WIDTH = 60f; // world units
     public static final float WORLD_HEIGHT = 100f; // world units
 
