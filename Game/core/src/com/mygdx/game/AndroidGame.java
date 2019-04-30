@@ -6,7 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.screen.game.EndlessModeScreen;
+import com.mygdx.game.screen.loading.LoadingScreen;
 
 public class AndroidGame extends Game {
 
@@ -22,7 +22,7 @@ public class AndroidGame extends Game {
 
         batch = new SpriteBatch();
 
-        setScreen(new EndlessModeScreen(this));
+        setScreen(new LoadingScreen(this));
     }
 
     @Override

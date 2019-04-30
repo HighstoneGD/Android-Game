@@ -64,12 +64,6 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     @Override
     public void show() {
         log.debug("show()");
-        assetManager.load(AssetDescriptors.GAMEPLAY_BG);
-        assetManager.finishLoading();
-
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {}
 
         potSpawnSpeed = Constants.DEFAULT_POT_SPAWN_SPEED;
         bonusSpawnSpeed = Constants.DEFAULT_BONUS_SPAWN_SPEED;

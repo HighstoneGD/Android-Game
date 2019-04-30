@@ -5,9 +5,6 @@ public class Constants {
     public static final float WIDTH = 480f; // pixels
     public static final float HEIGHT = 800f; // pixels
 
-    public static final float HUD_WIDTH = 480f; // wu
-    public static final float HUD_HEIGHT = 800f; // wu
-
     public static final float WORLD_WIDTH = 60f; // world units
     public static final float WORLD_HEIGHT = 100f; // world units
 
@@ -48,7 +45,6 @@ public class Constants {
     public static final long PLAYER_JUMP_TIME = 300;
     public static final long BONUS_FLIGHT_TIME = 500;
 
-    public static final int TRIPLE_COOLDOWN = 6;
     public static final int LARGE_COOLDOWN = 6;
     public static final int EXPLOSIVE_COOLDOWN = 6;
     public static final int IRON_COOLDOWN = 6;

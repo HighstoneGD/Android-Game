@@ -1,0 +1,13 @@
+
+loading_background.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+loading_background
+  rotate: false
+  xy: 2, 2
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: -1
