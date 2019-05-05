@@ -12,8 +12,5 @@ public class RegionNames {
     // == loading_bg ==
     public static final String LOADING_BACKGROUND = "loading_background";
 
-    // == gran load animat ==
-    public static final String GRAN_LOADING = "gran_loading";
-
     private RegionNames() {}
 }

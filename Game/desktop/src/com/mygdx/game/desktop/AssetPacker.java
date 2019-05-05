@@ -12,12 +12,12 @@ public class AssetPacker {
         settings.maxWidth = 2048;
         settings.maxHeight = 2048;
         settings.debug = false;
-        settings.useIndexes = true;
+        settings.useIndexes = false;
 
         TexturePacker.process(settings,
                 RAW_ASSET_PATH,
-                ASSETS_PATH,
-                "loading_animation"
+                ASSETS_PATH + "/ui",
+                "uiskin"
         );
     }
 }
