@@ -73,20 +73,15 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         factory = new EntityFactory(engine, assetManager);
 
         createNotUpdatedSystems();
-
         createMovingSystems();
-
         createRenderSystems();
-
         createAttackAndBonusSystems();
-
         createDebugSystems();
-
-        addEntities();
-
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             createAndroidControl();
         }
+
+        addEntities();
     }
 
     @Override
