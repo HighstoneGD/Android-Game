@@ -6,17 +6,18 @@ import com.mygdx.game.common.objects.PotType;
 
 public class CooldownsManager {
 
-    private static int largeCooldown = Constants.LARGE_COOLDOWN;
-    private static int explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
-    private static int ironCooldown = Constants.IRON_COOLDOWN;
-    private static int catCooldown = Constants.CAT_COOLDOWN;
+    private static int largeCooldown;
+    private static int explosiveCooldown;
+    private static int ironCooldown;
+    private static int catCooldown;
+    private static int bonusCooldown;
 
-    private static int speedCooldown = Constants.SPEED_COOLDOWN;
-    private static int armorCooldown = Constants.ARMOR_COOLDOWN;
-    private static int timeDecelerationCooldown = Constants.TIME_DECELERATION_COOLDOWN;
-    private static int lifeCooldown = Constants.LIFE_COOLDOWN;
+    private static int speedCooldown;
+    private static int armorCooldown;
+    private static int timeDecelerationCooldown;
+    private static int lifeCooldown;
 
-    public int getCooldown(PotType type) {
+    public static int getPotCooldown(PotType type) {
         switch (type) {
             case LARGE:
                 return largeCooldown;
@@ -26,82 +27,13 @@ public class CooldownsManager {
                 return ironCooldown;
             case CAT:
                 return catCooldown;
+            case BONUS:
+                return bonusCooldown;
         }
         return 0;
     }
 
-    public void resetCooldown(PotType type) {
-        if (type == PotType.LARGE) {
-            resetLargeCooldown();
-        } else if (type == PotType.IRON) {
-            resetIronCooldown();
-        } else if (type == PotType.EXPLOSIVE) {
-            resetExplosiveCooldown();
-        } else if (type == PotType.CAT) {
-            resetCatCooldown();
-        }
-    }
-
-    private void resetLargeCooldown() {
-        largeCooldown = Constants.LARGE_COOLDOWN;
-    }
-
-    private void resetExplosiveCooldown() {
-        explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
-    }
-
-    private void resetIronCooldown() {
-        ironCooldown = Constants.IRON_COOLDOWN;
-    }
-
-    private void resetCatCooldown() {
-        catCooldown = Constants.CAT_COOLDOWN;
-    }
-
-    public void decrementCooldowns() {
-        decrementLargeCooldown();
-        decrementExplosiveCooldown();
-        decrementIronCooldown();
-        decrementCatCooldown();
-    }
-
-    private void decrementLargeCooldown() {
-        if (largeCooldown > 0) {
-            largeCooldown--;
-        }
-    }
-
-    private void decrementExplosiveCooldown() {
-        if (explosiveCooldown > 0) {
-            explosiveCooldown--;
-        }
-    }
-
-    private void decrementIronCooldown() {
-        if (ironCooldown > 0) {
-            ironCooldown--;
-        }
-    }
-
-    private void decrementCatCooldown() {
-        if (catCooldown > 0) {
-            catCooldown--;
-        }
-    }
-
-    public void resetBonusCooldown(BonusType type) {
-        if (type == BonusType.SPEED) {
-            resetSpeedCooldown();
-        } else if (type == BonusType.ARMOR) {
-            resetArmorCooldown();
-        } else if (type == BonusType.TIME_DECELERATION) {
-            resetTimeDecelerationCooldown();
-        } else if (type == BonusType.LIFE) {
-            resetLifeCooldown();
-        }
-    }
-
-    public int getBonusCooldown(BonusType type) {
+    public static int getBonusCooldown(BonusType type) {
         switch (type) {
             case SPEED:
                 return speedCooldown;
@@ -115,48 +47,81 @@ public class CooldownsManager {
         return 0;
     }
 
-    private void resetSpeedCooldown() {
+    public static void resetCooldown(PotType type) {
+        if (type == PotType.LARGE) {
+            largeCooldown = Constants.LARGE_COOLDOWN;
+        } else if (type == PotType.IRON) {
+            ironCooldown = Constants.IRON_COOLDOWN;
+        } else if (type == PotType.EXPLOSIVE) {
+            explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
+        } else if (type == PotType.CAT) {
+            catCooldown = Constants.CAT_COOLDOWN;
+        } else if (type == PotType.BONUS) {
+            bonusCooldown = Constants.BONUS_COOLDOWN;
+        }
+    }
+
+    public static void resetBonusCooldown(BonusType type) {
+        if (type == BonusType.SPEED) {
+            speedCooldown = Constants.SPEED_COOLDOWN;
+        } else if (type == BonusType.ARMOR) {
+            armorCooldown = Constants.ARMOR_COOLDOWN;
+        } else if (type == BonusType.TIME_DECELERATION) {
+            timeDecelerationCooldown = Constants.TIME_DECELERATION_COOLDOWN;
+        } else if (type == BonusType.LIFE) {
+            lifeCooldown = Constants.LIFE_COOLDOWN;
+        }
+    }
+
+    public static void resetCooldown() {
+        largeCooldown = Constants.LARGE_COOLDOWN;
+        ironCooldown = Constants.IRON_COOLDOWN;
+        explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
+        catCooldown = Constants.CAT_COOLDOWN;
+        bonusCooldown = Constants.BONUS_COOLDOWN;
         speedCooldown = Constants.SPEED_COOLDOWN;
-    }
-
-    private void resetArmorCooldown() {
         armorCooldown = Constants.ARMOR_COOLDOWN;
-    }
-
-    private void resetTimeDecelerationCooldown() {
         timeDecelerationCooldown = Constants.TIME_DECELERATION_COOLDOWN;
-    }
-
-    private void resetLifeCooldown() {
         lifeCooldown = Constants.LIFE_COOLDOWN;
     }
 
-    public void decrementBonusCooldowns() {
-        decrementSpeedCooldown();
-        decrementArmorCooldown();
-        decrementTimeDecelerationCooldown();
-        decrementLifeCooldown();
+    public static void decrementCooldowns() {
+
+        if (largeCooldown > 0) {
+            largeCooldown--;
+        }
+
+        if (explosiveCooldown > 0) {
+            explosiveCooldown--;
+        }
+
+        if (ironCooldown > 0) {
+            ironCooldown--;
+        }
+
+        if (catCooldown > 0) {
+            catCooldown--;
+        }
+
+        if (bonusCooldown > 0) {
+            bonusCooldown--;
+        }
+
     }
 
-    private void decrementSpeedCooldown() {
+    public static void decrementBonusCooldowns() {
         if (speedCooldown > 0) {
             speedCooldown--;
         }
-    }
 
-    private void decrementArmorCooldown() {
         if (armorCooldown > 0) {
             armorCooldown--;
         }
-    }
 
-    private void decrementTimeDecelerationCooldown() {
         if (timeDecelerationCooldown > 0) {
             timeDecelerationCooldown--;
         }
-    }
 
-    private void decrementLifeCooldown() {
         if (lifeCooldown > 0) {
             lifeCooldown--;
         }

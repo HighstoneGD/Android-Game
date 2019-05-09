@@ -1,4 +1,4 @@
-package com.mygdx.game.system.attack;
+package com.mygdx.game.system.attack.potsystems;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;

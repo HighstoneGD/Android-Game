@@ -4,26 +4,26 @@ import com.mygdx.game.common.Constants;
 
 public class HealthManager {
 
-    private static int lives = Constants.START_LIVES_AMOUNT;
-    private static int armor = 0;
+    private static int lives;
+    private static int armor;
 
-    public int getLives() {
+    public static int getLives() {
         return lives;
     }
 
-    public int getArmor() {
+    public static int getArmor() {
         return armor;
     }
 
-    public void pickArmor() {
+    public static void pickArmor() {
         armor = 1;
     }
 
-    public void incrementLives() {
+    public static void incrementLives() {
         lives++;
     }
 
-    public void takeDamage(int damage) {
+    public static void takeDamage(int damage) {
         int dam = damage;
 
         if (armor > 0) {
@@ -32,6 +32,11 @@ public class HealthManager {
         }
 
         lives -= dam;
+    }
+
+    public static void reset() {
+        lives = Constants.START_LIVES_AMOUNT;
+        armor = 0;
     }
 
 }

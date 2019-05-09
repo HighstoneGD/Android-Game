@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
+import com.mygdx.game.controlling.AvoidedPotsManager;
 
 public class DamageClearSystem extends IteratingSystem {
 
@@ -28,6 +29,7 @@ public class DamageClearSystem extends IteratingSystem {
                 attackState.timers.get(i).reduceTimer(deltaTime);
                 if (attackState.timers.get(i).time == 0) {
                     attackState.timers.remove(attackState.timers.get(i));
+                    AvoidedPotsManager.avoided();
                     BoundsComponent bounds = Mappers.BOUNDS.get(entity);
                     bounds.color = Color.GREEN;
                 }

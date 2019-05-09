@@ -6,15 +6,11 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 
 public class PlayerSystem extends IteratingSystem {
-
-    private static final Logger log = new Logger(PlayerSystem.class.getName(), Logger.DEBUG);
 
     private static final Family FAMILY = Family.all(
             MovementStateComponent.class,

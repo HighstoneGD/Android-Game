@@ -17,7 +17,6 @@ public class Constants {
     public static final int START_LIVES_AMOUNT = 3;
 
     public static final float DEFAULT_POT_SPAWN_SPEED = 0.7f;
-    public static final float DEFAULT_BONUS_SPAWN_SPEED = 10f;
     public static final int CHANCE_FOR_RANDOM_TARGET = 5;
 
     public static final int SIMPLE_CENTRAL_DAMAGE = 3;
@@ -49,6 +48,7 @@ public class Constants {
     public static final int EXPLOSIVE_COOLDOWN = 6;
     public static final int IRON_COOLDOWN = 6;
     public static final int CAT_COOLDOWN = 6;
+    public static final int BONUS_COOLDOWN = 20;
 
     public static final int SPEED_COOLDOWN = 10;
     public static final int ARMOR_COOLDOWN = 20;

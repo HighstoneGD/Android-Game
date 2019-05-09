@@ -6,7 +6,7 @@ public enum PotType {
     EXPLOSIVE,
     IRON,
     CAT,
-    SHARD;
+    BONUS;
 
     PotType() {}
 }

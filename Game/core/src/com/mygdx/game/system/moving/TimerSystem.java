@@ -18,11 +18,6 @@ public class TimerSystem extends EntitySystem implements Runnable {
             MovementStateComponent.class
     ).get();
 
-    private static final Family CELLS_FAMILY = Family.all(
-            AttackStateComponent.class,
-            NumberComponent.class
-    ).get();
-
     @Override
     public void run() {
         ImmutableArray<Entity> players = getEngine().getEntitiesFor(PLAYER_FAMILY);

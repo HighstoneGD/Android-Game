@@ -1,4 +1,4 @@
-package com.mygdx.game.system.bonuses;
+package com.mygdx.game.system.attack.potsystems;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -18,16 +18,14 @@ import com.mygdx.game.component.NumberComponent;
 
 public class BonusPotSystem extends EntitySystem implements Runnable {
 
+    private final int x;
+    private final int y;
+    private final BonusType type;
     private static final Family FAMILY = Family.all(
             NumberComponent.class,
             BonusComponent.class,
             BoundsComponent.class
     ).get();
-
-    private final int x;
-    private final int y;
-    private final BonusType type;
-    private static final Logger log = new Logger(BonusPotSystem.class.getName(), Logger.DEBUG);
 
     public BonusPotSystem(int x, int y, BonusType type) {
         this.x = x;
@@ -49,15 +47,9 @@ public class BonusPotSystem extends EntitySystem implements Runnable {
             NumberComponent number = Mappers.NUMBER.get(cell);
 
             if (number.xNumber == x && number.yNumber == y) {
-
-                AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
-                attackState.timers.add(new DamageObject(Constants.BONUS_DAMAGE, Constants.SIMPLE_EXISTANCE_TIME));
-                BonusComponent bonus = Mappers.BONUS.get(cell);
-                bonus.timers.add(new Bonus(Constants.BONUS_EXISTANCE_TIME, type));
-                BoundsComponent bounds = Mappers.BOUNDS.get(cell);
-                bounds.color = Color.GOLD;
+                ObjectCreator.createDamageObject(cell, Constants.BONUS_DAMAGE, Constants.BONUS_EXISTANCE_TIME);
+                ObjectCreator.createBonusObject(cell, Constants.BONUS_EXISTANCE_TIME, type);
                 return;
-
             }
         }
     }

@@ -1,12 +1,10 @@
-package com.mygdx.game.system.attack;
+package com.mygdx.game.system.attack.potsystems;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.graphics.Color;
-import com.mygdx.game.common.objects.DamageObject;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
@@ -45,12 +43,7 @@ public class IronPotSystem extends EntitySystem implements Runnable {
             NumberComponent number = Mappers.NUMBER.get(cell);
 
             if (number.xNumber == x && number.yNumber == y) {
-
-                AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
-                attackState.timers.add(new DamageObject(Constants.IRON_CENTRAL_DAMAGE, Constants.IRON_EXISTANCE_TIME));
-                BoundsComponent bounds = Mappers.BOUNDS.get(cell);
-                bounds.color = Color.RED;
-
+                ObjectCreator.createDamageObject(cell, Constants.IRON_CENTRAL_DAMAGE, Constants.IRON_EXISTANCE_TIME);
             }
 
         }

@@ -13,10 +13,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.EntityFactory;
+import com.mygdx.game.controlling.AvoidedPotsManager;
+import com.mygdx.game.controlling.CooldownsManager;
+import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.system.moving.SimpleDirectionGestureDetector;
 import com.mygdx.game.screen.BasicGameScreen;
-import com.mygdx.game.system.BoundsSystem;
-import com.mygdx.game.system.bonuses.BonusSystem;
+import com.mygdx.game.system.moving.BoundsSystem;
 import com.mygdx.game.system.moving.PlayerSystem;
 import com.mygdx.game.system.moving.WorldWrapSystem;
 import com.mygdx.game.system.attack.AttackSystem;
@@ -37,8 +39,6 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     private final AndroidGame game;
     private final AssetManager assetManager;
 
-    private final boolean DEBUG = false;
-
     private OrthographicCamera camera;
     private Viewport viewport;
     private ShapeRenderer renderer;
@@ -46,7 +46,6 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     private EntityFactory factory;
 
     private float potSpawnSpeed;
-    private float bonusSpawnSpeed;
     private int x;
     private int y;
 
@@ -61,7 +60,10 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     @Override
     public void show() {
         potSpawnSpeed = Constants.DEFAULT_POT_SPAWN_SPEED;
-        bonusSpawnSpeed = Constants.DEFAULT_BONUS_SPAWN_SPEED;
+
+        AvoidedPotsManager.reset();
+        CooldownsManager.resetCooldown();
+        HealthManager.reset();
 
         camera = new OrthographicCamera();
         viewport = new FillViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
@@ -70,27 +72,80 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         engine = new PooledEngine();
         factory = new EntityFactory(engine, assetManager);
 
-        engine.addSystem(new PositionsCalculationSystem(x, y));
-        engine.addSystem(new CellsSpawnSystem(factory));
-        engine.addSystem(new BackgroundRenderSystem(viewport, game.getBatch()));
-        engine.addSystem(new DebugRenderSystem(viewport, renderer));
-        engine.addSystem(new DebugCameraSystem(camera,
-                Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
-        engine.addSystem(new PlayerSystem());
-        engine.addSystem(new WorldWrapSystem(this, engine));
-        engine.addSystem(new BoundsSystem());
+        createNotUpdatedSystems();
 
-        engine.addSystem(new DamageOnCellSystem());
-        engine.addSystem(new DamageClearSystem());
-        engine.addSystem(new AttackSystem(potSpawnSpeed, this, engine));
-        engine.addSystem(new TargetSystem(this));
-        engine.addSystem(new BonusSystem(bonusSpawnSpeed, this));
+        createMovingSystems();
+
+        createRenderSystems();
+
+        createAttackAndBonusSystems();
+
+        createDebugSystems();
 
         addEntities();
 
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             createAndroidControl();
         }
+    }
+
+    @Override
+    public void render(float delta) {
+        GdxUtils.clearScreen();
+        engine.update(delta);
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        viewport.update(width, height, true);
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
+
+    }
+
+    @Override
+    public void hide() {
+        dispose();
+    }
+
+    @Override
+    public void dispose() {
+        renderer.dispose();
+    }
+
+    private void createAttackAndBonusSystems() {
+        engine.addSystem(new DamageOnCellSystem());
+        engine.addSystem(new DamageClearSystem());
+        engine.addSystem(new AttackSystem(potSpawnSpeed, this, engine));
+    }
+
+    private void createRenderSystems() {
+        engine.addSystem(new BackgroundRenderSystem(viewport, game.getBatch()));
+    }
+
+    private void createDebugSystems() {
+        engine.addSystem(new DebugRenderSystem(viewport, renderer));
+        engine.addSystem(new DebugCameraSystem(camera,
+                Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
+    }
+
+    private void createMovingSystems() {
+        engine.addSystem(new PlayerSystem());
+        engine.addSystem(new WorldWrapSystem(this, engine));
+        engine.addSystem(new BoundsSystem());
+    }
+
+    private void createNotUpdatedSystems() {
+        engine.addSystem(new PositionsCalculationSystem(x, y));
+        engine.addSystem(new CellsSpawnSystem(factory));
+        engine.addSystem(new TargetSystem(this));
     }
 
     private void addEntities() {
@@ -130,36 +185,5 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
                 } catch (Exception e) {}
             }
         }));
-    }
-
-    @Override
-    public void render(float delta) {
-        GdxUtils.clearScreen();
-        engine.update(delta);
-    }
-
-    @Override
-    public void resize(int width, int height) {
-        viewport.update(width, height, true);
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
-
-    }
-
-    @Override
-    public void hide() {
-        dispose();
-    }
-
-    @Override
-    public void dispose() {
-        renderer.dispose();
     }
 }
