@@ -16,8 +16,8 @@ public class AssetPacker {
 
         TexturePacker.process(settings,
                 RAW_ASSET_PATH,
-                ASSETS_PATH + "/ui",
-                "uiskin"
+                ASSETS_PATH + "/gameplay",
+                "background"
         );
     }
 }
