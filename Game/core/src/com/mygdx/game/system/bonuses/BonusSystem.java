@@ -2,7 +2,7 @@ package com.mygdx.game.system.bonuses;
 
 import com.badlogic.ashley.systems.IntervalSystem;
 import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.common.GameManager;
+import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.common.objects.BonusType;
 import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.system.attack.TargetSystem;
@@ -43,14 +43,14 @@ public class BonusSystem extends IntervalSystem {
         BonusType type = BonusType.GOLD;
 
         for (BonusType type1 : priorities.keySet()) {
-            if (priorities.get(type) < priorities.get(type1) && GameManager.INSTANCE.getBonusCooldown(type1) == 0) {
+            if (priorities.get(type) < priorities.get(type1) && GameManager.COOLDOWNS_MANAGER.getBonusCooldown(type1) == 0) {
                 type = type1;
             }
         }
 
         log.debug("type = " + type);
-        GameManager.INSTANCE.decrementBonusCooldowns();
-        GameManager.INSTANCE.resetBonusCooldown(type);
+        GameManager.COOLDOWNS_MANAGER.decrementBonusCooldowns();
+        GameManager.COOLDOWNS_MANAGER.resetBonusCooldown(type);
         return type;
     }
 }

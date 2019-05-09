@@ -3,7 +3,7 @@ package com.mygdx.game.system.attack;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.systems.IntervalSystem;
 import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.common.GameManager;
+import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.common.objects.PotType;
 import com.mygdx.game.screen.BasicGameScreen;
 
@@ -67,14 +67,14 @@ public class AttackSystem extends IntervalSystem {
         PotType type = PotType.SIMPLE;
 
         for (PotType type1 : priorities.keySet()) {
-            if (priorities.get(type) < priorities.get(type1) && GameManager.INSTANCE.getCooldown(type1) == 0) {
+            if (priorities.get(type) < priorities.get(type1) && GameManager.COOLDOWNS_MANAGER.getCooldown(type1) == 0) {
                 type = type1;
             }
         }
 
         log.debug("type = " + type);
-        GameManager.INSTANCE.decrementCooldowns();
-        GameManager.INSTANCE.resetCooldown(type);
+        GameManager.COOLDOWNS_MANAGER.decrementCooldowns();
+        GameManager.COOLDOWNS_MANAGER.resetCooldown(type);
         return type;
     }
 }

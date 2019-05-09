@@ -6,7 +6,7 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.common.objects.DamageObject;
-import com.mygdx.game.common.GameManager;
+import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
@@ -39,7 +39,7 @@ public class DamageOnCellSystem extends IteratingSystem {
                  AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
 
                  for (DamageObject damageObject : attackState.timers) {
-                     GameManager.INSTANCE.takeDamage(damageObject.damage);
+                     GameManager.HEALTH_MANAGER.takeDamage(damageObject.damage);
                  }
 
                  attackState.timers.clear();

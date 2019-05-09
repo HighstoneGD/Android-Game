@@ -6,7 +6,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.Constants;
-import com.mygdx.game.common.GameManager;
+import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
@@ -16,18 +16,17 @@ import java.util.Random;
 
 public class TargetSystem extends EntitySystem {
 
-    public TargetSystem(BasicGameScreen screen) {
-        random = new Random();
-        this.screen = screen;
-    }
-
     private static final Family PLAYER = Family.all(
             PlayerComponent.class,
             PositionOnGridComponent.class
     ).get();
     private Random random;
     private BasicGameScreen screen;
-    private static final Logger log = new Logger(TargetSystem.class.getName(), Logger.DEBUG);
+
+    public TargetSystem(BasicGameScreen screen) {
+        random = new Random();
+        this.screen = screen;
+    }
 
     public int selectTargetX() {
         ImmutableArray<Entity> player = getEngine().getEntitiesFor(PLAYER);
@@ -45,17 +44,16 @@ public class TargetSystem extends EntitySystem {
                 playerX = position.xNumber;
             }
 
-            if (GameManager.INSTANCE.leftOrRight() == 0 && playerX > 0) {
-                x = playerX - 1;
-            } else if (playerX < screen.x - 1) {
-                x = playerX + 1;
+            if (playerX == 0) {
+                x = random.nextInt(2);
+            } else if (playerX == screen.x - 1) {
+                x = screen.x - 1 - random.nextInt(2);
             } else {
-                x = playerX;
+                x = playerX - 1 + random.nextInt(3);
             }
 
         }
 
-//        log.debug("x = " + x);
         return x;
     }
 
@@ -75,17 +73,16 @@ public class TargetSystem extends EntitySystem {
                 playerY = position.yNumber;
             }
 
-            if (GameManager.INSTANCE.upOrDown() == 0 && playerY > 0) {
-                y = playerY - 1;
-            } else if (playerY < screen.y) {
-                y = playerY + 1;
+            if (playerY == 0) {
+                y = random.nextInt(2);
+            } else if (playerY == screen.y - 1) {
+                y = screen.y - 1 - random.nextInt(2);
             } else {
-                y = playerY;
+                y = playerY - 1 + random.nextInt(3);
             }
 
         }
 
-//        log.debug("y = " + y);
         return y;
     }
 }
