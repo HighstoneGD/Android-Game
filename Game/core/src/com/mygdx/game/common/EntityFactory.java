@@ -1,41 +1,48 @@
 package com.mygdx.game.common;
 
+import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
+import com.mygdx.game.common.objects.PotType;
+import com.mygdx.game.component.AnimationComponent;
 import com.mygdx.game.component.AttackStateComponent;
-import com.mygdx.game.component.marking.BackgroundComponent;
 import com.mygdx.game.component.BonusComponent;
 import com.mygdx.game.component.BoundsComponent;
-import com.mygdx.game.component.marking.CellComponent;
 import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
-import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
+import com.mygdx.game.component.PotComponent;
 import com.mygdx.game.component.TextureComponent;
+import com.mygdx.game.component.marking.BackgroundComponent;
+import com.mygdx.game.component.marking.CellComponent;
+import com.mygdx.game.component.marking.PlayerComponent;
+import com.mygdx.game.component.marking.SmashComponent;
+import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
-
-import java.util.Random;
 
 public class EntityFactory {
 
     private static final Logger log = new Logger(EntityFactory.class.getName(), Logger.DEBUG);
     private final PooledEngine engine;
     private final AssetManager assetManager;
+    private final BasicGameScreen screen;
     private final TextureAtlas gameplayBgAtlas;
-    private final Random random;
 
-    public EntityFactory(PooledEngine engine, AssetManager assetManager) {
-        this.engine = engine;
-        this.assetManager = assetManager;
-        random = new Random();
+    public EntityFactory(BasicGameScreen screen) {
+        this.screen = screen;
+        this.engine = screen.getEngine();
+        this.assetManager = screen.getAssetManager();
         gameplayBgAtlas = assetManager.get(AssetDescriptors.GAMEPLAY_BG);
     }
 
@@ -53,6 +60,7 @@ public class EntityFactory {
         bounds.color = Color.GREEN;
 
         CellComponent cellComponent = engine.createComponent(CellComponent.class);
+        cellComponent.hasPlayer = false;
 
         AttackStateComponent attackState = engine.createComponent(AttackStateComponent.class);
 
@@ -130,6 +138,73 @@ public class EntityFactory {
         entity.add(position);
         entity.add(dimension);
         entity.add(backgroundComponent);
+
+        engine.addEntity(entity);
+    }
+
+    public void addSmash(PotType type, float x, float y) {
+        AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
+        switch (type) {
+            case SIMPLE: {
+                animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                        assetManager.get(AssetDescriptors.SIMPLE_SMASH).getRegions());
+                animationComponent.elapsedTime = 0;
+            }
+        }
+
+        PositionComponent position = engine.createComponent(PositionComponent.class);
+        position.x = x;
+        position.y = y;
+
+        SmashComponent smashComponent = engine.createComponent(SmashComponent.class);
+
+        DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
+        switch (type) {
+            case SIMPLE: {
+                dimension.width = Constants.SIMPLE_SMASH_WIDTH;
+                dimension.height = Constants.SIMPLE_SMASH_HEIGHT;
+            }
+        }
+
+        Entity entity = engine.createEntity();
+        entity.add(animationComponent);
+        entity.add(position);
+        entity.add(smashComponent);
+        entity.add(dimension);
+
+        engine.addEntity(entity);
+    }
+
+    public void addPot(PotType type, float x, int xNumber, int yNumber) {
+        PositionComponent position = engine.createComponent(PositionComponent.class);
+        position.x = x;
+        position.y = Constants.WORLD_HEIGHT + 10f;
+
+        DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
+        float coef = (float) Math.pow(Constants.POT_SIZE_COEFFICIENT, screen.y - yNumber - 1);
+        dimension.width = Constants.SIMPLE_POT_WIDTH * coef;
+        dimension.height = Constants.SIMPLE_POT_HEIGHT * coef;
+
+        PositionOnGridComponent positionOnGrid = engine.createComponent(PositionOnGridComponent.class);
+        positionOnGrid.xNumber = xNumber;
+        positionOnGrid.yNumber = yNumber;
+
+        PotComponent potComponent = engine.createComponent(PotComponent.class);
+        potComponent.type = type;
+
+        AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
+
+        switch (type) {
+            case SIMPLE: animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.SIMPLE_TEXTURE).getRegions());
+        }
+
+        Entity entity = engine.createEntity();
+        entity.add(position);
+        entity.add(dimension);
+        entity.add(positionOnGrid);
+        entity.add(potComponent);
+        entity.add(animationComponent);
 
         engine.addEntity(entity);
     }

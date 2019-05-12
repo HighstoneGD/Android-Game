@@ -1,0 +1,27 @@
+
+simple_pot-smash.png
+size: 2048,4096
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+simple_smash
+  rotate: false
+  xy: 2, 2566
+  size: 1640, 1280
+  orig: 1640, 1280
+  offset: 0, 0
+  index: 0
+simple_smash
+  rotate: false
+  xy: 2, 1284
+  size: 1640, 1280
+  orig: 1640, 1280
+  offset: 0, 0
+  index: 1
+simple_smash
+  rotate: false
+  xy: 2, 2
+  size: 1640, 1280
+  orig: 1640, 1280
+  offset: 0, 0
+  index: 2

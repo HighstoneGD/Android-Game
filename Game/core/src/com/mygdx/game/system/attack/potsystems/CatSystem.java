@@ -39,7 +39,7 @@ public class CatSystem extends EntitySystem implements Runnable {
     @Override
     public void run() {
         try {
-            Thread.sleep(Constants.CAT_FLIGHT_TIME);
+            Thread.sleep(Constants.POT_FLIGHT_TIME);
         } catch (Exception e) {
             return;
         }

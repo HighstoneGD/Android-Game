@@ -7,13 +7,14 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.Mappers;
+import com.mygdx.game.common.objects.PotType;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.screen.BasicGameScreen;
-import com.mygdx.game.system.render.animators.AnimatorUtils;
 
 public class SimplePotSystem extends EntitySystem implements Runnable {
 
@@ -28,32 +29,33 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
     private final int x;
     private final int y;
     private PooledEngine engine;
-    private BasicGameScreen screen;
+    private EntityFactory factory;
 
-    public SimplePotSystem(int x, int y, PooledEngine engine, BasicGameScreen screen) {
+    public SimplePotSystem(int x, int y, BasicGameScreen screen) {
         this.x = x;
         this.y = y;
-        this.engine = engine;
-        this.screen = screen;
+        this.engine = screen.getEngine();
+        this.factory = screen.getFactory();
     }
 
     @Override
     public void run() {
         ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
+        float cellX = 0;
         for (int i = 0; i < cells.size(); i++) {
             Entity cell = cells.get(i);
             NumberComponent number = Mappers.NUMBER.get(cell);
 
             if (number.xNumber == x && number.yNumber == y) {
                 PositionComponent position = Mappers.POSITION.get(cell);
-                AnimatorUtils.createAnimator(screen, position.x, position.y, number.yNumber);
-                log.debug("animator created");
-                break;
+                cellX = position.x;
             }
         }
 
+        factory.addPot(PotType.SIMPLE, cellX, x, y);
+
         try {
-            Thread.sleep(Constants.SIMPLE_FLIGHT_TIME);
+            Thread.sleep(Constants.POT_FLIGHT_TIME);
         } catch (Exception e) {
             return;
         }

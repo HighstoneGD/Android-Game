@@ -22,16 +22,19 @@ import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.attack.DamageClearSystem;
 import com.mygdx.game.system.attack.DamageOnCellSystem;
 import com.mygdx.game.system.attack.TargetSystem;
+import com.mygdx.game.system.attack.potsystems.DropPotsSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.system.moving.BoundsSystem;
+import com.mygdx.game.system.moving.PlayerPresenseSystem;
 import com.mygdx.game.system.moving.PlayerSystem;
 import com.mygdx.game.system.moving.SimpleDirectionGestureDetector;
 import com.mygdx.game.system.moving.WorldWrapSystem;
 import com.mygdx.game.system.render.BackgroundRenderSystem;
 import com.mygdx.game.system.render.PotsRenderSystem;
+import com.mygdx.game.system.render.SmashRenderSystem;
 import com.mygdx.game.util.GdxUtils;
 
 public class EndlessModeScreen extends BasicGameScreen implements Screen {
@@ -72,7 +75,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         renderer = new ShapeRenderer();
 
         engine = new PooledEngine();
-        factory = new EntityFactory(engine, assetManager);
+        factory = new EntityFactory(this);
 
         createNotUpdatedSystems();
         createMovingSystems();
@@ -121,11 +124,13 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         engine.addSystem(new DamageOnCellSystem());
         engine.addSystem(new DamageClearSystem());
         engine.addSystem(new AttackSystem(potSpawnSpeed, this, engine));
+        engine.addSystem(new DropPotsSystem(this));
     }
 
     private void createRenderSystems() {
         engine.addSystem(new BackgroundRenderSystem(viewport, game.getBatch()));
-        engine.addSystem(new PotsRenderSystem(viewport, game.getBatch()));
+        engine.addSystem(new PotsRenderSystem(this));
+        engine.addSystem(new SmashRenderSystem(this));
     }
 
     private void createDebugSystems() {
@@ -138,6 +143,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         engine.addSystem(new PlayerSystem());
         engine.addSystem(new WorldWrapSystem(this, engine));
         engine.addSystem(new BoundsSystem());
+        engine.addSystem(new PlayerPresenseSystem());
     }
 
     private void createNotUpdatedSystems() {
@@ -203,5 +209,9 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
 
     public PooledEngine getEngine() {
         return engine;
+    }
+
+    public EntityFactory getFactory() {
+        return factory;
     }
 }

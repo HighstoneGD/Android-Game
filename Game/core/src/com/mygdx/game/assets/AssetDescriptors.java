@@ -2,10 +2,8 @@ package com.mygdx.game.assets;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class AssetDescriptors {
 
@@ -27,5 +25,9 @@ public class AssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> LOADING_BACKGROUND =
             new AssetDescriptor<TextureAtlas>(AssetPaths.LOADING_BACKGROUND, TextureAtlas.class);
 
-    private AssetDescriptors() {}
+    public static final AssetDescriptor<TextureAtlas> SIMPLE_SMASH =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.SIMPLE_SMASH_ANIMATION, TextureAtlas.class);
+
+    private AssetDescriptors() {
+    }
 }

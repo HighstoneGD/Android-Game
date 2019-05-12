@@ -36,7 +36,7 @@ public class BonusPotSystem extends EntitySystem implements Runnable {
     @Override
     public void run() {
         try {
-            Thread.sleep(Constants.BONUS_FLIGHT_TIME);
+            Thread.sleep(Constants.POT_FLIGHT_TIME);
         } catch (Exception e) {
             return;
         }

@@ -32,7 +32,7 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
     @Override
     public void run() {
         try {
-            Thread.sleep(Constants.EXPLOSIVE_FLIGHT_TIME);
+            Thread.sleep(Constants.POT_FLIGHT_TIME);
         } catch (Exception e) {
             return;
         }

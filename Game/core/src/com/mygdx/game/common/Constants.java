@@ -13,6 +13,10 @@ public class Constants {
 
     public static final float CELL_HEIGHT = 3.3f;
     public static final float PLAYER_SIZE = 7f;
+    public static final float SIMPLE_POT_WIDTH = 8f;
+    public static final float SIMPLE_POT_HEIGHT = SIMPLE_POT_WIDTH * 1.6f;
+    public static final float SIMPLE_SMASH_WIDTH = 10f;
+    public static final float SIMPLE_SMASH_HEIGHT = SIMPLE_SMASH_WIDTH / 41f * 32f;
 
     public static final int START_LIVES_AMOUNT = 3;
 
@@ -35,14 +39,9 @@ public class Constants {
     public static final float CAT_STAY_TIME = 0.5f;
     public static final float BONUS_EXISTANCE_TIME = 10f;
 
-    public static final long SIMPLE_FLIGHT_TIME = 1500;
-    public static final long LARGE_FLIGHT_TIME = 500;
-    public static final long EXPLOSIVE_FLIGHT_TIME = 500;
-    public static final long IRON_FLIGHT_TIME = 200;
-    public static final long CAT_FLIGHT_TIME = 500;
+    public static final long POT_FLIGHT_TIME = 1000;
     public static final long CAT_JUMP_TIME = 500;
     public static final long PLAYER_JUMP_TIME = 300;
-    public static final long BONUS_FLIGHT_TIME = 500;
 
     public static final int LARGE_COOLDOWN = 6;
     public static final int EXPLOSIVE_COOLDOWN = 6;
@@ -60,10 +59,9 @@ public class Constants {
     public static final float Y_COEFFICIENT = 1.15f;
     public static final float X_COEFFICIENT = 1.09f;
     public static final float SIZE_COEFFICIENT = 1.1f;
-    public static final float MAX_SIZE_COEF = 1.5f;
+    public static final float POT_SIZE_COEFFICIENT = 0.95f;
 
-    public static final float MIN_POT_WIDTH = 12.8f;
-    public static final float MIN_POT_HEIGHT = 11.2f;
+    public static final float FRAME_TIME = 0.1f;
 
     private Constants() {}
 }
