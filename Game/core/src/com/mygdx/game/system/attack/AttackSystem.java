@@ -37,7 +37,7 @@ public class AttackSystem extends IntervalSystem {
         int y = getEngine().getSystem(TargetSystem.class).selectTargetY();
 
         if (type == PotType.SIMPLE) {
-            SystemCreator.createSimplePotSystem(engine, x, y);
+            SystemCreator.createSimplePotSystem(engine, screen, x, y);
         } else if (type == PotType.LARGE) {
             SystemCreator.createLargePotSystem(engine, x, y);
         } else if (type == PotType.EXPLOSIVE) {

@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FillViewport;
@@ -16,11 +17,7 @@ import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.controlling.AvoidedPotsManager;
 import com.mygdx.game.controlling.CooldownsManager;
 import com.mygdx.game.controlling.HealthManager;
-import com.mygdx.game.system.moving.SimpleDirectionGestureDetector;
 import com.mygdx.game.screen.BasicGameScreen;
-import com.mygdx.game.system.moving.BoundsSystem;
-import com.mygdx.game.system.moving.PlayerSystem;
-import com.mygdx.game.system.moving.WorldWrapSystem;
 import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.attack.DamageClearSystem;
 import com.mygdx.game.system.attack.DamageOnCellSystem;
@@ -29,7 +26,12 @@ import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
+import com.mygdx.game.system.moving.BoundsSystem;
+import com.mygdx.game.system.moving.PlayerSystem;
+import com.mygdx.game.system.moving.SimpleDirectionGestureDetector;
+import com.mygdx.game.system.moving.WorldWrapSystem;
 import com.mygdx.game.system.render.BackgroundRenderSystem;
+import com.mygdx.game.system.render.PotsRenderSystem;
 import com.mygdx.game.util.GdxUtils;
 
 public class EndlessModeScreen extends BasicGameScreen implements Screen {
@@ -123,6 +125,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
 
     private void createRenderSystems() {
         engine.addSystem(new BackgroundRenderSystem(viewport, game.getBatch()));
+        engine.addSystem(new PotsRenderSystem(viewport, game.getBatch()));
     }
 
     private void createDebugSystems() {
@@ -156,29 +159,49 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
             public void onUp() {
                 try {
                     engine.getSystem(PlayerSystem.class).moveUp(engine.getSystem(PlayerSystem.class).positionOnGrid);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
             }
 
             @Override
             public void onRight() {
                 try {
                     engine.getSystem(PlayerSystem.class).moveRight(engine.getSystem(PlayerSystem.class).positionOnGrid);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
             }
 
             @Override
             public void onLeft() {
                 try {
                     engine.getSystem(PlayerSystem.class).moveLeft(engine.getSystem(PlayerSystem.class).positionOnGrid);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
             }
 
             @Override
             public void onDown() {
                 try {
                     engine.getSystem(PlayerSystem.class).moveDown(engine.getSystem(PlayerSystem.class).positionOnGrid);
-                } catch (Exception e) {}
+                } catch (Exception e) {
+                }
             }
         }));
+    }
+
+    public AssetManager getAssetManager() {
+        return assetManager;
+    }
+
+    public SpriteBatch getBatch() {
+        return game.getBatch();
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera;
+    }
+
+    public PooledEngine getEngine() {
+        return engine;
     }
 }

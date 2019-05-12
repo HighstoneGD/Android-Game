@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.component.BackgroundComponent;
+import com.mygdx.game.component.marking.BackgroundComponent;
 import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.TextureComponent;

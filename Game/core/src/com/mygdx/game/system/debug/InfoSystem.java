@@ -6,7 +6,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.BoundsComponent;
-import com.mygdx.game.component.PlayerComponent;
+import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 
 public class InfoSystem extends EntitySystem {

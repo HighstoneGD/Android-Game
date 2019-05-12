@@ -6,8 +6,8 @@ import com.mygdx.game.screen.BasicGameScreen;
 
 public class SystemCreator {
 
-    public static void createSimplePotSystem(PooledEngine engine, int x, int y) {
-        SimplePotSystem simplePotSystem = new SimplePotSystem(x, y, engine);
+    public static void createSimplePotSystem(PooledEngine engine, BasicGameScreen screen, int x, int y) {
+        SimplePotSystem simplePotSystem = new SimplePotSystem(x, y, engine, screen);
         engine.addSystem(simplePotSystem);
         Thread thread = new Thread(simplePotSystem);
         thread.start();

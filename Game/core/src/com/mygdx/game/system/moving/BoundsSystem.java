@@ -5,7 +5,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.BoundsComponent;
-import com.mygdx.game.component.PlayerComponent;
+import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 

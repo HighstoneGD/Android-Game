@@ -35,7 +35,7 @@ public class Constants {
     public static final float CAT_STAY_TIME = 0.5f;
     public static final float BONUS_EXISTANCE_TIME = 10f;
 
-    public static final long SIMPLE_FLIGHT_TIME = 500;
+    public static final long SIMPLE_FLIGHT_TIME = 1500;
     public static final long LARGE_FLIGHT_TIME = 500;
     public static final long EXPLOSIVE_FLIGHT_TIME = 500;
     public static final long IRON_FLIGHT_TIME = 200;
@@ -59,7 +59,11 @@ public class Constants {
     public static final float GRID_TOP_WIDTH = 40f;
     public static final float Y_COEFFICIENT = 1.15f;
     public static final float X_COEFFICIENT = 1.09f;
-    public static final float SIZE_COEFFICIENT = 1.05f;
+    public static final float SIZE_COEFFICIENT = 1.1f;
+    public static final float MAX_SIZE_COEF = 1.5f;
+
+    public static final float MIN_POT_WIDTH = 12.8f;
+    public static final float MIN_POT_HEIGHT = 11.2f;
 
     private Constants() {}
 }
