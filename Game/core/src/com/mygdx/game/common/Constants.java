@@ -13,10 +13,10 @@ public class Constants {
 
     public static final float CELL_HEIGHT = 3.3f;
     public static final float PLAYER_SIZE = 7f;
-    public static final float SIMPLE_POT_WIDTH = 8f;
-    public static final float SIMPLE_POT_HEIGHT = SIMPLE_POT_WIDTH * 1.6f;
-    public static final float SIMPLE_SMASH_WIDTH = 10f;
-    public static final float SIMPLE_SMASH_HEIGHT = SIMPLE_SMASH_WIDTH / 41f * 32f;
+    public static final float SIMPLE_POT_WIDTH = 10f;
+    public static final float SIMPLE_POT_HEIGHT = SIMPLE_POT_WIDTH / 8f * 9.21f;
+    public static final float SIMPLE_SMASH_WIDTH = 25f;
+    public static final float SIMPLE_SMASH_HEIGHT = SIMPLE_SMASH_WIDTH / 12f * 9.02f;
 
     public static final int START_LIVES_AMOUNT = 3;
 
@@ -61,7 +61,7 @@ public class Constants {
     public static final float SIZE_COEFFICIENT = 1.1f;
     public static final float POT_SIZE_COEFFICIENT = 0.95f;
 
-    public static final float FRAME_TIME = 0.1f;
+    public static final float FRAME_TIME = SIMPLE_EXISTANCE_TIME / 3;
 
     private Constants() {}
 }

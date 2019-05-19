@@ -33,7 +33,6 @@ public class SmashRenderSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-        log.debug("render smash");
         PositionComponent position = Mappers.POSITION.get(entity);
         DimensionComponent dimension = Mappers.DIMENSION.get(entity);
         AnimationComponent animationComponent = Mappers.ANIMATION_COMPONENT.get(entity);
@@ -42,7 +41,7 @@ public class SmashRenderSystem extends IteratingSystem {
         batch.begin();
 
         batch.draw(animationComponent.animation.getKeyFrame(animationComponent.elapsedTime, false),
-                position.x - dimension.width / 2f, position.y,
+                position.x - dimension.width / 2.2f, position.y - dimension.height / 2.2f,
                 dimension.width, dimension.height
         );
 

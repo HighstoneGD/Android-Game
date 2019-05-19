@@ -9,15 +9,15 @@ public class AssetPacker {
 
     public static void main(String[] args) {
         TexturePacker.Settings settings = new TexturePacker.Settings();
-        settings.maxWidth = 4096;
-        settings.maxHeight = 4096;
+        settings.maxWidth = 8192;
+        settings.maxHeight = 8192;
         settings.debug = false;
         settings.useIndexes = true;
 
         TexturePacker.process(settings,
                 RAW_ASSET_PATH,
                 ASSETS_PATH + "/gameplay",
-                "simple_pot-smash"
+                "simple_pot"
         );
     }
 }

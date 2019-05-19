@@ -1,20 +1,111 @@
 
 simple_pot.png
-size: 2048,2048
+size: 8192,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 simplepot
   rotate: false
-  xy: 2, 2
-  size: 1000, 1600
-  orig: 1000, 1600
+  xy: 2, 925
+  size: 800, 921
+  orig: 800, 921
   offset: 0, 0
   index: 0
 simplepot
   rotate: false
-  xy: 1004, 2
-  size: 1000, 1600
-  orig: 1000, 1600
+  xy: 2, 2
+  size: 800, 921
+  orig: 800, 921
   offset: 0, 0
   index: 1
+simplepot
+  rotate: false
+  xy: 804, 925
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 2
+simplepot
+  rotate: false
+  xy: 804, 2
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 3
+simplepot
+  rotate: false
+  xy: 1606, 925
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 4
+simplepot
+  rotate: false
+  xy: 1606, 2
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 5
+simplepot
+  rotate: false
+  xy: 2408, 925
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 6
+simplepot
+  rotate: false
+  xy: 2408, 2
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 7
+simplepot
+  rotate: false
+  xy: 3210, 925
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 8
+simplepot
+  rotate: false
+  xy: 3210, 2
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 9
+simplepot
+  rotate: false
+  xy: 4012, 925
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 10
+simplepot
+  rotate: false
+  xy: 4012, 2
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 11
+simplepot
+  rotate: false
+  xy: 4814, 925
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 12
+simplepot
+  rotate: false
+  xy: 4814, 2
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 13
+simplepot
+  rotate: false
+  xy: 5616, 925
+  size: 800, 921
+  orig: 800, 921
+  offset: 0, 0
+  index: 14

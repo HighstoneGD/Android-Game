@@ -1,8 +1,6 @@
 package com.mygdx.game.common;
 
-import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
@@ -31,6 +29,8 @@ import com.mygdx.game.component.marking.SmashComponent;
 import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 
+import java.util.Random;
+
 public class EntityFactory {
 
     private static final Logger log = new Logger(EntityFactory.class.getName(), Logger.DEBUG);
@@ -38,12 +38,14 @@ public class EntityFactory {
     private final AssetManager assetManager;
     private final BasicGameScreen screen;
     private final TextureAtlas gameplayBgAtlas;
+    private final Random random;
 
     public EntityFactory(BasicGameScreen screen) {
         this.screen = screen;
         this.engine = screen.getEngine();
         this.assetManager = screen.getAssetManager();
         gameplayBgAtlas = assetManager.get(AssetDescriptors.GAMEPLAY_BG);
+        random = new Random();
     }
 
     public void addCell(float x, float y, int xNumber, int yNumber, float height) {
@@ -195,8 +197,10 @@ public class EntityFactory {
         AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
 
         switch (type) {
-            case SIMPLE: animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
-                    assetManager.get(AssetDescriptors.SIMPLE_TEXTURE).getRegions());
+            case SIMPLE:
+                animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                        assetManager.get(AssetDescriptors.SIMPLE_TEXTURE).getRegions());
+                animationComponent.elapsedTime = random.nextFloat() * 10;
         }
 
         Entity entity = engine.createEntity();
