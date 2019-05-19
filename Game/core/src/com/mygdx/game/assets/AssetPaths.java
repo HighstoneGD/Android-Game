@@ -9,6 +9,7 @@ public class AssetPaths {
     public static final String GRAN_LOADING_ANIMATION = "loading_animation.atlas";
     public static final String LOADING_BACKGROUND = "loading_background.atlas";
     public static final String SIMPLE_SMASH_ANIMATION = "gameplay/simple_pot-smash.atlas";
+    public static final String IRON_POT_TEXTURE = "gameplay/iron_pot.atlas";
 
     private AssetPaths() {}
 }

@@ -72,7 +72,7 @@ public class CatSystem extends EntitySystem implements Runnable {
 
             if (number.xNumber == x && number.yNumber == y) {
                 AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
-                attackState.timers.add(new DamageObject(Constants.CAT_DAMAGE, Constants.CAT_STAY_TIME));
+                attackState.timers.add(new DamageObject(Constants.CAT_DAMAGE, Constants.POT_EXISTANCE_TIME));
                 BoundsComponent bounds = Mappers.BOUNDS.get(cell);
                 bounds.color = Color.RED;
 

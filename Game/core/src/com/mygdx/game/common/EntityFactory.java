@@ -184,8 +184,6 @@ public class EntityFactory {
 
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
         float coef = (float) Math.pow(Constants.POT_SIZE_COEFFICIENT, screen.y - yNumber - 1);
-        dimension.width = Constants.SIMPLE_POT_WIDTH * coef;
-        dimension.height = Constants.SIMPLE_POT_HEIGHT * coef;
 
         PositionOnGridComponent positionOnGrid = engine.createComponent(PositionOnGridComponent.class);
         positionOnGrid.xNumber = xNumber;
@@ -195,12 +193,18 @@ public class EntityFactory {
         potComponent.type = type;
 
         AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
+        animationComponent.elapsedTime = random.nextFloat();
 
-        switch (type) {
-            case SIMPLE:
-                animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+        if (type == PotType.SIMPLE) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
                         assetManager.get(AssetDescriptors.SIMPLE_TEXTURE).getRegions());
-                animationComponent.elapsedTime = random.nextFloat() * 10;
+            dimension.width = Constants.SIMPLE_POT_WIDTH * coef;
+            dimension.height = Constants.SIMPLE_POT_HEIGHT * coef;
+        } else if (type == PotType.IRON) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                        assetManager.get(AssetDescriptors.IRON_TEXTURE).getRegions());
+            dimension.width = Constants.IRON_POT_WIDTH * coef;
+            dimension.height = Constants.IRON_POT_HEIGHT * coef;
         }
 
         Entity entity = engine.createEntity();

@@ -19,14 +19,10 @@ public class PotsRenderSystem extends IteratingSystem {
             PositionComponent.class,
             DimensionComponent.class
     ).get();
-    private BasicGameScreen screen;
-    private AssetManager assetManager;
     private SpriteBatch batch;
 
     public PotsRenderSystem(BasicGameScreen screen) {
         super(FAMILY);
-        this.screen = screen;
-        this.assetManager = screen.getAssetManager();
         batch = screen.getBatch();
     }
 
@@ -41,7 +37,7 @@ public class PotsRenderSystem extends IteratingSystem {
         batch.begin();
 
         batch.draw(animationComponent.animation.getKeyFrame(animationComponent.elapsedTime, true),
-                position.x - dimension.width / 2.2f, position.y - dimension.height / 2f,
+                position.x - dimension.width / 2.1f, position.y - dimension.height / 2f,
                 dimension.width, dimension.height
         );
 

@@ -45,11 +45,11 @@ public class LargePotSystem extends EntitySystem implements Runnable {
             if (number.xNumber == x) {
 
                 if (number.yNumber == y) {
-                    ObjectCreator.createDamageObject(cell, Constants.LARGE_CENTRAL_DAMAGE, Constants.LARGE_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.LARGE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (number.yNumber == y - 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (number.yNumber == y + 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 }
 
             }
@@ -57,11 +57,11 @@ public class LargePotSystem extends EntitySystem implements Runnable {
             if (number.xNumber == x - 1) {
 
                 if (number.yNumber == y) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (number.yNumber == y - 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (number.yNumber == y + 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 }
 
             }
@@ -69,11 +69,11 @@ public class LargePotSystem extends EntitySystem implements Runnable {
             if (number.xNumber == x + 1) {
 
                 if (number.yNumber == y) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (number.yNumber == y - 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (number.yNumber == y + 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 }
 
             }

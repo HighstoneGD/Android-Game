@@ -54,33 +54,33 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
             NumberComponent number = Mappers.NUMBER.get(cell);
 
             if (number.xNumber == x && number.yNumber == y) {
-                ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.EXPLOSIVE_EXISTANCE_TIME);
+                ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
             } else if (number.xNumber == x) {
 
                 if (up && number.yNumber == y - 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.EXPLOSIVE_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (!up && number.yNumber == y + 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.EXPLOSIVE_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 }
 
             } else if (left && number.xNumber == x - 1) {
 
                 if (number.yNumber == y) {
-                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.EXPLOSIVE_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (up && number.yNumber == y - 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.EXPLOSIVE_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (!up && number.yNumber == y + 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.EXPLOSIVE_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 }
 
             } else if (!left && number.xNumber == x + 1) {
 
                 if (number.yNumber == y) {
-                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.EXPLOSIVE_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (up && number.yNumber == y - 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.EXPLOSIVE_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (!up && number.yNumber == y + 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.EXPLOSIVE_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.EXPLOSIVE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 }
 
             }

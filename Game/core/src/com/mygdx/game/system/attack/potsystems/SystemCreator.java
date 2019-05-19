@@ -13,8 +13,8 @@ public class SystemCreator {
         thread.start();
     }
 
-    public static void createIronPotSystem(PooledEngine engine, int x, int y) {
-        IronPotSystem ironPotSystem = new IronPotSystem(x, y, engine);
+    public static void createIronPotSystem(PooledEngine engine, BasicGameScreen screen, int x, int y) {
+        IronPotSystem ironPotSystem = new IronPotSystem(x, y, screen);
         engine.addSystem(ironPotSystem);
         Thread thread = new Thread(ironPotSystem);
         thread.start();

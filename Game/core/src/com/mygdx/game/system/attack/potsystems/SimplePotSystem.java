@@ -67,11 +67,11 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
             if (number.xNumber == x) {
 
                 if (number.yNumber == y) {
-                    ObjectCreator.createDamageObject(cell, Constants.SIMPLE_CENTRAL_DAMAGE, Constants.SIMPLE_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SIMPLE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (number.yNumber == y - 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (number.yNumber == y + 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 }
 
             }
@@ -79,9 +79,9 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
             if (number.yNumber == y) {
 
                 if (number.xNumber == x - 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 } else if (number.xNumber == x + 1) {
-                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.SHARD_EXISTANCE_TIME);
+                    ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 }
 
             }

@@ -1,0 +1,111 @@
+
+iron_pot.png
+size: 8192,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ironpot
+  rotate: false
+  xy: 2, 844
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 0
+ironpot
+  rotate: false
+  xy: 2, 2
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 1
+ironpot
+  rotate: false
+  xy: 804, 844
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 2
+ironpot
+  rotate: false
+  xy: 804, 2
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 3
+ironpot
+  rotate: false
+  xy: 1606, 844
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 4
+ironpot
+  rotate: false
+  xy: 1606, 2
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 5
+ironpot
+  rotate: false
+  xy: 2408, 844
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 6
+ironpot
+  rotate: false
+  xy: 2408, 2
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 7
+ironpot
+  rotate: false
+  xy: 3210, 844
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 8
+ironpot
+  rotate: false
+  xy: 3210, 2
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 9
+ironpot
+  rotate: false
+  xy: 4012, 844
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 10
+ironpot
+  rotate: false
+  xy: 4012, 2
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 11
+ironpot
+  rotate: false
+  xy: 4814, 844
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 12
+ironpot
+  rotate: false
+  xy: 4814, 2
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 13
+ironpot
+  rotate: false
+  xy: 5616, 844
+  size: 800, 840
+  orig: 800, 840
+  offset: 0, 0
+  index: 14

@@ -7,6 +7,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.Mappers;
+import com.mygdx.game.common.objects.PotType;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
@@ -57,6 +58,12 @@ public class DropPotsSystem extends IteratingSystem {
 
         int deltaY = screen.y - 1 - positionOnGrid.yNumber;
         float speed = distance / (Constants.POT_FLIGHT_TIME / 1000f);
+
+        PotComponent potComponent = Mappers.POT_COMPONENT.get(entity);
+        if (potComponent.type == PotType.IRON) {
+            speed *= 2;
+        }
+
         position.y -= deltaTime * speed;
 
         if (position.y <= cellY) {
@@ -65,7 +72,6 @@ public class DropPotsSystem extends IteratingSystem {
     }
 
     private void smash(Entity entity, float x, float y) {
-        log.debug("smash");
         PotComponent potComponent = Mappers.POT_COMPONENT.get(entity);
         screen.getFactory().addSmash(potComponent.type, x, y);
         getEngine().removeEntity(entity);

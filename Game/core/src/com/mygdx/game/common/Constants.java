@@ -17,6 +17,8 @@ public class Constants {
     public static final float SIMPLE_POT_HEIGHT = SIMPLE_POT_WIDTH / 8f * 9.21f;
     public static final float SIMPLE_SMASH_WIDTH = 25f;
     public static final float SIMPLE_SMASH_HEIGHT = SIMPLE_SMASH_WIDTH / 12f * 9.02f;
+    public static final float IRON_POT_WIDTH = 8f;
+    public static final float IRON_POT_HEIGHT = IRON_POT_WIDTH * 1.05f;
 
     public static final int START_LIVES_AMOUNT = 3;
 
@@ -31,12 +33,7 @@ public class Constants {
     public static final int SHARD_DAMAGE = 1;
     public static final int BONUS_DAMAGE = 3;
 
-    public static final float SIMPLE_EXISTANCE_TIME = 0.3f;
-    public static final float SHARD_EXISTANCE_TIME = 0.3f;
-    public static final float LARGE_EXISTANCE_TIME = 0.3f;
-    public static final float EXPLOSIVE_EXISTANCE_TIME = 0.6f;
-    public static final float IRON_EXISTANCE_TIME = 0.15f;
-    public static final float CAT_STAY_TIME = 0.5f;
+    public static final float POT_EXISTANCE_TIME = 0.3f;
     public static final float BONUS_EXISTANCE_TIME = 10f;
 
     public static final long POT_FLIGHT_TIME = 1000;
@@ -61,7 +58,7 @@ public class Constants {
     public static final float SIZE_COEFFICIENT = 1.1f;
     public static final float POT_SIZE_COEFFICIENT = 0.95f;
 
-    public static final float FRAME_TIME = SIMPLE_EXISTANCE_TIME / 3;
+    public static final float FRAME_TIME = POT_EXISTANCE_TIME / 3;
 
     private Constants() {}
 }

@@ -28,6 +28,9 @@ public class AssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> SIMPLE_SMASH =
             new AssetDescriptor<TextureAtlas>(AssetPaths.SIMPLE_SMASH_ANIMATION, TextureAtlas.class);
 
+    public static final AssetDescriptor<TextureAtlas> IRON_TEXTURE =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.IRON_POT_TEXTURE, TextureAtlas.class);
+
     private AssetDescriptors() {
     }
 }
