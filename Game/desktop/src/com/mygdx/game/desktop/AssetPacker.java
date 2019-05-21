@@ -17,7 +17,7 @@ public class AssetPacker {
         TexturePacker.process(settings,
                 RAW_ASSET_PATH,
                 ASSETS_PATH + "/gameplay",
-                "iron_pot"
+                "iron_pot-smash"
         );
     }
 }

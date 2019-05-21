@@ -146,13 +146,7 @@ public class EntityFactory {
 
     public void addSmash(PotType type, float x, float y) {
         AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
-        switch (type) {
-            case SIMPLE: {
-                animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
-                        assetManager.get(AssetDescriptors.SIMPLE_SMASH).getRegions());
-                animationComponent.elapsedTime = 0;
-            }
-        }
+        animationComponent.elapsedTime = 0;
 
         PositionComponent position = engine.createComponent(PositionComponent.class);
         position.x = x;
@@ -161,11 +155,17 @@ public class EntityFactory {
         SmashComponent smashComponent = engine.createComponent(SmashComponent.class);
 
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
-        switch (type) {
-            case SIMPLE: {
-                dimension.width = Constants.SIMPLE_SMASH_WIDTH;
-                dimension.height = Constants.SIMPLE_SMASH_HEIGHT;
-            }
+
+        if (type == PotType.SIMPLE) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.SIMPLE_SMASH).getRegions());
+            dimension.width = Constants.SIMPLE_SMASH_WIDTH;
+            dimension.height = Constants.SIMPLE_SMASH_HEIGHT;
+        } else if (type == PotType.IRON) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.IRON_SMASH).getRegions());
+            dimension.width = Constants.IRON_SMASH_WIDTH;
+            dimension.height = Constants.IRON_SMASH_HEIGHT;
         }
 
         Entity entity = engine.createEntity();
