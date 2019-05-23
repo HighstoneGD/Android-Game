@@ -20,11 +20,12 @@ import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.component.PotComponent;
+import com.mygdx.game.component.marking.PotComponent;
 import com.mygdx.game.component.TextureComponent;
 import com.mygdx.game.component.marking.BackgroundComponent;
 import com.mygdx.game.component.marking.CellComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
+import com.mygdx.game.component.marking.ShadowComponent;
 import com.mygdx.game.component.marking.SmashComponent;
 import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
@@ -166,6 +167,16 @@ public class EntityFactory {
                     assetManager.get(AssetDescriptors.IRON_SMASH).getRegions());
             dimension.width = Constants.IRON_SMASH_WIDTH;
             dimension.height = Constants.IRON_SMASH_HEIGHT;
+        } else if (type == PotType.LARGE) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.LARGE_SMASH).getRegions());
+            dimension.width = Constants.LARGE_SMASH_WIDTH;
+            dimension.height = Constants.LARGE_SMASH_HEIGHT;
+        } else if (type == PotType.BONUS) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.BONUS_SMASH).getRegions());
+            dimension.width = Constants.BONUS_SMASH_WIDTH;
+            dimension.height = Constants.BONUS_SMASH_HEIGHT;
         }
 
         Entity entity = engine.createEntity();
@@ -191,6 +202,7 @@ public class EntityFactory {
 
         PotComponent potComponent = engine.createComponent(PotComponent.class);
         potComponent.type = type;
+        potComponent.progress = 0;
 
         AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
         animationComponent.elapsedTime = random.nextFloat();
@@ -205,6 +217,16 @@ public class EntityFactory {
                         assetManager.get(AssetDescriptors.IRON_TEXTURE).getRegions());
             dimension.width = Constants.IRON_POT_WIDTH * coef;
             dimension.height = Constants.IRON_POT_HEIGHT * coef;
+        } else if (type == PotType.LARGE) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.LARGE_TEXTURE).getRegions());
+            dimension.width = Constants.LARGE_POT_WIDTH * coef;
+            dimension.height = Constants.LARGE_POT_HEIGHT * coef;
+        } else if (type == PotType.BONUS) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.BONUS_TEXTURE).getRegions());
+            dimension.width = Constants.BONUS_POT_WIDTH * coef;
+            dimension.height = Constants.BONUS_POT_HEIGHT * coef;
         }
 
         Entity entity = engine.createEntity();
@@ -213,6 +235,22 @@ public class EntityFactory {
         entity.add(positionOnGrid);
         entity.add(potComponent);
         entity.add(animationComponent);
+
+        engine.addEntity(entity);
+    }
+
+    public void addShadow(float x, float y, float time) {
+        PositionComponent position = engine.createComponent(PositionComponent.class);
+        position.x = x;
+        position.y = y;
+
+        ShadowComponent shadowComponent = engine.createComponent(ShadowComponent.class);
+        shadowComponent.time = 0;
+        shadowComponent.aimTime = time;
+
+        Entity entity = engine.createEntity();
+        entity.add(position);
+        entity.add(shadowComponent);
 
         engine.addEntity(entity);
     }

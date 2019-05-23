@@ -3,13 +3,12 @@ package com.mygdx.game.system.render;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AnimationComponent;
 import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.PositionComponent;
-import com.mygdx.game.component.PotComponent;
+import com.mygdx.game.component.marking.PotComponent;
 import com.mygdx.game.screen.BasicGameScreen;
 
 public class PotsRenderSystem extends IteratingSystem {

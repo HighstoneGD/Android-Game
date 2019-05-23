@@ -11,7 +11,7 @@ import com.mygdx.game.common.objects.PotType;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.component.PotComponent;
+import com.mygdx.game.component.marking.PotComponent;
 import com.mygdx.game.component.marking.CellComponent;
 import com.mygdx.game.screen.BasicGameScreen;
 
@@ -65,6 +65,7 @@ public class DropPotsSystem extends IteratingSystem {
         }
 
         position.y -= deltaTime * speed;
+        potComponent.progress = (Constants.WORLD_HEIGHT + 10f - position.y) / distance;
 
         if (position.y <= cellY) {
             smash(entity, cellX, cellY);

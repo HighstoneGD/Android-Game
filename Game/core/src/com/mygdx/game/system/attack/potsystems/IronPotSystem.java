@@ -39,6 +39,7 @@ public class IronPotSystem extends EntitySystem implements Runnable {
     public void run() {
         ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
         float cellX = 0;
+        float cellY = 0;
         for (int i = 0; i < cells.size(); i++) {
             Entity cell = cells.get(i);
             NumberComponent number = Mappers.NUMBER.get(cell);
@@ -46,10 +47,12 @@ public class IronPotSystem extends EntitySystem implements Runnable {
             if (number.xNumber == x && number.yNumber == y) {
                 PositionComponent position = Mappers.POSITION.get(cell);
                 cellX = position.x;
+                cellY = position.y;
             }
         }
 
         factory.addPot(PotType.IRON, cellX, x, y);
+        factory.addShadow(cellX, cellY, Constants.POT_FLIGHT_TIME / 2000f);
 
         try {
             Thread.sleep(Constants.POT_FLIGHT_TIME / 2);

@@ -20,8 +20,8 @@ public class SystemCreator {
         thread.start();
     }
 
-    public static void createLargePotSystem(PooledEngine engine, int x, int y) {
-        LargePotSystem largePotSystem = new LargePotSystem(x, y, engine);
+    public static void createLargePotSystem(PooledEngine engine, BasicGameScreen screen, int x, int y) {
+        LargePotSystem largePotSystem = new LargePotSystem(x, y, screen);
         engine.addSystem(largePotSystem);
         Thread thread = new Thread(largePotSystem);
         thread.start();
@@ -41,8 +41,8 @@ public class SystemCreator {
         thread.start();
     }
 
-    public static void createBonusPotSystem(PooledEngine engine, BonusType type, int x, int y) {
-        BonusPotSystem bonusPotSystem = new BonusPotSystem(x, y, type);
+    public static void createBonusPotSystem(PooledEngine engine, BasicGameScreen screen, BonusType type, int x, int y) {
+        BonusPotSystem bonusPotSystem = new BonusPotSystem(x, y, screen, type);
         engine.addSystem(bonusPotSystem);
         Thread thread = new Thread(bonusPotSystem);
         thread.start();

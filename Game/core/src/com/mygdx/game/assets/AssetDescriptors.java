@@ -26,13 +26,25 @@ public class AssetDescriptors {
             new AssetDescriptor<TextureAtlas>(AssetPaths.SIMPLE_POT_TEXTURE, TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> SIMPLE_SMASH =
-            new AssetDescriptor<TextureAtlas>(AssetPaths.SIMPLE_SMASH_ANIMATION, TextureAtlas.class);
+            new AssetDescriptor<TextureAtlas>(AssetPaths.SIMPLE_SMASH_TEXTURE, TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> IRON_TEXTURE =
             new AssetDescriptor<TextureAtlas>(AssetPaths.IRON_POT_TEXTURE, TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> IRON_SMASH =
             new AssetDescriptor<TextureAtlas>(AssetPaths.IRON_SMASH_TEXTURE, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> LARGE_TEXTURE =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.LARGE_POT_TEXTURE, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> LARGE_SMASH =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.LARGE_SMASH_TEXTURE, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> BONUS_TEXTURE =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.BONUS_POT_TEXTURE, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> BONUS_SMASH =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.BONUS_SMASH_TEXTURE, TextureAtlas.class);
 
     private AssetDescriptors() {
     }

@@ -21,6 +21,7 @@ import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.attack.DamageClearSystem;
 import com.mygdx.game.system.attack.DamageOnCellSystem;
+import com.mygdx.game.system.attack.ShadowsSystem;
 import com.mygdx.game.system.attack.TargetSystem;
 import com.mygdx.game.system.attack.potsystems.DropPotsSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
@@ -79,6 +80,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
 
         createNotUpdatedSystems();
         createMovingSystems();
+        engine.addSystem(new ShadowsSystem(renderer, viewport));
         createRenderSystems();
         createAttackAndBonusSystems();
         createDebugSystems();

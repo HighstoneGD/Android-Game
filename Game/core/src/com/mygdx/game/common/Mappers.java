@@ -10,9 +10,10 @@ import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.component.PotComponent;
+import com.mygdx.game.component.marking.PotComponent;
 import com.mygdx.game.component.TextureComponent;
 import com.mygdx.game.component.marking.CellComponent;
+import com.mygdx.game.component.marking.ShadowComponent;
 
 public class Mappers {
 
@@ -51,6 +52,9 @@ public class Mappers {
 
     public static final ComponentMapper<CellComponent> CELL_COMPONENT =
             ComponentMapper.getFor(CellComponent.class);
+
+    public static final ComponentMapper<ShadowComponent> SHADOW_COMPONENT =
+            ComponentMapper.getFor(ShadowComponent.class);
 
     private Mappers() {
     }
