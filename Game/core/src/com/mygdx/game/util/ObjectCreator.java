@@ -1,4 +1,4 @@
-package com.mygdx.game.system.attack.potsystems;
+package com.mygdx.game.util;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Color;

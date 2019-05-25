@@ -15,6 +15,7 @@ public class AssetPaths {
     public static final String LARGE_SMASH_TEXTURE = "gameplay/large_pot-smash.atlas";
     public static final String BONUS_POT_TEXTURE = "gameplay/bonus_pot.atlas";
     public static final String BONUS_SMASH_TEXTURE = "gameplay/bonus_pot-smash.atlas";
+    public static final String EXPLOSIVE_POT_TEXTURE = "gameplay/explosive_pot.atlas";
 
     private AssetPaths() {}
 }

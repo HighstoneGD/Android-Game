@@ -6,10 +6,15 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.Mappers;
+import com.mygdx.game.common.objects.PotType;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
+import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.util.NumberConverter;
+import com.mygdx.game.util.ObjectCreator;
 
 public class ExplosivePotSystem extends EntitySystem implements Runnable {
 
@@ -21,25 +26,18 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
 
     private final int x;
     private final int y;
+    private boolean left;
+    private boolean up;
     private PooledEngine engine;
+    private EntityFactory factory;
 
-    public ExplosivePotSystem(int x, int y, PooledEngine engine) {
+    public ExplosivePotSystem(int x, int y, BasicGameScreen screen) {
         this.x = x;
         this.y = y;
-        this.engine = engine;
-    }
-
-    @Override
-    public void run() {
-        try {
-            Thread.sleep(Constants.POT_FLIGHT_TIME);
-        } catch (Exception e) {
-            return;
-        }
-
-        ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
-        boolean left = true;
-        boolean up = true;
+        this.engine = screen.getEngine();
+        this.factory = screen.getFactory();
+        left = true;
+        up = true;
 
         if (x == 0) {
             left = false;
@@ -47,6 +45,19 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
 
         if (y == 0) {
             up = false;
+        }
+    }
+
+    @Override
+    public void run() {
+        ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
+        float cellX = engine.getSystem(NumberConverter.class).getCoordinates(x, y, left, up).x;
+        factory.addPot(PotType.EXPLOSIVE, cellX, x, y);
+
+        try {
+            Thread.sleep(Constants.POT_FLIGHT_TIME);
+        } catch (Exception e) {
+            return;
         }
 
         for (int i = 0; i < cells.size(); i++) {

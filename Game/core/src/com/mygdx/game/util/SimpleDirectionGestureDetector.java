@@ -1,4 +1,4 @@
-package com.mygdx.game.system.moving;
+package com.mygdx.game.util;
 
 import com.badlogic.gdx.input.GestureDetector;
 

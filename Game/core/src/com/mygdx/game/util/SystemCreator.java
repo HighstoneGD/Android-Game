@@ -1,8 +1,14 @@
-package com.mygdx.game.system.attack.potsystems;
+package com.mygdx.game.util;
 
 import com.badlogic.ashley.core.PooledEngine;
 import com.mygdx.game.common.objects.BonusType;
 import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.system.attack.potsystems.BonusPotSystem;
+import com.mygdx.game.system.attack.potsystems.CatSystem;
+import com.mygdx.game.system.attack.potsystems.ExplosivePotSystem;
+import com.mygdx.game.system.attack.potsystems.IronPotSystem;
+import com.mygdx.game.system.attack.potsystems.LargePotSystem;
+import com.mygdx.game.system.attack.potsystems.SimplePotSystem;
 
 public class SystemCreator {
 
@@ -27,8 +33,8 @@ public class SystemCreator {
         thread.start();
     }
 
-    public static void createExplosivePotSystem(PooledEngine engine, int x, int y) {
-        ExplosivePotSystem explosivePotSystem = new ExplosivePotSystem(x, y, engine);
+    public static void createExplosivePotSystem(PooledEngine engine, BasicGameScreen screen, int x, int y) {
+        ExplosivePotSystem explosivePotSystem = new ExplosivePotSystem(x, y, screen);
         engine.addSystem(explosivePotSystem);
         Thread thread = new Thread(explosivePotSystem);
         thread.start();

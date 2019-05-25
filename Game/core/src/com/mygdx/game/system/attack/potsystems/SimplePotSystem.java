@@ -15,6 +15,8 @@ import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.util.NumberConverter;
+import com.mygdx.game.util.ObjectCreator;
 
 public class SimplePotSystem extends EntitySystem implements Runnable {
 
@@ -41,21 +43,9 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
     @Override
     public void run() {
         ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
-        float cellX = 0;
-        float cellY = 0;
-        for (int i = 0; i < cells.size(); i++) {
-            Entity cell = cells.get(i);
-            NumberComponent number = Mappers.NUMBER.get(cell);
-
-            if (number.xNumber == x && number.yNumber == y) {
-                PositionComponent position = Mappers.POSITION.get(cell);
-                cellX = position.x;
-                cellY = position.y;
-            }
-        }
+        float cellX = engine.getSystem(NumberConverter.class).getCoordinates(x, y).x;
 
         factory.addPot(PotType.SIMPLE, cellX, x, y);
-        factory.addShadow(cellX, cellY, Constants.POT_FLIGHT_TIME / 1000f);
 
         try {
             Thread.sleep(Constants.POT_FLIGHT_TIME);

@@ -25,7 +25,6 @@ import com.mygdx.game.component.TextureComponent;
 import com.mygdx.game.component.marking.BackgroundComponent;
 import com.mygdx.game.component.marking.CellComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
-import com.mygdx.game.component.marking.ShadowComponent;
 import com.mygdx.game.component.marking.SmashComponent;
 import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
@@ -227,6 +226,11 @@ public class EntityFactory {
                     assetManager.get(AssetDescriptors.BONUS_TEXTURE).getRegions());
             dimension.width = Constants.BONUS_POT_WIDTH * coef;
             dimension.height = Constants.BONUS_POT_HEIGHT * coef;
+        } else if (type == PotType.EXPLOSIVE) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.EXPLOSIVE_TEXTURE).getRegions());
+            dimension.width = Constants.EXPLOSIVE_POT_WIDTH * coef;
+            dimension.height = Constants.EXPLOSIVE_POT_HEIGHT * coef;
         }
 
         Entity entity = engine.createEntity();
@@ -235,22 +239,6 @@ public class EntityFactory {
         entity.add(positionOnGrid);
         entity.add(potComponent);
         entity.add(animationComponent);
-
-        engine.addEntity(entity);
-    }
-
-    public void addShadow(float x, float y, float time) {
-        PositionComponent position = engine.createComponent(PositionComponent.class);
-        position.x = x;
-        position.y = y;
-
-        ShadowComponent shadowComponent = engine.createComponent(ShadowComponent.class);
-        shadowComponent.time = 0;
-        shadowComponent.aimTime = time;
-
-        Entity entity = engine.createEntity();
-        entity.add(position);
-        entity.add(shadowComponent);
 
         engine.addEntity(entity);
     }

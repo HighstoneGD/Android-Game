@@ -14,6 +14,7 @@ import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.util.ObjectCreator;
 
 public class LargePotSystem extends EntitySystem implements Runnable {
 
@@ -52,7 +53,6 @@ public class LargePotSystem extends EntitySystem implements Runnable {
         }
 
         factory.addPot(PotType.LARGE, cellX, x, y);
-        factory.addShadow(cellX, cellY, Constants.POT_FLIGHT_TIME / 1000f);
 
         try {
             Thread.sleep(Constants.POT_FLIGHT_TIME);

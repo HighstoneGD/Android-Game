@@ -7,7 +7,7 @@ import com.mygdx.game.common.objects.BonusType;
 import com.mygdx.game.common.objects.PotType;
 import com.mygdx.game.controlling.CooldownsManager;
 import com.mygdx.game.screen.BasicGameScreen;
-import com.mygdx.game.system.attack.potsystems.SystemCreator;
+import com.mygdx.game.util.SystemCreator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +41,7 @@ public class AttackSystem extends IntervalSystem {
         } else if (type == PotType.LARGE) {
             SystemCreator.createLargePotSystem(engine, screen, x, y);
         } else if (type == PotType.EXPLOSIVE) {
-            SystemCreator.createExplosivePotSystem(engine, x, y);
+            SystemCreator.createExplosivePotSystem(engine, screen, x, y);
         } else if (type == PotType.IRON) {
             SystemCreator.createIronPotSystem(engine, screen, x, y);
         } else if (type == PotType.CAT) {

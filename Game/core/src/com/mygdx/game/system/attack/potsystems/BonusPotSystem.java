@@ -5,21 +5,17 @@ import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.common.objects.Bonus;
 import com.mygdx.game.common.objects.BonusType;
-import com.mygdx.game.common.objects.DamageObject;
 import com.mygdx.game.common.objects.PotType;
-import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BonusComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.util.ObjectCreator;
 
 public class BonusPotSystem extends EntitySystem implements Runnable {
 
@@ -60,7 +56,6 @@ public class BonusPotSystem extends EntitySystem implements Runnable {
         }
 
         factory.addPot(PotType.BONUS, cellX, x, y);
-        factory.addShadow(cellX, cellY, Constants.POT_FLIGHT_TIME / 1000f);
 
         try {
             Thread.sleep(Constants.POT_FLIGHT_TIME);

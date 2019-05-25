@@ -35,6 +35,9 @@ public class Constants {
     public static final float BONUS_SMASH_WIDTH = 12f;
     public static final float BONUS_SMASH_HEIGHT = BONUS_SMASH_WIDTH;
 
+    public static final float EXPLOSIVE_POT_WIDTH = 12f;
+    public static final float EXPLOSIVE_POT_HEIGHT = EXPLOSIVE_POT_WIDTH;
+
     public static final int START_LIVES_AMOUNT = 3;
 
     public static final float DEFAULT_POT_SPAWN_SPEED = 0.7f;
