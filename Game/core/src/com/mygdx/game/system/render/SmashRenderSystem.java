@@ -41,7 +41,7 @@ public class SmashRenderSystem extends IteratingSystem {
         batch.begin();
 
         batch.draw(animationComponent.animation.getKeyFrame(animationComponent.elapsedTime, false),
-                position.x - dimension.width / 2.1f, position.y - dimension.height / 2.1f,
+                position.x - dimension.width / 2f, position.y - dimension.height / 2f,
                 dimension.width, dimension.height
         );
 

@@ -176,6 +176,11 @@ public class EntityFactory {
                     assetManager.get(AssetDescriptors.BONUS_SMASH).getRegions());
             dimension.width = Constants.BONUS_SMASH_WIDTH;
             dimension.height = Constants.BONUS_SMASH_HEIGHT;
+        } else if (type == PotType.EXPLOSIVE) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.EXPLOSIVE_SMASH).getRegions());
+            dimension.width = Constants.EXPLOSIVE_SMASH_WIDTH;
+            dimension.height = Constants.EXPLOSIVE_SMASH_HEIGHT;
         }
 
         Entity entity = engine.createEntity();
@@ -187,7 +192,7 @@ public class EntityFactory {
         engine.addEntity(entity);
     }
 
-    public void addPot(PotType type, float x, int xNumber, int yNumber) {
+    public void addPot(PotType type, float x, float y, int xNumber, int yNumber) {
         PositionComponent position = engine.createComponent(PositionComponent.class);
         position.x = x;
         position.y = Constants.WORLD_HEIGHT + 10f;
@@ -202,6 +207,8 @@ public class EntityFactory {
         PotComponent potComponent = engine.createComponent(PotComponent.class);
         potComponent.type = type;
         potComponent.progress = 0;
+        potComponent.aimX = x;
+        potComponent.aimY = y;
 
         AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
         animationComponent.elapsedTime = random.nextFloat();

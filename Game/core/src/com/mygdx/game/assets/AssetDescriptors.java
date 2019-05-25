@@ -49,6 +49,9 @@ public class AssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> EXPLOSIVE_TEXTURE =
             new AssetDescriptor<TextureAtlas>(AssetPaths.EXPLOSIVE_POT_TEXTURE, TextureAtlas.class);
 
+    public static final AssetDescriptor<TextureAtlas> EXPLOSIVE_SMASH =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.EXPLOSIVE_SMASH_TEXTURE, TextureAtlas.class);
+
     private AssetDescriptors() {
     }
 }

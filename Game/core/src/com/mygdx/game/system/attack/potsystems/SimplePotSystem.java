@@ -44,8 +44,9 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
     public void run() {
         ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
         float cellX = engine.getSystem(NumberConverter.class).getCoordinates(x, y).x;
+        float cellY = engine.getSystem(NumberConverter.class).getCoordinates(x, y).y;
 
-        factory.addPot(PotType.SIMPLE, cellX, x, y);
+        factory.addPot(PotType.SIMPLE, cellX, cellY, x, y);
 
         try {
             Thread.sleep(Constants.POT_FLIGHT_TIME);

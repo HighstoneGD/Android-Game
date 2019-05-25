@@ -135,7 +135,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     }
 
     private void createDebugSystems() {
-        engine.addSystem(new DebugRenderSystem(viewport, renderer));
+//        engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
     }

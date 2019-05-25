@@ -68,13 +68,13 @@ public class DropPotsSystem extends IteratingSystem {
         potComponent.progress = (Constants.WORLD_HEIGHT + 10f - position.y) / distance;
 
         if (position.y <= cellY) {
-            smash(entity, cellX, cellY);
+            smash(entity);
         }
     }
 
-    private void smash(Entity entity, float x, float y) {
+    private void smash(Entity entity) {
         PotComponent potComponent = Mappers.POT_COMPONENT.get(entity);
-        screen.getFactory().addSmash(potComponent.type, x, y);
+        screen.getFactory().addSmash(potComponent.type, potComponent.aimX, potComponent.aimY);
         getEngine().removeEntity(entity);
     }
 }

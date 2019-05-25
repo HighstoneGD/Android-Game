@@ -52,7 +52,8 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
     public void run() {
         ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
         float cellX = engine.getSystem(NumberConverter.class).getCoordinates(x, y, left, up).x;
-        factory.addPot(PotType.EXPLOSIVE, cellX, x, y);
+        float cellY = engine.getSystem(NumberConverter.class).getCoordinates(x, y, left, up).y;
+        factory.addPot(PotType.EXPLOSIVE, cellX, cellY, x, y);
 
         try {
             Thread.sleep(Constants.POT_FLIGHT_TIME);
