@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 600 600" version="1.1">
+  <defs id="defs4">
+    <radialGradient id="radialGradient3777" gradientUnits="userSpaceOnUse" cy="456.08" cx="329.18" gradientTransform="matrix(1 0 0 .75551 -34.989 397.78)" r="209.75">
+      <stop id="stop3773" stop-color="#d40000" offset="0"/>
+      <stop id="stop3775" stop-color="#7f0000" offset="1"/>
+    </radialGradient>
+  </defs>
+  <g id="layer1" transform="translate(0 -452.36)">
+    <path id="path3769" d="m290.2 899.21c-38.02-16.61-101.95-50.1-111.08-57.08-51.97-39.73-86.079-76.49-93.207-120.44-4.6893-28.915 1.8007-55.002 19.543-78.556 16.504-21.91 49.692-45.085 77.046-53.801 13.989-4.4576 19.901-5.4484 32.509-5.4484 14.687 0 23.14 1.6586 33.165 6.5078 22.439 10.854 38.494 32.22 48.69 64.795 2.3453 7.4929 4.4473 12.458 5.2741 12.458 0.75605 0 4.8544-5.6062 9.1074-12.458 25.39-40.906 50.092-63.704 74.556-68.811 19.663-4.105 40.467 4.4458 70.094 28.809 30.455 25.045 46.441 55.806 47.924 92.22 2.0272 49.779-23.102 87.591-80.792 121.57-6.4146 3.7779-23.591 12.989-38.17 20.468-48.95 25.114-61.119 32.045-77.667 44.235-5.3957 3.9747-10.644 7.1878-11.663 7.1402-1.0189-0.048-3.4191-0.7711-5.3337-1.6078z" fill="url(#radialGradient3777)"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Cuore - Heart</dc:title>
+        <dc:date>2011-05-20T16:03:55</dc:date>
+        <dc:description>Un semplice cuore rosso.</dc:description>
+        <dc:source>http://openclipart.org/detail/139657/cuore---heart-by-elisamu</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>elisamu</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>amore</rdf:li>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>cuore</rdf:li>
+            <rdf:li>heart</rdf:li>
+            <rdf:li>love</rdf:li>
+            <rdf:li>red</rdf:li>
+            <rdf:li>rosso</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

@@ -1,4 +1,7 @@
 package com.mygdx.game.component;
 
-public class SpeedComponent {
+import com.badlogic.ashley.core.Component;
+
+public class SpeedComponent implements Component {
+    public float speed;
 }

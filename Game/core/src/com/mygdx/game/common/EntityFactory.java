@@ -20,6 +20,8 @@ import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
+import com.mygdx.game.component.ShadowComponent;
+import com.mygdx.game.component.SpeedComponent;
 import com.mygdx.game.component.marking.PotComponent;
 import com.mygdx.game.component.TextureComponent;
 import com.mygdx.game.component.marking.BackgroundComponent;
@@ -210,6 +212,14 @@ public class EntityFactory {
         potComponent.aimX = x;
         potComponent.aimY = y;
 
+        SpeedComponent speed = engine.createComponent(SpeedComponent.class);
+        float distance = Constants.WORLD_HEIGHT + 10f - y;
+        speed.speed = distance / (Constants.POT_FLIGHT_TIME / 1000f);
+
+        if (type == PotType.IRON) {
+            speed.speed *= 2;
+        }
+
         AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
         animationComponent.elapsedTime = random.nextFloat();
 
@@ -240,12 +250,17 @@ public class EntityFactory {
             dimension.height = Constants.EXPLOSIVE_POT_HEIGHT * coef;
         }
 
+        ShadowComponent shadow = engine.createComponent(ShadowComponent.class);
+        shadow.shadowHeight = 0;
+
         Entity entity = engine.createEntity();
+        entity.add(speed);
         entity.add(position);
         entity.add(dimension);
         entity.add(positionOnGrid);
         entity.add(potComponent);
         entity.add(animationComponent);
+        entity.add(shadow);
 
         engine.addEntity(entity);
     }

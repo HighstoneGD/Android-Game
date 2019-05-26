@@ -21,6 +21,8 @@ import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.attack.DamageClearSystem;
 import com.mygdx.game.system.attack.DamageOnCellSystem;
+import com.mygdx.game.system.attack.DropProgressSystem;
+import com.mygdx.game.system.attack.ShadowSystem;
 import com.mygdx.game.system.attack.TargetSystem;
 import com.mygdx.game.system.attack.potsystems.DropPotsSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
@@ -30,6 +32,7 @@ import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.system.moving.BoundsSystem;
 import com.mygdx.game.system.moving.PlayerPresenseSystem;
 import com.mygdx.game.system.moving.PlayerSystem;
+import com.mygdx.game.system.render.ShadowRenderSystem;
 import com.mygdx.game.util.NumberConverter;
 import com.mygdx.game.util.SimpleDirectionGestureDetector;
 import com.mygdx.game.system.moving.WorldWrapSystem;
@@ -126,10 +129,13 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         engine.addSystem(new DamageClearSystem());
         engine.addSystem(new AttackSystem(potSpawnSpeed, this, engine));
         engine.addSystem(new DropPotsSystem(this));
+        engine.addSystem(new DropProgressSystem());
+        engine.addSystem(new ShadowSystem());
     }
 
     private void createRenderSystems() {
         engine.addSystem(new BackgroundRenderSystem(viewport, game.getBatch()));
+        engine.addSystem(new ShadowRenderSystem(renderer, viewport));
         engine.addSystem(new PotsRenderSystem(this));
         engine.addSystem(new SmashRenderSystem(this));
     }

@@ -1,4 +1,7 @@
 package com.mygdx.game.component;
 
-public class ShadowComponent {
+import com.badlogic.ashley.core.Component;
+
+public class ShadowComponent implements Component {
+    public float shadowHeight;
 }
