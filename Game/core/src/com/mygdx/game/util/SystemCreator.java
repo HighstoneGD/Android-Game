@@ -41,7 +41,7 @@ public class SystemCreator {
     }
 
     public static void createCatSystem(PooledEngine engine, BasicGameScreen screen, int x) {
-        CatSystem catSystem = new CatSystem(screen, x, engine);
+        CatSystem catSystem = new CatSystem(screen, x);
         engine.addSystem(catSystem);
         Thread thread = new Thread(catSystem);
         thread.start();

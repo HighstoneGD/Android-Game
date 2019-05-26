@@ -12,5 +12,9 @@ public class RegionNames {
     // == loading_bg ==
     public static final String LOADING_BACKGROUND = "loading_background";
 
+    // == cat_static ==
+    public static final String LEFT = "left";
+    public static final String RIGHT = "right";
+
     private RegionNames() {}
 }

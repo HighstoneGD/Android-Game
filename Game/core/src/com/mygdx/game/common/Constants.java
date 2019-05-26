@@ -40,6 +40,11 @@ public class Constants {
     public static final float EXPLOSIVE_SMASH_WIDTH = 35f;
     public static final float EXPLOSIVE_SMASH_HEIGHT = EXPLOSIVE_SMASH_WIDTH;
 
+    public static final float CAT_FLIGHT_WIDTH = 16f;
+    public static final float CAT_FLIGHT_HEIGHT = CAT_FLIGHT_WIDTH;
+    public static final float CAT_SMASH_WIDTH = 16f;
+    public static final float CAT_SMASH_HEIGHT = CAT_SMASH_WIDTH;
+
     public static final int START_LIVES_AMOUNT = 3;
 
     public static final float DEFAULT_POT_SPAWN_SPEED = 0.7f;
