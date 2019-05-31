@@ -44,8 +44,8 @@ public class AttackSystem extends IntervalSystem {
             SystemCreator.createExplosivePotSystem(engine, screen, x, y);
         } else if (type == PotType.IRON) {
             SystemCreator.createIronPotSystem(engine, screen, x, y);
-        } else if (type == PotType.CAT) {
-            SystemCreator.createCatSystem(engine, screen, x);
+//        } else if (type == PotType.CAT) {
+//            SystemCreator.createCatSystem(engine, screen, x);
         } else if (type == PotType.BONUS) {
             SystemCreator.createBonusPotSystem(engine, screen, selectBonusType(), x, y);
         }
@@ -86,7 +86,7 @@ public class AttackSystem extends IntervalSystem {
         potsPriorities.put(PotType.SIMPLE, 0);
         potsPriorities.put(PotType.LARGE, 1);
         potsPriorities.put(PotType.IRON, 2);
-        potsPriorities.put(PotType.CAT, 3);
+//        potsPriorities.put(PotType.CAT, 3);
         potsPriorities.put(PotType.EXPLOSIVE, 4);
         potsPriorities.put(PotType.BONUS, 5);
     }

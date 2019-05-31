@@ -45,9 +45,15 @@ public class Constants {
     public static final float CAT_SMASH_WIDTH = 16f;
     public static final float CAT_SMASH_HEIGHT = CAT_SMASH_WIDTH;
 
+    public static final float GRAN_X = 30f;
+    public static final float GRAN_Y = 70f;
+    public static final float GRAN_WIDTH = 30f;
+    public static final float GRAN_HEIGHT = GRAN_WIDTH;
+    public static final float GRAN_FRAME_TIME = 0.1f;
+
     public static final int START_LIVES_AMOUNT = 3;
 
-    public static final float DEFAULT_POT_SPAWN_SPEED = 0.7f;
+    public static final float DEFAULT_POT_SPAWN_SPEED = 1f;
     public static final int CHANCE_FOR_RANDOM_TARGET = 5;
 
     public static final int SIMPLE_CENTRAL_DAMAGE = 3;

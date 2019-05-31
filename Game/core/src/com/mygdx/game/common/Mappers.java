@@ -15,6 +15,7 @@ import com.mygdx.game.component.SpeedComponent;
 import com.mygdx.game.component.TextureComponent;
 import com.mygdx.game.component.marking.CatComponent;
 import com.mygdx.game.component.marking.CellComponent;
+import com.mygdx.game.component.marking.GranComponent;
 import com.mygdx.game.component.marking.PotComponent;
 
 public class Mappers {
@@ -61,8 +62,11 @@ public class Mappers {
     public static final ComponentMapper<ShadowComponent> SHADOW =
             ComponentMapper.getFor(ShadowComponent.class);
 
-    public static final ComponentMapper<CatComponent> CAT =
-            ComponentMapper.getFor(CatComponent.class);
+//    public static final ComponentMapper<CatComponent> CAT =
+//            ComponentMapper.getFor(CatComponent.class);
+
+    public static final ComponentMapper<GranComponent> GRAN =
+            ComponentMapper.getFor(GranComponent.class);
 
     private Mappers() {
     }

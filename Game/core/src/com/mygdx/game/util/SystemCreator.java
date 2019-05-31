@@ -40,12 +40,12 @@ public class SystemCreator {
         thread.start();
     }
 
-    public static void createCatSystem(PooledEngine engine, BasicGameScreen screen, int x) {
-        CatSystem catSystem = new CatSystem(screen, x);
-        engine.addSystem(catSystem);
-        Thread thread = new Thread(catSystem);
-        thread.start();
-    }
+//    public static void createCatSystem(PooledEngine engine, BasicGameScreen screen, int x) {
+//        CatSystem catSystem = new CatSystem(screen, x);
+//        engine.addSystem(catSystem);
+//        Thread thread = new Thread(catSystem);
+//        thread.start();
+//    }
 
     public static void createBonusPotSystem(PooledEngine engine, BasicGameScreen screen, BonusType type, int x, int y) {
         BonusPotSystem bonusPotSystem = new BonusPotSystem(x, y, screen, type);

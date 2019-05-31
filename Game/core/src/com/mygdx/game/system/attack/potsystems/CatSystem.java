@@ -20,6 +20,7 @@ import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.util.NumberConverter;
 
+@Deprecated
 public class CatSystem extends EntitySystem implements Runnable {
 
     private BasicGameScreen screen;

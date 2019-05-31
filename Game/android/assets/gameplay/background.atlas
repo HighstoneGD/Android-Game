@@ -1,20 +1,20 @@
 
 background.png
-size: 2048,2048
+size: 4096,4096
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 background
   rotate: false
   xy: 2, 2
-  size: 1200, 2000
-  orig: 1200, 2000
+  size: 2400, 4000
+  orig: 2400, 4000
   offset: 0, 0
   index: -1
 cell
   rotate: false
-  xy: 1204, 1952
-  size: 100, 50
-  orig: 100, 50
+  xy: 2404, 3502
+  size: 1000, 500
+  orig: 1000, 500
   offset: 0, 0
   index: -1

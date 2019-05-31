@@ -32,6 +32,7 @@ import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.system.moving.BoundsSystem;
 import com.mygdx.game.system.moving.PlayerPresenseSystem;
 import com.mygdx.game.system.moving.PlayerSystem;
+import com.mygdx.game.system.render.GranRenderSystem;
 import com.mygdx.game.system.render.ShadowRenderSystem;
 import com.mygdx.game.util.NumberConverter;
 import com.mygdx.game.util.SimpleDirectionGestureDetector;
@@ -135,13 +136,14 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
 
     private void createRenderSystems() {
         engine.addSystem(new BackgroundRenderSystem(viewport, game.getBatch()));
+        engine.addSystem(new GranRenderSystem(getBatch(), viewport, assetManager));
         engine.addSystem(new ShadowRenderSystem(renderer, viewport));
         engine.addSystem(new PotsRenderSystem(this));
         engine.addSystem(new SmashRenderSystem(this));
     }
 
     private void createDebugSystems() {
-//        engine.addSystem(new DebugRenderSystem(viewport, renderer));
+        engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
     }
@@ -164,6 +166,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         factory.addBackground();
         engine.getSystem(CellsSpawnSystem.class).spawnCells(x, y);
         factory.addPlayer();
+        factory.addGran();
     }
 
     private void createAndroidControl() {

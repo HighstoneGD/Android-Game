@@ -22,6 +22,7 @@ import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.ShadowComponent;
 import com.mygdx.game.component.SpeedComponent;
+import com.mygdx.game.component.marking.GranComponent;
 import com.mygdx.game.component.marking.PotComponent;
 import com.mygdx.game.component.TextureComponent;
 import com.mygdx.game.component.marking.BackgroundComponent;
@@ -183,11 +184,11 @@ public class EntityFactory {
                     assetManager.get(AssetDescriptors.EXPLOSIVE_SMASH).getRegions());
             dimension.width = Constants.EXPLOSIVE_SMASH_WIDTH;
             dimension.height = Constants.EXPLOSIVE_SMASH_HEIGHT;
-        } else if (type == PotType.CAT) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
-                    assetManager.get(AssetDescriptors.CAT_SMASH).getRegions());
-            dimension.width = Constants.CAT_SMASH_WIDTH;
-            dimension.height = Constants.CAT_SMASH_HEIGHT;
+//        } else if (type == PotType.CAT) {
+//            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+//                    assetManager.get(AssetDescriptors.CAT_SMASH).getRegions());
+//            dimension.width = Constants.CAT_SMASH_WIDTH;
+//            dimension.height = Constants.CAT_SMASH_HEIGHT;
         }
 
         Entity entity = engine.createEntity();
@@ -253,11 +254,11 @@ public class EntityFactory {
                     assetManager.get(AssetDescriptors.EXPLOSIVE_TEXTURE).getRegions());
             dimension.width = Constants.EXPLOSIVE_POT_WIDTH * coef;
             dimension.height = Constants.EXPLOSIVE_POT_HEIGHT * coef;
-        } else if (type == PotType.CAT) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
-                    assetManager.get(AssetDescriptors.CAT_FLIGHT).getRegions());
-            dimension.width = Constants.CAT_FLIGHT_WIDTH;
-            dimension.height = Constants.CAT_FLIGHT_HEIGHT;
+//        } else if (type == PotType.CAT) {
+//            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+//                    assetManager.get(AssetDescriptors.CAT_FLIGHT).getRegions());
+//            dimension.width = Constants.CAT_FLIGHT_WIDTH;
+//            dimension.height = Constants.CAT_FLIGHT_HEIGHT;
         }
 
         ShadowComponent shadow = engine.createComponent(ShadowComponent.class);
@@ -271,6 +272,26 @@ public class EntityFactory {
         entity.add(potComponent);
         entity.add(animationComponent);
         entity.add(shadow);
+
+        engine.addEntity(entity);
+    }
+
+    public void addGran() {
+        PositionComponent position = engine.createComponent(PositionComponent.class);
+        position.x = Constants.GRAN_X;
+        position.y = Constants.GRAN_Y;
+
+        DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
+        dimension.width = Constants.GRAN_WIDTH;
+        dimension.height = Constants.GRAN_HEIGHT;
+
+        GranComponent gran = engine.createComponent(GranComponent.class);
+        gran.isAnimating = false;
+
+        Entity entity = engine.createEntity();
+        entity.add(position);
+        entity.add(dimension);
+        entity.add(gran);
 
         engine.addEntity(entity);
     }

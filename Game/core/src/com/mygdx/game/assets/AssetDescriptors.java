@@ -2,6 +2,7 @@ package com.mygdx.game.assets;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
@@ -52,14 +53,20 @@ public class AssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> EXPLOSIVE_SMASH =
             new AssetDescriptor<TextureAtlas>(AssetPaths.EXPLOSIVE_SMASH_TEXTURE, TextureAtlas.class);
 
-    public static final AssetDescriptor<TextureAtlas> CAT_FLIGHT =
-            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_FLIGHT_TEXTURE, TextureAtlas.class);
+//    public static final AssetDescriptor<TextureAtlas> CAT_FLIGHT =
+//            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_FLIGHT_TEXTURE, TextureAtlas.class);
+//
+//    public static final AssetDescriptor<TextureAtlas> CAT_SMASH =
+//            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_SMASH_TEXTURE, TextureAtlas.class);
+//
+//    public static final AssetDescriptor<TextureAtlas> CAT_STATIC =
+//            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_STATIC, TextureAtlas.class);
 
-    public static final AssetDescriptor<TextureAtlas> CAT_SMASH =
-            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_SMASH_TEXTURE, TextureAtlas.class);
+    public static final AssetDescriptor<TextureAtlas> GRAN_SIMPLE_THROW =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.GRAN_SIMPLE_THROW, TextureAtlas.class);
 
-    public static final AssetDescriptor<TextureAtlas> CAT_STATIC =
-            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_STATIC, TextureAtlas.class);
+    public static final AssetDescriptor<Texture> GRAN_STATIC =
+            new AssetDescriptor<Texture>(AssetPaths.GRAN_STATIC, Texture.class);
 
     private AssetDescriptors() {
     }
