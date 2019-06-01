@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
+import com.mygdx.game.assets.AssetPaths;
 import com.mygdx.game.assets.RegionNames;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.screen.game.EndlessModeScreen;
@@ -76,6 +77,9 @@ public class LoadingScreen implements Screen {
 //        assetManager.load(AssetDescriptors.CAT_SMASH);
         assetManager.load(AssetDescriptors.GRAN_SIMPLE_THROW);
         assetManager.load(AssetDescriptors.GRAN_STATIC);
+        assetManager.load(AssetDescriptors.GRAN_IRON_THROW);
+        assetManager.load(AssetDescriptors.GRAN_LARGE_THROW);
+        assetManager.load(AssetDescriptors.GRAN_EXPLOSIVE_THROW);
 
         textureAtlas = assetManager.get(AssetDescriptors.GRAN_LOADING_ANIMATION);
         font = assetManager.get(AssetDescriptors.FONT);

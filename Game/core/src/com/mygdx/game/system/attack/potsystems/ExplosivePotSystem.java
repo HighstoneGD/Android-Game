@@ -13,6 +13,7 @@ import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.system.render.GranRenderSystem;
 import com.mygdx.game.util.NumberConverter;
 import com.mygdx.game.util.ObjectCreator;
 
@@ -50,6 +51,14 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
 
     @Override
     public void run() {
+        getEngine().getSystem(GranRenderSystem.class).throwPot(PotType.EXPLOSIVE);
+
+        try {
+            Thread.sleep(800);
+        } catch (Exception e) {
+            return;
+        }
+
         ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
         float cellX = engine.getSystem(NumberConverter.class).getCoordinates(x, y, left, up).x;
         float cellY = engine.getSystem(NumberConverter.class).getCoordinates(x, y, left, up).y;

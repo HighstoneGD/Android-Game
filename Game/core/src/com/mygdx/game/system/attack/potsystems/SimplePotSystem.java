@@ -43,7 +43,7 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
 
     @Override
     public void run() {
-        getEngine().getSystem(GranRenderSystem.class).throwSimple();
+        getEngine().getSystem(GranRenderSystem.class).throwPot(PotType.SIMPLE);
 
         try {
             Thread.sleep(800);

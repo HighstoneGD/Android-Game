@@ -34,7 +34,6 @@ public class GranRenderSystem extends IteratingSystem {
     private Animation<TextureRegion> large;
     private Animation<TextureRegion> explosive;
     private Animation<TextureRegion> iron;
-    private Animation<TextureRegion> bonus;
 
     public GranRenderSystem(SpriteBatch batch, Viewport viewport, AssetManager assetManager) {
         super(GRAN);
@@ -43,6 +42,9 @@ public class GranRenderSystem extends IteratingSystem {
         this.assetManager = assetManager;
         granStatic = assetManager.get(AssetDescriptors.GRAN_STATIC);
         simple = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_SIMPLE_THROW).getRegions());
+        iron = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_IRON_THROW).getRegions());
+        large = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_LARGE_THROW).getRegions());
+        explosive = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_EXPLOSIVE_THROW).getRegions());
     }
 
     @Override
@@ -57,12 +59,13 @@ public class GranRenderSystem extends IteratingSystem {
             gran.elapsedTime += deltaTime;
 
             if (gran.animatesType == PotType.SIMPLE) {
-                drawSimple(gran, position, dimension);
-
-                if (simple.isAnimationFinished(gran.elapsedTime)) {
-                    gran.isAnimating = false;
-                }
-
+                draw(gran, position, dimension, simple);
+            } else if (gran.animatesType == PotType.IRON) {
+                draw(gran, position, dimension, iron);
+            } else if (gran.animatesType == PotType.LARGE) {
+                draw(gran, position, dimension, large);
+            } else if (gran.animatesType == PotType.EXPLOSIVE) {
+                draw(gran, position, dimension, explosive);
             }
 
         }
@@ -82,26 +85,30 @@ public class GranRenderSystem extends IteratingSystem {
         batch.end();
     }
 
-    private void drawSimple(GranComponent gran, PositionComponent position, DimensionComponent dimension) {
+    private void draw(GranComponent gran, PositionComponent position, DimensionComponent dimension, Animation<TextureRegion> animation) {
         viewport.apply();
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
         batch.draw(
-                simple.getKeyFrame(gran.elapsedTime, false),
+                animation.getKeyFrame(gran.elapsedTime, false),
                 position.x - dimension.width / 2f, position.y,
                 dimension.width, dimension.height
         );
 
         batch.end();
+
+        if (animation.isAnimationFinished(gran.elapsedTime)) {
+            gran.isAnimating = false;
+        }
     }
 
-    public void throwSimple() {
+    public void throwPot(PotType type) {
         ImmutableArray<Entity> gran = getEngine().getEntitiesFor(GRAN);
         for (Entity entity : gran) {
             GranComponent granComponent = Mappers.GRAN.get(entity);
             granComponent.isAnimating = true;
-            granComponent.animatesType = PotType.SIMPLE;
+            granComponent.animatesType = type;
             granComponent.elapsedTime = 0;
         }
     }

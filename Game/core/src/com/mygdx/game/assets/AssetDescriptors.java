@@ -68,6 +68,15 @@ public class AssetDescriptors {
     public static final AssetDescriptor<Texture> GRAN_STATIC =
             new AssetDescriptor<Texture>(AssetPaths.GRAN_STATIC, Texture.class);
 
+    public static final AssetDescriptor<TextureAtlas> GRAN_IRON_THROW =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.GRAN_IRON_THROW, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> GRAN_LARGE_THROW =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.GRAN_LARGE_THROW, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> GRAN_EXPLOSIVE_THROW =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.GRAN_EXPLOSIVE_THROW, TextureAtlas.class);
+
     private AssetDescriptors() {
     }
 }
