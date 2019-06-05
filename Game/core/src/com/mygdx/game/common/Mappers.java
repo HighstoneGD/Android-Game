@@ -63,9 +63,6 @@ public class Mappers {
     public static final ComponentMapper<ShadowComponent> SHADOW =
             ComponentMapper.getFor(ShadowComponent.class);
 
-//    public static final ComponentMapper<CatComponent> CAT =
-//            ComponentMapper.getFor(CatComponent.class);
-
     public static final ComponentMapper<GranComponent> GRAN =
             ComponentMapper.getFor(GranComponent.class);
 

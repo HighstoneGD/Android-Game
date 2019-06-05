@@ -4,10 +4,9 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.mygdx.game.common.objects.DamageObject;
 import com.mygdx.game.common.Mappers;
+import com.mygdx.game.common.objects.DamageObject;
 import com.mygdx.game.component.AttackStateComponent;
-import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.controlling.AvoidedPotsManager;
@@ -32,21 +31,20 @@ public class DamageOnCellSystem extends IteratingSystem {
         ImmutableArray<Entity> cells = getEngine().getEntitiesFor(CELLS);
         PositionOnGridComponent position = Mappers.POSITION_ON_GRID.get(entity);
 
-         for (Entity cell : cells) {
-             NumberComponent numberComponent = Mappers.NUMBER.get(cell);
+        for (Entity cell : cells) {
+            NumberComponent numberComponent = Mappers.NUMBER.get(cell);
 
-             if (numberComponent.xNumber == position.xNumber && numberComponent.yNumber == position.yNumber) {
-                 AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+            if (numberComponent.xNumber == position.xNumber && numberComponent.yNumber == position.yNumber) {
+                AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
 
-                 for (DamageObject damageObject : attackState.timers) {
-                     HealthManager.takeDamage(damageObject.damage);
-                     AvoidedPotsManager.resetAvoided();
-                 }
+                for (DamageObject damageObject : attackState.timers) {
+                    HealthManager.takeDamage(damageObject.damage);
+                    AvoidedPotsManager.resetAvoided();
+                }
 
-                 attackState.timers.clear();
-                 BoundsComponent bounds = Mappers.BOUNDS.get(cell);
-                 return;
-             }
-         }
+                attackState.timers.clear();
+                return;
+            }
+        }
     }
 }

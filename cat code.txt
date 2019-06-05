@@ -1,0 +1,227 @@
+package com.mygdx.game.common.objects;
+
+import java.util.Random;
+
+public class Direction {
+
+    public Directions direction;
+    private Random random;
+
+    public Direction() {
+        random = new Random();
+        int k = random.nextInt(2);
+
+        if (k == 0) {
+            direction = Directions.LEFT;
+        } else {
+            direction = Directions.RIGHT;
+        }
+    }
+
+    public void changeDirection() {
+
+        if (direction == Directions.LEFT) {
+            direction = Directions.RIGHT;
+        } else if (direction == Directions.RIGHT) {
+            direction = Directions.LEFT;
+        }
+
+    }
+}
+
+in PotType enum:
+CAT,
+
+in Constants:
+
+    public static final float CAT_FLIGHT_WIDTH = 16f;
+    public static final float CAT_FLIGHT_HEIGHT = CAT_FLIGHT_WIDTH;
+    public static final float CAT_SMASH_WIDTH = 16f;
+    public static final float CAT_SMASH_HEIGHT = CAT_SMASH_WIDTH;
+
+    public static final long CAT_JUMP_TIME = 500;
+
+    public static final int CAT_DAMAGE = 2;
+
+    public static final int CAT_COOLDOWN = 6;
+
+in EntityFactory:
+
+    } else if (type == PotType.CAT) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.CAT_FLIGHT).getRegions());
+            dimension.width = Constants.CAT_FLIGHT_WIDTH;
+            dimension.height = Constants.CAT_FLIGHT_HEIGHT;
+
+    } else if (type == PotType.CAT) {
+            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+                    assetManager.get(AssetDescriptors.CAT_SMASH).getRegions());
+            dimension.width = Constants.CAT_SMASH_WIDTH;
+            dimension.height = Constants.CAT_SMASH_HEIGHT;
+
+in Mappers:
+
+    public static final ComponentMapper<CatComponent> CAT =
+            ComponentMapper.getFor(CatComponent.class);
+
+package com.mygdx.game.component.marking;
+
+import com.badlogic.ashley.core.Component;
+
+public class CatComponent implements Component {
+
+    public boolean isJumping;
+}
+
+in LoadingScreen:
+
+	assetManager.load(AssetDescriptors.CAT_FLIGHT);
+        assetManager.load(AssetDescriptors.CAT_SMASH);
+
+in AssetPaths:
+
+    public static final String CAT_FLIGHT_TEXTURE = "gameplay/cat_flight.atlas";
+    public static final String CAT_SMASH_TEXTURE = "gameplay/cat_smash.atlas";
+    public static final String CAT_STATIC = "gameplay/cat_static.atlas";
+
+in AssetDescriptors:
+
+    public static final AssetDescriptor<TextureAtlas> CAT_FLIGHT =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_FLIGHT_TEXTURE, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> CAT_SMASH =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_SMASH_TEXTURE, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> CAT_STATIC =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_STATIC, TextureAtlas.class);
+
+
+package com.mygdx.game.system.attack.potsystems;
+
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.EntitySystem;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.utils.Logger;
+import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.EntityFactory;
+import com.mygdx.game.common.Mappers;
+import com.mygdx.game.common.objects.DamageObject;
+import com.mygdx.game.common.objects.Directions;
+import com.mygdx.game.common.objects.PotType;
+import com.mygdx.game.component.AttackStateComponent;
+import com.mygdx.game.component.BoundsComponent;
+import com.mygdx.game.component.NumberComponent;
+import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.util.NumberConverter;
+
+@Deprecated
+public class CatSystem extends EntitySystem implements Runnable {
+
+    private BasicGameScreen screen;
+    private static final Logger log = new Logger(CatSystem.class.getName(), Logger.DEBUG);
+    private int x;
+    private PooledEngine engine;
+    private EntityFactory factory;
+
+    private static final Family FAMILY = Family.all(
+            NumberComponent.class,
+            AttackStateComponent.class,
+            BoundsComponent.class
+    ).get();
+
+    public CatSystem(BasicGameScreen screen, int x) {
+        this.screen = screen;
+        this.x = x;
+        this.engine = screen.getEngine();
+        this.factory = screen.getFactory();
+    }
+
+    @Override
+    public void run() {
+        float cellX = engine.getSystem(NumberConverter.class).getCoordinates(x, 0).x;
+        float cellY = engine.getSystem(NumberConverter.class).getCoordinates(x, 0).y;
+
+        factory.addPot(PotType.CAT, cellX, cellY, x, 0);
+
+        try {
+            Thread.sleep(Constants.POT_FLIGHT_TIME);
+        } catch (Exception e) {
+            return;
+        }
+
+        Direction direction = new Direction();
+
+        for (int i = 0; i < screen.y; i++) {
+
+            if (direction.direction == Directions.LEFT && x == 0) {
+                direction.changeDirection();
+            } else if (direction.direction == Directions.RIGHT && x == screen.x - 1) {
+                direction.changeDirection();
+            }
+
+            if (direction.direction == Directions.LEFT) {
+                x--;
+                jumpOn(x, i);
+            } else if (direction.direction == Directions.RIGHT) {
+                x++;
+                jumpOn(x, i);
+            }
+        }
+    }
+
+    private void jumpOn(int x, int y) {
+        ImmutableArray<Entity> cells = engine.getEntitiesFor(FAMILY);
+        for (int i = 0; i < cells.size(); i++) {
+            Entity cell = cells.get(i);
+            NumberComponent number = Mappers.NUMBER.get(cell);
+
+            if (number.xNumber == x && number.yNumber == y) {
+                AttackStateComponent attackState = Mappers.ATTACK_STATE.get(cell);
+                attackState.timers.add(new DamageObject(Constants.CAT_DAMAGE, Constants.POT_EXISTANCE_TIME));
+                BoundsComponent bounds = Mappers.BOUNDS.get(cell);
+                bounds.color = Color.RED;
+
+                try {
+                    Thread.sleep(Constants.CAT_JUMP_TIME);
+                } catch (Exception e) {
+                    return;
+                }
+            }
+        }
+    }
+}
+
+in AttackSystem:
+
+} else if (type == PotType.CAT) {
+            SystemCreator.createCatSystem(engine, screen, x);
+
+potsPriorities.put(PotType.CAT, 3);
+
+in SystemCreator:
+
+public static void createCatSystem(PooledEngine engine, BasicGameScreen screen, int x) {
+        CatSystem catSystem = new CatSystem(screen, x);
+        engine.addSystem(catSystem);
+        Thread thread = new Thread(catSystem);
+        thread.start();
+    }
+
+in CooldownsManager:
+
+private static int catCooldown;
+
+case CAT:
+                return catCooldown;
+
+} else if (type == PotType.CAT) {
+            catCooldown = Constants.CAT_COOLDOWN;
+
+catCooldown = Constants.CAT_COOLDOWN;
+
+if (catCooldown > 0) {
+            catCooldown--;
+        }

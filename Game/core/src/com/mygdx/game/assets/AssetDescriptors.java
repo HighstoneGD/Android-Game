@@ -53,15 +53,6 @@ public class AssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> EXPLOSIVE_SMASH =
             new AssetDescriptor<TextureAtlas>(AssetPaths.EXPLOSIVE_SMASH_TEXTURE, TextureAtlas.class);
 
-//    public static final AssetDescriptor<TextureAtlas> CAT_FLIGHT =
-//            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_FLIGHT_TEXTURE, TextureAtlas.class);
-//
-//    public static final AssetDescriptor<TextureAtlas> CAT_SMASH =
-//            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_SMASH_TEXTURE, TextureAtlas.class);
-//
-//    public static final AssetDescriptor<TextureAtlas> CAT_STATIC =
-//            new AssetDescriptor<TextureAtlas>(AssetPaths.CAT_STATIC, TextureAtlas.class);
-
     public static final AssetDescriptor<TextureAtlas> GRAN_SIMPLE_THROW =
             new AssetDescriptor<TextureAtlas>(AssetPaths.GRAN_SIMPLE_THROW, TextureAtlas.class);
 

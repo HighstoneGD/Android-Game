@@ -28,59 +28,42 @@ public class TargetSystem extends EntitySystem {
 
     public int selectTargetX() {
         ImmutableArray<Entity> player = getEngine().getEntitiesFor(PLAYER);
-        int x;
-        int playerX = 1;
+        int playerX;
 
-        int k = random.nextInt(Constants.CHANCE_FOR_RANDOM_TARGET);
+        PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(player.first());
+        playerX = positionOnGrid.xNumber;
 
-        if (k == 0) {
-            x = random.nextInt(screen.x);
-        } else {
-
-            for (Entity entity : player) {
-                PositionOnGridComponent position = Mappers.POSITION_ON_GRID.get(entity);
-                playerX = position.xNumber;
-            }
-
-            if (playerX == 0) {
-                x = random.nextInt(2);
-            } else if (playerX == screen.x - 1) {
-                x = screen.x - 1 - random.nextInt(2);
-            } else {
-                x = playerX - 1 + random.nextInt(3);
-            }
-
-        }
-
-        return x;
+        return selectCoordinate(screen.x, playerX);
     }
 
     public int selectTargetY() {
         ImmutableArray<Entity> player = getEngine().getEntitiesFor(PLAYER);
-        int y;
-        int playerY = 1;
+        int playerY;
 
+        PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(player.first());
+        playerY = positionOnGrid.yNumber;
+
+        return selectCoordinate(screen.y, playerY);
+    }
+
+    private int selectCoordinate(int limit, int playerPosition) {
+        int coordinate;
         int k = random.nextInt(Constants.CHANCE_FOR_RANDOM_TARGET);
 
         if (k == 0) {
-            y = random.nextInt(screen.y);
+            coordinate = random.nextInt(limit);
         } else {
 
-            for (Entity entity : player) {
-                PositionOnGridComponent position = Mappers.POSITION_ON_GRID.get(entity);
-                playerY = position.yNumber;
-            }
-
-            if (playerY == 0) {
-                y = random.nextInt(2);
-            } else if (playerY == screen.y - 1) {
-                y = screen.y - 1 - random.nextInt(2);
+            if (playerPosition == 0) {
+                coordinate = random.nextInt(2);
+            } else if (playerPosition == limit - 1) {
+                coordinate = limit - 1 - random.nextInt(2);
             } else {
-                y = playerY - 1 + random.nextInt(3);
+                coordinate = playerPosition - 1 + random.nextInt(3);
             }
 
         }
 
-        return y;
+        return coordinate;
     }
 }

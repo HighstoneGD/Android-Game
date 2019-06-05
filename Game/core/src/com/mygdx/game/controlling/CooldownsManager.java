@@ -9,7 +9,6 @@ public class CooldownsManager {
     private static int largeCooldown;
     private static int explosiveCooldown;
     private static int ironCooldown;
-    private static int catCooldown;
     private static int bonusCooldown;
 
     private static int speedCooldown;
@@ -25,8 +24,6 @@ public class CooldownsManager {
                 return explosiveCooldown;
             case IRON:
                 return ironCooldown;
-            case CAT:
-                return catCooldown;
             case BONUS:
                 return bonusCooldown;
         }
@@ -54,8 +51,6 @@ public class CooldownsManager {
             ironCooldown = Constants.IRON_COOLDOWN;
         } else if (type == PotType.EXPLOSIVE) {
             explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
-        } else if (type == PotType.CAT) {
-            catCooldown = Constants.CAT_COOLDOWN;
         } else if (type == PotType.BONUS) {
             bonusCooldown = Constants.BONUS_COOLDOWN;
         }
@@ -77,7 +72,6 @@ public class CooldownsManager {
         largeCooldown = Constants.LARGE_COOLDOWN;
         ironCooldown = Constants.IRON_COOLDOWN;
         explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
-        catCooldown = Constants.CAT_COOLDOWN;
         bonusCooldown = Constants.BONUS_COOLDOWN;
         speedCooldown = Constants.SPEED_COOLDOWN;
         armorCooldown = Constants.ARMOR_COOLDOWN;
@@ -97,10 +91,6 @@ public class CooldownsManager {
 
         if (ironCooldown > 0) {
             ironCooldown--;
-        }
-
-        if (catCooldown > 0) {
-            catCooldown--;
         }
 
         if (bonusCooldown > 0) {

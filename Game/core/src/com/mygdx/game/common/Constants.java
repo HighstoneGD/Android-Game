@@ -16,7 +16,6 @@ public class Constants {
     public static final float MAX_SHADOW_SIZE = 3f;
 
     public static final long POT_FLIGHT_TIME = 1000;
-    public static final long CAT_JUMP_TIME = 500;
     public static final long PLAYER_JUMP_TIME = 300;
 
     public static final float SIMPLE_POT_WIDTH = 10f;
@@ -44,11 +43,6 @@ public class Constants {
     public static final float EXPLOSIVE_SMASH_WIDTH = 35f;
     public static final float EXPLOSIVE_SMASH_HEIGHT = EXPLOSIVE_SMASH_WIDTH;
 
-    public static final float CAT_FLIGHT_WIDTH = 16f;
-    public static final float CAT_FLIGHT_HEIGHT = CAT_FLIGHT_WIDTH;
-    public static final float CAT_SMASH_WIDTH = 16f;
-    public static final float CAT_SMASH_HEIGHT = CAT_SMASH_WIDTH;
-
     public static final float GRAN_X = 30f;
     public static final float GRAN_Y = 70f;
     public static final float GRAN_WIDTH = 30f;
@@ -68,7 +62,6 @@ public class Constants {
     public static final int LARGE_CENTRAL_DAMAGE = 3;
     public static final int EXPLOSIVE_CENTRAL_DAMAGE = 3;
     public static final int IRON_CENTRAL_DAMAGE = 4;
-    public static final int CAT_DAMAGE = 2;
     public static final int SHARD_DAMAGE = 1;
     public static final int BONUS_DAMAGE = 3;
 
@@ -78,7 +71,6 @@ public class Constants {
     public static final int LARGE_COOLDOWN = 6;
     public static final int EXPLOSIVE_COOLDOWN = 6;
     public static final int IRON_COOLDOWN = 6;
-    public static final int CAT_COOLDOWN = 6;
     public static final int BONUS_COOLDOWN = 20;
 
     public static final int SPEED_COOLDOWN = 10;

@@ -196,11 +196,6 @@ public class EntityFactory {
                     assetManager.get(AssetDescriptors.EXPLOSIVE_SMASH).getRegions());
             dimension.width = Constants.EXPLOSIVE_SMASH_WIDTH;
             dimension.height = Constants.EXPLOSIVE_SMASH_HEIGHT;
-//        } else if (type == PotType.CAT) {
-//            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
-//                    assetManager.get(AssetDescriptors.CAT_SMASH).getRegions());
-//            dimension.width = Constants.CAT_SMASH_WIDTH;
-//            dimension.height = Constants.CAT_SMASH_HEIGHT;
         }
 
         OrderComponent order = engine.createComponent(OrderComponent.class);
@@ -270,11 +265,6 @@ public class EntityFactory {
                     assetManager.get(AssetDescriptors.EXPLOSIVE_TEXTURE).getRegions());
             dimension.width = Constants.EXPLOSIVE_POT_WIDTH * coef;
             dimension.height = Constants.EXPLOSIVE_POT_HEIGHT * coef;
-//        } else if (type == PotType.CAT) {
-//            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
-//                    assetManager.get(AssetDescriptors.CAT_FLIGHT).getRegions());
-//            dimension.width = Constants.CAT_FLIGHT_WIDTH;
-//            dimension.height = Constants.CAT_FLIGHT_HEIGHT;
         }
 
         ShadowComponent shadow = engine.createComponent(ShadowComponent.class);
