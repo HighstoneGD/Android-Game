@@ -22,7 +22,8 @@ public class NumberConverter extends EntitySystem {
 
     public Coordinates getCoordinates(int xNumber, int yNumber) {
         cells = getEngine().getEntitiesFor(CELLS);
-        for (Entity entity : cells) {
+        for (int i = 0; i < cells.size(); i++) {
+            Entity entity = cells.get(i);
             NumberComponent number = Mappers.NUMBER.get(entity);
             if (xNumber == number.xNumber && yNumber == number.yNumber) {
                 PositionComponent position = Mappers.POSITION.get(entity);
@@ -38,10 +39,11 @@ public class NumberConverter extends EntitySystem {
         float startY = 0;
         float endX = 0;
         float endY = 0;
-        float middleX = 0;
-        float middleY = 0;
+        float middleX;
+        float middleY;
 
-        for (Entity entity : cells) {
+        for (int i = 0; i < cells.size(); i++) {
+            Entity entity = cells.get(i);
             NumberComponent number = Mappers.NUMBER.get(entity);
 
             if (xNumber == number.xNumber && yNumber == number.yNumber) {

@@ -17,8 +17,10 @@ import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.objects.Directions;
 import com.mygdx.game.controlling.AvoidedPotsManager;
 import com.mygdx.game.controlling.CooldownsManager;
+import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.system.ScoreSystem;
 import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.attack.DamageClearSystem;
 import com.mygdx.game.system.attack.DamageOnCellSystem;
@@ -82,6 +84,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         AvoidedPotsManager.reset();
         CooldownsManager.resetCooldown();
         HealthManager.reset();
+        GameManager.INSTANCE.resetScore();
 
         camera = new OrthographicCamera();
         viewport = new FillViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
@@ -95,6 +98,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         createRenderSystems();
         createAttackAndBonusSystems();
         createDebugSystems();
+        engine.addSystem(new ScoreSystem());
 
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             createAndroidControl();
@@ -166,7 +170,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
-//        engine.addSystem(new InfoSystem());
+        engine.addSystem(new InfoSystem());
     }
 
     private void createMovingSystems() {

@@ -4,7 +4,6 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.common.objects.DamageObject;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AttackStateComponent;
