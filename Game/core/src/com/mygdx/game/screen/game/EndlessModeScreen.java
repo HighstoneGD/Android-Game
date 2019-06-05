@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.EntityFactory;
+import com.mygdx.game.common.objects.Directions;
 import com.mygdx.game.controlling.AvoidedPotsManager;
 import com.mygdx.game.controlling.CooldownsManager;
 import com.mygdx.game.controlling.HealthManager;
@@ -25,21 +26,28 @@ import com.mygdx.game.system.attack.DropProgressSystem;
 import com.mygdx.game.system.attack.ShadowSystem;
 import com.mygdx.game.system.attack.TargetSystem;
 import com.mygdx.game.system.attack.potsystems.DropPotsSystem;
+import com.mygdx.game.system.control.PlayerMovementSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.DebugRenderSystem;
+import com.mygdx.game.system.debug.InfoSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.system.moving.BoundsSystem;
 import com.mygdx.game.system.moving.PlayerPresenseSystem;
-import com.mygdx.game.system.moving.PlayerSystem;
+import com.mygdx.game.system.control.DesktopControlSystem;
 import com.mygdx.game.system.render.GranRenderSystem;
+import com.mygdx.game.system.render.PlayerRenderSystem;
+import com.mygdx.game.system.render.PotsAfterPlayerRenderSystem;
+import com.mygdx.game.system.render.PotsOrderSystem;
 import com.mygdx.game.system.render.ShadowRenderSystem;
+import com.mygdx.game.system.render.SmashAfterPlayerRenderSystem;
+import com.mygdx.game.system.render.SmashesOrderSystem;
 import com.mygdx.game.util.NumberConverter;
-import com.mygdx.game.util.SimpleDirectionGestureDetector;
+import com.mygdx.game.system.control.SimpleDirectionGestureDetector;
 import com.mygdx.game.system.moving.WorldWrapSystem;
 import com.mygdx.game.system.render.BackgroundRenderSystem;
-import com.mygdx.game.system.render.PotsRenderSystem;
-import com.mygdx.game.system.render.SmashRenderSystem;
+import com.mygdx.game.system.render.PotsBeforePlayerRenderSystem;
+import com.mygdx.game.system.render.SmashBeforePlayerRenderSystem;
 import com.mygdx.game.util.GdxUtils;
 
 public class EndlessModeScreen extends BasicGameScreen implements Screen {
@@ -87,8 +95,11 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         createRenderSystems();
         createAttackAndBonusSystems();
         createDebugSystems();
+
         if (Gdx.app.getType() == Application.ApplicationType.Android) {
             createAndroidControl();
+        } else if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+            createDesktopControl();
         }
 
         addEntities();
@@ -135,21 +146,31 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     }
 
     private void createRenderSystems() {
+        engine.addSystem(new PotsOrderSystem());
+        engine.addSystem(new SmashesOrderSystem());
+
         engine.addSystem(new BackgroundRenderSystem(viewport, game.getBatch()));
         engine.addSystem(new GranRenderSystem(getBatch(), viewport, assetManager));
         engine.addSystem(new ShadowRenderSystem(renderer, viewport));
-        engine.addSystem(new PotsRenderSystem(this));
-        engine.addSystem(new SmashRenderSystem(this));
+
+        engine.addSystem(new PotsBeforePlayerRenderSystem(this));
+        engine.addSystem(new SmashBeforePlayerRenderSystem(this));
+
+        engine.addSystem(new PlayerRenderSystem(getBatch(), viewport, assetManager));
+
+        engine.addSystem(new PotsAfterPlayerRenderSystem(this));
+        engine.addSystem(new SmashAfterPlayerRenderSystem(this));
     }
 
     private void createDebugSystems() {
         engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
+//        engine.addSystem(new InfoSystem());
     }
 
     private void createMovingSystems() {
-        engine.addSystem(new PlayerSystem());
+        engine.addSystem(new PlayerMovementSystem(engine));
         engine.addSystem(new WorldWrapSystem(this, engine));
         engine.addSystem(new BoundsSystem());
         engine.addSystem(new PlayerPresenseSystem());
@@ -175,7 +196,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
             @Override
             public void onUp() {
                 try {
-                    engine.getSystem(PlayerSystem.class).moveUp(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                    engine.getSystem(PlayerMovementSystem.class).movePlayer(Directions.UP);
                 } catch (Exception e) {
                 }
             }
@@ -183,7 +204,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
             @Override
             public void onRight() {
                 try {
-                    engine.getSystem(PlayerSystem.class).moveRight(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                    engine.getSystem(PlayerMovementSystem.class).movePlayer(Directions.RIGHT);
                 } catch (Exception e) {
                 }
             }
@@ -191,7 +212,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
             @Override
             public void onLeft() {
                 try {
-                    engine.getSystem(PlayerSystem.class).moveLeft(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                    engine.getSystem(PlayerMovementSystem.class).movePlayer(Directions.LEFT);
                 } catch (Exception e) {
                 }
             }
@@ -199,11 +220,15 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
             @Override
             public void onDown() {
                 try {
-                    engine.getSystem(PlayerSystem.class).moveDown(engine.getSystem(PlayerSystem.class).positionOnGrid);
+                    engine.getSystem(PlayerMovementSystem.class).movePlayer(Directions.DOWN);
                 } catch (Exception e) {
                 }
             }
         }));
+    }
+
+    private void createDesktopControl() {
+        engine.addSystem(new DesktopControlSystem());
     }
 
     public AssetManager getAssetManager() {

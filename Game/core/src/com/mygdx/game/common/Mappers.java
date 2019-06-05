@@ -8,14 +8,15 @@ import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
+import com.mygdx.game.component.OrderComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.ShadowComponent;
 import com.mygdx.game.component.SpeedComponent;
 import com.mygdx.game.component.TextureComponent;
-import com.mygdx.game.component.marking.CatComponent;
 import com.mygdx.game.component.marking.CellComponent;
 import com.mygdx.game.component.marking.GranComponent;
+import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.component.marking.PotComponent;
 
 public class Mappers {
@@ -67,6 +68,12 @@ public class Mappers {
 
     public static final ComponentMapper<GranComponent> GRAN =
             ComponentMapper.getFor(GranComponent.class);
+
+    public static final ComponentMapper<OrderComponent> ORDER =
+            ComponentMapper.getFor(OrderComponent.class);
+
+    public static final ComponentMapper<PlayerComponent> PLAYER =
+            ComponentMapper.getFor(PlayerComponent.class);
 
     private Mappers() {
     }

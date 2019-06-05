@@ -17,7 +17,7 @@ public class AssetPacker {
         TexturePacker.process(settings,
                 RAW_ASSET_PATH,
                 ASSETS_PATH + "/gameplay",
-                "gran_explosive_throw"
+                "player_vertical"
         );
     }
 }

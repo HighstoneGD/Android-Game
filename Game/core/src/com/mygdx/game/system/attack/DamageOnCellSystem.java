@@ -46,7 +46,6 @@ public class DamageOnCellSystem extends IteratingSystem {
 
                  attackState.timers.clear();
                  BoundsComponent bounds = Mappers.BOUNDS.get(cell);
-                 bounds.color = Color.GREEN;
                  return;
              }
          }

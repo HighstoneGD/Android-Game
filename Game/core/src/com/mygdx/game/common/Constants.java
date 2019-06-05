@@ -15,6 +15,10 @@ public class Constants {
     public static final float PLAYER_SIZE = 7f;
     public static final float MAX_SHADOW_SIZE = 3f;
 
+    public static final long POT_FLIGHT_TIME = 1000;
+    public static final long CAT_JUMP_TIME = 500;
+    public static final long PLAYER_JUMP_TIME = 300;
+
     public static final float SIMPLE_POT_WIDTH = 10f;
     public static final float SIMPLE_POT_HEIGHT = SIMPLE_POT_WIDTH / 8f * 9.21f;
     public static final float SIMPLE_SMASH_WIDTH = 25f;
@@ -51,6 +55,10 @@ public class Constants {
     public static final float GRAN_HEIGHT = GRAN_WIDTH;
     public static final float GRAN_FRAME_TIME = 0.1f;
 
+    public static final float PLAYER_WIDTH = 50f;
+    public static final float PLAYER_HEIGHT = PLAYER_WIDTH;
+    public static final float PLAYER_FRAME_TIME = PLAYER_JUMP_TIME / 1000f / 5f;
+
     public static final int START_LIVES_AMOUNT = 3;
 
     public static final float DEFAULT_POT_SPAWN_SPEED = 1f;
@@ -66,10 +74,6 @@ public class Constants {
 
     public static final float POT_EXISTANCE_TIME = 0.3f;
     public static final float BONUS_EXISTANCE_TIME = 10f;
-
-    public static final long POT_FLIGHT_TIME = 1000;
-    public static final long CAT_JUMP_TIME = 500;
-    public static final long PLAYER_JUMP_TIME = 300;
 
     public static final int LARGE_COOLDOWN = 6;
     public static final int EXPLOSIVE_COOLDOWN = 6;

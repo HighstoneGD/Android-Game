@@ -18,6 +18,7 @@ import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
+import com.mygdx.game.component.OrderComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.ShadowComponent;
@@ -60,10 +61,6 @@ public class EntityFactory {
         numberComponent.xNumber = xNumber;
         numberComponent.yNumber = yNumber;
 
-        BoundsComponent bounds = engine.createComponent(BoundsComponent.class);
-        bounds.bounds.set(x, y, height * 2, height);
-        bounds.color = Color.GREEN;
-
         CellComponent cellComponent = engine.createComponent(CellComponent.class);
         cellComponent.hasPlayer = false;
 
@@ -84,7 +81,6 @@ public class EntityFactory {
         Entity entity = engine.createEntity();
         entity.add(backgroundComponent);
         entity.add(position);
-        entity.add(bounds);
         entity.add(cellComponent);
         entity.add(attackState);
         entity.add(bonus);
@@ -96,14 +92,22 @@ public class EntityFactory {
     }
 
     public void addPlayer() {
-        PositionOnGridComponent position = engine.createComponent(PositionOnGridComponent.class);
-        position.xNumber = engine.getSystem(PositionsCalculationSystem.class).positions.length / 2;
-        position.yNumber = engine.getSystem(PositionsCalculationSystem.class).positions[0].length / 2;
+        PositionOnGridComponent positionOnGrid = engine.createComponent(PositionOnGridComponent.class);
+        positionOnGrid.xNumber = engine.getSystem(PositionsCalculationSystem.class).positions.length / 2;
+        positionOnGrid.yNumber = engine.getSystem(PositionsCalculationSystem.class).positions[0].length - 1;
+
+        PositionComponent position = engine.createComponent(PositionComponent.class);
+        position.x = 0;
+        position.y = 0;
+
+        DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
+        dimension.width = Constants.PLAYER_WIDTH;
+        dimension.height = Constants.PLAYER_HEIGHT;
 
         BoundsComponent bounds = engine.createComponent(BoundsComponent.class);
         bounds.bounds.set(
-                engine.getSystem(PositionsCalculationSystem.class).positions[position.xNumber][position.yNumber][0],
-                engine.getSystem(PositionsCalculationSystem.class).positions[position.xNumber][position.yNumber][1],
+                engine.getSystem(PositionsCalculationSystem.class).positions[positionOnGrid.xNumber][positionOnGrid.yNumber][0],
+                engine.getSystem(PositionsCalculationSystem.class).positions[positionOnGrid.xNumber][positionOnGrid.yNumber][1],
                 Constants.PLAYER_SIZE,
                 Constants.PLAYER_SIZE
         );
@@ -113,12 +117,20 @@ public class EntityFactory {
         movementState.setMoving(false);
 
         PlayerComponent player = engine.createComponent(PlayerComponent.class);
+        player.isAnimating = false;
+
+        SpeedComponent speed = engine.createComponent(SpeedComponent.class);
+        speed.speedX = 0;
+        speed.speedY = 0;
 
         Entity entity = engine.createEntity();
+        entity.add(positionOnGrid);
         entity.add(position);
+        entity.add(dimension);
         entity.add(bounds);
         entity.add(player);
         entity.add(movementState);
+        entity.add(speed);
 
         engine.addEntity(entity);
     }
@@ -191,11 +203,15 @@ public class EntityFactory {
 //            dimension.height = Constants.CAT_SMASH_HEIGHT;
         }
 
+        OrderComponent order = engine.createComponent(OrderComponent.class);
+        order.beforePlayer = false;
+
         Entity entity = engine.createEntity();
         entity.add(animationComponent);
         entity.add(position);
         entity.add(smashComponent);
         entity.add(dimension);
+        entity.add(order);
 
         engine.addEntity(entity);
     }
@@ -220,10 +236,10 @@ public class EntityFactory {
 
         SpeedComponent speed = engine.createComponent(SpeedComponent.class);
         float distance = Constants.WORLD_HEIGHT + 10f - y;
-        speed.speed = distance / (Constants.POT_FLIGHT_TIME / 1000f);
+        speed.speedY = distance / (Constants.POT_FLIGHT_TIME / 1000f);
 
         if (type == PotType.IRON) {
-            speed.speed *= 2;
+            speed.speedY *= 2;
         }
 
         AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
@@ -264,6 +280,9 @@ public class EntityFactory {
         ShadowComponent shadow = engine.createComponent(ShadowComponent.class);
         shadow.shadowHeight = 0;
 
+        OrderComponent order = engine.createComponent(OrderComponent.class);
+        order.beforePlayer = false;
+
         Entity entity = engine.createEntity();
         entity.add(speed);
         entity.add(position);
@@ -272,6 +291,7 @@ public class EntityFactory {
         entity.add(potComponent);
         entity.add(animationComponent);
         entity.add(shadow);
+        entity.add(order);
 
         engine.addEntity(entity);
     }

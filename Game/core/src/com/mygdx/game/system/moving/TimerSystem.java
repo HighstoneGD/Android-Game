@@ -9,6 +9,8 @@ import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.NumberComponent;
+import com.mygdx.game.component.SpeedComponent;
+import com.mygdx.game.component.marking.PlayerComponent;
 
 public class TimerSystem extends EntitySystem implements Runnable {
 
@@ -21,14 +23,12 @@ public class TimerSystem extends EntitySystem implements Runnable {
     @Override
     public void run() {
         ImmutableArray<Entity> players = getEngine().getEntitiesFor(PLAYER_FAMILY);
+        MovementStateComponent movementState = Mappers.MOVEMENT_STATE.get(players.first());
+        PlayerComponent playerComponent = Mappers.PLAYER.get(players.first());
 
-        for (int i = 0; i < players.size(); i++) {
-            Entity player = players.get(i);
-            MovementStateComponent movementState = Mappers.MOVEMENT_STATE.get(player);
-            movementState.setMoving(true);
-            waitMillis(Constants.PLAYER_JUMP_TIME);
-            movementState.setMoving(false);
-        }
+        movementState.setMoving(true);
+        waitMillis(Constants.PLAYER_JUMP_TIME);
+        movementState.setMoving(false);
     }
 
     private static void waitMillis(long millis) {

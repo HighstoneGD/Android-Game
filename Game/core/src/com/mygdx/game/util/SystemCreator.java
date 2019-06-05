@@ -9,6 +9,7 @@ import com.mygdx.game.system.attack.potsystems.ExplosivePotSystem;
 import com.mygdx.game.system.attack.potsystems.IronPotSystem;
 import com.mygdx.game.system.attack.potsystems.LargePotSystem;
 import com.mygdx.game.system.attack.potsystems.SimplePotSystem;
+import com.mygdx.game.system.moving.TimerSystem;
 
 public class SystemCreator {
 
@@ -51,6 +52,13 @@ public class SystemCreator {
         BonusPotSystem bonusPotSystem = new BonusPotSystem(x, y, screen, type);
         engine.addSystem(bonusPotSystem);
         Thread thread = new Thread(bonusPotSystem);
+        thread.start();
+    }
+
+    public static void createTimer(PooledEngine engine) {
+        TimerSystem timerSystem = new TimerSystem();
+        engine.addSystem(timerSystem);
+        Thread thread = new Thread(timerSystem);
         thread.start();
     }
 

@@ -2,5 +2,7 @@ package com.mygdx.game.common.objects;
 
 public enum Directions {
     RIGHT,
-    LEFT
+    LEFT,
+    UP,
+    DOWN
 }

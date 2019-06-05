@@ -25,6 +25,10 @@ public class AssetPaths {
     public static final String GRAN_IRON_THROW = "gameplay/gran_iron_throw.atlas";
     public static final String GRAN_LARGE_THROW = "gameplay/gran_large_throw.atlas";
     public static final String GRAN_EXPLOSIVE_THROW = "gameplay/gran_explosive_throw.atlas";
+    public static final String PLAYER_STATIC = "gameplay/player_static.png";
+    public static final String PLAYER_LEFT_JUMP = "gameplay/player_left.atlas";
+    public static final String PLAYER_RIGHT_JUMP = "gameplay/player_right.atlas";
+    public static final String PLAYER_VERTICAL_JUMP = "gameplay/player_vertical.atlas";
 
     private AssetPaths() {}
 }

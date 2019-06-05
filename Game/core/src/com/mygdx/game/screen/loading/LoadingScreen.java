@@ -80,6 +80,10 @@ public class LoadingScreen implements Screen {
         assetManager.load(AssetDescriptors.GRAN_IRON_THROW);
         assetManager.load(AssetDescriptors.GRAN_LARGE_THROW);
         assetManager.load(AssetDescriptors.GRAN_EXPLOSIVE_THROW);
+        assetManager.load(AssetDescriptors.PLAYER_STATIC);
+        assetManager.load(AssetDescriptors.PLAYER_LEFT_JUMP);
+        assetManager.load(AssetDescriptors.PLAYER_RIGHT_JUMP);
+        assetManager.load(AssetDescriptors.PLAYER_VERTICAL_JUMP);
 
         textureAtlas = assetManager.get(AssetDescriptors.GRAN_LOADING_ANIMATION);
         font = assetManager.get(AssetDescriptors.FONT);
