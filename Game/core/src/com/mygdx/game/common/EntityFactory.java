@@ -3,21 +3,18 @@ package com.mygdx.game.common;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
-import com.mygdx.game.common.objects.PotType;
+import com.mygdx.game.common.enums.PotType;
 import com.mygdx.game.component.AnimationComponent;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.BonusComponent;
-import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.MovementStateComponent;
-import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.OrderComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
@@ -30,7 +27,7 @@ import com.mygdx.game.component.marking.BackgroundComponent;
 import com.mygdx.game.component.marking.CellComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.component.marking.SmashComponent;
-import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.screen.game.BasicGameScreen;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 
 import java.util.Random;
@@ -57,9 +54,9 @@ public class EntityFactory {
         position.x = x;
         position.y = y;
 
-        NumberComponent numberComponent = engine.createComponent(NumberComponent.class);
-        numberComponent.xNumber = xNumber;
-        numberComponent.yNumber = yNumber;
+        PositionOnGridComponent positionOnGrid = engine.createComponent(PositionOnGridComponent.class);
+        positionOnGrid.xNumber = xNumber;
+        positionOnGrid.yNumber = yNumber;
 
         CellComponent cellComponent = engine.createComponent(CellComponent.class);
         cellComponent.hasPlayer = false;
@@ -84,7 +81,7 @@ public class EntityFactory {
         entity.add(cellComponent);
         entity.add(attackState);
         entity.add(bonus);
-        entity.add(numberComponent);
+        entity.add(positionOnGrid);
         entity.add(texture);
         entity.add(dimension);
 
@@ -104,15 +101,6 @@ public class EntityFactory {
         dimension.width = Constants.PLAYER_WIDTH;
         dimension.height = Constants.PLAYER_HEIGHT;
 
-        BoundsComponent bounds = engine.createComponent(BoundsComponent.class);
-        bounds.bounds.set(
-                engine.getSystem(PositionsCalculationSystem.class).positions[positionOnGrid.xNumber][positionOnGrid.yNumber][0],
-                engine.getSystem(PositionsCalculationSystem.class).positions[positionOnGrid.xNumber][positionOnGrid.yNumber][1],
-                Constants.PLAYER_SIZE,
-                Constants.PLAYER_SIZE
-        );
-        bounds.color = Color.CYAN;
-
         MovementStateComponent movementState = engine.createComponent(MovementStateComponent.class);
         movementState.setMoving(false);
 
@@ -127,7 +115,6 @@ public class EntityFactory {
         entity.add(positionOnGrid);
         entity.add(position);
         entity.add(dimension);
-        entity.add(bounds);
         entity.add(player);
         entity.add(movementState);
         entity.add(speed);

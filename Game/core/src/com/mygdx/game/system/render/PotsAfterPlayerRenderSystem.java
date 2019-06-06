@@ -10,7 +10,7 @@ import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.OrderComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.marking.PotComponent;
-import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.screen.game.BasicGameScreen;
 
 public class PotsAfterPlayerRenderSystem extends IteratingSystem {
 

@@ -8,7 +8,7 @@ import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.screen.game.BasicGameScreen;
 
 import java.util.Random;
 

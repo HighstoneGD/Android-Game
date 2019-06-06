@@ -1,4 +1,4 @@
-package com.mygdx.game.common.objects;
+package com.mygdx.game.common.enums;
 
 public enum BonusType {
     SPEED,

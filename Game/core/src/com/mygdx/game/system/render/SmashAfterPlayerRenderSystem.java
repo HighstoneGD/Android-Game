@@ -11,7 +11,7 @@ import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.OrderComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.marking.SmashComponent;
-import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.screen.game.BasicGameScreen;
 
 public class SmashAfterPlayerRenderSystem extends IteratingSystem {
 
@@ -22,13 +22,11 @@ public class SmashAfterPlayerRenderSystem extends IteratingSystem {
             DimensionComponent.class
     ).get();
     private SpriteBatch batch;
-    private BasicGameScreen screen;
 
     private static final Logger log = new Logger(SmashAfterPlayerRenderSystem.class.getName(), Logger.DEBUG);
 
     public SmashAfterPlayerRenderSystem(BasicGameScreen screen) {
         super(FAMILY);
-        this.screen = screen;
         batch = screen.getBatch();
     }
 

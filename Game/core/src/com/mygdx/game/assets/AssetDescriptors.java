@@ -80,6 +80,9 @@ public class AssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> PLAYER_VERTICAL_JUMP =
             new AssetDescriptor<TextureAtlas>(AssetPaths.PLAYER_VERTICAL_JUMP, TextureAtlas.class);
 
+    public static final AssetDescriptor<TextureAtlas> HUD =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.HUD, TextureAtlas.class);
+
     private AssetDescriptors() {
     }
 }

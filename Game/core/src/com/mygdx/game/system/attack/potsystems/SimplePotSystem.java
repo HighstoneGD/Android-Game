@@ -9,22 +9,19 @@ import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.common.objects.PotType;
+import com.mygdx.game.common.enums.PotType;
 import com.mygdx.game.component.AttackStateComponent;
-import com.mygdx.game.component.BoundsComponent;
-import com.mygdx.game.component.NumberComponent;
-import com.mygdx.game.component.PositionComponent;
-import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.component.PositionOnGridComponent;
+import com.mygdx.game.screen.game.BasicGameScreen;
 import com.mygdx.game.system.render.GranRenderSystem;
-import com.mygdx.game.util.NumberConverter;
-import com.mygdx.game.util.ObjectCreator;
+import com.mygdx.game.util.logic.NumberConverter;
+import com.mygdx.game.util.logic.ObjectCreator;
 
 public class SimplePotSystem extends EntitySystem implements Runnable {
 
     private static final Family FAMILY = Family.all(
-            NumberComponent.class,
-            AttackStateComponent.class,
-            BoundsComponent.class
+            PositionOnGridComponent.class,
+            AttackStateComponent.class
     ).get();
 
     private static final Logger log = new Logger(SimplePotSystem.class.getName(), Logger.DEBUG);
@@ -65,25 +62,25 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
 
         for (int i = 0; i < cells.size(); i++) {
             Entity cell = cells.get(i);
-            NumberComponent number = Mappers.NUMBER.get(cell);
+            PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(cell);
 
-            if (number.xNumber == x) {
+            if (positionOnGrid.xNumber == x) {
 
-                if (number.yNumber == y) {
+                if (positionOnGrid.yNumber == y) {
                     ObjectCreator.createDamageObject(cell, Constants.SIMPLE_CENTRAL_DAMAGE, Constants.POT_EXISTANCE_TIME);
-                } else if (number.yNumber == y - 1) {
+                } else if (positionOnGrid.yNumber == y - 1) {
                     ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
-                } else if (number.yNumber == y + 1) {
+                } else if (positionOnGrid.yNumber == y + 1) {
                     ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 }
 
             }
 
-            if (number.yNumber == y) {
+            if (positionOnGrid.yNumber == y) {
 
-                if (number.xNumber == x - 1) {
+                if (positionOnGrid.xNumber == x - 1) {
                     ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
-                } else if (number.xNumber == x + 1) {
+                } else if (positionOnGrid.xNumber == x + 1) {
                     ObjectCreator.createDamageObject(cell, Constants.SHARD_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 }
 

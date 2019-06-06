@@ -1,4 +1,4 @@
-package com.mygdx.game.screen;
+package com.mygdx.game.screen.game;
 
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.assets.AssetManager;

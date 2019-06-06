@@ -1,13 +1,10 @@
-package com.mygdx.game.util;
+package com.mygdx.game.util.render;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-/**
- * Created by goran on 22/08/2016.
- */
 public class ViewportUtils {
 
     private static final Logger log = new Logger(ViewportUtils.class.getName(), Logger.DEBUG);

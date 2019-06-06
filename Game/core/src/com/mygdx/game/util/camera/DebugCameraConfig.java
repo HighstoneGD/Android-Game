@@ -1,4 +1,4 @@
-package com.mygdx.game.util.debug;
+package com.mygdx.game.util.camera;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

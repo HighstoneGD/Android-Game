@@ -3,7 +3,7 @@ package com.mygdx.game.system.debug;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.mygdx.game.util.ViewportUtils;
+import com.mygdx.game.util.render.ViewportUtils;
 
 /**
  * Created by goran on 5/09/2016.

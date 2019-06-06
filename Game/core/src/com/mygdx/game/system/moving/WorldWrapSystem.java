@@ -7,14 +7,14 @@ import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.PositionOnGridComponent;
-import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.screen.game.BasicGameScreen;
 
 public class WorldWrapSystem extends EntitySystem {
 
-    private final ImmutableArray<Entity> players;
-    private final Family PLAYER_POS_FAMILY = Family.all(
+    private static final Family PLAYER_POS_FAMILY = Family.all(
             PositionOnGridComponent.class
     ).get();
+    private final ImmutableArray<Entity> players;
     private final BasicGameScreen screen;
 
     public WorldWrapSystem(BasicGameScreen screen, PooledEngine engine) {

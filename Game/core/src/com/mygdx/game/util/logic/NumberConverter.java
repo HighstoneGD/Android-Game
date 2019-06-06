@@ -1,13 +1,12 @@
-package com.mygdx.game.util;
+package com.mygdx.game.util.logic;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
-import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.common.objects.Coordinates;
-import com.mygdx.game.component.NumberComponent;
+import com.mygdx.game.component.PositionOnGridComponent;
+import com.mygdx.game.util.objects.Coordinates;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.marking.CellComponent;
 
@@ -15,7 +14,7 @@ public class NumberConverter extends EntitySystem {
 
     private static final Family CELLS = Family.all(
             CellComponent.class,
-            NumberComponent.class,
+            PositionOnGridComponent.class,
             PositionComponent.class
     ).get();
     private ImmutableArray<Entity> cells;
@@ -24,8 +23,8 @@ public class NumberConverter extends EntitySystem {
         cells = getEngine().getEntitiesFor(CELLS);
         for (int i = 0; i < cells.size(); i++) {
             Entity entity = cells.get(i);
-            NumberComponent number = Mappers.NUMBER.get(entity);
-            if (xNumber == number.xNumber && yNumber == number.yNumber) {
+            PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(entity);
+            if (xNumber == positionOnGrid.xNumber && yNumber == positionOnGrid.yNumber) {
                 PositionComponent position = Mappers.POSITION.get(entity);
                 return new Coordinates(position.x, position.y);
             }
@@ -44,27 +43,27 @@ public class NumberConverter extends EntitySystem {
 
         for (int i = 0; i < cells.size(); i++) {
             Entity entity = cells.get(i);
-            NumberComponent number = Mappers.NUMBER.get(entity);
+            PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(entity);
 
-            if (xNumber == number.xNumber && yNumber == number.yNumber) {
+            if (xNumber == positionOnGrid.xNumber && yNumber == positionOnGrid.yNumber) {
                 PositionComponent position = Mappers.POSITION.get(entity);
                 startX = position.x;
                 startY = position.y;
             }
 
-            if (left && up && number.xNumber == xNumber - 1 && number.yNumber == yNumber - 1) {
+            if (left && up && positionOnGrid.xNumber == xNumber - 1 && positionOnGrid.yNumber == yNumber - 1) {
                 PositionComponent position = Mappers.POSITION.get(entity);
                 endX = position.x;
                 endY = position.y;
-            } else if (left && !up && number.xNumber == xNumber - 1 && number.yNumber == yNumber + 1) {
+            } else if (left && !up && positionOnGrid.xNumber == xNumber - 1 && positionOnGrid.yNumber == yNumber + 1) {
                 PositionComponent position = Mappers.POSITION.get(entity);
                 endX = position.x;
                 endY = position.y;
-            } else if (!left && up && number.xNumber == xNumber + 1 && number.yNumber == yNumber - 1) {
+            } else if (!left && up && positionOnGrid.xNumber == xNumber + 1 && positionOnGrid.yNumber == yNumber - 1) {
                 PositionComponent position = Mappers.POSITION.get(entity);
                 endX = position.x;
                 endY = position.y;
-            } else if (!left && !up && number.xNumber == xNumber + 1 && number.yNumber == yNumber + 1) {
+            } else if (!left && !up && positionOnGrid.xNumber == xNumber + 1 && positionOnGrid.yNumber == yNumber + 1) {
                 PositionComponent position = Mappers.POSITION.get(entity);
                 endX = position.x;
                 endY = position.y;

@@ -1,8 +1,8 @@
 package com.mygdx.game.controlling;
 
 import com.mygdx.game.common.Constants;
-import com.mygdx.game.common.objects.BonusType;
-import com.mygdx.game.common.objects.PotType;
+import com.mygdx.game.common.enums.BonusType;
+import com.mygdx.game.common.enums.PotType;
 
 public class CooldownsManager {
 

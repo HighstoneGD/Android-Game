@@ -8,14 +8,14 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.common.objects.Directions;
+import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.SpeedComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
-import com.mygdx.game.util.NumberConverter;
-import com.mygdx.game.util.SystemCreator;
+import com.mygdx.game.util.logic.NumberConverter;
+import com.mygdx.game.util.logic.SystemCreator;
 
 public class PlayerMovementSystem extends EntitySystem {
 

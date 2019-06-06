@@ -13,5 +13,9 @@ public class RegionNames {
     public static final String LEFT = "left";
     public static final String RIGHT = "right";
 
+    // == hud ==
+    public static final String ARMOR = "armor";
+    public static final String HEART = "heart";
+
     private RegionNames() {}
 }

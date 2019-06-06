@@ -3,11 +3,11 @@ package com.mygdx.game.system.attack;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.systems.IntervalSystem;
 import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.common.objects.BonusType;
-import com.mygdx.game.common.objects.PotType;
+import com.mygdx.game.common.enums.BonusType;
+import com.mygdx.game.common.enums.PotType;
 import com.mygdx.game.controlling.CooldownsManager;
-import com.mygdx.game.screen.BasicGameScreen;
-import com.mygdx.game.util.SystemCreator;
+import com.mygdx.game.screen.game.BasicGameScreen;
+import com.mygdx.game.util.logic.SystemCreator;
 
 import java.util.HashMap;
 import java.util.Map;

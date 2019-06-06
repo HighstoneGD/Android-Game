@@ -8,16 +8,14 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.common.objects.BonusType;
-import com.mygdx.game.common.objects.PotType;
+import com.mygdx.game.common.enums.BonusType;
+import com.mygdx.game.common.enums.PotType;
 import com.mygdx.game.component.BonusComponent;
-import com.mygdx.game.component.BoundsComponent;
-import com.mygdx.game.component.NumberComponent;
-import com.mygdx.game.component.PositionComponent;
-import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.component.PositionOnGridComponent;
+import com.mygdx.game.screen.game.BasicGameScreen;
 import com.mygdx.game.system.render.GranRenderSystem;
-import com.mygdx.game.util.NumberConverter;
-import com.mygdx.game.util.ObjectCreator;
+import com.mygdx.game.util.logic.NumberConverter;
+import com.mygdx.game.util.logic.ObjectCreator;
 
 public class BonusPotSystem extends EntitySystem implements Runnable {
 
@@ -27,9 +25,8 @@ public class BonusPotSystem extends EntitySystem implements Runnable {
     private final PooledEngine engine;
     private final EntityFactory factory;
     private static final Family FAMILY = Family.all(
-            NumberComponent.class,
-            BonusComponent.class,
-            BoundsComponent.class
+            PositionOnGridComponent.class,
+            BonusComponent.class
     ).get();
 
     public BonusPotSystem(int x, int y, BasicGameScreen screen, BonusType type) {
@@ -64,9 +61,9 @@ public class BonusPotSystem extends EntitySystem implements Runnable {
         }
 
         for (Entity cell : cells) {
-            NumberComponent number = Mappers.NUMBER.get(cell);
+            PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(cell);
 
-            if (number.xNumber == x && number.yNumber == y) {
+            if (positionOnGrid.xNumber == x && positionOnGrid.yNumber == y) {
                 ObjectCreator.createDamageObject(cell, Constants.BONUS_DAMAGE, Constants.BONUS_EXISTANCE_TIME);
                 ObjectCreator.createBonusObject(cell, Constants.BONUS_EXISTANCE_TIME, type);
                 return;

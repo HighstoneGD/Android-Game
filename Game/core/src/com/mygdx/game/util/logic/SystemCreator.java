@@ -1,8 +1,8 @@
-package com.mygdx.game.util;
+package com.mygdx.game.util.logic;
 
 import com.badlogic.ashley.core.PooledEngine;
-import com.mygdx.game.common.objects.BonusType;
-import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.common.enums.BonusType;
+import com.mygdx.game.screen.game.BasicGameScreen;
 import com.mygdx.game.system.attack.potsystems.BonusPotSystem;
 import com.mygdx.game.system.attack.potsystems.ExplosivePotSystem;
 import com.mygdx.game.system.attack.potsystems.IronPotSystem;

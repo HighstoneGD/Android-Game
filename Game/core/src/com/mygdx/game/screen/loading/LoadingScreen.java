@@ -13,15 +13,13 @@ import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
-import com.mygdx.game.assets.AssetPaths;
 import com.mygdx.game.assets.RegionNames;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.screen.game.EndlessModeScreen;
-import com.mygdx.game.util.GdxUtils;
+import com.mygdx.game.util.render.GdxUtils;
 
 public class LoadingScreen implements Screen {
 
-    private OrthographicCamera camera;
     private Viewport viewport;
     private SpriteBatch batch;
 
@@ -49,8 +47,7 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void show() {
-        camera = new OrthographicCamera();
-        viewport = new FillViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
+        viewport = new FillViewport(Constants.HUD_WIDTH, Constants.HUD_HEIGHT);
         batch = game.getBatch();
 
 //        assetManager.load(AssetDescriptors.FUMAR_SOUND);
@@ -62,26 +59,7 @@ public class LoadingScreen implements Screen {
 
         }
 
-        assetManager.load(AssetDescriptors.GAMEPLAY_BG);
-        assetManager.load(AssetDescriptors.SIMPLE_TEXTURE);
-        assetManager.load(AssetDescriptors.SIMPLE_SMASH);
-        assetManager.load(AssetDescriptors.IRON_TEXTURE);
-        assetManager.load(AssetDescriptors.IRON_SMASH);
-        assetManager.load(AssetDescriptors.LARGE_TEXTURE);
-        assetManager.load(AssetDescriptors.LARGE_SMASH);
-        assetManager.load(AssetDescriptors.BONUS_TEXTURE);
-        assetManager.load(AssetDescriptors.BONUS_SMASH);
-        assetManager.load(AssetDescriptors.EXPLOSIVE_TEXTURE);
-        assetManager.load(AssetDescriptors.EXPLOSIVE_SMASH);
-        assetManager.load(AssetDescriptors.GRAN_SIMPLE_THROW);
-        assetManager.load(AssetDescriptors.GRAN_STATIC);
-        assetManager.load(AssetDescriptors.GRAN_IRON_THROW);
-        assetManager.load(AssetDescriptors.GRAN_LARGE_THROW);
-        assetManager.load(AssetDescriptors.GRAN_EXPLOSIVE_THROW);
-        assetManager.load(AssetDescriptors.PLAYER_STATIC);
-        assetManager.load(AssetDescriptors.PLAYER_LEFT_JUMP);
-        assetManager.load(AssetDescriptors.PLAYER_RIGHT_JUMP);
-        assetManager.load(AssetDescriptors.PLAYER_VERTICAL_JUMP);
+        loadAssets();
 
         textureAtlas = assetManager.get(AssetDescriptors.GRAN_LOADING_ANIMATION);
         font = assetManager.get(AssetDescriptors.FONT);
@@ -101,6 +79,7 @@ public class LoadingScreen implements Screen {
         batch.begin();
 
         draw();
+
         elapsedTime += delta;
         batch.draw(
                 animation.getKeyFrame(elapsedTime, false),
@@ -108,7 +87,8 @@ public class LoadingScreen implements Screen {
                 Gdx.graphics.getWidth(), Gdx.graphics.getHeight()
         );
 
-        font.draw(batch, sign, Gdx.graphics.getWidth() * 0.37f, Gdx.graphics.getHeight() * 0.28f);
+        font.draw(batch, sign + Math.round(progress * 100f) + "%",
+                Constants.HUD_WIDTH * 0.25f, Constants.HUD_HEIGHT * 0.28f);
 
         batch.end();
 
@@ -167,5 +147,29 @@ public class LoadingScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    private void loadAssets() {
+        assetManager.load(AssetDescriptors.GAMEPLAY_BG);
+        assetManager.load(AssetDescriptors.SIMPLE_TEXTURE);
+        assetManager.load(AssetDescriptors.SIMPLE_SMASH);
+        assetManager.load(AssetDescriptors.IRON_TEXTURE);
+        assetManager.load(AssetDescriptors.IRON_SMASH);
+        assetManager.load(AssetDescriptors.LARGE_TEXTURE);
+        assetManager.load(AssetDescriptors.LARGE_SMASH);
+        assetManager.load(AssetDescriptors.BONUS_TEXTURE);
+        assetManager.load(AssetDescriptors.BONUS_SMASH);
+        assetManager.load(AssetDescriptors.EXPLOSIVE_TEXTURE);
+        assetManager.load(AssetDescriptors.EXPLOSIVE_SMASH);
+        assetManager.load(AssetDescriptors.GRAN_SIMPLE_THROW);
+        assetManager.load(AssetDescriptors.GRAN_STATIC);
+        assetManager.load(AssetDescriptors.GRAN_IRON_THROW);
+        assetManager.load(AssetDescriptors.GRAN_LARGE_THROW);
+        assetManager.load(AssetDescriptors.GRAN_EXPLOSIVE_THROW);
+        assetManager.load(AssetDescriptors.PLAYER_STATIC);
+        assetManager.load(AssetDescriptors.PLAYER_LEFT_JUMP);
+        assetManager.load(AssetDescriptors.PLAYER_RIGHT_JUMP);
+        assetManager.load(AssetDescriptors.PLAYER_VERTICAL_JUMP);
+        assetManager.load(AssetDescriptors.HUD);
     }
 }

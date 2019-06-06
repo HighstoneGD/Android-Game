@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.common.objects.Directions;
+import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
@@ -25,7 +25,6 @@ public class PlayerRenderSystem extends IteratingSystem {
     ).get();
     private SpriteBatch batch;
     private Viewport viewport;
-    private AssetManager assetManager;
 
     private Texture playerStatic;
     private Animation<TextureRegion> left;
@@ -38,7 +37,6 @@ public class PlayerRenderSystem extends IteratingSystem {
         super(PLAYER);
         this.batch = batch;
         this.viewport = viewport;
-        this.assetManager = assetManager;
 
         playerStatic = assetManager.get(AssetDescriptors.PLAYER_STATIC);
         left = new Animation<TextureRegion>(Constants.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_LEFT_JUMP).getRegions());

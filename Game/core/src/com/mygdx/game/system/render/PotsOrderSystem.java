@@ -10,7 +10,7 @@ import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.component.marking.PotComponent;
-import com.mygdx.game.util.NumberConverter;
+import com.mygdx.game.util.logic.NumberConverter;
 
 public class PotsOrderSystem extends IteratingSystem {
 

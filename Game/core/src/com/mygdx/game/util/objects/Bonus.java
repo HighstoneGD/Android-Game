@@ -1,4 +1,6 @@
-package com.mygdx.game.common.objects;
+package com.mygdx.game.util.objects;
+
+import com.mygdx.game.common.enums.BonusType;
 
 public class Bonus {
 

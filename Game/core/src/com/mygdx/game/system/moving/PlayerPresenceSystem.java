@@ -5,16 +5,15 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.marking.CellComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
 
-public class PlayerPresenseSystem extends IteratingSystem {
+public class PlayerPresenceSystem extends IteratingSystem {
 
     private static final Family FAMILY = Family.all(
             CellComponent.class,
-            NumberComponent.class
+            PositionOnGridComponent.class
     ).get();
 
     private static final Family PLAYER = Family.all(
@@ -22,21 +21,21 @@ public class PlayerPresenseSystem extends IteratingSystem {
             PlayerComponent.class
     ).get();
 
-    public PlayerPresenseSystem() {
+    public PlayerPresenceSystem() {
         super(FAMILY);
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         CellComponent cellComponent = Mappers.CELL_COMPONENT.get(entity);
-        NumberComponent number = Mappers.NUMBER.get(entity);
+        PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(entity);
 
         cellComponent.hasPlayer = false;
 
         ImmutableArray<Entity> players = getEngine().getEntitiesFor(PLAYER);
-        PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(players.first());
+        PositionOnGridComponent playerPosition = Mappers.POSITION_ON_GRID.get(players.first());
 
-        if (positionOnGrid.xNumber == number.xNumber && positionOnGrid.yNumber == number.yNumber) {
+        if (positionOnGrid.xNumber == playerPosition.xNumber && positionOnGrid.yNumber == playerPosition.yNumber) {
             cellComponent.hasPlayer = true;
         }
     }

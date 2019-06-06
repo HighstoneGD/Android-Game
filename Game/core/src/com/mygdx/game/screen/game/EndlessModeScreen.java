@@ -10,16 +10,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.EntityFactory;
-import com.mygdx.game.common.objects.Directions;
+import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.controlling.AvoidedPotsManager;
 import com.mygdx.game.controlling.CooldownsManager;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.controlling.HealthManager;
-import com.mygdx.game.screen.BasicGameScreen;
 import com.mygdx.game.system.ScoreSystem;
 import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.attack.DamageClearSystem;
@@ -28,29 +28,27 @@ import com.mygdx.game.system.attack.DropProgressSystem;
 import com.mygdx.game.system.attack.ShadowSystem;
 import com.mygdx.game.system.attack.TargetSystem;
 import com.mygdx.game.system.attack.potsystems.DropPotsSystem;
+import com.mygdx.game.system.control.DesktopControlSystem;
 import com.mygdx.game.system.control.PlayerMovementSystem;
+import com.mygdx.game.system.control.SimpleDirectionGestureDetector;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
-import com.mygdx.game.system.debug.DebugRenderSystem;
-import com.mygdx.game.system.debug.InfoSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
-import com.mygdx.game.system.moving.BoundsSystem;
-import com.mygdx.game.system.moving.PlayerPresenseSystem;
-import com.mygdx.game.system.control.DesktopControlSystem;
+import com.mygdx.game.system.moving.PlayerPresenceSystem;
+import com.mygdx.game.system.moving.WorldWrapSystem;
+import com.mygdx.game.system.render.BackgroundRenderSystem;
 import com.mygdx.game.system.render.GranRenderSystem;
+import com.mygdx.game.system.render.HudRenderSystem;
 import com.mygdx.game.system.render.PlayerRenderSystem;
 import com.mygdx.game.system.render.PotsAfterPlayerRenderSystem;
+import com.mygdx.game.system.render.PotsBeforePlayerRenderSystem;
 import com.mygdx.game.system.render.PotsOrderSystem;
 import com.mygdx.game.system.render.ShadowRenderSystem;
 import com.mygdx.game.system.render.SmashAfterPlayerRenderSystem;
-import com.mygdx.game.system.render.SmashesOrderSystem;
-import com.mygdx.game.util.NumberConverter;
-import com.mygdx.game.system.control.SimpleDirectionGestureDetector;
-import com.mygdx.game.system.moving.WorldWrapSystem;
-import com.mygdx.game.system.render.BackgroundRenderSystem;
-import com.mygdx.game.system.render.PotsBeforePlayerRenderSystem;
 import com.mygdx.game.system.render.SmashBeforePlayerRenderSystem;
-import com.mygdx.game.util.GdxUtils;
+import com.mygdx.game.system.render.SmashesOrderSystem;
+import com.mygdx.game.util.logic.NumberConverter;
+import com.mygdx.game.util.render.GdxUtils;
 
 public class EndlessModeScreen extends BasicGameScreen implements Screen {
 
@@ -61,6 +59,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
 
     private OrthographicCamera camera;
     private Viewport viewport;
+    private Viewport hudViewport;
     private ShapeRenderer renderer;
     private PooledEngine engine;
     private EntityFactory factory;
@@ -88,6 +87,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
 
         camera = new OrthographicCamera();
         viewport = new FillViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
+        hudViewport = new FitViewport(Constants.HUD_WIDTH, Constants.HUD_HEIGHT);
         renderer = new ShapeRenderer();
 
         engine = new PooledEngine();
@@ -118,6 +118,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
+        hudViewport.update(width, height, true);
     }
 
     @Override
@@ -164,20 +165,20 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
 
         engine.addSystem(new PotsAfterPlayerRenderSystem(this));
         engine.addSystem(new SmashAfterPlayerRenderSystem(this));
+
+        engine.addSystem(new HudRenderSystem(this, hudViewport));
     }
 
     private void createDebugSystems() {
-        engine.addSystem(new DebugRenderSystem(viewport, renderer));
         engine.addSystem(new DebugCameraSystem(camera,
                 Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
-        engine.addSystem(new InfoSystem());
+//        engine.addSystem(new InfoSystem());
     }
 
     private void createMovingSystems() {
         engine.addSystem(new PlayerMovementSystem(engine));
         engine.addSystem(new WorldWrapSystem(this, engine));
-        engine.addSystem(new BoundsSystem());
-        engine.addSystem(new PlayerPresenseSystem());
+        engine.addSystem(new PlayerPresenceSystem());
     }
 
     private void createNotUpdatedSystems() {

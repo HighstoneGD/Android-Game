@@ -8,6 +8,13 @@ public class Constants {
     public static final float WORLD_WIDTH = 60f; // world units
     public static final float WORLD_HEIGHT = 100f; // world units
 
+    public static final float HUD_WIDTH = 480f;
+    public static final float HUD_HEIGHT = 800f;
+
+    public static final float[] HEARTS_POSITIONS = {90, 190, 290, 390};
+    public static final float HEART_WIDTH = 70f;
+    public static final float HEART_HEIGHT = HEART_WIDTH;
+
     public static final float WORLD_CENTER_X = WORLD_WIDTH / 2f; // world units
     public static final float WORLD_CENTER_Y = WORLD_HEIGHT / 2f; // world units
 

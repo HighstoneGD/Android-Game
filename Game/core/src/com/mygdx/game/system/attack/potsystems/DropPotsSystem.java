@@ -3,18 +3,12 @@ package com.mygdx.game.system.attack.potsystems;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.common.objects.PotType;
-import com.mygdx.game.component.NumberComponent;
 import com.mygdx.game.component.PositionComponent;
-import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.SpeedComponent;
 import com.mygdx.game.component.marking.PotComponent;
-import com.mygdx.game.component.marking.CellComponent;
-import com.mygdx.game.screen.BasicGameScreen;
+import com.mygdx.game.screen.game.BasicGameScreen;
 
 public class DropPotsSystem extends IteratingSystem {
 

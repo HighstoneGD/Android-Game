@@ -6,7 +6,7 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.common.objects.Directions;
+import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.component.MovementStateComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.marking.PlayerComponent;

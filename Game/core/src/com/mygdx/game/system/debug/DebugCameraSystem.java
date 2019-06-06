@@ -2,7 +2,7 @@ package com.mygdx.game.system.debug;
 
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.mygdx.game.util.debug.DebugCameraController;
+import com.mygdx.game.util.camera.DebugCameraController;
 
 
 /**

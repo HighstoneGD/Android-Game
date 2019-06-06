@@ -3,17 +3,14 @@ package com.mygdx.game.system.attack;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.graphics.Color;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AttackStateComponent;
-import com.mygdx.game.component.BoundsComponent;
 import com.mygdx.game.controlling.AvoidedPotsManager;
 
 public class DamageClearSystem extends IteratingSystem {
 
     private static final Family CELLS = Family.all(
-            AttackStateComponent.class,
-            BoundsComponent.class
+            AttackStateComponent.class
     ).get();
 
     public DamageClearSystem() {
@@ -30,11 +27,8 @@ public class DamageClearSystem extends IteratingSystem {
                 if (attackState.timers.get(i).time == 0) {
                     attackState.timers.remove(attackState.timers.get(i));
                     AvoidedPotsManager.avoided();
-                    BoundsComponent bounds = Mappers.BOUNDS.get(entity);
-                    bounds.color = Color.GREEN;
                 }
             } catch (NullPointerException e) {
-                continue;
             }
         }
     }

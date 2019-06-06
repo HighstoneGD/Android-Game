@@ -1,7 +1,7 @@
 package com.mygdx.game.component.marking;
 
 import com.badlogic.ashley.core.Component;
-import com.mygdx.game.common.objects.Directions;
+import com.mygdx.game.common.enums.Directions;
 
 public class PlayerComponent implements Component {
 

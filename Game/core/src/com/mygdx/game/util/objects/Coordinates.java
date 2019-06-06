@@ -1,4 +1,4 @@
-package com.mygdx.game.common.objects;
+package com.mygdx.game.util.objects;
 
 public class Coordinates {
     public float x;

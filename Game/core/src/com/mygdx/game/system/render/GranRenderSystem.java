@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.common.objects.PotType;
+import com.mygdx.game.common.enums.PotType;
 import com.mygdx.game.component.DimensionComponent;
 import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.marking.GranComponent;
@@ -25,7 +25,6 @@ public class GranRenderSystem extends IteratingSystem {
             PositionComponent.class,
             DimensionComponent.class
     ).get();
-    private AssetManager assetManager;
     private SpriteBatch batch;
     private Viewport viewport;
 
@@ -39,7 +38,6 @@ public class GranRenderSystem extends IteratingSystem {
         super(GRAN);
         this.batch = batch;
         this.viewport = viewport;
-        this.assetManager = assetManager;
         granStatic = assetManager.get(AssetDescriptors.GRAN_STATIC);
         simple = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_SIMPLE_THROW).getRegions());
         iron = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_IRON_THROW).getRegions());
