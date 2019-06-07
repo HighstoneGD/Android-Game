@@ -17,16 +17,19 @@ import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.controlling.AvoidedPotsManager;
-import com.mygdx.game.controlling.CooldownsManager;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.system.ScoreSystem;
 import com.mygdx.game.system.attack.AttackSystem;
+import com.mygdx.game.system.attack.BonusClearSystem;
+import com.mygdx.game.system.attack.BonusPickSystem;
 import com.mygdx.game.system.attack.DamageClearSystem;
 import com.mygdx.game.system.attack.DamageOnCellSystem;
 import com.mygdx.game.system.attack.DropProgressSystem;
 import com.mygdx.game.system.attack.ShadowSystem;
 import com.mygdx.game.system.attack.TargetSystem;
+import com.mygdx.game.system.attack.bonus.ArmorBonusSystem;
+import com.mygdx.game.system.attack.bonus.LifeBonusSystem;
 import com.mygdx.game.system.attack.potsystems.DropPotsSystem;
 import com.mygdx.game.system.control.DesktopControlSystem;
 import com.mygdx.game.system.control.PlayerMovementSystem;
@@ -64,9 +67,9 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     private PooledEngine engine;
     private EntityFactory factory;
 
-    private float potSpawnSpeed;
-    private int x;
-    private int y;
+    public float potSpawnSpeed;
+    public int x;
+    public int y;
 
     public EndlessModeScreen(AndroidGame game) {
         super(5, 5);
@@ -81,9 +84,9 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         potSpawnSpeed = Constants.DEFAULT_POT_SPAWN_SPEED;
 
         AvoidedPotsManager.reset();
-        CooldownsManager.resetCooldown();
         HealthManager.reset();
         GameManager.INSTANCE.resetScore();
+        GameManager.INSTANCE.resetCooldown();
 
         camera = new OrthographicCamera();
         viewport = new FillViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
@@ -144,10 +147,14 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
     private void createAttackAndBonusSystems() {
         engine.addSystem(new DamageOnCellSystem());
         engine.addSystem(new DamageClearSystem());
-        engine.addSystem(new AttackSystem(potSpawnSpeed, this, engine));
+        engine.addSystem(new AttackSystem(potSpawnSpeed, this));
         engine.addSystem(new DropPotsSystem(this));
         engine.addSystem(new DropProgressSystem());
         engine.addSystem(new ShadowSystem());
+        engine.addSystem(new BonusClearSystem());
+        engine.addSystem(new BonusPickSystem());
+        engine.addSystem(new ArmorBonusSystem());
+        engine.addSystem(new LifeBonusSystem());
     }
 
     private void createRenderSystems() {

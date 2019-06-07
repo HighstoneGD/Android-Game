@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.common.EntityFactory;
 
 public abstract class BasicGameScreen {
+    public float potSpawnSpeed;
     public int x;
     public int y;
     private SpriteBatch batch;

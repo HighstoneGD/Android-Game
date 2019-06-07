@@ -5,12 +5,13 @@ import com.badlogic.ashley.systems.IntervalSystem;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.enums.BonusType;
 import com.mygdx.game.common.enums.PotType;
-import com.mygdx.game.controlling.CooldownsManager;
+import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.screen.game.BasicGameScreen;
 import com.mygdx.game.util.logic.SystemCreator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class AttackSystem extends IntervalSystem {
 
@@ -20,14 +21,14 @@ public class AttackSystem extends IntervalSystem {
     private Map<BonusType, Integer> bonusPriorities;
     private PooledEngine engine;
 
-    public AttackSystem(float attackSpeed, BasicGameScreen screen, PooledEngine engine) {
+    public AttackSystem(float attackSpeed, BasicGameScreen screen) {
         super(attackSpeed);
         this.screen = screen;
 
         initPotPriorities();
         initBonusPriorities();
 
-        this.engine = engine;
+        this.engine = screen.getEngine();
     }
 
     @Override
@@ -53,28 +54,25 @@ public class AttackSystem extends IntervalSystem {
         PotType type = PotType.SIMPLE;
 
         for (PotType type1 : potsPriorities.keySet()) {
-            if (potsPriorities.get(type) < potsPriorities.get(type1) && CooldownsManager.getPotCooldown(type1) == 0) {
+            if (potsPriorities.get(type) < potsPriorities.get(type1) && GameManager.INSTANCE.getPotCooldown(type1) == 0) {
                 type = type1;
             }
         }
 
-        CooldownsManager.decrementCooldowns();
-        CooldownsManager.resetCooldown(type);
+        GameManager.INSTANCE.decrementCooldowns();
+        GameManager.INSTANCE.resetCooldown(type);
         return type;
     }
 
     private BonusType selectBonusType() {
-        BonusType type = BonusType.GOLD;
+        Random random = new Random();
+        int k = random.nextInt(4);
 
-        for (BonusType type1 : bonusPriorities.keySet()) {
-            if (bonusPriorities.get(type) < bonusPriorities.get(type1) && CooldownsManager.getBonusCooldown(type1) == 0) {
-                type = type1;
-            }
+        if (k == 0) {
+            return BonusType.LIFE;
+        } else {
+            return BonusType.ARMOR;
         }
-
-        CooldownsManager.decrementBonusCooldowns();
-        CooldownsManager.resetBonusCooldown(type);
-        return type;
     }
 
     private void initPotPriorities() {
@@ -88,10 +86,7 @@ public class AttackSystem extends IntervalSystem {
 
     private void initBonusPriorities() {
         bonusPriorities = new HashMap<BonusType, Integer>();
-        bonusPriorities.put(BonusType.GOLD, 0);
-        bonusPriorities.put(BonusType.SPEED, 1);
         bonusPriorities.put(BonusType.ARMOR, 2);
-        bonusPriorities.put(BonusType.TIME_DECELERATION, 3);
         bonusPriorities.put(BonusType.LIFE, 4);
     }
 }

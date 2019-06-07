@@ -75,15 +75,10 @@ public class Constants {
     public static final float POT_EXISTANCE_TIME = 0.3f;
     public static final float BONUS_EXISTANCE_TIME = 10f;
 
-    public static final int LARGE_COOLDOWN = 6;
+    public static final int LARGE_COOLDOWN = 8;
     public static final int EXPLOSIVE_COOLDOWN = 6;
-    public static final int IRON_COOLDOWN = 6;
-    public static final int BONUS_COOLDOWN = 20;
-
-    public static final int SPEED_COOLDOWN = 10;
-    public static final int ARMOR_COOLDOWN = 20;
-    public static final int TIME_DECELERATION_COOLDOWN = 50;
-    public static final int LIFE_COOLDOWN = 100;
+    public static final int IRON_COOLDOWN = 4;
+    public static final int BONUS_COOLDOWN = 3;
 
     public static final float GRID_TOP = 54f;
     public static final float GRID_TOP_WIDTH = 40f;

@@ -64,7 +64,7 @@ public class BonusPotSystem extends EntitySystem implements Runnable {
             PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(cell);
 
             if (positionOnGrid.xNumber == x && positionOnGrid.yNumber == y) {
-                ObjectCreator.createDamageObject(cell, Constants.BONUS_DAMAGE, Constants.BONUS_EXISTANCE_TIME);
+                ObjectCreator.createDamageObject(cell, Constants.BONUS_DAMAGE, Constants.POT_EXISTANCE_TIME);
                 ObjectCreator.createBonusObject(cell, Constants.BONUS_EXISTANCE_TIME, type);
                 return;
             }

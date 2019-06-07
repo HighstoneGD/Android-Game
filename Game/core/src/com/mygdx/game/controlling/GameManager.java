@@ -3,6 +3,8 @@ package com.mygdx.game.controlling;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.mygdx.game.AndroidGame;
+import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.enums.PotType;
 
 public class GameManager {
 
@@ -13,6 +15,11 @@ public class GameManager {
     private Preferences PREFS;
     private float scoreInSeconds;
     private float highscoreInSeconds;
+
+    private static int largeCooldown;
+    private static int explosiveCooldown;
+    private static int ironCooldown;
+    private static int bonusCooldown;
 
     private GameManager() {
         PREFS = Gdx.app.getPreferences(AndroidGame.class.getSimpleName());
@@ -45,4 +52,56 @@ public class GameManager {
         scoreInSeconds = 0;
     }
 
+    public int getPotCooldown(PotType type) {
+        switch (type) {
+            case LARGE:
+                return largeCooldown;
+            case EXPLOSIVE:
+                return explosiveCooldown;
+            case IRON:
+                return ironCooldown;
+            case BONUS:
+                return bonusCooldown;
+        }
+        return 0;
+    }
+
+    public void resetCooldown(PotType type) {
+        if (type == PotType.LARGE) {
+            largeCooldown = Constants.LARGE_COOLDOWN;
+        } else if (type == PotType.IRON) {
+            ironCooldown = Constants.IRON_COOLDOWN;
+        } else if (type == PotType.EXPLOSIVE) {
+            explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
+        } else if (type == PotType.BONUS) {
+            bonusCooldown = Constants.BONUS_COOLDOWN;
+        }
+    }
+
+    public void resetCooldown() {
+        largeCooldown = Constants.LARGE_COOLDOWN;
+        ironCooldown = Constants.IRON_COOLDOWN;
+        explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
+        bonusCooldown = Constants.BONUS_COOLDOWN;
+    }
+
+    public void decrementCooldowns() {
+
+        if (largeCooldown > 0) {
+            largeCooldown--;
+        }
+
+        if (explosiveCooldown > 0) {
+            explosiveCooldown--;
+        }
+
+        if (ironCooldown > 0) {
+            ironCooldown--;
+        }
+
+        if (bonusCooldown > 0) {
+            bonusCooldown--;
+        }
+
+    }
 }
