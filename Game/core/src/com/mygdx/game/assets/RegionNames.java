@@ -17,5 +17,10 @@ public class RegionNames {
     public static final String ARMOR = "armor";
     public static final String HEART = "heart";
 
-    private RegionNames() {}
+    // == static ==
+    public static final String GRAN = "gran_static";
+    public static final String PLAYER = "player_static";
+
+    private RegionNames() {
+    }
 }

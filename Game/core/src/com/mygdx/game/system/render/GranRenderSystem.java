@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.assets.AssetDescriptors;
+import com.mygdx.game.assets.RegionNames;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.common.enums.PotType;
@@ -28,7 +29,7 @@ public class GranRenderSystem extends IteratingSystem {
     private SpriteBatch batch;
     private Viewport viewport;
 
-    private Texture granStatic;
+    private TextureRegion granStatic;
     private Animation<TextureRegion> simple;
     private Animation<TextureRegion> large;
     private Animation<TextureRegion> explosive;
@@ -38,7 +39,7 @@ public class GranRenderSystem extends IteratingSystem {
         super(GRAN);
         this.batch = batch;
         this.viewport = viewport;
-        granStatic = assetManager.get(AssetDescriptors.GRAN_STATIC);
+        granStatic = assetManager.get(AssetDescriptors.STATIC).findRegion(RegionNames.GRAN);
         simple = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_SIMPLE_THROW).getRegions());
         iron = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_IRON_THROW).getRegions());
         large = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_LARGE_THROW).getRegions());

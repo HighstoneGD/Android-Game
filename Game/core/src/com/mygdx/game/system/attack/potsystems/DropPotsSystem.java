@@ -32,7 +32,9 @@ public class DropPotsSystem extends IteratingSystem {
         SpeedComponent speed = Mappers.SPEED.get(entity);
         PotComponent potComponent = Mappers.POT_COMPONENT.get(entity);
 
-        position.y -= deltaTime * speed.speedY;
+        try {
+            position.y -= deltaTime * speed.speedY;
+        } catch (NullPointerException e) {}
 
         if (potComponent.progress >= 1f) {
             smash(entity);

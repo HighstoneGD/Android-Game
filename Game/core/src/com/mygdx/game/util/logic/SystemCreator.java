@@ -8,7 +8,7 @@ import com.mygdx.game.system.attack.potsystems.ExplosivePotSystem;
 import com.mygdx.game.system.attack.potsystems.IronPotSystem;
 import com.mygdx.game.system.attack.potsystems.LargePotSystem;
 import com.mygdx.game.system.attack.potsystems.SimplePotSystem;
-import com.mygdx.game.system.moving.TimerSystem;
+import com.mygdx.game.system.control.TimerSystem;
 
 public class SystemCreator {
 

@@ -19,11 +19,10 @@ public class Constants {
     public static final float WORLD_CENTER_Y = WORLD_HEIGHT / 2f; // world units
 
     public static final float CELL_HEIGHT = 3.3f;
-    public static final float PLAYER_SIZE = 7f;
     public static final float MAX_SHADOW_SIZE = 3f;
 
     public static final long POT_FLIGHT_TIME = 1000;
-    public static final long PLAYER_JUMP_TIME = 300;
+    public static final long PLAYER_JUMP_TIME = 400;
 
     public static final float SIMPLE_POT_WIDTH = 10f;
     public static final float SIMPLE_POT_HEIGHT = SIMPLE_POT_WIDTH / 8f * 9.21f;

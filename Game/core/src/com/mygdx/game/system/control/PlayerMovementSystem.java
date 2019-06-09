@@ -135,7 +135,7 @@ public class PlayerMovementSystem extends EntitySystem {
 
         if (cellY != 0) {
             calculateSpeed(cellX, cellY);
-            playerComponent.goesOnDirection = Directions.UP;
+            playerComponent.goesOnDirection = Directions.DOWN;
 
             SystemCreator.createTimer(engine);
             try {

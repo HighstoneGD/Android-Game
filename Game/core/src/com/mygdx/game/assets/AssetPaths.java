@@ -18,14 +18,13 @@ public class AssetPaths {
     public static final String EXPLOSIVE_POT_TEXTURE = "gameplay/explosive_pot.atlas";
     public static final String EXPLOSIVE_SMASH_TEXTURE = "gameplay/explosive_pot-smash.atlas";
     public static final String GRAN_SIMPLE_THROW = "gameplay/gran_simple_throw.atlas";
-    public static final String GRAN_STATIC = "gameplay/gran_static.png";
     public static final String GRAN_IRON_THROW = "gameplay/gran_iron_throw.atlas";
     public static final String GRAN_LARGE_THROW = "gameplay/gran_large_throw.atlas";
     public static final String GRAN_EXPLOSIVE_THROW = "gameplay/gran_explosive_throw.atlas";
-    public static final String PLAYER_STATIC = "gameplay/player_static.png";
     public static final String PLAYER_LEFT_JUMP = "gameplay/player_left.atlas";
     public static final String PLAYER_RIGHT_JUMP = "gameplay/player_right.atlas";
     public static final String PLAYER_VERTICAL_JUMP = "gameplay/player_vertical.atlas";
+    public static final String STATIC = "gameplay/static.atlas";
     public static final String HUD = "ui/hud.atlas";
 
     private AssetPaths() {}

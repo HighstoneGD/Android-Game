@@ -56,9 +56,6 @@ public class AssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> GRAN_SIMPLE_THROW =
             new AssetDescriptor<TextureAtlas>(AssetPaths.GRAN_SIMPLE_THROW, TextureAtlas.class);
 
-    public static final AssetDescriptor<Texture> GRAN_STATIC =
-            new AssetDescriptor<Texture>(AssetPaths.GRAN_STATIC, Texture.class);
-
     public static final AssetDescriptor<TextureAtlas> GRAN_IRON_THROW =
             new AssetDescriptor<TextureAtlas>(AssetPaths.GRAN_IRON_THROW, TextureAtlas.class);
 
@@ -67,9 +64,6 @@ public class AssetDescriptors {
 
     public static final AssetDescriptor<TextureAtlas> GRAN_EXPLOSIVE_THROW =
             new AssetDescriptor<TextureAtlas>(AssetPaths.GRAN_EXPLOSIVE_THROW, TextureAtlas.class);
-
-    public static final AssetDescriptor<Texture> PLAYER_STATIC =
-            new AssetDescriptor<Texture>(AssetPaths.PLAYER_STATIC, Texture.class);
 
     public static final AssetDescriptor<TextureAtlas> PLAYER_LEFT_JUMP =
             new AssetDescriptor<TextureAtlas>(AssetPaths.PLAYER_LEFT_JUMP, TextureAtlas.class);
@@ -82,6 +76,9 @@ public class AssetDescriptors {
 
     public static final AssetDescriptor<TextureAtlas> HUD =
             new AssetDescriptor<TextureAtlas>(AssetPaths.HUD, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> STATIC =
+            new AssetDescriptor<TextureAtlas>(AssetPaths.STATIC, TextureAtlas.class);
 
     private AssetDescriptors() {
     }

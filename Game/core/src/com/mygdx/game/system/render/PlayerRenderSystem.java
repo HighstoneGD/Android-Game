@@ -4,13 +4,13 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.assets.AssetDescriptors;
+import com.mygdx.game.assets.RegionNames;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.common.enums.Directions;
@@ -26,7 +26,7 @@ public class PlayerRenderSystem extends IteratingSystem {
     private SpriteBatch batch;
     private Viewport viewport;
 
-    private Texture playerStatic;
+    private TextureRegion playerStatic;
     private Animation<TextureRegion> left;
     private Animation<TextureRegion> right;
     private Animation<TextureRegion> vertical;
@@ -38,7 +38,7 @@ public class PlayerRenderSystem extends IteratingSystem {
         this.batch = batch;
         this.viewport = viewport;
 
-        playerStatic = assetManager.get(AssetDescriptors.PLAYER_STATIC);
+        playerStatic = assetManager.get(AssetDescriptors.STATIC).findRegion(RegionNames.PLAYER);
         left = new Animation<TextureRegion>(Constants.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_LEFT_JUMP).getRegions());
         right = new Animation<TextureRegion>(Constants.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_RIGHT_JUMP).getRegions());
         vertical = new Animation<TextureRegion>(Constants.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_VERTICAL_JUMP).getRegions());
