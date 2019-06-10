@@ -20,6 +20,8 @@ public class Constants {
 
     public static final float CELL_HEIGHT = 3.3f;
     public static final float MAX_SHADOW_SIZE = 3f;
+    public static final float BONUS_WIDTH = 15f;
+    public static final float BONUS_HEIGHT = BONUS_WIDTH;
 
     public static final long POT_FLIGHT_TIME = 1000;
     public static final long PLAYER_JUMP_TIME = 400;

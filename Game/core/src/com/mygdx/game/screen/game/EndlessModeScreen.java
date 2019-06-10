@@ -40,6 +40,7 @@ import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.system.control.PlayerPresenceSystem;
 import com.mygdx.game.system.control.WorldWrapSystem;
 import com.mygdx.game.system.render.BackgroundRenderSystem;
+import com.mygdx.game.system.render.BonusRenderSystem;
 import com.mygdx.game.system.render.GranRenderSystem;
 import com.mygdx.game.system.render.HudRenderSystem;
 import com.mygdx.game.system.render.PlayerRenderSystem;
@@ -164,6 +165,7 @@ public class EndlessModeScreen extends BasicGameScreen implements Screen {
         engine.addSystem(new BackgroundRenderSystem(viewport, game.getBatch()));
         engine.addSystem(new GranRenderSystem(getBatch(), viewport, assetManager));
         engine.addSystem(new ShadowRenderSystem(renderer, viewport));
+        engine.addSystem(new BonusRenderSystem(this, viewport));
 
         engine.addSystem(new PotsBeforePlayerRenderSystem(this));
         engine.addSystem(new SmashBeforePlayerRenderSystem(this));

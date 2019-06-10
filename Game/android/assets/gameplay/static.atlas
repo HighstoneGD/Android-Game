@@ -1,19 +1,26 @@
 
 static.png
-size: 2048,1024
+size: 4096,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-gran_static
+bonus
   rotate: false
   xy: 2, 2
   size: 800, 800
   orig: 800, 800
   offset: 0, 0
   index: -1
-player_static
+gran_static
   rotate: false
   xy: 804, 2
+  size: 800, 800
+  orig: 800, 800
+  offset: 0, 0
+  index: -1
+player_static
+  rotate: false
+  xy: 1606, 2
   size: 800, 800
   orig: 800, 800
   offset: 0, 0

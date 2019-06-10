@@ -12,12 +12,12 @@ public class AssetPacker {
         settings.maxWidth = 8192;
         settings.maxHeight = 8192;
         settings.debug = false;
-        settings.useIndexes = true;
+        settings.useIndexes = false;
 
         TexturePacker.process(settings,
                 RAW_ASSET_PATH,
-                ASSETS_PATH + "/ui",
-                "hud"
+                ASSETS_PATH + "/gameplay",
+                "static"
         );
     }
 }

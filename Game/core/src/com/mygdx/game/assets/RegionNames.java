@@ -20,6 +20,7 @@ public class RegionNames {
     // == static ==
     public static final String GRAN = "gran_static";
     public static final String PLAYER = "player_static";
+    public static final String BONUS = "bonus";
 
     private RegionNames() {
     }
