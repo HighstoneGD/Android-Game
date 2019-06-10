@@ -35,8 +35,7 @@ public class LoadingScreen implements Screen {
     private BitmapFont font;
     private Animation<TextureRegion> animation;
     private float elapsedTime = 0;
-    private int frames;
-    private float time;
+    private float animationBreakTime = 0;
     private String sign;
 
 
@@ -50,23 +49,16 @@ public class LoadingScreen implements Screen {
         viewport = new FillViewport(Constants.HUD_WIDTH, Constants.HUD_HEIGHT);
         batch = game.getBatch();
 
-//        assetManager.load(AssetDescriptors.FUMAR_SOUND);
-        assetManager.load(AssetDescriptors.GRAN_LOADING_ANIMATION);
-        assetManager.load(AssetDescriptors.LOADING_BACKGROUND);
-        assetManager.load(AssetDescriptors.FONT);
+        loadPreviewAssets();
 
-        while (!assetManager.update()) {
-
-        }
+        while (!assetManager.update()) {}
 
         loadAssets();
 
         textureAtlas = assetManager.get(AssetDescriptors.GRAN_LOADING_ANIMATION);
         font = assetManager.get(AssetDescriptors.FONT);
         sign = "LOADING...";
-        frames = 18;
-        time = 2.5f;
-        animation = new Animation<TextureRegion>(time/frames, textureAtlas.getRegions());
+        animation = new Animation<TextureRegion>(Constants.FRAME_TIME, textureAtlas.getRegions());
         animating = true;
     }
 
@@ -78,26 +70,20 @@ public class LoadingScreen implements Screen {
         viewport.apply();
         batch.begin();
 
-        draw();
+        if (!animating) {
+            drawStatic();
+        } else {
+            drawAnimation();
+        }
 
-        elapsedTime += delta;
-        batch.draw(
-                animation.getKeyFrame(elapsedTime, false),
-                0, 0,
-                Gdx.graphics.getWidth(), Gdx.graphics.getHeight()
-        );
-
-        font.draw(batch, sign + Math.round(progress * 100f) + "%",
-                Constants.HUD_WIDTH * 0.25f, Constants.HUD_HEIGHT * 0.28f);
+        drawFont();
 
         batch.end();
 
         if (animation.isAnimationFinished(elapsedTime)) {
             animating = false;
-
-            try {
-                Thread.sleep(300);
-            } catch (Exception e) {}
+            startTimer();
+            startAnimation();
         }
 
         if(changeScreen && !animating) {
@@ -106,6 +92,7 @@ public class LoadingScreen implements Screen {
     }
 
     private void update(float delta) {
+        updateTimers(delta);
         progress = assetManager.getProgress();
 
         if(assetManager.update()) {
@@ -117,11 +104,75 @@ public class LoadingScreen implements Screen {
         }
     }
 
-    private void draw() {
+    private void drawStatic() {
         batch.draw(assetManager.get(AssetDescriptors.LOADING_BACKGROUND).findRegion(RegionNames.LOADING_BACKGROUND),
                 0, 0,
                 Gdx.graphics.getWidth(), Gdx.graphics.getHeight()
         );
+    }
+
+    private void drawAnimation() {
+        batch.draw(
+                animation.getKeyFrame(elapsedTime, false),
+                0, 0,
+                Gdx.graphics.getWidth(), Gdx.graphics.getHeight()
+        );
+    }
+
+    private void drawFont() {
+        font.draw(batch, sign + Math.round(progress * 100f) + "%",
+                Constants.HUD_WIDTH * 0.25f, Constants.HUD_HEIGHT * 0.28f);
+    }
+
+    private void updateTimers(float delta) {
+        elapsedTime += delta;
+
+        if (animationBreakTime > 0) {
+            animationBreakTime += delta;
+        }
+    }
+
+    private void loadPreviewAssets() {
+//        assetManager.load(AssetDescriptors.FUMAR_SOUND);
+        assetManager.load(AssetDescriptors.GRAN_LOADING_ANIMATION);
+        assetManager.load(AssetDescriptors.LOADING_BACKGROUND);
+        assetManager.load(AssetDescriptors.FONT);
+    }
+
+    private void loadAssets() {
+        assetManager.load(AssetDescriptors.GAMEPLAY_BG);
+        assetManager.load(AssetDescriptors.SIMPLE_TEXTURE);
+        assetManager.load(AssetDescriptors.SIMPLE_SMASH);
+        assetManager.load(AssetDescriptors.IRON_TEXTURE);
+        assetManager.load(AssetDescriptors.IRON_SMASH);
+        assetManager.load(AssetDescriptors.LARGE_TEXTURE);
+        assetManager.load(AssetDescriptors.LARGE_SMASH);
+        assetManager.load(AssetDescriptors.BONUS_TEXTURE);
+        assetManager.load(AssetDescriptors.BONUS_SMASH);
+        assetManager.load(AssetDescriptors.EXPLOSIVE_TEXTURE);
+        assetManager.load(AssetDescriptors.EXPLOSIVE_SMASH);
+        assetManager.load(AssetDescriptors.GRAN_SIMPLE_THROW);
+        assetManager.load(AssetDescriptors.GRAN_IRON_THROW);
+        assetManager.load(AssetDescriptors.GRAN_LARGE_THROW);
+        assetManager.load(AssetDescriptors.GRAN_EXPLOSIVE_THROW);
+        assetManager.load(AssetDescriptors.PLAYER_LEFT_JUMP);
+        assetManager.load(AssetDescriptors.PLAYER_RIGHT_JUMP);
+        assetManager.load(AssetDescriptors.PLAYER_VERTICAL_JUMP);
+        assetManager.load(AssetDescriptors.STATIC);
+        assetManager.load(AssetDescriptors.HUD);
+    }
+
+    private void startTimer() {
+        if (animationBreakTime <= 0) {
+            animationBreakTime = 5f;
+        }
+    }
+
+    private void startAnimation() {
+        if (animationBreakTime <= 0) {
+            animating = true;
+            elapsedTime = 0;
+        }
     }
 
     @Override
@@ -147,28 +198,5 @@ public class LoadingScreen implements Screen {
     @Override
     public void dispose() {
 
-    }
-
-    private void loadAssets() {
-        assetManager.load(AssetDescriptors.GAMEPLAY_BG);
-        assetManager.load(AssetDescriptors.SIMPLE_TEXTURE);
-        assetManager.load(AssetDescriptors.SIMPLE_SMASH);
-        assetManager.load(AssetDescriptors.IRON_TEXTURE);
-        assetManager.load(AssetDescriptors.IRON_SMASH);
-        assetManager.load(AssetDescriptors.LARGE_TEXTURE);
-        assetManager.load(AssetDescriptors.LARGE_SMASH);
-        assetManager.load(AssetDescriptors.BONUS_TEXTURE);
-        assetManager.load(AssetDescriptors.BONUS_SMASH);
-        assetManager.load(AssetDescriptors.EXPLOSIVE_TEXTURE);
-        assetManager.load(AssetDescriptors.EXPLOSIVE_SMASH);
-        assetManager.load(AssetDescriptors.GRAN_SIMPLE_THROW);
-        assetManager.load(AssetDescriptors.GRAN_IRON_THROW);
-        assetManager.load(AssetDescriptors.GRAN_LARGE_THROW);
-        assetManager.load(AssetDescriptors.GRAN_EXPLOSIVE_THROW);
-        assetManager.load(AssetDescriptors.PLAYER_LEFT_JUMP);
-        assetManager.load(AssetDescriptors.PLAYER_RIGHT_JUMP);
-        assetManager.load(AssetDescriptors.PLAYER_VERTICAL_JUMP);
-        assetManager.load(AssetDescriptors.STATIC);
-        assetManager.load(AssetDescriptors.HUD);
     }
 }

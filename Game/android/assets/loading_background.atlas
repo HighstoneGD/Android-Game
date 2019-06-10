@@ -4,7 +4,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-loading_background
+loading_static
   rotate: false
   xy: 2, 2
   size: 600, 1000

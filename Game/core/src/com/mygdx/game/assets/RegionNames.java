@@ -7,7 +7,7 @@ public class RegionNames {
     public static final String CELL = "cell";
 
     // == loading_bg ==
-    public static final String LOADING_BACKGROUND = "loading_background";
+    public static final String LOADING_BACKGROUND = "loading_static";
 
     // == cat_static ==
     public static final String LEFT = "left";
