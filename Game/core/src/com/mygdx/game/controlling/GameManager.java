@@ -11,6 +11,9 @@ public class GameManager {
     public static final GameManager INSTANCE = new GameManager();
 
     private static final String HIGHSCORE_KEY = "highscore";
+    private static final String LEVELS_ACCOMPLISHED_KEY = "levels";
+
+    private int levelsAccomplished;
 
     private Preferences PREFS;
     private float scoreInSeconds;
@@ -24,6 +27,7 @@ public class GameManager {
     private GameManager() {
         PREFS = Gdx.app.getPreferences(AndroidGame.class.getSimpleName());
         highscoreInSeconds = PREFS.getFloat(HIGHSCORE_KEY, 0);
+        levelsAccomplished = PREFS.getInteger(LEVELS_ACCOMPLISHED_KEY, 8);
     }
 
     public void updateHighscore() {
@@ -50,6 +54,15 @@ public class GameManager {
 
     public void resetScore() {
         scoreInSeconds = 0;
+    }
+
+    public void levelComplete() {
+        levelsAccomplished++;
+        PREFS.putInteger(LEVELS_ACCOMPLISHED_KEY, levelsAccomplished);
+    }
+
+    public boolean endlessModeUnlocked() {
+        return levelsAccomplished == 8;
     }
 
     public int getPotCooldown(PotType type) {

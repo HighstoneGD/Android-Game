@@ -11,6 +11,10 @@ public class Constants {
     public static final float HUD_WIDTH = 480f;
     public static final float HUD_HEIGHT = 800f;
 
+    public static final float MENU_BUTTON_WIDTH = 240f;
+    public static final float MENU_BUTTON_HEIGHT = MENU_BUTTON_WIDTH / 14f * 5f;
+    public static final float TITLE_SIZE = 300f;
+
     public static final float[] HEARTS_POSITIONS = {90, 190, 290, 390};
     public static final float HEART_WIDTH = 70f;
     public static final float HEART_HEIGHT = HEART_WIDTH;

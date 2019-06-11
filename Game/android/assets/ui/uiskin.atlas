@@ -1,0 +1,62 @@
+
+uiskin.png
+size: 4096,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+button-default
+  rotate: false
+  xy: 2706, 1752
+  size: 700, 250
+  orig: 700, 250
+  offset: 0, 0
+  index: -1
+button-locked
+  rotate: false
+  xy: 1706, 739
+  size: 700, 250
+  orig: 700, 250
+  offset: 0, 0
+  index: -1
+button-pressed
+  rotate: false
+  xy: 2706, 1500
+  size: 700, 250
+  orig: 700, 250
+  offset: 0, 0
+  index: -1
+checkbox
+  rotate: false
+  xy: 1204, 87
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+checkbox_tick
+  rotate: false
+  xy: 3408, 1602
+  size: 400, 400
+  orig: 400, 400
+  offset: 0, 0
+  index: -1
+label
+  rotate: false
+  xy: 1204, 991
+  size: 1500, 1011
+  orig: 1500, 1011
+  offset: 0, 0
+  index: -1
+menu_background
+  rotate: false
+  xy: 2, 2
+  size: 1200, 2000
+  orig: 1200, 2000
+  offset: 0, 0
+  index: -1
+title
+  rotate: false
+  xy: 1204, 489
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1

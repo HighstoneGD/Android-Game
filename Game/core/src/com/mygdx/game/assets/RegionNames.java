@@ -22,6 +22,10 @@ public class RegionNames {
     public static final String PLAYER = "player_static";
     public static final String BONUS = "bonus";
 
+    // == uiAtlas ==
+    public static final String MENU_BACKGROUND = "menu_background";
+    public static final String TITLE = "title";
+
     private RegionNames() {
     }
 }

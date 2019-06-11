@@ -16,6 +16,7 @@ import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.screen.game.EndlessModeScreen;
+import com.mygdx.game.screen.menu.MenuScreen;
 import com.mygdx.game.util.render.GdxUtils;
 
 public class LoadingScreen implements Screen {
@@ -70,24 +71,25 @@ public class LoadingScreen implements Screen {
         viewport.apply();
         batch.begin();
 
-        if (!animating) {
-            drawStatic();
-        } else {
-            drawAnimation();
-        }
-
-        drawFont();
+        draw();
 
         batch.end();
 
+        finishAnimation();
+        changeScreen();
+    }
+
+    private void finishAnimation() {
         if (animation.isAnimationFinished(elapsedTime)) {
             animating = false;
             startTimer();
             startAnimation();
         }
+    }
 
+    private void changeScreen() {
         if(changeScreen && !animating) {
-            game.setScreen(new EndlessModeScreen(game));
+            game.setScreen(new MenuScreen(game));
         }
     }
 
@@ -122,6 +124,15 @@ public class LoadingScreen implements Screen {
     private void drawFont() {
         font.draw(batch, sign + Math.round(progress * 100f) + "%",
                 Constants.HUD_WIDTH * 0.25f, Constants.HUD_HEIGHT * 0.28f);
+    }
+
+    private void draw() {
+        if (!animating) {
+            drawStatic();
+        } else {
+            drawAnimation();
+        }
+        drawFont();
     }
 
     private void updateTimers(float delta) {
@@ -160,6 +171,7 @@ public class LoadingScreen implements Screen {
         assetManager.load(AssetDescriptors.PLAYER_VERTICAL_JUMP);
         assetManager.load(AssetDescriptors.STATIC);
         assetManager.load(AssetDescriptors.HUD);
+        assetManager.load(AssetDescriptors.UI_SKIN);
     }
 
     private void startTimer() {

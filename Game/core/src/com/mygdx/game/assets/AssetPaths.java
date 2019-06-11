@@ -26,6 +26,8 @@ public class AssetPaths {
     public static final String PLAYER_VERTICAL_JUMP = "gameplay/player_vertical.atlas";
     public static final String STATIC = "gameplay/static.atlas";
     public static final String HUD = "ui/hud.atlas";
+    public static final String UI_SKIN = "ui/uiskin.json";
+    public static final String UI_ATLAS = "ui/uiskin.atlas";
 
     private AssetPaths() {}
 }
