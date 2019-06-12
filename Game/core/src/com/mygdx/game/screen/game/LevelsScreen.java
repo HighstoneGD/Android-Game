@@ -6,10 +6,9 @@ import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.common.enums.Directions;
-import com.mygdx.game.common.enums.PotType;
+import com.mygdx.game.common.levels.Level;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.screen.menu.PlayScreen;
-import com.mygdx.game.system.ScoreInTimeSystem;
 import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.attack.BonusClearSystem;
 import com.mygdx.game.system.attack.BonusPickSystem;
@@ -28,6 +27,7 @@ import com.mygdx.game.system.control.SimpleDirectionGestureDetector;
 import com.mygdx.game.system.control.WorldWrapSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
+import com.mygdx.game.system.debug.InfoSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 import com.mygdx.game.system.render.BackgroundRenderSystem;
 import com.mygdx.game.system.render.BonusRenderSystem;
@@ -43,23 +43,27 @@ import com.mygdx.game.system.render.SmashBeforePlayerRenderSystem;
 import com.mygdx.game.system.render.SmashesOrderSystem;
 import com.mygdx.game.util.logic.NumberConverter;
 
-import java.util.ArrayList;
-import java.util.List;
+public class LevelsScreen extends BasicGameScreen {
 
-public class EndlessModeScreen extends BasicGameScreen {
+    private static final Logger log = new Logger(LevelsScreen.class.getName(), Logger.DEBUG);
 
-    private static final Logger log = new Logger(EndlessModeScreen.class.getName(), Logger.DEBUG);
+    private Level level;
+    private int potsLeft;
 
-    private List<PotType> potTypes;
+    public LevelsScreen(AndroidGame game) {
+        super(
+                game,
+                new Level(GameManager.INSTANCE.getLevelsAccomplished() + 1).getX(),
+                new Level(GameManager.INSTANCE.getLevelsAccomplished() + 1).getY()
+        );
 
-    public EndlessModeScreen(AndroidGame game) {
-        super(game, 5, 5);
-        initPotTypes();
+        level = new Level(GameManager.INSTANCE.getLevelsAccomplished() + 1);
+        potsLeft = level.getPotsAmount();
     }
 
     @Override
     protected void initPotSpawnSpeed() {
-        potSpawnSpeed = Constants.DEFAULT_POT_SPAWN_SPEED;
+        potSpawnSpeed = level.getPotSpawnSpeed();
     }
 
     @Override
@@ -69,34 +73,51 @@ public class EndlessModeScreen extends BasicGameScreen {
         createAttackAndBonusSystems();
         createRenderSystems();
         createDebugSystems();
-        createScoreSystem();
     }
 
     @Override
     public void potThrown() {
-
+        potsLeft--;
     }
 
     @Override
-    protected void gameOver() {
-        GameManager.INSTANCE.updateHighscore();
+    public void render(float delta) {
+        super.render(delta);
+
+        if (potsLeft == 0) {
+            win();
+        }
+    }
+
+    private void win() {
+        log.debug("win!");
+        GameManager.INSTANCE.levelComplete();
         game.setScreen(new PlayScreen(game));
     }
 
-    private void initPotTypes() {
-        potTypes = new ArrayList<PotType>();
-        potTypes.add(PotType.SIMPLE);
-        potTypes.add(PotType.LARGE);
-        potTypes.add(PotType.BONUS);
-        potTypes.add(PotType.EXPLOSIVE);
-        potTypes.add(PotType.IRON);
+    private void createNotUpdatedSystems() {
+        engine.addSystem(new NumberConverter());
+        engine.addSystem(new PositionsCalculationSystem(x, y));
+        engine.addSystem(new CellsSpawnSystem(factory));
+    }
+
+    private void createMovementSystems() {
+        engine.addSystem(new PlayerMovementSystem(engine));
+        engine.addSystem(new WorldWrapSystem(this, engine));
+        engine.addSystem(new PlayerPresenceSystem());
+
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            createAndroidControl();
+        } else if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
+            createDesktopControl();
+        }
     }
 
     private void createAttackAndBonusSystems() {
         engine.addSystem(new TargetSystem(this));
         engine.addSystem(new DamageOnCellSystem());
         engine.addSystem(new DamageClearSystem());
-        engine.addSystem(new AttackSystem(potSpawnSpeed, this, potTypes));
+        engine.addSystem(new AttackSystem(potSpawnSpeed, this, level.getPotTypes()));
         engine.addSystem(new DropPotsSystem(this));
         engine.addSystem(new DropProgressSystem());
         engine.addSystem(new ShadowSystem());
@@ -129,29 +150,7 @@ public class EndlessModeScreen extends BasicGameScreen {
     private void createDebugSystems() {
         engine.addSystem(new DebugCameraSystem(camera,
                 Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
-//        engine.addSystem(new InfoSystem());
-    }
-
-    private void createMovementSystems() {
-        engine.addSystem(new PlayerMovementSystem(engine));
-        engine.addSystem(new WorldWrapSystem(this, engine));
-        engine.addSystem(new PlayerPresenceSystem());
-
-        if (Gdx.app.getType() == Application.ApplicationType.Android) {
-            createAndroidControl();
-        } else if (Gdx.app.getType() == Application.ApplicationType.Desktop) {
-            createDesktopControl();
-        }
-    }
-
-    private void createNotUpdatedSystems() {
-        engine.addSystem(new NumberConverter());
-        engine.addSystem(new PositionsCalculationSystem(x, y));
-        engine.addSystem(new CellsSpawnSystem(factory));
-    }
-
-    private void createScoreSystem() {
-        engine.addSystem(new ScoreInTimeSystem());
+        engine.addSystem(new InfoSystem(this));
     }
 
     private void createAndroidControl() {
@@ -193,5 +192,9 @@ public class EndlessModeScreen extends BasicGameScreen {
 
     private void createDesktopControl() {
         engine.addSystem(new DesktopControlSystem());
+    }
+
+    public int getPotsLeft() {
+        return potsLeft;
     }
 }

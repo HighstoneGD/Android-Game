@@ -27,16 +27,16 @@ button-pressed
   index: -1
 checkbox
   rotate: false
-  xy: 1204, 87
-  size: 400, 400
-  orig: 400, 400
+  xy: 1204, 387
+  size: 100, 100
+  orig: 100, 100
   offset: 0, 0
   index: -1
 checkbox_tick
   rotate: false
-  xy: 3408, 1602
-  size: 400, 400
-  orig: 400, 400
+  xy: 3408, 1902
+  size: 100, 100
+  orig: 100, 100
   offset: 0, 0
   index: -1
 label

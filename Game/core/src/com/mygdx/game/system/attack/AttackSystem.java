@@ -10,6 +10,7 @@ import com.mygdx.game.screen.game.BasicGameScreen;
 import com.mygdx.game.util.logic.SystemCreator;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -17,13 +18,15 @@ public class AttackSystem extends IntervalSystem {
 
     private static final Logger log = new Logger(AttackSystem.class.getName(), Logger.DEBUG);
     private BasicGameScreen screen;
+    private List<PotType> potTypes;
     private Map<PotType, Integer> potsPriorities;
     private Map<BonusType, Integer> bonusPriorities;
     private PooledEngine engine;
 
-    public AttackSystem(float attackSpeed, BasicGameScreen screen) {
+    public AttackSystem(float attackSpeed, BasicGameScreen screen, List<PotType> potTypes) {
         super(attackSpeed);
         this.screen = screen;
+        this.potTypes = potTypes;
 
         initPotPriorities();
         initBonusPriorities();
@@ -77,11 +80,10 @@ public class AttackSystem extends IntervalSystem {
 
     private void initPotPriorities() {
         potsPriorities = new HashMap<PotType, Integer>();
-        potsPriorities.put(PotType.SIMPLE, 0);
-        potsPriorities.put(PotType.LARGE, 1);
-        potsPriorities.put(PotType.IRON, 2);
-        potsPriorities.put(PotType.EXPLOSIVE, 4);
-        potsPriorities.put(PotType.BONUS, 5);
+
+        for (int i = 0; i < potTypes.size(); i++) {
+            potsPriorities.put(potTypes.get(i), i);
+        }
     }
 
     private void initBonusPriorities() {

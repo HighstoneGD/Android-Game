@@ -19,17 +19,21 @@ import com.mygdx.game.util.logic.ObjectCreator;
 
 public class BonusPotSystem extends EntitySystem implements Runnable {
 
-    private final int x;
-    private final int y;
-    private final BonusType type;
-    private final PooledEngine engine;
-    private final EntityFactory factory;
     private static final Family FAMILY = Family.all(
             PositionOnGridComponent.class,
             BonusComponent.class
     ).get();
 
+    private BasicGameScreen screen;
+
+    private final int x;
+    private final int y;
+    private final BonusType type;
+    private final PooledEngine engine;
+    private final EntityFactory factory;
+
     public BonusPotSystem(int x, int y, BasicGameScreen screen, BonusType type) {
+        this.screen = screen;
         this.x = x;
         this.y = y;
         this.type = type;
@@ -59,6 +63,8 @@ public class BonusPotSystem extends EntitySystem implements Runnable {
         } catch (Exception e) {
             return;
         }
+
+        screen.potThrown();
 
         for (Entity cell : cells) {
             PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(cell);

@@ -26,12 +26,14 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
 
     private static final Logger log = new Logger(SimplePotSystem.class.getName(), Logger.DEBUG);
 
+    private BasicGameScreen screen;
     private final int x;
     private final int y;
     private PooledEngine engine;
     private EntityFactory factory;
 
     public SimplePotSystem(int x, int y, BasicGameScreen screen) {
+        this.screen = screen;
         this.x = x;
         this.y = y;
         this.engine = screen.getEngine();
@@ -59,6 +61,8 @@ public class SimplePotSystem extends EntitySystem implements Runnable {
         } catch (Exception e) {
             return;
         }
+
+        screen.potThrown();
 
         for (int i = 0; i < cells.size(); i++) {
             Entity cell = cells.get(i);

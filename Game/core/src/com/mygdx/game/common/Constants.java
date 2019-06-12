@@ -14,6 +14,7 @@ public class Constants {
     public static final float MENU_BUTTON_WIDTH = 240f;
     public static final float MENU_BUTTON_HEIGHT = MENU_BUTTON_WIDTH / 14f * 5f;
     public static final float TITLE_SIZE = 300f;
+    public static final float CHECKBOX_SIZE = 100f;
 
     public static final float[] HEARTS_POSITIONS = {90, 190, 290, 390};
     public static final float HEART_WIDTH = 70f;
@@ -29,6 +30,9 @@ public class Constants {
 
     public static final long POT_FLIGHT_TIME = 1000;
     public static final long PLAYER_JUMP_TIME = 400;
+
+    public static final int POTS_AMOUNT_FIRST = 50;
+    public static final int POTS_AMOUNT_SECOND = 200;
 
     public static final float SIMPLE_POT_WIDTH = 10f;
     public static final float SIMPLE_POT_HEIGHT = SIMPLE_POT_WIDTH / 8f * 9.21f;
@@ -77,13 +81,13 @@ public class Constants {
     public static final int SHARD_DAMAGE = 1;
     public static final int BONUS_DAMAGE = 3;
 
-    public static final float POT_EXISTANCE_TIME = 0.3f;
+    public static final float POT_EXISTANCE_TIME = 0.2f;
     public static final float BONUS_EXISTANCE_TIME = 10f;
 
     public static final int LARGE_COOLDOWN = 8;
     public static final int EXPLOSIVE_COOLDOWN = 6;
     public static final int IRON_COOLDOWN = 4;
-    public static final int BONUS_COOLDOWN = 3;
+    public static final int BONUS_COOLDOWN = 25;
 
     public static final float GRID_TOP = 54f;
     public static final float GRID_TOP_WIDTH = 40f;

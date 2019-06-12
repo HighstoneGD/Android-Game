@@ -52,8 +52,14 @@
 
   "com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle": {
     "default": {
+      "down": "button-pressed",
+      "up": "button-default",
       "checkboxOn": "checkbox_tick",
-      "checkboxOff": "checkbox"
+      "checkboxOff": "checkbox",
+      "font": "default-font",
+      "fontColor": "white",
+      "downFontColor": "black",
+      "overFontColor": "gray"
     }
   }
 }

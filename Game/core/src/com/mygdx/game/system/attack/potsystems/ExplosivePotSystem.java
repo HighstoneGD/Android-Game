@@ -23,6 +23,8 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
             AttackStateComponent.class
     ).get();
 
+    private BasicGameScreen screen;
+
     private final int x;
     private final int y;
     private boolean left;
@@ -31,6 +33,7 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
     private EntityFactory factory;
 
     public ExplosivePotSystem(int x, int y, BasicGameScreen screen) {
+        this.screen = screen;
         this.x = x;
         this.y = y;
         this.engine = screen.getEngine();
@@ -67,6 +70,8 @@ public class ExplosivePotSystem extends EntitySystem implements Runnable {
         } catch (Exception e) {
             return;
         }
+
+        screen.potThrown();
 
         for (int i = 0; i < cells.size(); i++) {
             Entity cell = cells.get(i);

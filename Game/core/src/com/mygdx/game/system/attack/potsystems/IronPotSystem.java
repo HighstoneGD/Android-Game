@@ -23,12 +23,15 @@ public class IronPotSystem extends EntitySystem implements Runnable {
             AttackStateComponent.class
     ).get();
 
+    private BasicGameScreen screen;
+
     private final int x;
     private final int y;
     private PooledEngine engine;
     private EntityFactory factory;
 
     public IronPotSystem(int x, int y, BasicGameScreen screen) {
+        this.screen = screen;
         this.x = x;
         this.y = y;
         this.engine = screen.getEngine();
@@ -56,6 +59,8 @@ public class IronPotSystem extends EntitySystem implements Runnable {
         } catch (Exception e) {
             return;
         }
+
+        screen.potThrown();
 
         for (Entity cell : cells) {
             PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(cell);

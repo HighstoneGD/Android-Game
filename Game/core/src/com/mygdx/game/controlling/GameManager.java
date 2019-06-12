@@ -27,7 +27,7 @@ public class GameManager {
     private GameManager() {
         PREFS = Gdx.app.getPreferences(AndroidGame.class.getSimpleName());
         highscoreInSeconds = PREFS.getFloat(HIGHSCORE_KEY, 0);
-        levelsAccomplished = PREFS.getInteger(LEVELS_ACCOMPLISHED_KEY, 8);
+        levelsAccomplished = PREFS.getInteger(LEVELS_ACCOMPLISHED_KEY, 0);
     }
 
     public void updateHighscore() {
@@ -58,7 +58,15 @@ public class GameManager {
 
     public void levelComplete() {
         levelsAccomplished++;
+        if (levelsAccomplished > 8) {
+            levelsAccomplished = 8;
+        }
+
         PREFS.putInteger(LEVELS_ACCOMPLISHED_KEY, levelsAccomplished);
+    }
+
+    public int getLevelsAccomplished() {
+        return levelsAccomplished;
     }
 
     public boolean endlessModeUnlocked() {

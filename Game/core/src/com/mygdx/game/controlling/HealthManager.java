@@ -38,6 +38,10 @@ public class HealthManager {
         }
 
         lives -= dam;
+
+        if (lives < 0) {
+            lives = 0;
+        }
     }
 
     public static void reset() {

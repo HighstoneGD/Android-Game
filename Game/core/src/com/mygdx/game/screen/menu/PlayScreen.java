@@ -3,6 +3,7 @@ package com.mygdx.game.screen.menu;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -14,6 +15,7 @@ import com.mygdx.game.assets.RegionNames;
 import com.mygdx.game.common.Constants;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.screen.game.EndlessModeScreen;
+import com.mygdx.game.screen.game.LevelsScreen;
 
 public class PlayScreen extends MenuScreenBase {
 
@@ -33,6 +35,8 @@ public class PlayScreen extends MenuScreenBase {
         TextureRegion background = uiAtlas.findRegion(RegionNames.MENU_BACKGROUND);
         table.setBackground(new TextureRegionDrawable(background));
 
+        Label label = new Label("PLAY", uiSkin);
+
         TextButton levelsButton = createLevelsButton();
         TextButton endlessModeButton = createEndlessModeButton();
         TextButton backButton = createBackButton();
@@ -46,6 +50,7 @@ public class PlayScreen extends MenuScreenBase {
 
         buttonTable.center();
 
+        table.add(label).row();
         table.add(buttonTable);
         table.center();
         table.setFillParent(true);
@@ -55,7 +60,7 @@ public class PlayScreen extends MenuScreenBase {
     }
 
     private TextButton createLevelsButton() {
-        TextButton levelsButton = new TextButton("LEVELS", uiSkin);
+        TextButton levelsButton = new TextButton("LEVEL - " + (GameManager.INSTANCE.getLevelsAccomplished() + 1), uiSkin);
         levelsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -95,7 +100,7 @@ public class PlayScreen extends MenuScreenBase {
     }
 
     private void levels() {
-
+        game.setScreen(new LevelsScreen(game));
     }
 
     private void endlessMode() {

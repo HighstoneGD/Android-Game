@@ -26,17 +26,18 @@ public class PlayerMovementSystem extends EntitySystem {
     private PooledEngine engine;
     private ImmutableArray<Entity> player;
 
-    private static final Logger log = new Logger(PlayerMovementSystem.class.getName(), Logger.DEBUG);
-
     private PositionComponent position;
     private PositionOnGridComponent positionOnGrid;
     private MovementStateComponent movementState;
     private SpeedComponent speed;
     private PlayerComponent playerComponent;
 
+    private float movementTime;
+
     public PlayerMovementSystem(PooledEngine engine) {
         this.engine = engine;
         player = engine.getEntitiesFor(PLAYER);
+        movementTime = 0;
     }
 
     @Override
@@ -49,16 +50,15 @@ public class PlayerMovementSystem extends EntitySystem {
             playerComponent = Mappers.PLAYER.get(player.first());
         }
 
-        if (!movementState.isMoving()) {
-
-            position.x = getCellX(0, 0);
-            position.y = getCellY(0, 0);
-
-        } else if (movementState.isMoving()) {
-
+        if (movementState.isMoving()) {
+            movementTime -= deltaTime;
             position.x += speed.speedX * deltaTime;
             position.y += speed.speedY * deltaTime;
 
+            checkTimer();
+        } else {
+            position.x = getCellX(0, 0);
+            position.y = getCellY(0, 0);
         }
     }
 
@@ -77,10 +77,6 @@ public class PlayerMovementSystem extends EntitySystem {
         }
     }
 
-    public Directions getDirection() {
-        return playerComponent.goesOnDirection;
-    }
-
     private void moveLeft() {
         float cellX = getCellX(-1, 0);
         float cellY = getCellY(-1, 0);
@@ -89,7 +85,7 @@ public class PlayerMovementSystem extends EntitySystem {
             calculateSpeed(cellX, cellY);
             playerComponent.goesOnDirection = Directions.LEFT;
 
-            SystemCreator.createTimer(engine);
+            startTimer();
             try {
                 positionOnGrid.xNumber--;
             } catch (Exception e) {
@@ -105,7 +101,7 @@ public class PlayerMovementSystem extends EntitySystem {
             calculateSpeed(cellX, cellY);
             playerComponent.goesOnDirection = Directions.RIGHT;
 
-            SystemCreator.createTimer(engine);
+            startTimer();
             try {
                 positionOnGrid.xNumber++;
             } catch (Exception e) {
@@ -121,7 +117,7 @@ public class PlayerMovementSystem extends EntitySystem {
             calculateSpeed(cellX, cellY);
             playerComponent.goesOnDirection = Directions.UP;
 
-            SystemCreator.createTimer(engine);
+            startTimer();
             try {
                 positionOnGrid.yNumber--;
             } catch (Exception e) {
@@ -137,7 +133,7 @@ public class PlayerMovementSystem extends EntitySystem {
             calculateSpeed(cellX, cellY);
             playerComponent.goesOnDirection = Directions.DOWN;
 
-            SystemCreator.createTimer(engine);
+            startTimer();
             try {
                 positionOnGrid.yNumber++;
             } catch (Exception e) {
@@ -148,6 +144,18 @@ public class PlayerMovementSystem extends EntitySystem {
     private void calculateSpeed(float cellX, float cellY) {
         speed.speedX = calculateDistanceX(cellX) / (Constants.PLAYER_JUMP_TIME / 1000f);
         speed.speedY = calculateDistanceY(cellY) / (Constants.PLAYER_JUMP_TIME / 1000f);
+    }
+
+    private void startTimer() {
+        movementTime = Constants.PLAYER_JUMP_TIME / 1000f;
+        movementState.setMoving(true);
+    }
+
+    private void checkTimer() {
+        if (movementTime <= 0) {
+            movementState.setMoving(false);
+            movementTime = 0;
+        }
     }
 
     private float calculateDistanceX(float cellX) {

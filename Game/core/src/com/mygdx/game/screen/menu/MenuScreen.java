@@ -96,7 +96,7 @@ public class MenuScreen extends MenuScreenBase {
     }
 
     private void options() {
-
+        game.setScreen(new OptionsScreen(game));
     }
 
     private void quit() {
