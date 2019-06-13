@@ -91,15 +91,15 @@ public class EntityFactory {
     public void addPlayer() {
         PositionOnGridComponent positionOnGrid = engine.createComponent(PositionOnGridComponent.class);
         positionOnGrid.xNumber = engine.getSystem(PositionsCalculationSystem.class).positions.length / 2;
-        positionOnGrid.yNumber = engine.getSystem(PositionsCalculationSystem.class).positions[0].length - 1;
+        positionOnGrid.yNumber = engine.getSystem(PositionsCalculationSystem.class).positions[0].length / 2;
 
         PositionComponent position = engine.createComponent(PositionComponent.class);
         position.x = 0;
         position.y = 0;
 
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
-        dimension.width = Constants.PLAYER_WIDTH;
-        dimension.height = Constants.PLAYER_HEIGHT;
+        dimension.width = GameData.PLAYER_SIZE;
+        dimension.height = GameData.PLAYER_SIZE;
 
         MovementStateComponent movementState = engine.createComponent(MovementStateComponent.class);
         movementState.setMoving(false);
@@ -128,12 +128,12 @@ public class EntityFactory {
         texture.region = gameplayBgAtlas.findRegion(RegionNames.BACKGROUND);
 
         PositionComponent position = engine.createComponent(PositionComponent.class);
-        position.x = Constants.WORLD_CENTER_X;
-        position.y = Constants.WORLD_CENTER_Y;
+        position.x = GameData.WORLD_CENTER_X;
+        position.y = GameData.WORLD_CENTER_Y;
 
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
-        dimension.width = Constants.WORLD_WIDTH;
-        dimension.height = Constants.WORLD_HEIGHT;
+        dimension.width = GameData.WORLD_WIDTH;
+        dimension.height = GameData.WORLD_HEIGHT;
 
         BackgroundComponent backgroundComponent = engine.createComponent(BackgroundComponent.class);
 
@@ -159,30 +159,30 @@ public class EntityFactory {
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
 
         if (type == PotType.SIMPLE) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.SIMPLE_SMASH).getRegions());
-            dimension.width = Constants.SIMPLE_SMASH_WIDTH;
-            dimension.height = Constants.SIMPLE_SMASH_HEIGHT;
+            dimension.width = GameData.SIMPLE_SMASH_WIDTH;
+            dimension.height = GameData.SIMPLE_SMASH_HEIGHT;
         } else if (type == PotType.IRON) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.IRON_SMASH).getRegions());
-            dimension.width = Constants.IRON_SMASH_WIDTH;
-            dimension.height = Constants.IRON_SMASH_HEIGHT;
+            dimension.width = GameData.IRON_SMASH_WIDTH;
+            dimension.height = GameData.IRON_SMASH_HEIGHT;
         } else if (type == PotType.LARGE) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.LARGE_SMASH).getRegions());
-            dimension.width = Constants.LARGE_SMASH_WIDTH;
-            dimension.height = Constants.LARGE_SMASH_HEIGHT;
+            dimension.width = GameData.LARGE_SMASH_SIZE;
+            dimension.height = GameData.LARGE_SMASH_SIZE;
         } else if (type == PotType.BONUS) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.BONUS_SMASH).getRegions());
-            dimension.width = Constants.BONUS_SMASH_WIDTH;
-            dimension.height = Constants.BONUS_SMASH_HEIGHT;
+            dimension.width = GameData.BONUS_SMASH_SIZE;
+            dimension.height = GameData.BONUS_SMASH_SIZE;
         } else if (type == PotType.EXPLOSIVE) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.EXPLOSIVE_SMASH).getRegions());
-            dimension.width = Constants.EXPLOSIVE_SMASH_WIDTH;
-            dimension.height = Constants.EXPLOSIVE_SMASH_HEIGHT;
+            dimension.width = GameData.EXPLOSIVE_SMASH_SIZE;
+            dimension.height = GameData.EXPLOSIVE_SMASH_SIZE;
         }
 
         OrderComponent order = engine.createComponent(OrderComponent.class);
@@ -201,10 +201,10 @@ public class EntityFactory {
     public void addPot(PotType type, float x, float y, int xNumber, int yNumber) {
         PositionComponent position = engine.createComponent(PositionComponent.class);
         position.x = x;
-        position.y = Constants.WORLD_HEIGHT + 10f;
+        position.y = GameData.WORLD_HEIGHT + 10f;
 
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
-        float coef = (float) Math.pow(Constants.POT_SIZE_COEFFICIENT, screen.y - yNumber - 1);
+        float coef = (float) Math.pow(GameData.POT_SIZE_COEFFICIENT, screen.y - yNumber - 1);
 
         PositionOnGridComponent positionOnGrid = engine.createComponent(PositionOnGridComponent.class);
         positionOnGrid.xNumber = xNumber;
@@ -217,41 +217,41 @@ public class EntityFactory {
         potComponent.aimY = y;
 
         SpeedComponent speed = engine.createComponent(SpeedComponent.class);
-        float distance = Constants.WORLD_HEIGHT + 10f - y;
-        speed.speedY = distance / (Constants.POT_FLIGHT_TIME / 1000f);
+        float distance = GameData.WORLD_HEIGHT + 10f - y;
+        speed.speedY = distance / ((GameData.POT_FLIGHT_TIME) / 1000f);
 
         if (type == PotType.IRON) {
-            speed.speedY *= 2;
+            speed.speedY *= 3;
         }
 
         AnimationComponent animationComponent = engine.createComponent(AnimationComponent.class);
         animationComponent.elapsedTime = random.nextFloat();
 
         if (type == PotType.SIMPLE) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
                         assetManager.get(AssetDescriptors.SIMPLE_TEXTURE).getRegions());
-            dimension.width = Constants.SIMPLE_POT_WIDTH * coef;
-            dimension.height = Constants.SIMPLE_POT_HEIGHT * coef;
+            dimension.width = GameData.SIMPLE_POT_WIDTH * coef;
+            dimension.height = GameData.SIMPLE_POT_HEIGHT * coef;
         } else if (type == PotType.IRON) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
                         assetManager.get(AssetDescriptors.IRON_TEXTURE).getRegions());
-            dimension.width = Constants.IRON_POT_WIDTH * coef;
-            dimension.height = Constants.IRON_POT_HEIGHT * coef;
+            dimension.width = GameData.IRON_POT_WIDTH * coef;
+            dimension.height = GameData.IRON_POT_HEIGHT * coef;
         } else if (type == PotType.LARGE) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.LARGE_TEXTURE).getRegions());
-            dimension.width = Constants.LARGE_POT_WIDTH * coef;
-            dimension.height = Constants.LARGE_POT_HEIGHT * coef;
+            dimension.width = GameData.LARGE_POT_SIZE * coef;
+            dimension.height = GameData.LARGE_POT_SIZE * coef;
         } else if (type == PotType.BONUS) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.BONUS_TEXTURE).getRegions());
-            dimension.width = Constants.BONUS_POT_WIDTH * coef;
-            dimension.height = Constants.BONUS_POT_HEIGHT * coef;
+            dimension.width = GameData.BONUS_POT_SIZE * coef;
+            dimension.height = GameData.BONUS_POT_SIZE * coef;
         } else if (type == PotType.EXPLOSIVE) {
-            animationComponent.animation = new Animation<TextureRegion>(Constants.FRAME_TIME,
+            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.EXPLOSIVE_TEXTURE).getRegions());
-            dimension.width = Constants.EXPLOSIVE_POT_WIDTH * coef;
-            dimension.height = Constants.EXPLOSIVE_POT_HEIGHT * coef;
+            dimension.width = GameData.EXPLOSIVE_POT_SIZE * coef;
+            dimension.height = GameData.EXPLOSIVE_POT_SIZE * coef;
         }
 
         ShadowComponent shadow = engine.createComponent(ShadowComponent.class);
@@ -275,12 +275,12 @@ public class EntityFactory {
 
     public void addGran() {
         PositionComponent position = engine.createComponent(PositionComponent.class);
-        position.x = Constants.GRAN_X;
-        position.y = Constants.GRAN_Y;
+        position.x = GameData.GRAN_X;
+        position.y = GameData.GRAN_Y;
 
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
-        dimension.width = Constants.GRAN_WIDTH;
-        dimension.height = Constants.GRAN_HEIGHT;
+        dimension.width = GameData.GRAN_SIZE;
+        dimension.height = GameData.GRAN_SIZE;
 
         GranComponent gran = engine.createComponent(GranComponent.class);
         gran.isAnimating = false;

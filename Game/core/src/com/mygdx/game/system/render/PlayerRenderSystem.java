@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.component.DimensionComponent;
@@ -39,9 +39,9 @@ public class PlayerRenderSystem extends IteratingSystem {
         this.viewport = viewport;
 
         playerStatic = assetManager.get(AssetDescriptors.STATIC).findRegion(RegionNames.PLAYER);
-        left = new Animation<TextureRegion>(Constants.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_LEFT_JUMP).getRegions());
-        right = new Animation<TextureRegion>(Constants.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_RIGHT_JUMP).getRegions());
-        vertical = new Animation<TextureRegion>(Constants.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_VERTICAL_JUMP).getRegions());
+        left = new Animation<TextureRegion>(GameData.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_LEFT_JUMP).getRegions());
+        right = new Animation<TextureRegion>(GameData.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_RIGHT_JUMP).getRegions());
+        vertical = new Animation<TextureRegion>(GameData.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_VERTICAL_JUMP).getRegions());
     }
 
     @Override

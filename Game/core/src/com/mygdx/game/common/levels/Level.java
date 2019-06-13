@@ -1,6 +1,6 @@
 package com.mygdx.game.common.levels;
 
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.enums.PotType;
 
 import java.util.ArrayList;
@@ -13,21 +13,28 @@ public class Level {
     private int x;
     private int y;
     private int potsAmount;
+    private int lives;
 
     public Level(int number) {
         initPotSpawnSpeed(number);
         initPotTypes(number);
         initGridSize(number);
 
-        potsAmount = Constants.POTS_AMOUNT_FIRST;
+        potsAmount = GameData.POTS_AMOUNT_FIRST;
 
-        if (number > 1) {
-            potsAmount = Constants.POTS_AMOUNT_SECOND;
+        if (number > 3) {
+            potsAmount = GameData.POTS_AMOUNT_SECOND;
+        }
+
+        lives = GameData.START_LIVES_AMOUNT;
+
+        if (number < 5) {
+            lives--;
         }
     }
 
     private void initPotSpawnSpeed(int number) {
-        potSpawnSpeed = Constants.DEFAULT_POT_SPAWN_SPEED;
+        potSpawnSpeed = GameData.DEFAULT_POT_SPAWN_SPEED;
 
         if (number == 1 || number == 7) {
             potSpawnSpeed += 0.2f;
@@ -83,5 +90,9 @@ public class Level {
 
     public int getPotsAmount() {
         return potsAmount;
+    }
+
+    public int getLives() {
+        return lives;
     }
 }

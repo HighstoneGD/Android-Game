@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
@@ -48,7 +48,7 @@ public class TargetSystem extends EntitySystem {
 
     private int selectCoordinate(int limit, int playerPosition) {
         int coordinate;
-        int k = random.nextInt(Constants.CHANCE_FOR_RANDOM_TARGET);
+        int k = random.nextInt(GameData.CHANCE_FOR_RANDOM_TARGET);
 
         if (k == 0) {
             coordinate = random.nextInt(limit);

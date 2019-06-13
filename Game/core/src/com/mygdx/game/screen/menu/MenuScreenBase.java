@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.util.render.GdxUtils;
 
 public abstract class MenuScreenBase extends ScreenAdapter {
@@ -26,7 +26,7 @@ public abstract class MenuScreenBase extends ScreenAdapter {
 
     @Override
     public void show() {
-        viewport = new FillViewport(Constants.HUD_WIDTH, Constants.HUD_HEIGHT);
+        viewport = new FillViewport(GameData.HUD_WIDTH, GameData.HUD_HEIGHT);
         stage = new Stage(viewport, game.getBatch());
 
         Gdx.input.setInputProcessor(stage);

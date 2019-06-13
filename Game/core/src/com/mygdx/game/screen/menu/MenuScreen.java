@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 
 public class MenuScreen extends MenuScreenBase {
 
@@ -43,13 +43,13 @@ public class MenuScreen extends MenuScreenBase {
         Table buttonTable = new Table(uiSkin);
         buttonTable.defaults().pad(20f);
 
-        buttonTable.add(playButton).width(Constants.MENU_BUTTON_WIDTH).height(Constants.MENU_BUTTON_HEIGHT).row();
-        buttonTable.add(optionsButton).width(Constants.MENU_BUTTON_WIDTH).height(Constants.MENU_BUTTON_HEIGHT).row();
-        buttonTable.add(quitButton).width(Constants.MENU_BUTTON_WIDTH).height(Constants.MENU_BUTTON_HEIGHT);
+        buttonTable.add(playButton).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT).row();
+        buttonTable.add(optionsButton).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT).row();
+        buttonTable.add(quitButton).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT);
 
         buttonTable.center();
 
-        table.add(titleTable).width(Constants.TITLE_SIZE).height(Constants.TITLE_SIZE).row();
+        table.add(titleTable).width(GameData.TITLE_SIZE).height(GameData.TITLE_SIZE).row();
         table.add(buttonTable);
         table.center();
         table.setFillParent(true);

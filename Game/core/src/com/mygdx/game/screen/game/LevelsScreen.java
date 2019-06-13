@@ -4,10 +4,11 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.AndroidGame;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.common.levels.Level;
 import com.mygdx.game.controlling.GameManager;
+import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.screen.menu.PlayScreen;
 import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.attack.BonusClearSystem;
@@ -19,12 +20,13 @@ import com.mygdx.game.system.attack.ShadowSystem;
 import com.mygdx.game.system.attack.TargetSystem;
 import com.mygdx.game.system.attack.bonus.ArmorBonusSystem;
 import com.mygdx.game.system.attack.bonus.LifeBonusSystem;
+import com.mygdx.game.system.attack.bonus.SpeedUpBonusSystem;
 import com.mygdx.game.system.attack.potsystems.DropPotsSystem;
-import com.mygdx.game.system.control.DesktopControlSystem;
-import com.mygdx.game.system.control.PlayerMovementSystem;
-import com.mygdx.game.system.control.PlayerPresenceSystem;
-import com.mygdx.game.system.control.SimpleDirectionGestureDetector;
-import com.mygdx.game.system.control.WorldWrapSystem;
+import com.mygdx.game.system.movement.DesktopControlSystem;
+import com.mygdx.game.system.movement.PlayerMovementSystem;
+import com.mygdx.game.system.movement.PlayerPresenceSystem;
+import com.mygdx.game.system.movement.SimpleDirectionGestureDetector;
+import com.mygdx.game.system.movement.WorldWrapSystem;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.debug.DebugCameraSystem;
 import com.mygdx.game.system.debug.InfoSystem;
@@ -49,6 +51,7 @@ public class LevelsScreen extends BasicGameScreen {
 
     private Level level;
     private int potsLeft;
+    private int lives;
 
     public LevelsScreen(AndroidGame game) {
         super(
@@ -59,6 +62,12 @@ public class LevelsScreen extends BasicGameScreen {
 
         level = new Level(GameManager.INSTANCE.getLevelsAccomplished() + 1);
         potsLeft = level.getPotsAmount();
+        lives = level.getLives();
+    }
+
+    @Override
+    protected void resetHealthManager() {
+        HealthManager.reset(lives);
     }
 
     @Override
@@ -125,6 +134,7 @@ public class LevelsScreen extends BasicGameScreen {
         engine.addSystem(new BonusPickSystem());
         engine.addSystem(new ArmorBonusSystem());
         engine.addSystem(new LifeBonusSystem());
+        engine.addSystem(new SpeedUpBonusSystem());
     }
 
     private void createRenderSystems() {
@@ -149,7 +159,7 @@ public class LevelsScreen extends BasicGameScreen {
 
     private void createDebugSystems() {
         engine.addSystem(new DebugCameraSystem(camera,
-                Constants.WORLD_CENTER_X, Constants.WORLD_CENTER_Y));
+                GameData.WORLD_CENTER_X, GameData.WORLD_CENTER_Y));
         engine.addSystem(new InfoSystem(this));
     }
 

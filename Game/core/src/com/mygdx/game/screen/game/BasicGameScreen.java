@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.controlling.AvoidedPotsManager;
 import com.mygdx.game.controlling.GameManager;
@@ -60,24 +60,28 @@ public abstract class BasicGameScreen implements Screen {
 
     private void resetManagers() {
         AvoidedPotsManager.reset();
-        HealthManager.reset();
+        resetHealthManager();
         GameManager.INSTANCE.resetScore();
         GameManager.INSTANCE.resetCooldown();
     }
 
     private void initAttributes() {
         camera = new OrthographicCamera();
-        viewport = new FillViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
-        hudViewport = new FitViewport(Constants.HUD_WIDTH, Constants.HUD_HEIGHT);
+        viewport = new FillViewport(GameData.WORLD_WIDTH, GameData.WORLD_HEIGHT, camera);
+        hudViewport = new FitViewport(GameData.HUD_WIDTH, GameData.HUD_HEIGHT);
         renderer = new ShapeRenderer();
 
         engine = new PooledEngine();
         factory = new EntityFactory(this);
     }
 
+    protected abstract void resetHealthManager();
+
     protected abstract void initPotSpawnSpeed();
 
     protected abstract void initSystems();
+
+    public abstract void potThrown();
 
     private void addEntities() {
         factory.addBackground();
@@ -141,6 +145,4 @@ public abstract class BasicGameScreen implements Screen {
     public PooledEngine getEngine() {
         return engine;
     }
-
-    public abstract void potThrown();
 }

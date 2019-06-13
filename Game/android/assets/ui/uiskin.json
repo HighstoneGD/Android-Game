@@ -3,6 +3,9 @@
   "com.badlogic.gdx.graphics.g2d.BitmapFont": {
     "default-font": {
       "file": "fonts/quarmic-sans-abridged-32.fnt"
+    },
+    "large-font": {
+      "file": "fonts/quarmic-sans-abridged-64.fnt"
     }
   },
 
@@ -45,8 +48,7 @@
 
   "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
     "default": {
-      "font": "default-font",
-      "fontColor": "white"
+      "font": "large-font"
     }
   },
 

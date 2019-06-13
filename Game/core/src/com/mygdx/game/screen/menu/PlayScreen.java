@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.screen.game.EndlessModeScreen;
 import com.mygdx.game.screen.game.LevelsScreen;
@@ -44,9 +44,9 @@ public class PlayScreen extends MenuScreenBase {
         Table buttonTable = new Table();
         buttonTable.defaults().pad(20f);
 
-        buttonTable.add(levelsButton).width(Constants.MENU_BUTTON_WIDTH).height(Constants.MENU_BUTTON_HEIGHT).row();
-        buttonTable.add(endlessModeButton).width(Constants.MENU_BUTTON_WIDTH).height(Constants.MENU_BUTTON_HEIGHT).row();
-        buttonTable.add(backButton).width(Constants.MENU_BUTTON_WIDTH).height(Constants.MENU_BUTTON_HEIGHT);
+        buttonTable.add(levelsButton).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT).row();
+        buttonTable.add(endlessModeButton).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT).row();
+        buttonTable.add(backButton).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT);
 
         buttonTable.center();
 

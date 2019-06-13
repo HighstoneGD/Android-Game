@@ -3,7 +3,7 @@ package com.mygdx.game.controlling;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.mygdx.game.AndroidGame;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.enums.PotType;
 
 public class GameManager {
@@ -63,6 +63,7 @@ public class GameManager {
         }
 
         PREFS.putInteger(LEVELS_ACCOMPLISHED_KEY, levelsAccomplished);
+        PREFS.flush();
     }
 
     public int getLevelsAccomplished() {
@@ -89,21 +90,21 @@ public class GameManager {
 
     public void resetCooldown(PotType type) {
         if (type == PotType.LARGE) {
-            largeCooldown = Constants.LARGE_COOLDOWN;
+            largeCooldown = GameData.LARGE_COOLDOWN;
         } else if (type == PotType.IRON) {
-            ironCooldown = Constants.IRON_COOLDOWN;
+            ironCooldown = GameData.IRON_COOLDOWN;
         } else if (type == PotType.EXPLOSIVE) {
-            explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
+            explosiveCooldown = GameData.EXPLOSIVE_COOLDOWN;
         } else if (type == PotType.BONUS) {
-            bonusCooldown = Constants.BONUS_COOLDOWN;
+            bonusCooldown = GameData.BONUS_COOLDOWN;
         }
     }
 
     public void resetCooldown() {
-        largeCooldown = Constants.LARGE_COOLDOWN;
-        ironCooldown = Constants.IRON_COOLDOWN;
-        explosiveCooldown = Constants.EXPLOSIVE_COOLDOWN;
-        bonusCooldown = Constants.BONUS_COOLDOWN;
+        largeCooldown = GameData.LARGE_COOLDOWN;
+        ironCooldown = GameData.IRON_COOLDOWN;
+        explosiveCooldown = GameData.EXPLOSIVE_COOLDOWN;
+        bonusCooldown = GameData.BONUS_COOLDOWN;
     }
 
     public void decrementCooldowns() {

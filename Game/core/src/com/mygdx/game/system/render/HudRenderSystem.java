@@ -9,10 +9,11 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.screen.game.BasicGameScreen;
+import com.mygdx.game.screen.game.LevelsScreen;
 
 public class HudRenderSystem extends EntitySystem {
 
@@ -25,12 +26,20 @@ public class HudRenderSystem extends EntitySystem {
 
     private TextureAtlas hud;
 
+    private boolean renderScore;
+
     public HudRenderSystem(BasicGameScreen screen, Viewport viewport) {
         this.assetManager = screen.getAssetManager();
         this.batch = screen.getBatch();
         this.viewport = viewport;
         this.font = assetManager.get(AssetDescriptors.FONT);
         hud = assetManager.get(AssetDescriptors.HUD);
+
+        if (screen.getClass() == LevelsScreen.class) {
+            renderScore = false;
+        } else {
+            renderScore = true;
+        }
     }
 
     @Override
@@ -45,33 +54,42 @@ public class HudRenderSystem extends EntitySystem {
     }
 
     private void draw() {
-        String scoreString = "Scr: " + Math.round(GameManager.INSTANCE.getScore());
-        String highscoreString = "HS: " + Math.round(GameManager.INSTANCE.getHighscore());
-        layout.setText(font, scoreString);
-        font.draw(batch, scoreString,
-                20,
-                Constants.HUD_HEIGHT - 5f);
+        drawScore();
+        drawHP();
+    }
 
-        font.draw(batch, highscoreString,
-                20,
-                Constants.HUD_HEIGHT - 35f);
+    private void drawScore() {
+        if (renderScore) {
+            String scoreString = "Scr: " + Math.round(GameManager.INSTANCE.getScore());
+            String highscoreString = "HS: " + Math.round(GameManager.INSTANCE.getHighscore());
+            layout.setText(font, scoreString);
+            font.draw(batch, scoreString,
+                    20,
+                    GameData.HUD_HEIGHT - 5f);
 
+            font.draw(batch, highscoreString,
+                    20,
+                    GameData.HUD_HEIGHT - 35f);
+        }
+    }
+
+    private void drawHP() {
         int lives = HealthManager.getLives();
         boolean armor = HealthManager.hasArmor();
 
         for (int i = 0; i < lives; i++) {
             batch.draw(
                     hud.findRegion(RegionNames.HEART),
-                    Constants.HEARTS_POSITIONS[i] - Constants.HEART_WIDTH / 2f, 50f - Constants.HEART_HEIGHT / 2f,
-                    Constants.HEART_WIDTH, Constants.HEART_HEIGHT
+                    GameData.HEARTS_POSITIONS[i] - GameData.HEART_SIZE / 2f, 50f - GameData.HEART_SIZE / 2f,
+                    GameData.HEART_SIZE, GameData.HEART_SIZE
             );
         }
 
         if (armor) {
             batch.draw(
                     hud.findRegion(RegionNames.ARMOR),
-                    Constants.HEARTS_POSITIONS[3] - Constants.HEART_WIDTH / 2f, 50f - Constants.HEART_HEIGHT / 2f,
-                    Constants.HEART_WIDTH, Constants.HEART_HEIGHT
+                    GameData.HEARTS_POSITIONS[3] - GameData.HEART_SIZE / 2f, 50f - GameData.HEART_SIZE / 2f,
+                    GameData.HEART_SIZE, GameData.HEART_SIZE
             );
         }
     }

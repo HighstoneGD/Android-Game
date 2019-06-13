@@ -5,14 +5,13 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.common.enums.PotType;
 import com.mygdx.game.component.DimensionComponent;
@@ -40,10 +39,10 @@ public class GranRenderSystem extends IteratingSystem {
         this.batch = batch;
         this.viewport = viewport;
         granStatic = assetManager.get(AssetDescriptors.STATIC).findRegion(RegionNames.GRAN);
-        simple = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_SIMPLE_THROW).getRegions());
-        iron = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_IRON_THROW).getRegions());
-        large = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_LARGE_THROW).getRegions());
-        explosive = new Animation<TextureRegion>(Constants.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_EXPLOSIVE_THROW).getRegions());
+        simple = new Animation<TextureRegion>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_SIMPLE_THROW).getRegions());
+        iron = new Animation<TextureRegion>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_IRON_THROW).getRegions());
+        large = new Animation<TextureRegion>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_LARGE_THROW).getRegions());
+        explosive = new Animation<TextureRegion>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_EXPLOSIVE_THROW).getRegions());
     }
 
     @Override
@@ -103,11 +102,16 @@ public class GranRenderSystem extends IteratingSystem {
     }
 
     public void throwPot(PotType type) {
+        PotType potType = type;
+        if (type == PotType.BONUS) {
+            potType = PotType.SIMPLE;
+        }
+
         ImmutableArray<Entity> gran = getEngine().getEntitiesFor(GRAN);
         for (Entity entity : gran) {
             GranComponent granComponent = Mappers.GRAN.get(entity);
             granComponent.isAnimating = true;
-            granComponent.animatesType = type;
+            granComponent.animatesType = potType;
             granComponent.elapsedTime = 0;
         }
     }

@@ -1,4 +1,4 @@
-package com.mygdx.game.system.control;
+package com.mygdx.game.system.movement;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;

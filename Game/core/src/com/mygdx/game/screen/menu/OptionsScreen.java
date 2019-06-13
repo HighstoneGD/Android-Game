@@ -3,7 +3,6 @@ package com.mygdx.game.screen.menu;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -14,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.GameConfigs;
 
 public class OptionsScreen extends MenuScreenBase {
@@ -44,7 +43,7 @@ public class OptionsScreen extends MenuScreenBase {
         music = createCheckBox("Music", uiSkin);
         sounds = createCheckBox("Sounds", uiSkin);
 
-        music.getCells().get(0).size(Constants.CHECKBOX_SIZE, Constants.CHECKBOX_SIZE);
+        music.getCells().get(0).size(GameData.CHECKBOX_SIZE, GameData.CHECKBOX_SIZE);
 
         boolean musicOn = GameConfigs.INSTANCE.isMusicOn();
         boolean soundsOn = GameConfigs.INSTANCE.isSoundsOn();
@@ -69,9 +68,9 @@ public class OptionsScreen extends MenuScreenBase {
         TextButton back = createBackButton(uiSkin);
 
         table.add(label).row();
-        table.add(music).width(Constants.MENU_BUTTON_WIDTH).height(Constants.MENU_BUTTON_HEIGHT).row();
-        table.add(sounds).width(Constants.MENU_BUTTON_WIDTH).height(Constants.MENU_BUTTON_HEIGHT).row();
-        table.add(back).width(Constants.MENU_BUTTON_WIDTH).height(Constants.MENU_BUTTON_HEIGHT);
+        table.add(music).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT).row();
+        table.add(sounds).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT).row();
+        table.add(back).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT);
 
         table.center();
         table.setFillParent(true);

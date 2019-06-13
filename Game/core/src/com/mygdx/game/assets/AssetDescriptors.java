@@ -5,7 +5,9 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class AssetDescriptors {
 
@@ -14,6 +16,9 @@ public class AssetDescriptors {
 
     public static final AssetDescriptor<BitmapFont> FONT =
             new AssetDescriptor<BitmapFont>(AssetPaths.FONT, BitmapFont.class);
+
+    public static final AssetDescriptor<BitmapFont> LARGE_FONT =
+            new AssetDescriptor<BitmapFont>(AssetPaths.LARGE_FONT, BitmapFont.class);
 
     public static final AssetDescriptor<Sound> FUMAR_SOUND =
             new AssetDescriptor<Sound>(AssetPaths.FUMAR_SOUND, Sound.class);
@@ -86,6 +91,9 @@ public class AssetDescriptors {
 
     public static final AssetDescriptor<TextureAtlas> UI_ATLAS =
             new AssetDescriptor<TextureAtlas>(AssetPaths.UI_ATLAS, TextureAtlas.class);
+
+    public static final AssetDescriptor<Texture> FILL_BAR =
+            new AssetDescriptor<Texture>(AssetPaths.FILL_BAR, Texture.class);
 
     private AssetDescriptors() {
     }

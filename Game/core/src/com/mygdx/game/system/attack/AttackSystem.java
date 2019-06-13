@@ -20,7 +20,6 @@ public class AttackSystem extends IntervalSystem {
     private BasicGameScreen screen;
     private List<PotType> potTypes;
     private Map<PotType, Integer> potsPriorities;
-    private Map<BonusType, Integer> bonusPriorities;
     private PooledEngine engine;
 
     public AttackSystem(float attackSpeed, BasicGameScreen screen, List<PotType> potTypes) {
@@ -29,7 +28,6 @@ public class AttackSystem extends IntervalSystem {
         this.potTypes = potTypes;
 
         initPotPriorities();
-        initBonusPriorities();
 
         this.engine = screen.getEngine();
     }
@@ -73,6 +71,8 @@ public class AttackSystem extends IntervalSystem {
 
         if (k == 0) {
             return BonusType.LIFE;
+        } else if (k == 1) {
+            return BonusType.SPEED_UP;
         } else {
             return BonusType.ARMOR;
         }
@@ -84,11 +84,5 @@ public class AttackSystem extends IntervalSystem {
         for (int i = 0; i < potTypes.size(); i++) {
             potsPriorities.put(potTypes.get(i), i);
         }
-    }
-
-    private void initBonusPriorities() {
-        bonusPriorities = new HashMap<BonusType, Integer>();
-        bonusPriorities.put(BonusType.ARMOR, 2);
-        bonusPriorities.put(BonusType.LIFE, 4);
     }
 }

@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.BonusComponent;
 import com.mygdx.game.component.PositionComponent;
@@ -51,8 +51,8 @@ public class BonusRenderSystem extends IteratingSystem {
         batch.begin();
         batch.draw(
                 assetManager.get(AssetDescriptors.STATIC).findRegion(RegionNames.BONUS),
-                x - Constants.BONUS_WIDTH / 2f, y - Constants.BONUS_HEIGHT / 2f,
-                Constants.BONUS_WIDTH, Constants.BONUS_HEIGHT
+                x - GameData.BONUS_SIZE / 2f, y - GameData.BONUS_SIZE / 2f,
+                GameData.BONUS_SIZE, GameData.BONUS_SIZE
         );
         batch.end();
     }

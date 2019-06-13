@@ -1,12 +1,11 @@
-package com.mygdx.game.system.control;
+package com.mygdx.game.system.movement;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.ashley.utils.ImmutableArray;
-import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.component.MovementStateComponent;
@@ -14,8 +13,8 @@ import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.SpeedComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
+import com.mygdx.game.controlling.BonusManager;
 import com.mygdx.game.util.logic.NumberConverter;
-import com.mygdx.game.util.logic.SystemCreator;
 
 public class PlayerMovementSystem extends EntitySystem {
 
@@ -33,6 +32,7 @@ public class PlayerMovementSystem extends EntitySystem {
     private PlayerComponent playerComponent;
 
     private float movementTime;
+    private float playerJumpTime;
 
     public PlayerMovementSystem(PooledEngine engine) {
         this.engine = engine;
@@ -65,6 +65,7 @@ public class PlayerMovementSystem extends EntitySystem {
     public void movePlayer(Directions direction) {
         playerComponent.isAnimating = true;
         playerComponent.elapsedTime = 0;
+        playerJumpTime = GameData.PLAYER_JUMP_TIME * BonusManager.INSTANCE.getTimeModifier();
 
         if (direction == Directions.UP) {
             moveUp();
@@ -142,12 +143,12 @@ public class PlayerMovementSystem extends EntitySystem {
     }
 
     private void calculateSpeed(float cellX, float cellY) {
-        speed.speedX = calculateDistanceX(cellX) / (Constants.PLAYER_JUMP_TIME / 1000f);
-        speed.speedY = calculateDistanceY(cellY) / (Constants.PLAYER_JUMP_TIME / 1000f);
+        speed.speedX = calculateDistanceX(cellX) / playerJumpTime;
+        speed.speedY = calculateDistanceY(cellY) / playerJumpTime;
     }
 
     private void startTimer() {
-        movementTime = Constants.PLAYER_JUMP_TIME / 1000f;
+        movementTime = playerJumpTime;
         movementState.setMoving(true);
     }
 

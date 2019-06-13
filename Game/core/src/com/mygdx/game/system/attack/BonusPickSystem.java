@@ -9,6 +9,7 @@ import com.mygdx.game.component.BonusComponent;
 import com.mygdx.game.component.marking.CellComponent;
 import com.mygdx.game.system.attack.bonus.ArmorBonusSystem;
 import com.mygdx.game.system.attack.bonus.LifeBonusSystem;
+import com.mygdx.game.system.attack.bonus.SpeedUpBonusSystem;
 import com.mygdx.game.util.objects.Bonus;
 
 public class BonusPickSystem extends IteratingSystem {
@@ -35,6 +36,8 @@ public class BonusPickSystem extends IteratingSystem {
                     getEngine().getSystem(LifeBonusSystem.class).picked();
                 } else if (bonus.type == BonusType.ARMOR) {
                     getEngine().getSystem(ArmorBonusSystem.class).picked();
+                } else if (bonus.type == BonusType.SPEED_UP) {
+                    getEngine().getSystem(SpeedUpBonusSystem.class).picked();
                 }
 
             }

@@ -1,7 +1,7 @@
 package com.mygdx.game.controlling;
 
 import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.common.Constants;
+import com.mygdx.game.common.GameData;
 
 public class HealthManager {
 
@@ -45,7 +45,12 @@ public class HealthManager {
     }
 
     public static void reset() {
-        lives = Constants.START_LIVES_AMOUNT;
+        lives = GameData.START_LIVES_AMOUNT;
+        armor = false;
+    }
+
+    public static void reset(int livesAmount) {
+        lives = livesAmount;
         armor = false;
     }
 
