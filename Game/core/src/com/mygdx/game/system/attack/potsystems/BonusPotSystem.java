@@ -28,7 +28,7 @@ public class BonusPotSystem extends PotSystem {
     }
 
     @Override
-    protected void attack() {
+    public void attack() {
         for (Entity cell : cells) {
             PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(cell);
 
@@ -38,5 +38,7 @@ public class BonusPotSystem extends PotSystem {
                 return;
             }
         }
+        screen.potThrown();
+        engine.removeSystem(this);
     }
 }

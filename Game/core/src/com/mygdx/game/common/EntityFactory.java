@@ -28,6 +28,7 @@ import com.mygdx.game.component.marking.CellComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.component.marking.SmashComponent;
 import com.mygdx.game.screen.game.BasicGameScreen;
+import com.mygdx.game.system.attack.potsystems.PotSystem;
 import com.mygdx.game.system.debug.PositionsCalculationSystem;
 
 import java.util.Random;
@@ -198,7 +199,7 @@ public class EntityFactory {
         engine.addEntity(entity);
     }
 
-    public void addPot(PotType type, float x, float y, int xNumber, int yNumber) {
+    public void addPot(PotType type, float x, float y, int xNumber, int yNumber, PotSystem system) {
         PositionComponent position = engine.createComponent(PositionComponent.class);
         position.x = x;
         position.y = GameData.WORLD_HEIGHT + 10f;
@@ -215,10 +216,11 @@ public class EntityFactory {
         potComponent.progress = 0;
         potComponent.aimX = x;
         potComponent.aimY = y;
+        potComponent.system = system;
 
         SpeedComponent speed = engine.createComponent(SpeedComponent.class);
         float distance = GameData.WORLD_HEIGHT + 10f - y;
-        speed.speedY = distance / ((GameData.POT_FLIGHT_TIME) / 1000f);
+        speed.speedY = distance / GameData.POT_FLIGHT_TIME;
 
         if (type == PotType.IRON) {
             speed.speedY *= 3;

@@ -42,7 +42,7 @@ public class ExplosivePotSystem extends PotSystem {
     }
 
     @Override
-    protected void attack() {
+    public void attack() {
         for (int i = 0; i < cells.size(); i++) {
             Entity cell = cells.get(i);
             PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(cell);
@@ -80,5 +80,13 @@ public class ExplosivePotSystem extends PotSystem {
             }
 
         }
+        screen.potThrown();
+        engine.removeSystem(this);
+    }
+
+    @Override
+    protected void initPotExistenceTime() {
+        super.initPotExistenceTime();
+        potExistenceTime *= 3;
     }
 }

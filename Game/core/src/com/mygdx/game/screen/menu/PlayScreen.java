@@ -3,6 +3,7 @@ package com.mygdx.game.screen.menu;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -60,7 +61,13 @@ public class PlayScreen extends MenuScreenBase {
     }
 
     private TextButton createLevelsButton() {
-        TextButton levelsButton = new TextButton("LEVEL - " + (GameManager.INSTANCE.getLevelsAccomplished() + 1), uiSkin);
+        int level = GameManager.INSTANCE.getLevelsAccomplished() + 1;
+
+        if (level > 8) {
+            level = 8;
+        }
+
+        TextButton levelsButton = new TextButton("LEVEL " + level, uiSkin);
         levelsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -72,18 +79,15 @@ public class PlayScreen extends MenuScreenBase {
 
     private TextButton createEndlessModeButton() {
         TextButton endlessModeButton;
-        if (!GameManager.INSTANCE.endlessModeUnlocked()) {
-            endlessModeButton = new TextButton("", uiSkin);
-            endlessModeButton.setStyle(uiSkin.get("locked", TextButton.TextButtonStyle.class));
-        } else {
-            endlessModeButton = new TextButton("ENDLESS", uiSkin);
-            endlessModeButton.addListener(new ChangeListener() {
-                @Override
-                public void changed(ChangeEvent event, Actor actor) {
-                    endlessMode();
-                }
-            });
+        String endlessModeButtonText= "";
+        boolean endlessModeUnlocked = GameManager.INSTANCE.endlessModeUnlocked();
+
+        if (endlessModeUnlocked) {
+            endlessModeButtonText = "ENDLESS";
         }
+
+        endlessModeButton = new TextButton(endlessModeButtonText, uiSkin);
+        addButtonListener(endlessModeUnlocked, endlessModeButton);
 
         return endlessModeButton;
     }
@@ -99,12 +103,46 @@ public class PlayScreen extends MenuScreenBase {
         return backButton;
     }
 
+    private void addButtonListener(boolean eMUnlocked, TextButton button) {
+        if (eMUnlocked) {
+            button.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    endlessMode();
+                }
+            });
+        } else {
+            button.setStyle(uiSkin.get("locked", TextButton.TextButtonStyle.class));
+            button.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    endlessModeLocked();
+                }
+            });
+        }
+    }
+
     private void levels() {
         game.setScreen(new LevelsScreen(game));
     }
 
     private void endlessMode() {
         game.setScreen(new EndlessModeScreen(game));
+    }
+
+    private void endlessModeLocked() {
+        final Dialog dialog = new Dialog("", uiSkin) {
+            public void result(Object object) {
+
+            }
+        };
+        Label label = new Label("Finish levels first", uiSkin);
+        label.setStyle(uiSkin.get("small", Label.LabelStyle.class));
+
+        dialog.text(label).getButtonTable().defaults().pad(20f);
+        dialog.button("OK");
+        dialog.center();
+        dialog.show(stage);
     }
 
     private void back() {

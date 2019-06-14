@@ -22,6 +22,10 @@ public class HealthManager {
         armor = true;
     }
 
+    public static void removeArmor() {
+        armor = false;
+    }
+
     public static void incrementLives() {
         if (lives < 3) {
             lives++;
@@ -33,7 +37,6 @@ public class HealthManager {
         int dam = damage;
 
         if (armor) {
-            armor = false;
             dam--;
         }
 

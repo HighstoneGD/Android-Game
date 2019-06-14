@@ -1,5 +1,6 @@
 package com.mygdx.game.system.attack.potsystems;
 
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.ashley.core.Family;
@@ -15,7 +16,7 @@ import com.mygdx.game.screen.game.BasicGameScreen;
 import com.mygdx.game.system.render.GranRenderSystem;
 import com.mygdx.game.util.logic.NumberConverter;
 
-public abstract class PotSystem extends EntitySystem implements Runnable {
+public abstract class PotSystem extends EntitySystem {
 
     private static final Family CELLS = Family.all(
             PositionOnGridComponent.class,
@@ -34,11 +35,13 @@ public abstract class PotSystem extends EntitySystem implements Runnable {
     protected ImmutableArray<Entity> cells;
 
     protected PotType type;
-    protected long potFlightTime;
     protected float potExistenceTime;
 
     protected float cellX;
     protected float cellY;
+
+    private float throwTimer;
+    private boolean isThrown;
 
     public PotSystem(BasicGameScreen screen, PotType type, int x, int y) {
         this.screen = screen;
@@ -48,48 +51,45 @@ public abstract class PotSystem extends EntitySystem implements Runnable {
         this.x = x;
         this.y = y;
 
-        initPotFlightTime();
         initPotExistenceTime();
+
+        isThrown = false;
+        throwTimer = GameData.POT_THROW_TIME;
     }
 
     @Override
-    public void run() {
+    public void update(float deltaTime) {
+        if (isThrown) {
+            throwTimer -= deltaTime;
+            checkThrowTimer();
+        }
+    }
+
+    @Override
+    public void addedToEngine(Engine engine) {
         throwPot(type);
-        cells = engine.getEntitiesFor(CELLS);
-        initCellCoordinates();
-        factory.addPot(type, cellX, cellY, x, y);
-        waitMillis(potFlightTime);
-        attack();
-        screen.potThrown();
     }
 
     private void throwPot(PotType type) {
         engine.getSystem(GranRenderSystem.class).throwPot(type);
-        waitMillis(GameData.POT_THROW_TIME);
+        startThrowTimer();
     }
 
-    private static void waitMillis(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (Exception e) {
-            e.printStackTrace();
+    private void startThrowTimer() {
+        isThrown = true;
+    }
+
+    private void checkThrowTimer() {
+        if (throwTimer <= 0) {
+            isThrown = false;
+            cells = engine.getEntitiesFor(CELLS);
+            initCellCoordinates();
+            factory.addPot(type, cellX, cellY, x, y, this);
         }
     }
 
-    private void initPotFlightTime() {
-        potFlightTime = GameData.POT_FLIGHT_TIME;
-
-        if (type == PotType.IRON) {
-            potFlightTime /= 3;
-        }
-    }
-
-    private void initPotExistenceTime() {
+    protected void initPotExistenceTime() {
         potExistenceTime = GameData.POT_EXISTENCE_TIME;
-
-        if (type == PotType.EXPLOSIVE) {
-            potExistenceTime *= 3;
-        }
     }
 
     protected void initCellCoordinates() {
@@ -97,5 +97,5 @@ public abstract class PotSystem extends EntitySystem implements Runnable {
         cellY = engine.getSystem(NumberConverter.class).getCoordinates(x, y).y;
     }
 
-    protected abstract void attack();
+    public abstract void attack();
 }

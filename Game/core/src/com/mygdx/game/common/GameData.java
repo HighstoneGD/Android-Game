@@ -45,8 +45,8 @@ public class GameData {
 
     // time attributes
 
-    public static final long POT_THROW_TIME = 800;
-    public static final long POT_FLIGHT_TIME = 1000;
+    public static final float POT_THROW_TIME = 0.8f;
+    public static final float POT_FLIGHT_TIME = 1f;
 
     public static final float PLAYER_JUMP_TIME = 0.4f;
 
@@ -60,6 +60,7 @@ public class GameData {
     public static final float FRAME_TIME = POT_EXISTENCE_TIME / 1.5f;
 
     public static final float SPEED_UP_TIME = 5f;
+    public static final float ARMOR_TIME = 6f;
 
     // level characteristics
 

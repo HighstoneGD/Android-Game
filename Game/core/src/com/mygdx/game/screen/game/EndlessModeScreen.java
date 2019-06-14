@@ -85,9 +85,8 @@ public class EndlessModeScreen extends BasicGameScreen {
     }
 
     @Override
-    protected void gameOver() {
+    protected void gameOverAction() {
         GameManager.INSTANCE.updateHighscore();
-        game.setScreen(new PlayScreen(game));
     }
 
     private void initPotTypes() {

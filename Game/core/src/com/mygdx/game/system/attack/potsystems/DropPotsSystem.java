@@ -44,6 +44,7 @@ public class DropPotsSystem extends IteratingSystem {
     private void smash(Entity entity) {
         PotComponent potComponent = Mappers.POT_COMPONENT.get(entity);
         screen.getFactory().addSmash(potComponent.type, potComponent.aimX, potComponent.aimY);
+        potComponent.system.attack();
         getEngine().removeEntity(entity);
     }
 }

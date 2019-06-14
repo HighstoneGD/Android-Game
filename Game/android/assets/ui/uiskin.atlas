@@ -1,49 +1,56 @@
 
 uiskin.png
-size: 4096,2048
+size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 button-default
   rotate: false
-  xy: 2706, 1752
-  size: 700, 250
-  orig: 700, 250
+  xy: 1706, 1916
+  size: 240, 86
+  orig: 240, 86
   offset: 0, 0
   index: -1
 button-locked
   rotate: false
-  xy: 1706, 739
-  size: 700, 250
-  orig: 700, 250
+  xy: 1204, 1156
+  size: 240, 86
+  orig: 240, 86
+  offset: 0, 0
+  index: -1
+button-locked-pressed
+  rotate: false
+  xy: 1706, 1828
+  size: 240, 86
+  orig: 240, 86
   offset: 0, 0
   index: -1
 button-pressed
   rotate: false
-  xy: 2706, 1500
-  size: 700, 250
-  orig: 700, 250
+  xy: 1204, 1068
+  size: 240, 86
+  orig: 240, 86
   offset: 0, 0
   index: -1
 checkbox
   rotate: false
-  xy: 1204, 387
+  xy: 1586, 1400
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 checkbox_tick
   rotate: false
-  xy: 3408, 1902
+  xy: 1446, 1142
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 label
   rotate: false
-  xy: 1204, 991
-  size: 1500, 1011
-  orig: 1500, 1011
+  xy: 1204, 1244
+  size: 380, 256
+  orig: 380, 256
   offset: 0, 0
   index: -1
 menu_background
@@ -53,9 +60,51 @@ menu_background
   orig: 1200, 2000
   offset: 0, 0
   index: -1
+small_button_ad
+  rotate: false
+  xy: 1948, 1916
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+small_button_ad-pressed
+  rotate: false
+  xy: 1706, 1740
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+small_button_home
+  rotate: false
+  xy: 1204, 980
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+small_button_home-pressed
+  rotate: false
+  xy: 1586, 1312
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+small_button_repeat
+  rotate: false
+  xy: 1948, 1828
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+small_button_repeat-pressed
+  rotate: false
+  xy: 1706, 1652
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
 title
   rotate: false
-  xy: 1204, 489
+  xy: 1204, 1502
   size: 500, 500
   orig: 500, 500
   offset: 0, 0

@@ -23,7 +23,7 @@ public class LargePotSystem extends PotSystem {
     }
 
     @Override
-    protected void attack() {
+    public void attack() {
         for (Entity cell : cells) {
             PositionOnGridComponent positionOnGrid = Mappers.POSITION_ON_GRID.get(cell);
 
@@ -64,5 +64,7 @@ public class LargePotSystem extends PotSystem {
             }
 
         }
+        screen.potThrown();
+        engine.removeSystem(this);
     }
 }

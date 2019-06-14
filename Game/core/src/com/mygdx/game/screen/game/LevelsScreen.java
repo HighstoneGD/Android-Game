@@ -98,6 +98,11 @@ public class LevelsScreen extends BasicGameScreen {
         }
     }
 
+    @Override
+    protected void gameOverAction() {
+
+    }
+
     private void win() {
         log.debug("win!");
         GameManager.INSTANCE.levelComplete();

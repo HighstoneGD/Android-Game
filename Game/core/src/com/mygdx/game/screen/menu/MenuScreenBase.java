@@ -17,7 +17,7 @@ public abstract class MenuScreenBase extends ScreenAdapter {
     protected final AssetManager assetManager;
 
     protected Viewport viewport;
-    private Stage stage;
+    protected Stage stage;
 
     public MenuScreenBase(AndroidGame game) {
         this.game = game;
