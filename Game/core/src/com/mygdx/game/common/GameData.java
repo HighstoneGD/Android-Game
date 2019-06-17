@@ -48,7 +48,7 @@ public class GameData {
     public static final float POT_THROW_TIME = 0.8f;
     public static final float POT_FLIGHT_TIME = 1f;
 
-    public static final float PLAYER_JUMP_TIME = 0.4f;
+    public static final float PLAYER_JUMP_TIME = 0.5f;
 
     public static final float DEFAULT_POT_SPAWN_SPEED = 1f;
 
@@ -56,7 +56,7 @@ public class GameData {
     public static final float BONUS_EXISTENCE_TIME = 10f;
 
     public static final float GRAN_FRAME_TIME = 0.1f;
-    public static final float PLAYER_FRAME_TIME = 0.08f;
+    public static final float PLAYER_FRAME_TIME = PLAYER_JUMP_TIME / 8;
     public static final float FRAME_TIME = POT_EXISTENCE_TIME / 1.5f;
 
     public static final float SPEED_UP_TIME = 5f;
@@ -64,7 +64,7 @@ public class GameData {
 
     // level characteristics
 
-    public static final int POTS_AMOUNT_FIRST = 50;
+    public static final int POTS_AMOUNT_FIRST = 1;
     public static final int POTS_AMOUNT_SECOND = 100;
     public static final int START_LIVES_AMOUNT = 3;
 

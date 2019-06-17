@@ -2,8 +2,15 @@ package com.mygdx.game.screen.game;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.AndroidGame;
+import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.common.levels.Level;
@@ -80,8 +87,8 @@ public class LevelsScreen extends BasicGameScreen {
         createNotUpdatedSystems();
         createMovementSystems();
         createAttackAndBonusSystems();
-        createRenderSystems();
         createDebugSystems();
+        createRenderSystems();
     }
 
     @Override
@@ -94,6 +101,8 @@ public class LevelsScreen extends BasicGameScreen {
         super.render(delta);
 
         if (potsLeft == 0) {
+            gameWon = true;
+            render(delta);
             win();
         }
     }
@@ -104,9 +113,57 @@ public class LevelsScreen extends BasicGameScreen {
     }
 
     private void win() {
-        log.debug("win!");
         GameManager.INSTANCE.levelComplete();
+        Gdx.input.setInputProcessor(stage);
+        isPaused = true;
+
+        Skin uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
+
+        Dialog dialog = new Dialog("", uiSkin);
+        Label label = new Label("LEVEL COMPLETE!", uiSkin);
+        label.setStyle(uiSkin.get("small", Label.LabelStyle.class));
+        dialog.defaults().pad(20f);
+        dialog.text(label).getButtonTable().defaults().pad(20f);
+
+        Button homeButton = homeButton(uiSkin);
+        Button nextButton = nextButton(uiSkin);
+
+        dialog.button(nextButton);
+        dialog.button(homeButton);
+        dialog.center();
+        dialog.show(stage);
+    }
+
+    private Button homeButton(Skin uiSkin) {
+        final Button homeButton = new Button();
+        homeButton.setStyle(uiSkin.get("home", Button.ButtonStyle.class));
+        homeButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                home();
+            }
+        });
+        return homeButton;
+    }
+
+    private Button nextButton(Skin uiSkin) {
+        Button nextButton = new Button();
+        nextButton.setStyle(uiSkin.get("next", Button.ButtonStyle.class));
+        nextButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                next();
+            }
+        });
+        return nextButton;
+    }
+
+    private void home() {
         game.setScreen(new PlayScreen(game));
+    }
+
+    private void next() {
+        game.setScreen(new LevelsScreen(game));
     }
 
     private void createNotUpdatedSystems() {

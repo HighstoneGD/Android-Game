@@ -1,9 +1,12 @@
 package com.mygdx.game.screen.game;
 
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -23,11 +26,23 @@ import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.EntityFactory;
+import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.controlling.AvoidedPotsManager;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.screen.menu.PlayScreen;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
+import com.mygdx.game.system.movement.PlayerMovementSystem;
+import com.mygdx.game.system.movement.SimpleDirectionGestureDetector;
+import com.mygdx.game.system.render.BackgroundRenderSystem;
+import com.mygdx.game.system.render.GranRenderSystem;
+import com.mygdx.game.system.render.HudRenderSystem;
+import com.mygdx.game.system.render.PlayerRenderSystem;
+import com.mygdx.game.system.render.PotsAfterPlayerRenderSystem;
+import com.mygdx.game.system.render.PotsBeforePlayerRenderSystem;
+import com.mygdx.game.system.render.ShadowRenderSystem;
+import com.mygdx.game.system.render.SmashAfterPlayerRenderSystem;
+import com.mygdx.game.system.render.SmashBeforePlayerRenderSystem;
 import com.mygdx.game.util.render.GdxUtils;
 
 public abstract class BasicGameScreen implements Screen {
@@ -48,6 +63,7 @@ public abstract class BasicGameScreen implements Screen {
 
     protected boolean isPaused;
     private boolean gameOver;
+    protected boolean gameWon;
 
     protected float potSpawnSpeed;
     public int x;
@@ -60,6 +76,7 @@ public abstract class BasicGameScreen implements Screen {
         batch = game.getBatch();
         assetManager = game.getAssetManager();
         gameOver = false;
+        gameWon = false;
     }
 
     @Override
@@ -123,7 +140,17 @@ public abstract class BasicGameScreen implements Screen {
             }
         }
 
-        if (gameOver) {
+        if (gameOver || gameWon) {
+            GdxUtils.clearScreen(Color.SALMON);
+            engine.getSystem(BackgroundRenderSystem.class).update(delta);
+            engine.getSystem(GranRenderSystem.class).update(delta);
+            engine.getSystem(PotsBeforePlayerRenderSystem.class).update(delta);
+            engine.getSystem(SmashBeforePlayerRenderSystem.class).update(delta);
+            engine.getSystem(ShadowRenderSystem.class).update(delta);
+            engine.getSystem(PlayerRenderSystem.class).update(delta);
+            engine.getSystem(PotsAfterPlayerRenderSystem.class).update(delta);
+            engine.getSystem(SmashAfterPlayerRenderSystem.class).update(delta);
+            engine.getSystem(HudRenderSystem.class).update(delta);
             stage.act();
             stage.draw();
         }
@@ -186,7 +213,48 @@ public abstract class BasicGameScreen implements Screen {
         game.setScreen(new PlayScreen(game));
     }
 
-    private void watchAd() {}
+    private void watchAd() {
+        if (Gdx.app.getType() == Application.ApplicationType.Android) {
+            Gdx.input.setInputProcessor(new SimpleDirectionGestureDetector(new SimpleDirectionGestureDetector.DirectionListener() {
+
+                @Override
+                public void onUp() {
+                    try {
+                        engine.getSystem(PlayerMovementSystem.class).movePlayer(Directions.UP);
+                    } catch (Exception e) {
+                    }
+                }
+
+                @Override
+                public void onRight() {
+                    try {
+                        engine.getSystem(PlayerMovementSystem.class).movePlayer(Directions.RIGHT);
+                    } catch (Exception e) {
+                    }
+                }
+
+                @Override
+                public void onLeft() {
+                    try {
+                        engine.getSystem(PlayerMovementSystem.class).movePlayer(Directions.LEFT);
+                    } catch (Exception e) {
+                    }
+                }
+
+                @Override
+                public void onDown() {
+                    try {
+                        engine.getSystem(PlayerMovementSystem.class).movePlayer(Directions.DOWN);
+                    } catch (Exception e) {
+                    }
+                }
+            }));
+        }
+
+        HealthManager.incrementLives();
+        gameOver = false;
+        isPaused = false;
+    }
 
     private void repeat() {
         if (this.getClass() == EndlessModeScreen.class) {

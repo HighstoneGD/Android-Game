@@ -1,6 +1,6 @@
 
 player_right.png
-size: 4096,1024
+size: 8192,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -39,3 +39,24 @@ player
   orig: 800, 800
   offset: 0, 0
   index: 4
+player
+  rotate: false
+  xy: 4012, 2
+  size: 800, 800
+  orig: 800, 800
+  offset: 0, 0
+  index: 5
+player
+  rotate: false
+  xy: 4814, 2
+  size: 800, 800
+  orig: 800, 800
+  offset: 0, 0
+  index: 6
+player
+  rotate: false
+  xy: 5616, 2
+  size: 800, 800
+  orig: 800, 800
+  offset: 0, 0
+  index: 7

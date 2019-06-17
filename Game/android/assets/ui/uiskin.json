@@ -59,6 +59,10 @@
     "home": {
       "down": "small_button_home-pressed",
       "up": "small_button_home"
+    },
+    "next": {
+      "down": "small_button_next-pressed",
+      "up": "small_button_next"
     }
   },
 

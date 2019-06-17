@@ -18,24 +18,22 @@ import com.mygdx.game.util.render.GdxUtils;
 
 public class LoadingScreen implements Screen {
 
-    private Viewport viewport;
-    private SpriteBatch batch;
-
-    private float progress;
-    private float waitTime = 0.75f;
-    private boolean changeScreen;
-
     private final AndroidGame game;
     private final AssetManager assetManager;
 
-    private boolean animating = false;
+    private Viewport viewport;
+    private SpriteBatch batch;
+
     private TextureAtlas textureAtlas;
     private BitmapFont font;
     private Animation<TextureRegion> animation;
-    private float elapsedTime = 0;
-    private float animationBreakTime = 0;
-    private String sign;
 
+    private String sign;
+    private boolean changeScreen;
+    private boolean animating = false;
+    private float progress;
+    private float waitTime = 0.75f;
+    private float elapsedTime = 0;
 
     public LoadingScreen(AndroidGame game) {
         this.game = game;
@@ -52,12 +50,7 @@ public class LoadingScreen implements Screen {
         while (!assetManager.update()) {}
 
         loadAssets();
-
-        textureAtlas = assetManager.get(AssetDescriptors.GRAN_LOADING_ANIMATION);
-        font = assetManager.get(AssetDescriptors.FONT);
-        sign = "LOADING: ";
-        animation = new Animation<TextureRegion>(GameData.FRAME_TIME, textureAtlas.getRegions());
-        animating = true;
+        initAnimation();
     }
 
     @Override
@@ -65,6 +58,7 @@ public class LoadingScreen implements Screen {
         update(delta);
 
         GdxUtils.clearScreen();
+
         viewport.apply();
         batch.begin();
 
@@ -79,8 +73,6 @@ public class LoadingScreen implements Screen {
     private void finishAnimation() {
         if (animation.isAnimationFinished(elapsedTime)) {
             animating = false;
-            startTimer();
-            startAnimation();
         }
     }
 
@@ -91,7 +83,7 @@ public class LoadingScreen implements Screen {
     }
 
     private void update(float delta) {
-        updateTimers(delta);
+        elapsedTime += delta;
         progress = assetManager.getProgress();
 
         if(assetManager.update()) {
@@ -132,12 +124,12 @@ public class LoadingScreen implements Screen {
         drawFont();
     }
 
-    private void updateTimers(float delta) {
-        elapsedTime += delta;
-
-        if (animationBreakTime > 0) {
-            animationBreakTime += delta;
-        }
+    private void initAnimation() {
+        textureAtlas = assetManager.get(AssetDescriptors.GRAN_LOADING_ANIMATION);
+        font = assetManager.get(AssetDescriptors.FONT);
+        sign = "LOADING: ";
+        animation = new Animation<TextureRegion>(GameData.FRAME_TIME, textureAtlas.getRegions());
+        animating = true;
     }
 
     private void loadPreviewAssets() {
@@ -171,19 +163,6 @@ public class LoadingScreen implements Screen {
         assetManager.load(AssetDescriptors.HUD);
         assetManager.load(AssetDescriptors.UI_SKIN);
         assetManager.load(AssetDescriptors.FILL_BAR);
-    }
-
-    private void startTimer() {
-        if (animationBreakTime <= 0) {
-            animationBreakTime = 5f;
-        }
-    }
-
-    private void startAnimation() {
-        if (animationBreakTime <= 0) {
-            animating = true;
-            elapsedTime = 0;
-        }
     }
 
     @Override

@@ -88,16 +88,30 @@ small_button_home-pressed
   orig: 86, 86
   offset: 0, 0
   index: -1
-small_button_repeat
+small_button_next
   rotate: false
   xy: 1948, 1828
   size: 86, 86
   orig: 86, 86
   offset: 0, 0
   index: -1
-small_button_repeat-pressed
+small_button_next-pressed
   rotate: false
   xy: 1706, 1652
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+small_button_repeat
+  rotate: false
+  xy: 1794, 1740
+  size: 86, 86
+  orig: 86, 86
+  offset: 0, 0
+  index: -1
+small_button_repeat-pressed
+  rotate: false
+  xy: 1204, 892
   size: 86, 86
   orig: 86, 86
   offset: 0, 0

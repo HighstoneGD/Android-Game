@@ -77,12 +77,14 @@ public class HudRenderSystem extends EntitySystem {
         int lives = HealthManager.getLives();
         boolean armor = HealthManager.hasArmor();
 
-        for (int i = 0; i < lives; i++) {
-            batch.draw(
-                    hud.findRegion(RegionNames.HEART),
-                    GameData.HEARTS_POSITIONS[i] - GameData.HEART_SIZE / 2f, 50f - GameData.HEART_SIZE / 2f,
-                    GameData.HEART_SIZE, GameData.HEART_SIZE
-            );
+        if (lives != 0) {
+            for (int i = 0; i < lives; i++) {
+                batch.draw(
+                        hud.findRegion(RegionNames.HEART),
+                        GameData.HEARTS_POSITIONS[i] - GameData.HEART_SIZE / 2f, 50f - GameData.HEART_SIZE / 2f,
+                        GameData.HEART_SIZE, GameData.HEART_SIZE
+                );
+            }
         }
 
         if (armor) {

@@ -74,9 +74,9 @@ public class EndlessModeScreen extends BasicGameScreen {
         createNotUpdatedSystems();
         createMovementSystems();
         createAttackAndBonusSystems();
-        createRenderSystems();
         createDebugSystems();
         createScoreSystem();
+        createRenderSystems();
     }
 
     @Override
