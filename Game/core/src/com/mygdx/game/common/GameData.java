@@ -64,7 +64,7 @@ public class GameData {
 
     // level characteristics
 
-    public static final int POTS_AMOUNT_FIRST = 1;
+    public static final int POTS_AMOUNT_FIRST = 50;
     public static final int POTS_AMOUNT_SECOND = 100;
     public static final int START_LIVES_AMOUNT = 3;
 

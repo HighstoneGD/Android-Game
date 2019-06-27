@@ -1,0 +1,139 @@
+
+win_animation.png
+size: 8192,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+gran_angry_animation
+  rotate: false
+  xy: 2, 1004
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 0
+gran_angry_animation
+  rotate: false
+  xy: 2, 2
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 1
+gran_angry_animation
+  rotate: false
+  xy: 604, 1004
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 2
+gran_angry_animation
+  rotate: false
+  xy: 604, 2
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 3
+gran_angry_animation
+  rotate: false
+  xy: 1206, 1004
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 4
+gran_angry_animation
+  rotate: false
+  xy: 1206, 2
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 5
+gran_angry_animation
+  rotate: false
+  xy: 1808, 1004
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 6
+gran_angry_animation
+  rotate: false
+  xy: 1808, 2
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 7
+gran_angry_animation
+  rotate: false
+  xy: 2410, 1004
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 8
+gran_angry_animation
+  rotate: false
+  xy: 2410, 2
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 9
+gran_angry_animation
+  rotate: false
+  xy: 3012, 1004
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 10
+gran_angry_animation
+  rotate: false
+  xy: 3012, 2
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 11
+gran_angry_animation
+  rotate: false
+  xy: 3614, 1004
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 12
+gran_angry_animation
+  rotate: false
+  xy: 3614, 2
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 13
+gran_angry_animation
+  rotate: false
+  xy: 4216, 1004
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 14
+gran_angry_animation
+  rotate: false
+  xy: 4216, 2
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 15
+gran_angry_animation
+  rotate: false
+  xy: 4818, 1004
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 16
+gran_angry_animation
+  rotate: false
+  xy: 4818, 2
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 17
+gran_angry_animation
+  rotate: false
+  xy: 5420, 1004
+  size: 600, 1000
+  orig: 600, 1000
+  offset: 0, 0
+  index: 18

@@ -2,6 +2,8 @@ package com.mygdx.game.screen.game;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -51,14 +53,20 @@ import com.mygdx.game.system.render.SmashAfterPlayerRenderSystem;
 import com.mygdx.game.system.render.SmashBeforePlayerRenderSystem;
 import com.mygdx.game.system.render.SmashesOrderSystem;
 import com.mygdx.game.util.logic.NumberConverter;
+import com.mygdx.game.util.render.GdxUtils;
 
 public class LevelsScreen extends BasicGameScreen {
 
     private static final Logger log = new Logger(LevelsScreen.class.getName(), Logger.DEBUG);
 
+    Animation<TextureRegion> winAnimation;
+    private float elapsedTime;
+    private float timer;
+
     private Level level;
     private int potsLeft;
     private int lives;
+    private boolean isAnimating;
 
     public LevelsScreen(AndroidGame game) {
         super(
@@ -70,6 +78,13 @@ public class LevelsScreen extends BasicGameScreen {
         level = new Level(GameManager.INSTANCE.getLevelsAccomplished() + 1);
         potsLeft = level.getPotsAmount();
         lives = level.getLives();
+        isAnimating = false;
+
+        winAnimation = new Animation<TextureRegion>(
+                0.1f, assetManager.get(AssetDescriptors.WIN_ANIMATION).getRegions()
+        );
+        elapsedTime = 0f;
+        timer = 2f;
     }
 
     @Override
@@ -100,10 +115,42 @@ public class LevelsScreen extends BasicGameScreen {
     public void render(float delta) {
         super.render(delta);
 
-        if (potsLeft == 0) {
+        if (isAnimating) {
+            viewport.apply();
+            batch.setProjectionMatrix(viewport.getCamera().combined);
+            batch.begin();
+
+            drawAnimation(delta);
+
+            batch.end();
+
+            checkAnimation(delta);
+
+        } else if (potsLeft == 0) {
             gameWon = true;
             render(delta);
             win();
+        }
+    }
+
+    private void drawAnimation(float delta) {
+        batch.draw(
+                winAnimation.getKeyFrame(elapsedTime, false),
+                0, 0,
+                GameData.WORLD_WIDTH, GameData.WORLD_HEIGHT
+        );
+        elapsedTime += delta;
+    }
+
+    private void checkAnimation(float delta) {
+        if (winAnimation.isAnimationFinished(elapsedTime)) {
+            timer -= delta;
+
+            if (timer <= 0) {
+                isAnimating = false;
+                super.render(delta);
+                handlePostWinActions();
+            }
         }
     }
 
@@ -114,9 +161,12 @@ public class LevelsScreen extends BasicGameScreen {
 
     private void win() {
         GameManager.INSTANCE.levelComplete();
-        Gdx.input.setInputProcessor(stage);
         isPaused = true;
+        isAnimating = true;
+    }
 
+    private void handlePostWinActions() {
+        Gdx.input.setInputProcessor(stage);
         Skin uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
 
         Dialog dialog = new Dialog("", uiSkin);

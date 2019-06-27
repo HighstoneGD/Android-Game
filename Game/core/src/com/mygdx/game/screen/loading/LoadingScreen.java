@@ -1,5 +1,6 @@
 package com.mygdx.game.screen.loading;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -24,6 +25,11 @@ public class LoadingScreen implements Screen {
     private Viewport viewport;
     private SpriteBatch batch;
 
+    private float screenWidth;
+    private float screenHeight;
+    private float scale;
+    private float oldScale = 0;
+
     private TextureAtlas textureAtlas;
     private BitmapFont font;
     private Animation<TextureRegion> animation;
@@ -42,7 +48,10 @@ public class LoadingScreen implements Screen {
 
     @Override
     public void show() {
-        viewport = new FillViewport(GameData.HUD_WIDTH, GameData.HUD_HEIGHT);
+        screenWidth = Gdx.graphics.getWidth();
+        screenHeight = Gdx.graphics.getHeight();
+
+        viewport = new FillViewport(screenWidth, screenHeight);
         batch = game.getBatch();
 
         loadPreviewAssets();
@@ -77,7 +86,8 @@ public class LoadingScreen implements Screen {
     }
 
     private void changeScreen() {
-        if(changeScreen && !animating) {
+        if (changeScreen && !animating) {
+            font.getData().setScale(oldScale);
             game.setScreen(new MenuScreen(game));
         }
     }
@@ -86,10 +96,10 @@ public class LoadingScreen implements Screen {
         elapsedTime += delta;
         progress = assetManager.getProgress();
 
-        if(assetManager.update()) {
+        if (assetManager.update()) {
             waitTime -= delta;
 
-            if(waitTime <= 0) {
+            if (waitTime <= 0) {
                 changeScreen = true;
             }
         }
@@ -98,7 +108,7 @@ public class LoadingScreen implements Screen {
     private void drawStatic() {
         batch.draw(assetManager.get(AssetDescriptors.LOADING_BACKGROUND).findRegion(RegionNames.LOADING_BACKGROUND),
                 0, 0,
-                GameData.HUD_WIDTH, GameData.HUD_HEIGHT
+                screenWidth, screenHeight
         );
     }
 
@@ -106,13 +116,19 @@ public class LoadingScreen implements Screen {
         batch.draw(
                 animation.getKeyFrame(elapsedTime, false),
                 0, 0,
-                GameData.HUD_WIDTH, GameData.HUD_HEIGHT
+                screenWidth, screenHeight
         );
     }
 
     private void drawFont() {
+        if (oldScale == 0) {
+            oldScale = font.getScaleX();
+            scale = screenWidth / 500f;
+            font.getData().setScale(scale);
+        }
+
         font.draw(batch, sign + Math.round(progress * 100f) + "%",
-                GameData.HUD_WIDTH * 0.25f, GameData.HUD_HEIGHT * 0.28f);
+                screenWidth * 0.25f, screenHeight * 0.28f);
     }
 
     private void draw() {
@@ -163,6 +179,7 @@ public class LoadingScreen implements Screen {
         assetManager.load(AssetDescriptors.HUD);
         assetManager.load(AssetDescriptors.UI_SKIN);
         assetManager.load(AssetDescriptors.FILL_BAR);
+        assetManager.load(AssetDescriptors.WIN_ANIMATION);
     }
 
     @Override

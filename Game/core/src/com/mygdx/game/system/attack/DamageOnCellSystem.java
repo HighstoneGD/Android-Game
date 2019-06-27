@@ -5,11 +5,10 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.common.Mappers;
-import com.mygdx.game.util.objects.DamageObject;
 import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.marking.CellComponent;
-import com.mygdx.game.controlling.AvoidedPotsManager;
 import com.mygdx.game.controlling.HealthManager;
+import com.mygdx.game.util.objects.DamageObject;
 
 public class DamageOnCellSystem extends IteratingSystem {
 
@@ -32,7 +31,6 @@ public class DamageOnCellSystem extends IteratingSystem {
             for (int i = 0; i < attackState.timers.size(); i++) {
                 DamageObject damageObject = attackState.timers.get(i);
                 HealthManager.takeDamage(damageObject.damage);
-                AvoidedPotsManager.resetAvoided();
             }
 
             attackState.timers.clear();

@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "196270824163",
+    "firebase_url": "https://mad-gran.firebaseio.com",
+    "project_id": "mad-gran",
+    "storage_bucket": "mad-gran.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196270824163:android:a29c971dfc44c526",
+        "android_client_info": {
+          "package_name": "com.mygdx.game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196270824163-o4j6chsh3jeru5v1d9bojdndraq6mfco.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mygdx.game",
+            "certificate_hash": "9637d949e0c96253ca14108e068eb2913fa2d1d6"
+          }
+        },
+        {
+          "client_id": "196270824163-ualj5g5kntjm05sn88sd62ukihgqmbdp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASPxNZwCFq8agM3xAAZdHYyelCGpjPLPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196270824163-ualj5g5kntjm05sn88sd62ukihgqmbdp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-1310260297187248~7659217840"
+    }
+  ],
+  "configuration_version": "1"
+}

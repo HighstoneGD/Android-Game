@@ -86,11 +86,11 @@ public class EndlessModeScreen extends BasicGameScreen {
 
     @Override
     protected void gameOverAction() {
-        GameManager.INSTANCE.updateHighscore();
+        game.getScoreManager().addScore((int) GameManager.INSTANCE.getScore());
     }
 
     private void initPotTypes() {
-        potTypes = new ArrayList<PotType>();
+        potTypes = new ArrayList<>();
         potTypes.add(PotType.SIMPLE);
         potTypes.add(PotType.LARGE);
         potTypes.add(PotType.BONUS);

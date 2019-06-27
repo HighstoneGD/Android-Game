@@ -10,14 +10,12 @@ public class GameManager {
 
     public static final GameManager INSTANCE = new GameManager();
 
-    private static final String HIGHSCORE_KEY = "highscore";
     private static final String LEVELS_ACCOMPLISHED_KEY = "levels";
 
     private int levelsAccomplished;
 
     private Preferences PREFS;
     private float scoreInSeconds;
-    private float highscoreInSeconds;
 
     private static int largeCooldown;
     private static int explosiveCooldown;
@@ -26,18 +24,7 @@ public class GameManager {
 
     private GameManager() {
         PREFS = Gdx.app.getPreferences(AndroidGame.class.getSimpleName());
-        highscoreInSeconds = PREFS.getFloat(HIGHSCORE_KEY, 0);
         levelsAccomplished = PREFS.getInteger(LEVELS_ACCOMPLISHED_KEY, 0);
-    }
-
-    public void updateHighscore() {
-        if (scoreInSeconds < highscoreInSeconds) {
-            return;
-        }
-
-        highscoreInSeconds = scoreInSeconds;
-        PREFS.putFloat(HIGHSCORE_KEY, highscoreInSeconds);
-        PREFS.flush();
     }
 
     public void updateScore(float amount) {
@@ -46,10 +33,6 @@ public class GameManager {
 
     public float getScore() {
         return scoreInSeconds;
-    }
-
-    public float getHighscore() {
-        return highscoreInSeconds;
     }
 
     public void resetScore() {

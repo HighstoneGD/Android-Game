@@ -30,6 +30,7 @@ public class AssetPaths {
     public static final String UI_SKIN = "ui/uiskin.json";
     public static final String UI_ATLAS = "ui/uiskin.atlas";
     public static final String FILL_BAR = "gameplay/fillbar.png";
+    public static final String WIN_ANIMATION = "win_animation.atlas";
 
     private AssetPaths() {
     }

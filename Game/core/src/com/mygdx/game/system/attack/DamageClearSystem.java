@@ -5,7 +5,6 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.mygdx.game.common.Mappers;
 import com.mygdx.game.component.AttackStateComponent;
-import com.mygdx.game.controlling.AvoidedPotsManager;
 
 public class DamageClearSystem extends IteratingSystem {
 
@@ -26,7 +25,6 @@ public class DamageClearSystem extends IteratingSystem {
                 attackState.timers.get(i).reduceTimer(deltaTime);
                 if (attackState.timers.get(i).time == 0) {
                     attackState.timers.remove(attackState.timers.get(i));
-                    AvoidedPotsManager.avoided();
                 }
             } catch (NullPointerException e) {
             }

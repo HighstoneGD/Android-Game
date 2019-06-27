@@ -3,7 +3,6 @@ package com.mygdx.game.screen.game;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
@@ -11,8 +10,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -24,10 +21,9 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
-import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.EntityFactory;
+import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.enums.Directions;
-import com.mygdx.game.controlling.AvoidedPotsManager;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.screen.menu.PlayScreen;
@@ -97,7 +93,6 @@ public abstract class BasicGameScreen implements Screen {
     }
 
     private void resetManagers() {
-        AvoidedPotsManager.reset();
         resetHealthManager();
         GameManager.INSTANCE.resetScore();
         GameManager.INSTANCE.resetCooldown();
@@ -183,7 +178,7 @@ public abstract class BasicGameScreen implements Screen {
         stage.dispose();
     }
 
-    protected void gameOver() {
+    private void gameOver() {
         gameOverAction();
         Gdx.input.setInputProcessor(stage);
         isPaused = true;

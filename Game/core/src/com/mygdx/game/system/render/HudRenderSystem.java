@@ -61,15 +61,10 @@ public class HudRenderSystem extends EntitySystem {
     private void drawScore() {
         if (renderScore) {
             String scoreString = "Scr: " + Math.round(GameManager.INSTANCE.getScore());
-            String highscoreString = "HS: " + Math.round(GameManager.INSTANCE.getHighscore());
             layout.setText(font, scoreString);
             font.draw(batch, scoreString,
                     20,
                     GameData.HUD_HEIGHT - 5f);
-
-            font.draw(batch, highscoreString,
-                    20,
-                    GameData.HUD_HEIGHT - 35f);
         }
     }
 
@@ -81,7 +76,7 @@ public class HudRenderSystem extends EntitySystem {
             for (int i = 0; i < lives; i++) {
                 batch.draw(
                         hud.findRegion(RegionNames.HEART),
-                        GameData.HEARTS_POSITIONS[i] - GameData.HEART_SIZE / 2f, 50f - GameData.HEART_SIZE / 2f,
+                        GameData.HEARTS_POSITIONS[i] - GameData.HEART_SIZE / 2f, 150f - GameData.HEART_SIZE / 2f,
                         GameData.HEART_SIZE, GameData.HEART_SIZE
                 );
             }
@@ -90,7 +85,7 @@ public class HudRenderSystem extends EntitySystem {
         if (armor) {
             batch.draw(
                     hud.findRegion(RegionNames.ARMOR),
-                    GameData.HEARTS_POSITIONS[3] - GameData.HEART_SIZE / 2f, 50f - GameData.HEART_SIZE / 2f,
+                    GameData.HEARTS_POSITIONS[3] - GameData.HEART_SIZE / 2f, 150f - GameData.HEART_SIZE / 2f,
                     GameData.HEART_SIZE, GameData.HEART_SIZE
             );
         }

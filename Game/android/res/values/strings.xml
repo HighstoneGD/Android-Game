@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">AndroidGame</string>
+    <string name="app_name">Mad Gran</string>
+
+    <string name="banner_id">ca-app-pub-1310260297187248/6214328133</string>
+
+    <string name="rewarded_interstitial_id">ca-app-pub-1310260297187248/9934081291</string>
 
 </resources>

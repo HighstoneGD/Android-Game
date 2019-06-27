@@ -1,3 +1,4 @@
+apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         config {
@@ -8,7 +9,7 @@ android {
         }
     }
     buildToolsVersion "28.0.3"
-    compileSdkVersion 28
+    compileSdkVersion 29
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -26,8 +27,8 @@ android {
     }
     defaultConfig {
         applicationId "com.mygdx.game"
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdkVersion 23
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
     }
@@ -38,6 +39,10 @@ android {
         }
         debug {
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 // called every time gradle gets executed, takes the native dependencies of
@@ -147,4 +152,6 @@ idea {
     }
 }
 dependencies {
+    implementation 'com.google.firebase:firebase-database:18.0.0'
+    implementation 'com.google.firebase:firebase-auth:18.0.0'
 }
