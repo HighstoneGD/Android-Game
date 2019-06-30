@@ -4,6 +4,7 @@ import com.mygdx.game.ScoreListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class ScoreManager {
@@ -28,16 +29,18 @@ public class ScoreManager {
         }
     }
 
-    public void addScore(int score) {
+    public void addScore(Long score) {
+        addToList(score);
+        Collections.sort(userData.highscores);
+        notifyListeners();
+    }
+
+    private void addToList(Long score) {
         if (userData.highscores.size() < 10) {
             userData.highscores.add(score);
         } else if (userData.highscores.get(0) < score) {
             userData.highscores.set(0, score);
         }
-
-        Collections.sort(userData.highscores);
-
-        notifyListeners();
     }
 
     public String getUserId() {

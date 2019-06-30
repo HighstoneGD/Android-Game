@@ -86,7 +86,7 @@ public class EndlessModeScreen extends BasicGameScreen {
 
     @Override
     protected void gameOverAction() {
-        game.getScoreManager().addScore((int) GameManager.INSTANCE.getScore());
+        game.getScoreManager().addScore((long) GameManager.INSTANCE.getScore());
     }
 
     private void initPotTypes() {

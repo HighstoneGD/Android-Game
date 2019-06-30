@@ -54,7 +54,8 @@ public class GameManager {
     }
 
     public boolean endlessModeUnlocked() {
-        return levelsAccomplished == 8;
+//        return levelsAccomplished == 8;
+        return true;
     }
 
     public int getPotCooldown(PotType type) {

@@ -11,37 +11,46 @@ import com.google.firebase.database.ValueEventListener;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.ScoreListener;
 import com.mygdx.game.controlling.ScoreManager;
-import com.mygdx.game.controlling.UserData;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DatabaseManager implements ScoreListener {
 
-    private static String USER_ID;
     private static final Logger log = new Logger(DatabaseManager.class.getSimpleName(), Logger.DEBUG);
+    private static String userId;
 
-    private static final String HIGHSCORE_KEY = "highscores";
-    private static final String NAME_KEY = "name";
-
+    private AndroidGame game;
     private ScoreManager scoreManager;
 
     private FirebaseDatabase database;
-    private DatabaseReference reference;
+    private DatabaseReference userReference;
+    private DatabaseReference topPlayersReference;
 
     public DatabaseManager(AndroidGame game) {
-        scoreManager = game.getScoreManager();
-        scoreManager.addListener(this);
-        USER_ID = scoreManager.getUserId();
+        this.game = game;
+        initScoreManager();
 
         database = FirebaseDatabase.getInstance();
-        reference = database.getReference(USER_ID);
+        initUserReference();
+        initTopPlayersReference();
+    }
 
-        reference.addValueEventListener(new ValueEventListener() {
+    private void initScoreManager() {
+        scoreManager = game.getScoreManager();
+        scoreManager.addListener(this);
+        userId = scoreManager.getUserId();
+    }
+
+    private void initUserReference() {
+        userReference = database.getReference("users").child(userId);
+        userReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 getNameFromDatabase(dataSnapshot);
                 getHighscoresFromDatabase(dataSnapshot);
+                logResult();
             }
 
             @Override
@@ -51,27 +60,50 @@ public class DatabaseManager implements ScoreListener {
         });
     }
 
+    private void initTopPlayersReference() {
+        topPlayersReference = database.getReference("top10");
+        topPlayersReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void getNameFromDatabase(@NonNull DataSnapshot dataSnapshot) {
-        scoreManager.userData.name = dataSnapshot.child(USER_ID).child(NAME_KEY).getValue(String.class);
+        scoreManager.userData.name = dataSnapshot.child(DatabaseManagerUtils.NAME_KEY).getValue(String.class);
         if (scoreManager.userData.name == null) {
-            scoreManager.userData.name = scoreManager.getUserId();
+            userReference.child(DatabaseManagerUtils.NAME_KEY).setValue(userId);
         }
     }
 
     private void getHighscoresFromDatabase(@NonNull DataSnapshot dataSnapshot) {
-        int amount = (int) dataSnapshot.child(USER_ID).child(HIGHSCORE_KEY).getChildrenCount();
         scoreManager.userData.highscores.clear();
+        List<Long> values = (List<Long>) dataSnapshot.child(DatabaseManagerUtils.HIGHSCORE_KEY).getValue();
+        addToUserData(values);
+    }
 
-        for (int i = 0; i < amount; ++i) {
-            Integer value = dataSnapshot.child(USER_ID).child(HIGHSCORE_KEY).child(String.valueOf(i)).getValue(Integer.class);
-            if (value != null) {
-                scoreManager.userData.highscores.add(value);
-            }
+    private void addToUserData(List<Long> values) {
+        try {
+            scoreManager.userData.highscores.addAll(values);
+            Collections.sort(scoreManager.userData.highscores);
+        } catch (NullPointerException e) {
+            e.getStackTrace();
         }
 
         if (scoreManager.userData.highscores == null) {
             scoreManager.userData.highscores = new ArrayList<>();
         }
+    }
+
+    private void logResult() {
+        log.debug("username: " + scoreManager.userData.name);
+        log.debug("highscores: " + scoreManager.userData.highscores);
     }
 
     @Override
@@ -80,9 +112,7 @@ public class DatabaseManager implements ScoreListener {
     }
 
     private void sendHighscores() {
-        reference.child("highscores").removeValue((databaseError, databaseReference) -> {
-            if (databaseError == null)
-                reference.child("highscores").setValue(scoreManager.userData.highscores);
-        });
+        userReference.child(DatabaseManagerUtils.HIGHSCORE_KEY).setValue(scoreManager.userData.highscores)
+                .addOnFailureListener((e) -> log.debug(e.getMessage()));
     }
 }

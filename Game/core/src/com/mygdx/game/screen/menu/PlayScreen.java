@@ -3,6 +3,8 @@ package com.mygdx.game.screen.menu;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -40,14 +42,16 @@ public class PlayScreen extends MenuScreenBase {
 
         TextButton levelsButton = createLevelsButton();
         TextButton endlessModeButton = createEndlessModeButton();
+        TextButton highscoresButton = createHighscoresButton();
         TextButton backButton = createBackButton();
 
         Table buttonTable = new Table();
         buttonTable.defaults().pad(20f);
 
-        buttonTable.add(levelsButton).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT).row();
-        buttonTable.add(endlessModeButton).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT).row();
-        buttonTable.add(backButton).width(GameData.MENU_BUTTON_WIDTH).height(GameData.MENU_BUTTON_HEIGHT);
+        buttonTable.add(levelsButton).row();
+        buttonTable.add(endlessModeButton).row();
+        buttonTable.add(highscoresButton).row();
+        buttonTable.add(backButton);
 
         buttonTable.center();
 
@@ -90,6 +94,17 @@ public class PlayScreen extends MenuScreenBase {
         addButtonListener(endlessModeUnlocked, endlessModeButton);
 
         return endlessModeButton;
+    }
+
+    private TextButton createHighscoresButton() {
+        TextButton highscoresButton = new TextButton("SCORES", uiSkin);
+        highscoresButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                highscores();
+            }
+        });
+        return highscoresButton;
     }
 
     private TextButton createBackButton() {
@@ -143,6 +158,10 @@ public class PlayScreen extends MenuScreenBase {
         dialog.button("OK");
         dialog.center();
         dialog.show(stage);
+    }
+
+    private void highscores() {
+        game.setScreen(new HighscoresScreen(game));
     }
 
     private void back() {

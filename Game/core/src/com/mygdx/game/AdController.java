@@ -7,5 +7,4 @@ public interface AdController {
     void showBanner();
 
     boolean isNetworkConnected();
-
 }
