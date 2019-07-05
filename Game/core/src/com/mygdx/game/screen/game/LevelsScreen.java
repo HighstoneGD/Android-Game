@@ -30,7 +30,7 @@ import com.mygdx.game.system.attack.TargetSystem;
 import com.mygdx.game.system.attack.bonus.ArmorBonusSystem;
 import com.mygdx.game.system.attack.bonus.LifeBonusSystem;
 import com.mygdx.game.system.attack.bonus.SpeedUpBonusSystem;
-import com.mygdx.game.system.attack.potsystems.DropPotsSystem;
+import com.mygdx.game.system.attack.DropPotsSystem;
 import com.mygdx.game.system.movement.DesktopControlSystem;
 import com.mygdx.game.system.movement.PlayerMovementSystem;
 import com.mygdx.game.system.movement.PlayerPresenceSystem;
@@ -53,7 +53,6 @@ import com.mygdx.game.system.render.SmashAfterPlayerRenderSystem;
 import com.mygdx.game.system.render.SmashBeforePlayerRenderSystem;
 import com.mygdx.game.system.render.SmashesOrderSystem;
 import com.mygdx.game.util.logic.NumberConverter;
-import com.mygdx.game.util.render.GdxUtils;
 
 public class LevelsScreen extends BasicGameScreen {
 

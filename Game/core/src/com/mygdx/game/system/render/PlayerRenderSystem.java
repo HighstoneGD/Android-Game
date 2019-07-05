@@ -39,9 +39,9 @@ public class PlayerRenderSystem extends IteratingSystem {
         this.viewport = viewport;
 
         playerStatic = assetManager.get(AssetDescriptors.STATIC).findRegion(RegionNames.PLAYER);
-        left = new Animation<TextureRegion>(GameData.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_LEFT_JUMP).getRegions());
-        right = new Animation<TextureRegion>(GameData.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_RIGHT_JUMP).getRegions());
-        vertical = new Animation<TextureRegion>(GameData.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_VERTICAL_JUMP).getRegions());
+        left = new Animation<>(GameData.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_LEFT_JUMP).getRegions());
+        right = new Animation<>(GameData.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_RIGHT_JUMP).getRegions());
+        vertical = new Animation<>(GameData.PLAYER_FRAME_TIME, assetManager.get(AssetDescriptors.PLAYER_VERTICAL_JUMP).getRegions());
     }
 
     @Override

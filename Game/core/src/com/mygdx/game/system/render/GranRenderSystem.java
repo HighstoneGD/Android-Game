@@ -4,6 +4,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -39,10 +40,10 @@ public class GranRenderSystem extends IteratingSystem {
         this.batch = batch;
         this.viewport = viewport;
         granStatic = assetManager.get(AssetDescriptors.STATIC).findRegion(RegionNames.GRAN);
-        simple = new Animation<TextureRegion>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_SIMPLE_THROW).getRegions());
-        iron = new Animation<TextureRegion>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_IRON_THROW).getRegions());
-        large = new Animation<TextureRegion>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_LARGE_THROW).getRegions());
-        explosive = new Animation<TextureRegion>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_EXPLOSIVE_THROW).getRegions());
+        simple = new Animation<>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_SIMPLE_THROW).getRegions());
+        iron = new Animation<>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_IRON_THROW).getRegions());
+        large = new Animation<>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_LARGE_THROW).getRegions());
+        explosive = new Animation<>(GameData.GRAN_FRAME_TIME, assetManager.get(AssetDescriptors.GRAN_EXPLOSIVE_THROW).getRegions());
     }
 
     @Override

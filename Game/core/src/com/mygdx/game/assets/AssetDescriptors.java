@@ -96,6 +96,18 @@ public class AssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> WIN_ANIMATION =
             new AssetDescriptor<TextureAtlas>(AssetPaths.WIN_ANIMATION, TextureAtlas.class);
 
+    public static final AssetDescriptor<Sound> CLAY_POT_SMASH_FIRST =
+            new AssetDescriptor<>(AssetPaths.CLAY_POT_SMASH_FIRST, Sound.class);
+
+    public static final AssetDescriptor<Sound> CLAY_POT_SMASH_SECOND =
+            new AssetDescriptor<>(AssetPaths.CLAY_POT_SMASH_SECOND, Sound.class);
+
+    public static final AssetDescriptor<Sound> EXPLOSION =
+            new AssetDescriptor<>(AssetPaths.EXPLOSION, Sound.class);
+
+    public static final AssetDescriptor<Sound> IRON_POT_SMASH =
+            new AssetDescriptor<>(AssetPaths.IRON_POT_SMASH, Sound.class);
+
     private AssetDescriptors() {
     }
 }

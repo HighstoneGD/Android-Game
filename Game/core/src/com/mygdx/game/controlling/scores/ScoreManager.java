@@ -1,10 +1,9 @@
-package com.mygdx.game.controlling;
+package com.mygdx.game.controlling.scores;
 
 import com.mygdx.game.ScoreListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 public class ScoreManager {

@@ -26,6 +26,7 @@ import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.enums.Directions;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.controlling.HealthManager;
+import com.mygdx.game.controlling.SoundsManager;
 import com.mygdx.game.screen.menu.PlayScreen;
 import com.mygdx.game.system.debug.CellsSpawnSystem;
 import com.mygdx.game.system.movement.PlayerMovementSystem;
@@ -90,6 +91,8 @@ public abstract class BasicGameScreen implements Screen {
         initSystems();
 
         addEntities();
+
+        getSoundsManager().playMusic();
     }
 
     private void resetManagers() {
@@ -174,6 +177,7 @@ public abstract class BasicGameScreen implements Screen {
 
     @Override
     public void dispose() {
+        getSoundsManager().stopMusic();
         renderer.dispose();
         stage.dispose();
     }
@@ -310,5 +314,9 @@ public abstract class BasicGameScreen implements Screen {
 
     public PooledEngine getEngine() {
         return engine;
+    }
+
+    public SoundsManager getSoundsManager() {
+        return game.getSoundsManager();
     }
 }

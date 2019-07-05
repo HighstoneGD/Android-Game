@@ -3,6 +3,7 @@ package com.mygdx.game.screen.loading;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -37,6 +38,7 @@ public class LoadingScreen implements Screen {
     private String sign;
     private boolean changeScreen;
     private boolean animating = false;
+    private boolean fontAdjusted = false;
     private float progress;
     private float waitTime = 0.75f;
     private float elapsedTime = 0;
@@ -58,8 +60,8 @@ public class LoadingScreen implements Screen {
 
         while (!assetManager.update()) {}
 
+        initAnimationAndSound();
         loadAssets();
-        initAnimation();
     }
 
     @Override
@@ -79,19 +81,6 @@ public class LoadingScreen implements Screen {
         changeScreen();
     }
 
-    private void finishAnimation() {
-        if (animation.isAnimationFinished(elapsedTime)) {
-            animating = false;
-        }
-    }
-
-    private void changeScreen() {
-        if (changeScreen && !animating) {
-            font.getData().setScale(oldScale);
-            game.setScreen(new MenuScreen(game));
-        }
-    }
-
     private void update(float delta) {
         elapsedTime += delta;
         progress = assetManager.getProgress();
@@ -103,6 +92,15 @@ public class LoadingScreen implements Screen {
                 changeScreen = true;
             }
         }
+    }
+
+    private void draw() {
+        if (!animating) {
+            drawStatic();
+        } else {
+            drawAnimation();
+        }
+        drawFont();
     }
 
     private void drawStatic() {
@@ -120,36 +118,46 @@ public class LoadingScreen implements Screen {
         );
     }
 
+    private void finishAnimation() {
+        if (animation.isAnimationFinished(elapsedTime)) {
+            animating = false;
+        }
+    }
+
+    private void changeScreen() {
+        if (changeScreen && !animating) {
+            font.getData().setScale(oldScale);
+            game.setScreen(new MenuScreen(game));
+        }
+    }
+
     private void drawFont() {
-        if (oldScale == 0) {
-            oldScale = font.getScaleX();
-            scale = screenWidth / 500f;
-            font.getData().setScale(scale);
+        if (!fontAdjusted) {
+            adjustFont();
         }
 
         font.draw(batch, sign + Math.round(progress * 100f) + "%",
                 screenWidth * 0.25f, screenHeight * 0.28f);
     }
 
-    private void draw() {
-        if (!animating) {
-            drawStatic();
-        } else {
-            drawAnimation();
-        }
-        drawFont();
+    private void adjustFont() {
+        oldScale = font.getScaleX();
+        scale = screenWidth / 500f;
+        font.getData().setScale(scale);
+        fontAdjusted = true;
     }
 
-    private void initAnimation() {
+    private void initAnimationAndSound() {
         textureAtlas = assetManager.get(AssetDescriptors.GRAN_LOADING_ANIMATION);
         font = assetManager.get(AssetDescriptors.FONT);
         sign = "LOADING: ";
-        animation = new Animation<TextureRegion>(GameData.FRAME_TIME, textureAtlas.getRegions());
+        animation = new Animation<>(GameData.FRAME_TIME * 3, textureAtlas.getRegions());
         animating = true;
+        assetManager.get(AssetDescriptors.FUMAR_SOUND).play();
     }
 
     private void loadPreviewAssets() {
-//        assetManager.load(AssetDescriptors.FUMAR_SOUND);
+        assetManager.load(AssetDescriptors.FUMAR_SOUND);
         assetManager.load(AssetDescriptors.GRAN_LOADING_ANIMATION);
         assetManager.load(AssetDescriptors.LOADING_BACKGROUND);
         assetManager.load(AssetDescriptors.FONT);
@@ -158,6 +166,21 @@ public class LoadingScreen implements Screen {
     private void loadAssets() {
         assetManager.load(AssetDescriptors.LARGE_FONT);
         assetManager.load(AssetDescriptors.GAMEPLAY_BG);
+        assetManager.load(AssetDescriptors.STATIC);
+        assetManager.load(AssetDescriptors.HUD);
+        assetManager.load(AssetDescriptors.UI_SKIN);
+        loadAnimations();
+        loadSounds();
+    }
+
+    private void loadAnimations() {
+        loadPotAnimations();
+        loadGranAnimations();
+        loadPlayerAnimations();
+        assetManager.load(AssetDescriptors.WIN_ANIMATION);
+    }
+
+    private void loadPotAnimations() {
         assetManager.load(AssetDescriptors.SIMPLE_TEXTURE);
         assetManager.load(AssetDescriptors.SIMPLE_SMASH);
         assetManager.load(AssetDescriptors.IRON_TEXTURE);
@@ -168,18 +191,26 @@ public class LoadingScreen implements Screen {
         assetManager.load(AssetDescriptors.BONUS_SMASH);
         assetManager.load(AssetDescriptors.EXPLOSIVE_TEXTURE);
         assetManager.load(AssetDescriptors.EXPLOSIVE_SMASH);
+    }
+
+    private void loadGranAnimations() {
         assetManager.load(AssetDescriptors.GRAN_SIMPLE_THROW);
         assetManager.load(AssetDescriptors.GRAN_IRON_THROW);
         assetManager.load(AssetDescriptors.GRAN_LARGE_THROW);
         assetManager.load(AssetDescriptors.GRAN_EXPLOSIVE_THROW);
+    }
+
+    private void loadPlayerAnimations() {
         assetManager.load(AssetDescriptors.PLAYER_LEFT_JUMP);
         assetManager.load(AssetDescriptors.PLAYER_RIGHT_JUMP);
         assetManager.load(AssetDescriptors.PLAYER_VERTICAL_JUMP);
-        assetManager.load(AssetDescriptors.STATIC);
-        assetManager.load(AssetDescriptors.HUD);
-        assetManager.load(AssetDescriptors.UI_SKIN);
-        assetManager.load(AssetDescriptors.FILL_BAR);
-        assetManager.load(AssetDescriptors.WIN_ANIMATION);
+    }
+
+    private void loadSounds() {
+        assetManager.load(AssetDescriptors.CLAY_POT_SMASH_FIRST);
+        assetManager.load(AssetDescriptors.CLAY_POT_SMASH_SECOND);
+        assetManager.load(AssetDescriptors.EXPLOSION);
+        assetManager.load(AssetDescriptors.IRON_POT_SMASH);
     }
 
     @Override
@@ -188,14 +219,10 @@ public class LoadingScreen implements Screen {
     }
 
     @Override
-    public void pause() {
-
-    }
+    public void pause() {}
 
     @Override
-    public void resume() {
-
-    }
+    public void resume() {}
 
     @Override
     public void hide() {
@@ -203,7 +230,5 @@ public class LoadingScreen implements Screen {
     }
 
     @Override
-    public void dispose() {
-
-    }
+    public void dispose() {}
 }

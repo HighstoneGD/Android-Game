@@ -1,4 +1,4 @@
-package com.mygdx.game.system.attack.potsystems;
+package com.mygdx.game.system.attack;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -16,9 +16,6 @@ public class DropPotsSystem extends IteratingSystem {
             PositionComponent.class,
             PotComponent.class
     ).get();
-
-    private static final Logger log = new Logger(DropPotsSystem.class.getName(), Logger.DEBUG);
-
     private BasicGameScreen screen;
 
     public DropPotsSystem(BasicGameScreen screen) {
@@ -45,6 +42,7 @@ public class DropPotsSystem extends IteratingSystem {
         PotComponent potComponent = Mappers.POT_COMPONENT.get(entity);
         screen.getFactory().addSmash(potComponent.type, potComponent.aimX, potComponent.aimY);
         potComponent.system.attack();
+        screen.getSoundsManager().playSmashSound(potComponent.type);
         getEngine().removeEntity(entity);
     }
 }

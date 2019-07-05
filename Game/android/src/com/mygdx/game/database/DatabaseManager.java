@@ -10,11 +10,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.ScoreListener;
-import com.mygdx.game.controlling.ScoreManager;
+import com.mygdx.game.controlling.scores.ScoreManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class DatabaseManager implements ScoreListener {
 
@@ -48,8 +49,8 @@ public class DatabaseManager implements ScoreListener {
         userReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                getNameFromDatabase(dataSnapshot);
-                getHighscoresFromDatabase(dataSnapshot);
+                retrieveNameFromDatabase(dataSnapshot);
+                retrieveHighscoresFromDatabase(dataSnapshot);
                 logResult();
             }
 
@@ -64,25 +65,23 @@ public class DatabaseManager implements ScoreListener {
         topPlayersReference = database.getReference("top10");
         topPlayersReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-            }
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {}
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                log.debug(databaseError.getMessage());
             }
         });
     }
 
-    private void getNameFromDatabase(@NonNull DataSnapshot dataSnapshot) {
+    private void retrieveNameFromDatabase(@NonNull DataSnapshot dataSnapshot) {
         scoreManager.userData.name = dataSnapshot.child(DatabaseManagerUtils.NAME_KEY).getValue(String.class);
         if (scoreManager.userData.name == null) {
             userReference.child(DatabaseManagerUtils.NAME_KEY).setValue(userId);
         }
     }
 
-    private void getHighscoresFromDatabase(@NonNull DataSnapshot dataSnapshot) {
+    private void retrieveHighscoresFromDatabase(@NonNull DataSnapshot dataSnapshot) {
         scoreManager.userData.highscores.clear();
         List<Long> values = (List<Long>) dataSnapshot.child(DatabaseManagerUtils.HIGHSCORE_KEY).getValue();
         addToUserData(values);

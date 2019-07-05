@@ -160,27 +160,27 @@ public class EntityFactory {
         DimensionComponent dimension = engine.createComponent(DimensionComponent.class);
 
         if (type == PotType.SIMPLE) {
-            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
+            animationComponent.animation = new Animation<>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.SIMPLE_SMASH).getRegions());
             dimension.width = GameData.SIMPLE_SMASH_WIDTH;
             dimension.height = GameData.SIMPLE_SMASH_HEIGHT;
         } else if (type == PotType.IRON) {
-            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
+            animationComponent.animation = new Animation<>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.IRON_SMASH).getRegions());
             dimension.width = GameData.IRON_SMASH_WIDTH;
             dimension.height = GameData.IRON_SMASH_HEIGHT;
         } else if (type == PotType.LARGE) {
-            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
+            animationComponent.animation = new Animation<>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.LARGE_SMASH).getRegions());
             dimension.width = GameData.LARGE_SMASH_SIZE;
             dimension.height = GameData.LARGE_SMASH_SIZE;
         } else if (type == PotType.BONUS) {
-            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
+            animationComponent.animation = new Animation<>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.BONUS_SMASH).getRegions());
             dimension.width = GameData.BONUS_SMASH_SIZE;
             dimension.height = GameData.BONUS_SMASH_SIZE;
         } else if (type == PotType.EXPLOSIVE) {
-            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
+            animationComponent.animation = new Animation<>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.EXPLOSIVE_SMASH).getRegions());
             dimension.width = GameData.EXPLOSIVE_SMASH_SIZE;
             dimension.height = GameData.EXPLOSIVE_SMASH_SIZE;
@@ -230,27 +230,27 @@ public class EntityFactory {
         animationComponent.elapsedTime = random.nextFloat();
 
         if (type == PotType.SIMPLE) {
-            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
+            animationComponent.animation = new Animation<>(GameData.FRAME_TIME,
                         assetManager.get(AssetDescriptors.SIMPLE_TEXTURE).getRegions());
             dimension.width = GameData.SIMPLE_POT_WIDTH * coef;
             dimension.height = GameData.SIMPLE_POT_HEIGHT * coef;
         } else if (type == PotType.IRON) {
-            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
+            animationComponent.animation = new Animation<>(GameData.FRAME_TIME,
                         assetManager.get(AssetDescriptors.IRON_TEXTURE).getRegions());
             dimension.width = GameData.IRON_POT_WIDTH * coef;
             dimension.height = GameData.IRON_POT_HEIGHT * coef;
         } else if (type == PotType.LARGE) {
-            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
+            animationComponent.animation = new Animation<>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.LARGE_TEXTURE).getRegions());
             dimension.width = GameData.LARGE_POT_SIZE * coef;
             dimension.height = GameData.LARGE_POT_SIZE * coef;
         } else if (type == PotType.BONUS) {
-            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
+            animationComponent.animation = new Animation<>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.BONUS_TEXTURE).getRegions());
             dimension.width = GameData.BONUS_POT_SIZE * coef;
             dimension.height = GameData.BONUS_POT_SIZE * coef;
         } else if (type == PotType.EXPLOSIVE) {
-            animationComponent.animation = new Animation<TextureRegion>(GameData.FRAME_TIME,
+            animationComponent.animation = new Animation<>(GameData.FRAME_TIME,
                     assetManager.get(AssetDescriptors.EXPLOSIVE_TEXTURE).getRegions());
             dimension.width = GameData.EXPLOSIVE_POT_SIZE * coef;
             dimension.height = GameData.EXPLOSIVE_POT_SIZE * coef;

@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
-import com.mygdx.game.controlling.UserData;
+import com.mygdx.game.controlling.scores.UserData;
 
 public class FiveHighscoresScreen extends MenuScreenBase {
 

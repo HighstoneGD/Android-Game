@@ -1,4 +1,4 @@
-package com.mygdx.game.controlling;
+package com.mygdx.game.controlling.scores;
 
 import java.util.List;
 

@@ -6,13 +6,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.controlling.ScoreManager;
+import com.mygdx.game.controlling.SoundsManager;
+import com.mygdx.game.controlling.scores.ScoreManager;
 
 public abstract class GameBase extends Game {
 
     private final AdController adController;
 
     private ScoreManager scoreManager;
+    private SoundsManager soundsManager;
 
     private SpriteBatch batch;
     private AssetManager assetManager;
@@ -28,6 +30,7 @@ public abstract class GameBase extends Game {
 
         assetManager = new AssetManager();
         assetManager.getLogger().setLevel(Logger.DEBUG);
+        soundsManager = new SoundsManager(assetManager);
 
         batch = new SpriteBatch();
         postCreate();
@@ -39,6 +42,7 @@ public abstract class GameBase extends Game {
     public void dispose() {
         batch.dispose();
         assetManager.dispose();
+        soundsManager.dispose();
     }
 
     public SpriteBatch getBatch() {
@@ -55,5 +59,9 @@ public abstract class GameBase extends Game {
 
     public ScoreManager getScoreManager() {
         return scoreManager;
+    }
+
+    public SoundsManager getSoundsManager() {
+        return soundsManager;
     }
 }
