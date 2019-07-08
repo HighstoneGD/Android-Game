@@ -1,27 +1,27 @@
 
 large_pot-smash.png
-size: 4096,1024
+size: 2048,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 largepot_smash
   rotate: false
   xy: 2, 2
-  size: 800, 800
-  orig: 800, 800
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 0
 largepot_smash
   rotate: false
-  xy: 804, 2
-  size: 800, 800
-  orig: 800, 800
+  xy: 516, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 1
 largepot_smash
   rotate: false
-  xy: 1606, 2
-  size: 800, 800
-  orig: 800, 800
+  xy: 1030, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 2

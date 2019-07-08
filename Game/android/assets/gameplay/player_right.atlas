@@ -1,62 +1,62 @@
 
 player_right.png
-size: 8192,1024
+size: 2048,2048
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-player
+right
   rotate: false
-  xy: 2, 2
-  size: 800, 800
-  orig: 800, 800
+  xy: 2, 1030
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 0
-player
+right
   rotate: false
-  xy: 804, 2
-  size: 800, 800
-  orig: 800, 800
+  xy: 2, 516
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 1
-player
+right
   rotate: false
-  xy: 1606, 2
-  size: 800, 800
-  orig: 800, 800
+  xy: 516, 1030
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 2
-player
+right
   rotate: false
-  xy: 2408, 2
-  size: 800, 800
-  orig: 800, 800
+  xy: 2, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 3
-player
+right
   rotate: false
-  xy: 3210, 2
-  size: 800, 800
-  orig: 800, 800
+  xy: 516, 516
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 4
-player
+right
   rotate: false
-  xy: 4012, 2
-  size: 800, 800
-  orig: 800, 800
+  xy: 1030, 1030
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 5
-player
+right
   rotate: false
-  xy: 4814, 2
-  size: 800, 800
-  orig: 800, 800
+  xy: 516, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 6
-player
+right
   rotate: false
-  xy: 5616, 2
-  size: 800, 800
-  orig: 800, 800
+  xy: 1030, 516
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 7

@@ -90,9 +90,6 @@ public class AssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> UI_ATLAS =
             new AssetDescriptor<TextureAtlas>(AssetPaths.UI_ATLAS, TextureAtlas.class);
 
-    public static final AssetDescriptor<Texture> FILL_BAR =
-            new AssetDescriptor<Texture>(AssetPaths.FILL_BAR, Texture.class);
-
     public static final AssetDescriptor<TextureAtlas> WIN_ANIMATION =
             new AssetDescriptor<TextureAtlas>(AssetPaths.WIN_ANIMATION, TextureAtlas.class);
 

@@ -57,7 +57,8 @@ public class GameData {
 
     public static final float GRAN_FRAME_TIME = 0.1f;
     public static final float PLAYER_FRAME_TIME = PLAYER_JUMP_TIME / 8;
-    public static final float FRAME_TIME = POT_EXISTENCE_TIME / 1.5f;
+    public static final float FRAME_TIME = 0.1f;
+    public static final float SMASH_FRAME_TIME = POT_EXISTENCE_TIME / 1.5f;
 
     public static final float SPEED_UP_TIME = 5f;
     public static final float ARMOR_TIME = 6f;
@@ -90,15 +91,11 @@ public class GameData {
 
     // pots` animations size
 
-    public static final float SIMPLE_POT_WIDTH = 10f;
-    public static final float SIMPLE_POT_HEIGHT = SIMPLE_POT_WIDTH / 8f * 9.21f;
-    public static final float SIMPLE_SMASH_WIDTH = 25f;
-    public static final float SIMPLE_SMASH_HEIGHT = SIMPLE_SMASH_WIDTH / 12f * 9.02f;
+    public static final float SIMPLE_POT_SIZE = 15f;
+    public static final float SIMPLE_SMASH_SIZE = 25f;
 
-    public static final float IRON_POT_WIDTH = 8f;
-    public static final float IRON_POT_HEIGHT = IRON_POT_WIDTH * 1.05f;
-    public static final float IRON_SMASH_WIDTH = 7.5f;
-    public static final float IRON_SMASH_HEIGHT = IRON_SMASH_WIDTH / 8f * 4.39f;
+    public static final float IRON_POT_SIZE = 8f;
+    public static final float IRON_SMASH_SIZE = 7.5f;
 
     public static final float LARGE_POT_SIZE = 22f;
     public static final float LARGE_SMASH_SIZE = 25f;

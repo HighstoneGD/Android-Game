@@ -12,12 +12,12 @@ public class AssetPacker {
         settings.maxWidth = 8192;
         settings.maxHeight = 8192;
         settings.debug = false;
-        settings.useIndexes = false;
+        settings.useIndexes = true;
 
         TexturePacker.process(settings,
                 RAW_ASSET_PATH,
                 ASSETS_PATH + "/gameplay",
-                "static"
+                "simple_pot-smash"
         );
     }
 }

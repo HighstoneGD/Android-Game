@@ -1,111 +1,111 @@
 
 simple_pot.png
-size: 8192,2048
+size: 8192,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 simplepot
   rotate: false
-  xy: 2, 925
-  size: 800, 921
-  orig: 800, 921
+  xy: 2, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 0
 simplepot
   rotate: false
-  xy: 2, 2
-  size: 800, 921
-  orig: 800, 921
+  xy: 516, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 1
 simplepot
   rotate: false
-  xy: 804, 925
-  size: 800, 921
-  orig: 800, 921
+  xy: 1030, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 2
 simplepot
   rotate: false
-  xy: 804, 2
-  size: 800, 921
-  orig: 800, 921
+  xy: 1544, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 3
 simplepot
   rotate: false
-  xy: 1606, 925
-  size: 800, 921
-  orig: 800, 921
+  xy: 2058, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 4
 simplepot
   rotate: false
-  xy: 1606, 2
-  size: 800, 921
-  orig: 800, 921
+  xy: 2572, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 5
 simplepot
   rotate: false
-  xy: 2408, 925
-  size: 800, 921
-  orig: 800, 921
+  xy: 3086, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 6
 simplepot
   rotate: false
-  xy: 2408, 2
-  size: 800, 921
-  orig: 800, 921
+  xy: 3600, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 7
 simplepot
   rotate: false
-  xy: 3210, 925
-  size: 800, 921
-  orig: 800, 921
+  xy: 4114, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 8
 simplepot
   rotate: false
-  xy: 3210, 2
-  size: 800, 921
-  orig: 800, 921
+  xy: 4628, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 9
 simplepot
   rotate: false
-  xy: 4012, 925
-  size: 800, 921
-  orig: 800, 921
+  xy: 5142, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 10
 simplepot
   rotate: false
-  xy: 4012, 2
-  size: 800, 921
-  orig: 800, 921
+  xy: 5656, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 11
 simplepot
   rotate: false
-  xy: 4814, 925
-  size: 800, 921
-  orig: 800, 921
+  xy: 6170, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 12
 simplepot
   rotate: false
-  xy: 4814, 2
-  size: 800, 921
-  orig: 800, 921
+  xy: 6684, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 13
 simplepot
   rotate: false
-  xy: 5616, 925
-  size: 800, 921
-  orig: 800, 921
+  xy: 7198, 2
+  size: 512, 512
+  orig: 512, 512
   offset: 0, 0
   index: 14
