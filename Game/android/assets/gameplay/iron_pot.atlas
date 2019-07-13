@@ -1,111 +1,111 @@
 
 iron_pot.png
-size: 8192,1024
+size: 4096,512
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 ironpot
   rotate: false
   xy: 2, 2
-  size: 512, 512
-  orig: 512, 512
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 0
 ironpot
   rotate: false
-  xy: 516, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 260, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 1
 ironpot
   rotate: false
-  xy: 1030, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 518, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 2
 ironpot
   rotate: false
-  xy: 1544, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 776, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 3
 ironpot
   rotate: false
-  xy: 2058, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 1034, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 4
 ironpot
   rotate: false
-  xy: 2572, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 1292, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 5
 ironpot
   rotate: false
-  xy: 3086, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 1550, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 6
 ironpot
   rotate: false
-  xy: 3600, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 1808, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 7
 ironpot
   rotate: false
-  xy: 4114, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 2066, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 8
 ironpot
   rotate: false
-  xy: 4628, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 2324, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 9
 ironpot
   rotate: false
-  xy: 5142, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 2582, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 10
 ironpot
   rotate: false
-  xy: 5656, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 2840, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 11
 ironpot
   rotate: false
-  xy: 6170, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 3098, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 12
 ironpot
   rotate: false
-  xy: 6684, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 3356, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 13
 ironpot
   rotate: false
-  xy: 7198, 2
-  size: 512, 512
-  orig: 512, 512
+  xy: 3614, 2
+  size: 256, 256
+  orig: 256, 256
   offset: 0, 0
   index: 14
