@@ -1,7 +1,7 @@
 package com.mygdx.game.desktop.ads;
 
 import com.badlogic.gdx.utils.Logger;
-import com.mygdx.game.AdController;
+import com.mygdx.game.util.interfaces.AdController;
 
 public class DesktopAdController implements AdController {
 

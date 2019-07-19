@@ -105,6 +105,9 @@ public class AssetDescriptors {
     public static final AssetDescriptor<Sound> IRON_POT_SMASH =
             new AssetDescriptor<>(AssetPaths.IRON_POT_SMASH, Sound.class);
 
+    public static final AssetDescriptor<Sound> GAME_OVER =
+            new AssetDescriptor<>(AssetPaths.GAME_OVER, Sound.class);
+
     private AssetDescriptors() {
     }
 }

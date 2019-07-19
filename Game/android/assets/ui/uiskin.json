@@ -93,6 +93,10 @@
     "default": {
       "background": "label",
       "titleFont": "default-font"
+    },
+    "large": {
+      "background": "large_label",
+      "titleFont": "default-font"
     }
   }
 }

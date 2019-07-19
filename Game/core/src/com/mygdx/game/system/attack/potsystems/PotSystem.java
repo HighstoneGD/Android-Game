@@ -14,7 +14,7 @@ import com.mygdx.game.component.AttackStateComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.screen.game.BasicGameScreen;
 import com.mygdx.game.system.render.GranRenderSystem;
-import com.mygdx.game.util.logic.NumberConverter;
+import com.mygdx.game.util.services.NumberConverter;
 
 public abstract class PotSystem extends EntitySystem {
 

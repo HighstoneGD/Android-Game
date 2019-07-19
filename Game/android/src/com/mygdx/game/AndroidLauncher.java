@@ -13,11 +13,9 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.badlogic.gdx.utils.Logger;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.mygdx.game.ads.AdUtils;
 import com.mygdx.game.database.DatabaseManager;
+import com.mygdx.game.util.interfaces.AdController;
 
 public class AndroidLauncher extends AndroidApplication implements AdController {
 

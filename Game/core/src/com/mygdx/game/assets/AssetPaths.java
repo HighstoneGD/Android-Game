@@ -36,6 +36,7 @@ public class AssetPaths {
     public static final String CLAY_POT_SMASH_SECOND = "sounds/clay_pot_smash2.wav";
     public static final String EXPLOSION = "sounds/explosion.wav";
     public static final String IRON_POT_SMASH = "sounds/metal_pot_smash.wav";
+    public static final String GAME_OVER = "sounds/game_over.wav";
 
     private AssetPaths() {
     }

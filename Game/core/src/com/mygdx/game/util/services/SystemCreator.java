@@ -1,4 +1,4 @@
-package com.mygdx.game.util.logic;
+package com.mygdx.game.util.services;
 
 import com.badlogic.ashley.core.PooledEngine;
 import com.mygdx.game.common.enums.BonusType;

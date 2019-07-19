@@ -14,7 +14,7 @@ import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.SpeedComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.controlling.BonusManager;
-import com.mygdx.game.util.logic.NumberConverter;
+import com.mygdx.game.util.services.NumberConverter;
 
 public class PlayerMovementSystem extends EntitySystem {
 
@@ -173,5 +173,13 @@ public class PlayerMovementSystem extends EntitySystem {
 
     private float getCellY(int xDeviation, int yDeviation) {
         return engine.getSystem(NumberConverter.class).getCoordinates(positionOnGrid.xNumber + xDeviation, positionOnGrid.yNumber + yDeviation).y;
+    }
+
+    public float getPlayerX() {
+        return position.x;
+    }
+
+    public float getPlayerY() {
+        return position.y;
     }
 }

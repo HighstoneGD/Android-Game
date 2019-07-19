@@ -3,7 +3,6 @@ package com.mygdx.game.screen.loading;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,7 +15,7 @@ import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
 import com.mygdx.game.common.GameData;
 import com.mygdx.game.screen.menu.MenuScreen;
-import com.mygdx.game.util.render.GdxUtils;
+import com.mygdx.game.util.services.GdxUtils;
 
 public class LoadingScreen implements Screen {
 
@@ -211,6 +210,7 @@ public class LoadingScreen implements Screen {
         assetManager.load(AssetDescriptors.CLAY_POT_SMASH_SECOND);
         assetManager.load(AssetDescriptors.EXPLOSION);
         assetManager.load(AssetDescriptors.IRON_POT_SMASH);
+        assetManager.load(AssetDescriptors.GAME_OVER);
     }
 
     @Override

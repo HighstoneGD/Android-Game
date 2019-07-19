@@ -5,7 +5,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.GameData;
 import com.mygdx.game.desktop.ads.DesktopAdController;
-import com.mygdx.game.AdController;
+import com.mygdx.game.util.interfaces.AdController;
 
 public class DesktopLauncher {
 

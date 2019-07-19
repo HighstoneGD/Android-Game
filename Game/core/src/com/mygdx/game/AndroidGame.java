@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.mygdx.game.screen.loading.LoadingScreen;
+import com.mygdx.game.util.interfaces.AdController;
 
 public class AndroidGame extends GameBase {
 

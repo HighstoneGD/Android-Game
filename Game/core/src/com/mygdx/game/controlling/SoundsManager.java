@@ -12,14 +12,13 @@ import java.util.Random;
 public class SoundsManager {
 
     private AssetManager assetManager;
-
     private Music music;
 
     public SoundsManager(AssetManager assetManager) {
         this.assetManager = assetManager;
         music = Gdx.audio.newMusic(Gdx.files.internal("sounds/game_music.mp3"));
         music.setLooping(true);
-        music.setVolume(0.8f);
+        music.setVolume(1f);
     }
 
     public void playSmashSound(PotType type) {
@@ -32,8 +31,12 @@ public class SoundsManager {
         } else if (type == PotType.IRON) {
             assetManager.get(AssetDescriptors.IRON_POT_SMASH).play(2f);
         } else {
-            assetManager.get(AssetDescriptors.CLAY_POT_SMASH_FIRST).play();
+            assetManager.get(AssetDescriptors.CLAY_POT_SMASH_FIRST).play(0.6f);
         }
+    }
+
+    public void playGameOverSound() {
+        assetManager.get(AssetDescriptors.GAME_OVER).play();
     }
 
     public void playMusic() {

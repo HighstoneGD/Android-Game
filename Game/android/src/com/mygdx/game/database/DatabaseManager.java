@@ -9,13 +9,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mygdx.game.AndroidGame;
-import com.mygdx.game.ScoreListener;
+import com.mygdx.game.util.interfaces.ScoreListener;
 import com.mygdx.game.controlling.scores.ScoreManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class DatabaseManager implements ScoreListener {
 
@@ -27,7 +26,6 @@ public class DatabaseManager implements ScoreListener {
 
     private FirebaseDatabase database;
     private DatabaseReference userReference;
-    private DatabaseReference topPlayersReference;
 
     public DatabaseManager(AndroidGame game) {
         this.game = game;
@@ -35,7 +33,6 @@ public class DatabaseManager implements ScoreListener {
 
         database = FirebaseDatabase.getInstance();
         initUserReference();
-        initTopPlayersReference();
     }
 
     private void initScoreManager() {
@@ -57,19 +54,6 @@ public class DatabaseManager implements ScoreListener {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 log.debug("database error " + databaseError.getMessage());
-            }
-        });
-    }
-
-    private void initTopPlayersReference() {
-        topPlayersReference = database.getReference("top10");
-        topPlayersReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {}
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                log.debug(databaseError.getMessage());
             }
         });
     }

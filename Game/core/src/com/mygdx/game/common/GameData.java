@@ -87,7 +87,7 @@ public class GameData {
     public static final int LARGE_COOLDOWN = 8;
     public static final int EXPLOSIVE_COOLDOWN = 6;
     public static final int IRON_COOLDOWN = 4;
-    public static final int BONUS_COOLDOWN = 25;
+    public static final int BONUS_COOLDOWN = 7;
 
     // pots` animations size
 

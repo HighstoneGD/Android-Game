@@ -6,7 +6,7 @@ filter: Nearest,Nearest
 repeat: none
 button-default
   rotate: false
-  xy: 1204, 1156
+  xy: 1204, 642
   size: 240, 86
   orig: 240, 86
   offset: 0, 0
@@ -20,7 +20,7 @@ button-locked
   index: -1
 button-locked-pressed
   rotate: false
-  xy: 1204, 1068
+  xy: 1204, 554
   size: 240, 86
   orig: 240, 86
   offset: 0, 0
@@ -41,16 +41,23 @@ checkbox
   index: -1
 checkbox_tick
   rotate: false
-  xy: 1446, 1142
+  xy: 1446, 628
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 label
   rotate: false
-  xy: 1204, 1244
+  xy: 1204, 730
   size: 380, 256
   orig: 380, 256
+  offset: 0, 0
+  index: -1
+large_label
+  rotate: false
+  xy: 1204, 988
+  size: 380, 512
+  orig: 380, 512
   offset: 0, 0
   index: -1
 menu_background
@@ -62,7 +69,7 @@ menu_background
   index: -1
 small_button_ad
   rotate: false
-  xy: 1204, 980
+  xy: 1204, 466
   size: 86, 86
   orig: 86, 86
   offset: 0, 0
@@ -83,14 +90,14 @@ small_button_home
   index: -1
 small_button_home-pressed
   rotate: false
-  xy: 1204, 892
+  xy: 1204, 378
   size: 86, 86
   orig: 86, 86
   offset: 0, 0
   index: -1
 small_button_next
   rotate: false
-  xy: 1292, 980
+  xy: 1292, 466
   size: 86, 86
   orig: 86, 86
   offset: 0, 0
@@ -111,7 +118,7 @@ small_button_repeat
   index: -1
 small_button_repeat-pressed
   rotate: false
-  xy: 1204, 804
+  xy: 1586, 1224
   size: 86, 86
   orig: 86, 86
   offset: 0, 0

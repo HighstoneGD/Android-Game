@@ -1,6 +1,6 @@
 package com.mygdx.game.controlling.scores;
 
-import com.mygdx.game.ScoreListener;
+import com.mygdx.game.util.interfaces.ScoreListener;
 
 import java.util.ArrayList;
 import java.util.Collections;

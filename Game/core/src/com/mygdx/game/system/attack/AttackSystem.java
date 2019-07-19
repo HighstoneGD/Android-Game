@@ -7,7 +7,7 @@ import com.mygdx.game.common.enums.BonusType;
 import com.mygdx.game.common.enums.PotType;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.screen.game.BasicGameScreen;
-import com.mygdx.game.util.logic.SystemCreator;
+import com.mygdx.game.util.services.SystemCreator;
 
 import java.util.HashMap;
 import java.util.List;
@@ -79,7 +79,7 @@ public class AttackSystem extends IntervalSystem {
     }
 
     private void initPotPriorities() {
-        potsPriorities = new HashMap<PotType, Integer>();
+        potsPriorities = new HashMap<>();
 
         for (int i = 0; i < potTypes.size(); i++) {
             potsPriorities.put(potTypes.get(i), i);

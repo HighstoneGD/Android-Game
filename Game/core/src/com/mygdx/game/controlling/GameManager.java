@@ -2,6 +2,7 @@ package com.mygdx.game.controlling;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.enums.PotType;

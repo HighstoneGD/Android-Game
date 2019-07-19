@@ -10,7 +10,7 @@ import com.mygdx.game.component.PositionComponent;
 import com.mygdx.game.component.PositionOnGridComponent;
 import com.mygdx.game.component.marking.PlayerComponent;
 import com.mygdx.game.component.marking.SmashComponent;
-import com.mygdx.game.util.logic.NumberConverter;
+import com.mygdx.game.util.services.NumberConverter;
 
 public class SmashesOrderSystem extends IteratingSystem {
 

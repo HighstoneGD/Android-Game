@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.controlling.SoundsManager;
 import com.mygdx.game.controlling.scores.ScoreManager;
+import com.mygdx.game.util.interfaces.AdController;
 
 public abstract class GameBase extends Game {
 
