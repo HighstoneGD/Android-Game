@@ -4,4 +4,8 @@ public interface SpeedStateListener {
 
     void onSpeedUp();
 
+    void onHPPicked();
+
+    void onArmorPicked();
+
 }

@@ -1,7 +1,6 @@
 package com.mygdx.game.system.render;
 
 import com.badlogic.ashley.core.EntitySystem;
-import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,23 +8,24 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.common.GameData;
 import com.mygdx.game.controlling.BonusManager;
+import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.screen.game.BasicGameScreen;
 import com.mygdx.game.util.interfaces.SpeedStateListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SignRenderSystem extends EntitySystem implements SpeedStateListener {
 
-    private static final String TEXT = "Speed up!";
+    private static final String SPEED_UP_TEXT = "Speed up!";
+    private static final String HP_TEXT = "+ 1 hp!";
+    private static final String ARMOR_TEXT = "+ armor!";
 
     private SpriteBatch batch;
     private Viewport viewport;
     private BitmapFont font;
 
+    private String text;
+
     private float timer;
     private float stringWidth;
-    private float oldFontScale;
 
     public SignRenderSystem(BasicGameScreen screen) {
         batch = screen.getBatch();
@@ -33,22 +33,38 @@ public class SignRenderSystem extends EntitySystem implements SpeedStateListener
         font = screen.getAssetManager().get(AssetDescriptors.LARGE_FONT);
 
         font.getData().setScale(0.1f);
-        calculateStringWidth();
 
         timer = 0;
 
         BonusManager.INSTANCE.subscribe(this);
+        HealthManager.subscribe(this);
     }
 
     private void calculateStringWidth() {
         GlyphLayout glyphLayout = new GlyphLayout();
-        glyphLayout.setText(font, TEXT);
+        glyphLayout.setText(font, text);
         stringWidth = glyphLayout.width;
     }
 
     @Override
     public void onSpeedUp() {
         timer = GameData.SPEED_UP_TIME;
+        text = SPEED_UP_TEXT;
+        calculateStringWidth();
+    }
+
+    @Override
+    public void onHPPicked() {
+        timer = 5f;
+        text = HP_TEXT;
+        calculateStringWidth();
+    }
+
+    @Override
+    public void onArmorPicked() {
+        timer = GameData.ARMOR_TIME;
+        text = ARMOR_TEXT;
+        calculateStringWidth();
     }
 
     @Override
@@ -74,7 +90,7 @@ public class SignRenderSystem extends EntitySystem implements SpeedStateListener
         batch.setProjectionMatrix(viewport.getCamera().combined);
         batch.begin();
 
-        font.draw(batch, TEXT,
+        font.draw(batch, text,
                 GameData.WORLD_CENTER_X - stringWidth / 2f,
                 GameData.WORLD_HEIGHT * 0.62f);
 
