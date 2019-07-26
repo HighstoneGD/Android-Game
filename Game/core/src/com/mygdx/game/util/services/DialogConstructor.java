@@ -58,26 +58,6 @@ public class DialogConstructor {
         return dialog;
     }
 
-    public static Dialog createTutorialDialog(AndroidGame game, int lvl) {
-        Skin uiSkin = game.getAssetManager().get(AssetDescriptors.UI_SKIN);
-
-        Dialog dialog = new Dialog("", uiSkin);
-        dialog.setStyle(uiSkin.get("large", Window.WindowStyle.class));
-
-        Label label = new Label(TutorialTestMaker.getText(lvl), uiSkin);
-        label.setStyle(uiSkin.get("small", Label.LabelStyle.class));
-
-        dialog.defaults().pad(20f);
-        dialog.text(label).getButtonTable().defaults().pad(20f);
-
-        TextButton okButton = okButton(uiSkin, dialog);
-
-        dialog.button(okButton);
-        dialog.center();
-
-        return dialog;
-    }
-
     private static Button repeatButton(Skin uiSkin, AndroidGame game) {
         Button repeatButton = new Button();
         repeatButton.setStyle(uiSkin.get("repeat", Button.ButtonStyle.class));

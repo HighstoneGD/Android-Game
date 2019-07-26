@@ -3,17 +3,13 @@ package com.mygdx.game.screen.loading;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
-import com.mygdx.game.common.GameData;
 import com.mygdx.game.screen.menu.MenuScreen;
 import com.mygdx.game.util.services.GdxUtils;
 
@@ -25,22 +21,18 @@ public class LoadingScreen implements Screen {
     private Viewport viewport;
     private SpriteBatch batch;
 
+    private BitmapFont font;
+
     private float screenWidth;
     private float screenHeight;
     private float scale;
     private float oldScale = 0;
 
-    private TextureAtlas textureAtlas;
-    private BitmapFont font;
-    private Animation<TextureRegion> animation;
-
     private String sign;
     private boolean changeScreen;
-    private boolean animating = false;
     private boolean fontAdjusted = false;
     private float progress;
     private float waitTime = 0.75f;
-    private float elapsedTime = 0;
 
     public LoadingScreen(AndroidGame game) {
         this.game = game;
@@ -59,7 +51,7 @@ public class LoadingScreen implements Screen {
 
         while (!assetManager.update()) {}
 
-        initAnimationAndSound();
+        initLoadingScreenBG();
         loadAssets();
     }
 
@@ -76,12 +68,10 @@ public class LoadingScreen implements Screen {
 
         batch.end();
 
-        finishAnimation();
         changeScreen();
     }
 
     private void update(float delta) {
-        elapsedTime += delta;
         progress = assetManager.getProgress();
 
         if (assetManager.update()) {
@@ -94,11 +84,7 @@ public class LoadingScreen implements Screen {
     }
 
     private void draw() {
-        if (!animating) {
-            drawStatic();
-        } else {
-            drawAnimation();
-        }
+        drawStatic();
         drawFont();
     }
 
@@ -109,22 +95,8 @@ public class LoadingScreen implements Screen {
         );
     }
 
-    private void drawAnimation() {
-        batch.draw(
-                animation.getKeyFrame(elapsedTime, false),
-                0, 0,
-                screenWidth, screenHeight
-        );
-    }
-
-    private void finishAnimation() {
-        if (animation.isAnimationFinished(elapsedTime)) {
-            animating = false;
-        }
-    }
-
     private void changeScreen() {
-        if (changeScreen && !animating) {
+        if (changeScreen) {
             font.getData().setScale(oldScale);
             game.setScreen(new MenuScreen(game));
         }
@@ -146,18 +118,12 @@ public class LoadingScreen implements Screen {
         fontAdjusted = true;
     }
 
-    private void initAnimationAndSound() {
-        textureAtlas = assetManager.get(AssetDescriptors.GRAN_LOADING_ANIMATION);
+    private void initLoadingScreenBG() {
         font = assetManager.get(AssetDescriptors.FONT);
         sign = "LOADING: ";
-        animation = new Animation<>(GameData.FRAME_TIME * 3, textureAtlas.getRegions());
-        animating = true;
-        assetManager.get(AssetDescriptors.FUMAR_SOUND).play();
     }
 
     private void loadPreviewAssets() {
-        assetManager.load(AssetDescriptors.FUMAR_SOUND);
-        assetManager.load(AssetDescriptors.GRAN_LOADING_ANIMATION);
         assetManager.load(AssetDescriptors.LOADING_BACKGROUND);
         assetManager.load(AssetDescriptors.FONT);
     }
@@ -168,6 +134,8 @@ public class LoadingScreen implements Screen {
         assetManager.load(AssetDescriptors.STATIC);
         assetManager.load(AssetDescriptors.HUD);
         assetManager.load(AssetDescriptors.UI_SKIN);
+        assetManager.load(AssetDescriptors.SWIPE);
+        assetManager.load(AssetDescriptors.TUTORIALS);
         loadAnimations();
         loadSounds();
     }

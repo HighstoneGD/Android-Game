@@ -17,12 +17,10 @@ import com.mygdx.game.common.GameData;
 public class MenuScreen extends MenuScreenBase {
 
     private TextureAtlas uiAtlas;
-    private Skin uiSkin;
 
     public MenuScreen(AndroidGame game) {
         super(game);
         uiAtlas = assetManager.get(AssetDescriptors.UI_ATLAS);
-        uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
     }
 
     @Override

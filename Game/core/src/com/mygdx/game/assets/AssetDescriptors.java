@@ -2,7 +2,6 @@ package com.mygdx.game.assets;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -17,12 +16,6 @@ public class AssetDescriptors {
 
     public static final AssetDescriptor<BitmapFont> LARGE_FONT =
             new AssetDescriptor<BitmapFont>(AssetPaths.LARGE_FONT, BitmapFont.class);
-
-    public static final AssetDescriptor<Sound> FUMAR_SOUND =
-            new AssetDescriptor<Sound>(AssetPaths.FUMAR_SOUND, Sound.class);
-
-    public static final AssetDescriptor<TextureAtlas> GRAN_LOADING_ANIMATION =
-            new AssetDescriptor<TextureAtlas>(AssetPaths.GRAN_LOADING_ANIMATION, TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> LOADING_BACKGROUND =
             new AssetDescriptor<TextureAtlas>(AssetPaths.LOADING_BACKGROUND, TextureAtlas.class);
@@ -78,6 +71,9 @@ public class AssetDescriptors {
     public static final AssetDescriptor<TextureAtlas> PLAYER_VERTICAL_JUMP =
             new AssetDescriptor<TextureAtlas>(AssetPaths.PLAYER_VERTICAL_JUMP, TextureAtlas.class);
 
+    public static final AssetDescriptor<TextureAtlas> SWIPE =
+            new AssetDescriptor<>(AssetPaths.SWIPE, TextureAtlas.class);
+
     public static final AssetDescriptor<TextureAtlas> HUD =
             new AssetDescriptor<TextureAtlas>(AssetPaths.HUD, TextureAtlas.class);
 
@@ -85,13 +81,16 @@ public class AssetDescriptors {
             new AssetDescriptor<TextureAtlas>(AssetPaths.STATIC, TextureAtlas.class);
 
     public static final AssetDescriptor<Skin> UI_SKIN =
-            new AssetDescriptor<Skin>(AssetPaths.UI_SKIN, Skin.class);
+            new AssetDescriptor<>(AssetPaths.UI_SKIN, Skin.class);
 
     public static final AssetDescriptor<TextureAtlas> UI_ATLAS =
-            new AssetDescriptor<TextureAtlas>(AssetPaths.UI_ATLAS, TextureAtlas.class);
+            new AssetDescriptor<>(AssetPaths.UI_ATLAS, TextureAtlas.class);
 
     public static final AssetDescriptor<TextureAtlas> WIN_ANIMATION =
-            new AssetDescriptor<TextureAtlas>(AssetPaths.WIN_ANIMATION, TextureAtlas.class);
+            new AssetDescriptor<>(AssetPaths.WIN_ANIMATION, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> TUTORIALS =
+            new AssetDescriptor<>(AssetPaths.TUTORIALS, TextureAtlas.class);
 
     public static final AssetDescriptor<Sound> CLAY_POT_SMASH_FIRST =
             new AssetDescriptor<>(AssetPaths.CLAY_POT_SMASH_FIRST, Sound.class);

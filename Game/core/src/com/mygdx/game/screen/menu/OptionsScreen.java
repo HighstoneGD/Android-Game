@@ -19,7 +19,6 @@ import com.mygdx.game.common.GameConfigs;
 public class OptionsScreen extends MenuScreenBase {
 
     private TextureAtlas uiAtlas;
-    private Skin uiSkin;
 
     private CheckBox music;
     private CheckBox sounds;
@@ -27,7 +26,6 @@ public class OptionsScreen extends MenuScreenBase {
     public OptionsScreen(AndroidGame game) {
         super(game);
         uiAtlas = assetManager.get(AssetDescriptors.UI_ATLAS);
-        uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
     }
 
     @Override

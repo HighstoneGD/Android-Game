@@ -1,0 +1,111 @@
+
+swipe_animation.png
+size: 4096,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+swipe
+  rotate: false
+  xy: 2, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 0
+swipe
+  rotate: false
+  xy: 260, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 1
+swipe
+  rotate: false
+  xy: 518, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 2
+swipe
+  rotate: false
+  xy: 776, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 3
+swipe
+  rotate: false
+  xy: 1034, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 4
+swipe
+  rotate: false
+  xy: 1292, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 5
+swipe
+  rotate: false
+  xy: 1550, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 6
+swipe
+  rotate: false
+  xy: 1808, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 7
+swipe
+  rotate: false
+  xy: 2066, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 8
+swipe
+  rotate: false
+  xy: 2324, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 9
+swipe
+  rotate: false
+  xy: 2582, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 10
+swipe
+  rotate: false
+  xy: 2840, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 11
+swipe
+  rotate: false
+  xy: 3098, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 12
+swipe
+  rotate: false
+  xy: 3356, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 13
+swipe
+  rotate: false
+  xy: 3614, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: 14

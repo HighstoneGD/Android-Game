@@ -15,11 +15,8 @@ import com.mygdx.game.controlling.scores.UserData;
 
 public class FiveHighscoresScreen extends MenuScreenBase {
 
-    private Skin uiSkin;
-
     public FiveHighscoresScreen(AndroidGame game) {
         super(game);
-        uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
     }
 
     @Override

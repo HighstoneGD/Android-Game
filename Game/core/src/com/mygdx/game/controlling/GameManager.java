@@ -9,14 +9,19 @@ import com.mygdx.game.common.enums.PotType;
 
 public class GameManager {
 
+    public static final boolean DEBUG_TUTORIAL = false;
+    public static final boolean DEBUG_ENDLESS_MODE = false;
+
     public static final GameManager INSTANCE = new GameManager();
 
     private static final String LEVELS_ACCOMPLISHED_KEY = "levels";
+    private static final String TUTORIAL_ACCOMPLISHED_KEY = "tutorial";
 
     private int levelsAccomplished;
 
     private Preferences PREFS;
     private float scoreInSeconds;
+    private boolean tutorialAccomplished;
 
     private static int largeCooldown;
     private static int explosiveCooldown;
@@ -26,6 +31,7 @@ public class GameManager {
     private GameManager() {
         PREFS = Gdx.app.getPreferences(AndroidGame.class.getSimpleName());
         levelsAccomplished = PREFS.getInteger(LEVELS_ACCOMPLISHED_KEY, 0);
+        tutorialAccomplished = PREFS.getBoolean(TUTORIAL_ACCOMPLISHED_KEY, false);
     }
 
     public void updateScore(float amount) {
@@ -40,11 +46,27 @@ public class GameManager {
         scoreInSeconds = 0;
     }
 
+    public void setTutorialAccomplished(boolean tutorialAccomplished) {
+        this.tutorialAccomplished = tutorialAccomplished;
+        PREFS.putBoolean(TUTORIAL_ACCOMPLISHED_KEY, tutorialAccomplished);
+        PREFS.flush();
+    }
+
+    public boolean isTutorialAccomplished() {
+        if (DEBUG_TUTORIAL) {
+            return false;
+        }
+
+        return tutorialAccomplished;
+    }
+
     public void levelComplete() {
         levelsAccomplished++;
         if (levelsAccomplished > 8) {
             levelsAccomplished = 8;
         }
+
+        setTutorialAccomplished(false);
 
         PREFS.putInteger(LEVELS_ACCOMPLISHED_KEY, levelsAccomplished);
         PREFS.flush();
@@ -55,8 +77,11 @@ public class GameManager {
     }
 
     public boolean endlessModeUnlocked() {
-//        return levelsAccomplished == 8;
-        return true;
+        if (DEBUG_ENDLESS_MODE) {
+            return true;
+        }
+
+        return levelsAccomplished == 8;
     }
 
     public int getPotCooldown(PotType type) {

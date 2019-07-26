@@ -6,7 +6,6 @@ public class AssetPaths {
     public static final String LARGE_FONT = "ui/fonts/quarmic-sans-abridged-64.fnt";
 
     public static final String GAMEPLAY_BACKGROUND = "gameplay/background.atlas";
-    public static final String GRAN_LOADING_ANIMATION = "loading_animation.atlas";
     public static final String LOADING_BACKGROUND = "loading_background.atlas";
     public static final String SIMPLE_POT_TEXTURE = "gameplay/simple_pot.atlas";
     public static final String SIMPLE_SMASH_TEXTURE = "gameplay/simple_pot-smash.atlas";
@@ -30,8 +29,10 @@ public class AssetPaths {
     public static final String UI_SKIN = "ui/uiskin.json";
     public static final String UI_ATLAS = "ui/uiskin.atlas";
     public static final String WIN_ANIMATION = "win_animation.atlas";
+    public static final String SWIPE = "swipe_animation.atlas";
 
-    public static final String FUMAR_SOUND = "sounds/fumar.wav";
+    public static final String TUTORIALS = "tutorials.atlas";
+
     public static final String CLAY_POT_SMASH_FIRST = "sounds/clay_pot_smash.wav";
     public static final String CLAY_POT_SMASH_SECOND = "sounds/clay_pot_smash2.wav";
     public static final String EXPLOSION = "sounds/explosion.wav";

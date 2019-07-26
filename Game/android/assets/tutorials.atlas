@@ -1,0 +1,76 @@
+
+tutorials.png
+size: 4096,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bonus_tut_0
+  rotate: false
+  xy: 2, 2
+  size: 380, 450
+  orig: 380, 450
+  offset: 0, 0
+  index: -1
+bonus_tut_1
+  rotate: false
+  xy: 384, 2
+  size: 380, 450
+  orig: 380, 450
+  offset: 0, 0
+  index: -1
+explosive_tut_0
+  rotate: false
+  xy: 766, 2
+  size: 380, 450
+  orig: 380, 450
+  offset: 0, 0
+  index: -1
+explosive_tut_1
+  rotate: false
+  xy: 1148, 2
+  size: 380, 450
+  orig: 380, 450
+  offset: 0, 0
+  index: -1
+iron_tut_0
+  rotate: false
+  xy: 1530, 2
+  size: 380, 450
+  orig: 380, 450
+  offset: 0, 0
+  index: -1
+iron_tut_1
+  rotate: false
+  xy: 1912, 2
+  size: 380, 450
+  orig: 380, 450
+  offset: 0, 0
+  index: -1
+large_tut_0
+  rotate: false
+  xy: 2294, 2
+  size: 380, 450
+  orig: 380, 450
+  offset: 0, 0
+  index: -1
+large_tut_1
+  rotate: false
+  xy: 2676, 2
+  size: 380, 450
+  orig: 380, 450
+  offset: 0, 0
+  index: -1
+simple_tut_0
+  rotate: false
+  xy: 3058, 2
+  size: 380, 450
+  orig: 380, 450
+  offset: 0, 0
+  index: -1
+simple_tut_1
+  rotate: false
+  xy: 3440, 2
+  size: 380, 450
+  orig: 380, 450
+  offset: 0, 0
+  index: -1

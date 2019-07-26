@@ -8,11 +8,15 @@ import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.common.GameData;
+import com.mygdx.game.common.enums.PotType;
 import com.mygdx.game.common.levels.Level;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.system.attack.AttackSystem;
+import com.mygdx.game.system.render.SwipeAnimator;
+import com.mygdx.game.util.objects.Tutorial;
 import com.mygdx.game.util.services.DialogConstructor;
+import com.mygdx.game.util.services.TutorialConstructor;
 
 public class LevelsScreen extends BasicGameScreen {
 
@@ -22,6 +26,7 @@ public class LevelsScreen extends BasicGameScreen {
     private Dialog lvlCompleteDialog;
     private float elapsedTime;
     private float timer;
+    private float swipeTimer;
 
     private Level level;
     private int potsLeft;
@@ -36,6 +41,7 @@ public class LevelsScreen extends BasicGameScreen {
         );
 
         level = new Level(GameManager.INSTANCE.getLevelsAccomplished() + 1);
+
         potsLeft = level.getPotsAmount();
         lives = level.getLives();
         isAnimating = false;
@@ -45,7 +51,27 @@ public class LevelsScreen extends BasicGameScreen {
         );
         elapsedTime = 0f;
         timer = 2f;
+
+        isPaused = true;
+
         lvlCompleteDialog = DialogConstructor.createLvlCompleteDialog(game);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        if (GameManager.INSTANCE.getLevelsAccomplished() == 0) {
+            engine.addSystem(new SwipeAnimator(this));
+            swipeTimer = 4f;
+        }
+        int lvl = GameManager.INSTANCE.getLevelsAccomplished();
+
+        if (GameManager.INSTANCE.getLevelsAccomplished() != 8) {
+            lvl++;
+        }
+
+        log.debug("lvl = " + lvl);
+        TutorialConstructor.INSTANCE.handle(lvl, game);
     }
 
     @Override
@@ -67,6 +93,7 @@ public class LevelsScreen extends BasicGameScreen {
     @Override
     public void render(float delta) {
         super.render(delta);
+        handleSwipeTimer(delta);
 
         if (isAnimating) {
             viewport.apply();
@@ -84,6 +111,17 @@ public class LevelsScreen extends BasicGameScreen {
             }
 
             super.render(delta);
+        }
+    }
+
+    private void handleSwipeTimer(float delta) {
+        if (swipeTimer != 0) {
+            swipeTimer -= delta;
+
+            if (swipeTimer <= 0) {
+                swipeTimer = 0;
+                engine.removeSystem(engine.getSystem(SwipeAnimator.class));
+            }
         }
     }
 

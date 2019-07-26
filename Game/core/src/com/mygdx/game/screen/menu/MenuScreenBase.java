@@ -5,9 +5,11 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.AndroidGame;
+import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.common.GameData;
 import com.mygdx.game.util.services.GdxUtils;
 
@@ -19,9 +21,12 @@ public abstract class MenuScreenBase extends ScreenAdapter {
     protected Viewport viewport;
     protected Stage stage;
 
+    protected Skin uiSkin;
+
     public MenuScreenBase(AndroidGame game) {
         this.game = game;
         assetManager = game.getAssetManager();
+        uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
     }
 
     @Override

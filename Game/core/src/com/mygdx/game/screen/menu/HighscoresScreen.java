@@ -14,11 +14,8 @@ import com.mygdx.game.assets.RegionNames;
 
 public class HighscoresScreen extends MenuScreenBase {
 
-    private Skin uiSkin;
-
     public HighscoresScreen(AndroidGame game) {
         super(game);
-        uiSkin = assetManager.get(AssetDescriptors.UI_SKIN);
     }
 
     @Override

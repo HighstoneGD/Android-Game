@@ -42,7 +42,7 @@ public class Level {
     }
 
     private void initPotTypes(int number) {
-        potTypes = new ArrayList<PotType>();
+        potTypes = new ArrayList<>();
         potTypes.add(PotType.SIMPLE);
 
         if (number >= 3) {
