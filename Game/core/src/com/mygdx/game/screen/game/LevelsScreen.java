@@ -8,13 +8,11 @@ import com.badlogic.gdx.utils.Logger;
 import com.mygdx.game.AndroidGame;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.common.GameData;
-import com.mygdx.game.common.enums.PotType;
 import com.mygdx.game.common.levels.Level;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.system.attack.AttackSystem;
 import com.mygdx.game.system.render.SwipeAnimator;
-import com.mygdx.game.util.objects.Tutorial;
 import com.mygdx.game.util.services.DialogConstructor;
 import com.mygdx.game.util.services.TutorialConstructor;
 
@@ -22,7 +20,7 @@ public class LevelsScreen extends BasicGameScreen {
 
     private static final Logger log = new Logger(LevelsScreen.class.getName(), Logger.DEBUG);
 
-    private Animation<TextureRegion> winAnimation;
+    private Animation<TextureRegion> handsAnimation;
     private Dialog lvlCompleteDialog;
     private float elapsedTime;
     private float timer;
@@ -46,15 +44,15 @@ public class LevelsScreen extends BasicGameScreen {
         lives = level.getLives();
         isAnimating = false;
 
-        winAnimation = new Animation<>(
-                0.1f, assetManager.get(AssetDescriptors.WIN_ANIMATION).getRegions()
+        handsAnimation = new Animation<>(
+                0.1f, assetManager.get(AssetDescriptors.HANDS_ANIMATION).getRegions()
         );
         elapsedTime = 0f;
         timer = 2f;
 
         isPaused = true;
 
-        lvlCompleteDialog = DialogConstructor.createLvlCompleteDialog(game);
+        lvlCompleteDialog = DialogConstructor.createLvlCompleteDialog(game, !GameManager.INSTANCE.endlessModeUnlocked());
     }
 
     @Override
@@ -126,16 +124,19 @@ public class LevelsScreen extends BasicGameScreen {
     }
 
     private void drawAnimation(float delta) {
-        batch.draw(
-                winAnimation.getKeyFrame(elapsedTime, false),
+        batch.draw(assetManager.get(AssetDescriptors.ANGRY_STATIC),
                 0, 0,
-                GameData.WORLD_WIDTH, GameData.WORLD_HEIGHT
+                GameData.WORLD_WIDTH, GameData.WORLD_HEIGHT);
+        batch.draw(
+                handsAnimation.getKeyFrame(elapsedTime, false),
+                0, 0,
+                GameData.WORLD_WIDTH, GameData.WORLD_WIDTH
         );
         elapsedTime += delta;
     }
 
     private void checkAnimation(float delta) {
-        if (winAnimation.isAnimationFinished(elapsedTime)) {
+        if (handsAnimation.isAnimationFinished(elapsedTime)) {
             timer -= delta;
 
             if (timer <= 0) {

@@ -1,0 +1,104 @@
+
+hands_animation.png
+size: 4096,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+angry_hands
+  rotate: false
+  xy: 2, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 0
+angry_hands
+  rotate: false
+  xy: 260, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 1
+angry_hands
+  rotate: false
+  xy: 518, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 2
+angry_hands
+  rotate: false
+  xy: 776, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 3
+angry_hands
+  rotate: false
+  xy: 1034, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 4
+angry_hands
+  rotate: false
+  xy: 1292, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 5
+angry_hands
+  rotate: false
+  xy: 1550, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 6
+angry_hands
+  rotate: false
+  xy: 1808, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 7
+angry_hands
+  rotate: false
+  xy: 2066, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 8
+angry_hands
+  rotate: false
+  xy: 2324, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 9
+angry_hands
+  rotate: false
+  xy: 2582, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 10
+angry_hands
+  rotate: false
+  xy: 2582, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 13
+angry_hands
+  rotate: false
+  xy: 2582, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 12
+angry_hands
+  rotate: false
+  xy: 2582, 2
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 11

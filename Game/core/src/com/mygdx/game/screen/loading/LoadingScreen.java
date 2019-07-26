@@ -145,6 +145,8 @@ public class LoadingScreen implements Screen {
         loadGranAnimations();
         loadPlayerAnimations();
         assetManager.load(AssetDescriptors.WIN_ANIMATION);
+        assetManager.load(AssetDescriptors.ANGRY_STATIC);
+        assetManager.load(AssetDescriptors.HANDS_ANIMATION);
     }
 
     private void loadPotAnimations() {

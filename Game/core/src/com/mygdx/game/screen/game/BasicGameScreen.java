@@ -18,6 +18,7 @@ import com.mygdx.game.AndroidGame;
 import com.mygdx.game.common.EntityFactory;
 import com.mygdx.game.common.GameData;
 import com.mygdx.game.common.enums.Directions;
+import com.mygdx.game.controlling.BonusManager;
 import com.mygdx.game.controlling.GameManager;
 import com.mygdx.game.controlling.HealthManager;
 import com.mygdx.game.controlling.SoundsManager;
@@ -115,6 +116,7 @@ public abstract class BasicGameScreen implements Screen {
         resetHealthManager();
         GameManager.INSTANCE.resetScore();
         GameManager.INSTANCE.resetCooldown();
+        BonusManager.INSTANCE.resetSpeed();
     }
 
     private void initAttributes() {

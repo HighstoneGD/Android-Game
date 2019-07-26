@@ -2,8 +2,10 @@ package com.mygdx.game.assets;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class AssetDescriptors {
@@ -88,6 +90,12 @@ public class AssetDescriptors {
 
     public static final AssetDescriptor<TextureAtlas> WIN_ANIMATION =
             new AssetDescriptor<>(AssetPaths.WIN_ANIMATION, TextureAtlas.class);
+
+    public static final AssetDescriptor<TextureAtlas> HANDS_ANIMATION =
+            new AssetDescriptor<>(AssetPaths.HANDS_ANIMATION, TextureAtlas.class);
+
+    public static final AssetDescriptor<Texture> ANGRY_STATIC =
+            new AssetDescriptor<>(AssetPaths.ANGRY_STATIC, Texture.class);
 
     public static final AssetDescriptor<TextureAtlas> TUTORIALS =
             new AssetDescriptor<>(AssetPaths.TUTORIALS, TextureAtlas.class);

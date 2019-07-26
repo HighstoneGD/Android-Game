@@ -8,7 +8,8 @@ import java.util.List;
 
 public class ScoreManager {
 
-    private static final String USER_TEST_ID = "6ihTtEHgQjYlInYbqrqK8ds2cHX2";
+//    private static final String USER_TEST_ID = "6ihTtEHgQjYlInYbqrqK8ds2cHX2";
+    private static final String USER_TEST_ID = "jheikcgdhjevgjdb";
 
     private List<ScoreListener> listeners;
     public UserData userData;

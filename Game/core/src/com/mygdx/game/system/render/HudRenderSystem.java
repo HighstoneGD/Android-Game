@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.assets.AssetDescriptors;
 import com.mygdx.game.assets.RegionNames;
@@ -72,19 +73,35 @@ public class HudRenderSystem extends EntitySystem {
         int lives = HealthManager.getLives();
         boolean armor = HealthManager.hasArmor();
 
-        if (lives != 0) {
-            for (int i = 0; i < lives; i++) {
-                batch.draw(
-                        hud.findRegion(RegionNames.HEART),
-                        GameData.HEARTS_POSITIONS[i] - GameData.HEART_SIZE / 2f, 150f - GameData.HEART_SIZE / 2f,
-                        GameData.HEART_SIZE, GameData.HEART_SIZE
-                );
+        int livesToRender = lives;
+
+        TextureRegion heartTexture = hud.findRegion(RegionNames.HEART_ACTIVE);
+
+
+        for (int i = 0; i < 3; i++) {
+            if (livesToRender == 0) {
+                heartTexture = hud.findRegion(RegionNames.HEART_INACTIVE);
             }
+
+            batch.draw(
+                    heartTexture,
+                    GameData.HEARTS_POSITIONS[i] - GameData.HEART_SIZE / 2f, 150f - GameData.HEART_SIZE / 2f,
+                    GameData.HEART_SIZE, GameData.HEART_SIZE
+            );
+
+            livesToRender--;
         }
+
 
         if (armor) {
             batch.draw(
-                    hud.findRegion(RegionNames.ARMOR),
+                    hud.findRegion(RegionNames.ARMOR_ACTIVE),
+                    GameData.HEARTS_POSITIONS[3] - GameData.HEART_SIZE / 2f, 150f - GameData.HEART_SIZE / 2f,
+                    GameData.HEART_SIZE, GameData.HEART_SIZE
+            );
+        } else {
+            batch.draw(
+                    hud.findRegion(RegionNames.ARMOR_INACTIVE),
                     GameData.HEARTS_POSITIONS[3] - GameData.HEART_SIZE / 2f, 150f - GameData.HEART_SIZE / 2f,
                     GameData.HEART_SIZE, GameData.HEART_SIZE
             );

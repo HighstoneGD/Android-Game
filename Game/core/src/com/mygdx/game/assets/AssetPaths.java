@@ -30,6 +30,8 @@ public class AssetPaths {
     public static final String UI_ATLAS = "ui/uiskin.atlas";
     public static final String WIN_ANIMATION = "win_animation.atlas";
     public static final String SWIPE = "swipe_animation.atlas";
+    public static final String HANDS_ANIMATION = "hands_animation.atlas";
+    public static final String ANGRY_STATIC = "gran_angry_animation_static.png";
 
     public static final String TUTORIALS = "tutorials.atlas";
 

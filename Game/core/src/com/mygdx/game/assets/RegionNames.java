@@ -10,8 +10,10 @@ public class RegionNames {
     public static final String LOADING_BACKGROUND = "loading_static";
 
     // == hud ==
-    public static final String ARMOR = "armor";
-    public static final String HEART = "heart";
+    public static final String HEART_ACTIVE = "heart_active";
+    public static final String HEART_INACTIVE = "heart_inactive";
+    public static final String ARMOR_ACTIVE = "armor_active";
+    public static final String ARMOR_INACTIVE = "armor_inactive";
 
     // == static ==
     public static final String GRAN = "gran_static";

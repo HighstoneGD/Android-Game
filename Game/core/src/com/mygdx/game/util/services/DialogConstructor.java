@@ -18,7 +18,7 @@ import com.mygdx.game.screen.menu.PlayScreen;
 
 public class DialogConstructor {
 
-    public static Dialog createLvlCompleteDialog(AndroidGame game) {
+    public static Dialog createLvlCompleteDialog(AndroidGame game, boolean hasNextLevel) {
         Skin skin = game.getAssetManager().get(AssetDescriptors.UI_SKIN);
 
         Dialog dialog = new Dialog("", skin);
@@ -30,7 +30,10 @@ public class DialogConstructor {
         Button homeButton = homeButtonLevels(skin, game);
         Button nextButton = nextButton(skin, game);
 
-        dialog.button(nextButton);
+        if (hasNextLevel) {
+            dialog.button(nextButton);
+        }
+
         dialog.button(homeButton);
         dialog.center();
 
@@ -118,17 +121,6 @@ public class DialogConstructor {
         return nextButton;
     }
 
-    private static TextButton okButton(Skin uiSkin, Dialog dialog) {
-        TextButton okButton = new TextButton("OK", uiSkin);
-        okButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                ok(dialog);
-            }
-        });
-        return okButton;
-    }
-
     private static void goHomeFromEndless(AndroidGame game) {
         game.setScreen(new PlayScreen(game));
     }
@@ -154,9 +146,5 @@ public class DialogConstructor {
     private static void goNext(AndroidGame game) {
         GameManager.INSTANCE.levelComplete();
         game.setScreen(new LevelsScreen(game));
-    }
-
-    private static void ok(Dialog dialog) {
-        dialog.hide();
     }
 }
